@@ -229,3 +229,102 @@ n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193354247425:neric_call_2:iuti
 n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193404701783:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 10440
 n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193404702219:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
 n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193419723145:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193434744394:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193449762169:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193504779488:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193504779861:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193519800788:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193534819213:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320226:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320374:_for_request:spatch.c:1551:Receiving 0, user data: 20, fd: 20, evmqd: 20, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320466:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 20
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320545:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320801:ss_admin_req:spatch.c:1362:Got ping request: 8 seq
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544320886:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00021:7fffff3b7200:001:20251104:193544321005:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544321095:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193544321180:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193549827729:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 5498
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193604843838:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193604844319:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193619865141:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193634885092:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193649906526:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193704923717:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193704924148:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193719944850:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193734949965:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193749969885:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193804974273:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193804974673:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193819994485:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193834998667:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193850017567:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193905039076:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193905039471:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193920058566:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193935080083:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:193950101053:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194005122636:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194005122990:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194020139555:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194035156880:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194050178949:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194105197262:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194105197759:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194120218916:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194135235362:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194150253030:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194205273907:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194205274412:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194220294787:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194235316124:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194250333216:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194305350472:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194305351109:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194320369635:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194335390970:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194350411689:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194405431870:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194405432361:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194420452980:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194435473930:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194450495022:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194505515938:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194505516426:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194520537410:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194535558761:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194550579743:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194605599788:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194605600205:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194620615951:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194635637553:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194650653935:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194705667654:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194705667878:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194720686290:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194735702597:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194750722803:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194805744125:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194805744915:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194820765266:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194835787452:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194850808567:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194905826032:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194905827371:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194920835810:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194935854596:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:194950875089:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195005893112:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195005893320:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195020914099:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195035935454:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195050953347:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195105974658:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195105975014:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195120993951:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195136015119:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195151034438:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195206055249:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195206055668:_for_request:spatch.c:1452:About to poll - timeout=15000 millisec
+n:NDRX:5:2fd996ca:00021:7fffff3b7200:001:20251104:195221076148:_for_request:spatch.c:1496:Poll says: 0 len: -1 tout: 15000

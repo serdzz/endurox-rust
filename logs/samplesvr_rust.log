@@ -356,3 +356,13 @@ N:NDRX:4:2fd996ca:00022:7fffff3ff340:001:20251104:193354247716:neric_call_2:iuti
 N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193354247797:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
 N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193354247866:neric_call_2:iutils.c:0719:Reply not needed!
 N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193354247919:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544320869:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321014:_for_request:spatch.c:1551:Receiving 0, user data: 21, fd: 21, evmqd: 21, is_mq_only: -1, G_pollext=(nil)
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321091:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 21
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321164:_for_request:spatch.c:1634:Got admin request
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321248:ss_admin_req:spatch.c:1362:Got ping request: 8 seq
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321333:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+N:NDRX:4:2fd996ca:00022:7fffff3ff340:001:20251104:193544321396:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321513:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321707:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:5:2fd996ca:00022:7fffff3ff340:001:20251104:193544321797:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec

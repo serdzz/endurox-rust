@@ -977,3 +977,81 @@ N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193414254682:sanity_check:sani
 N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193414256887:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
 N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193424259096:sanity_check:sanity.c:0173:Time for sanity checking...
 N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193424261274:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193434267731:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193434270038:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193444276667:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193444278941:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193454280623:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193454282943:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193504288850:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193504291129:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193514294404:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193514296655:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193524302712:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193524304120:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193534309728:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193534310541:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544316830:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318054:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544318205:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318297:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318382:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318576:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544318701:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318808:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544318885:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544318964:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319051:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319145:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544319313:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319394:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544319488:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319582:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319678:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319749:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544319800:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544319877:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544319937:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320005:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320072:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320169:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544320260:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320336:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544320402:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320463:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320746:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544320827:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544320907:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544321547:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544321739:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544321823:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544321900:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544322022:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 8, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544322366:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544322447:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544322525:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544322611:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 8, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544322723:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544322793:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544322875:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544322976:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 8, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544323077:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544323168:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544323251:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544323419:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 8, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544323517:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544323602:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193544323699:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251104:193544323814:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 8, rsptime: 3ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193554328506:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193554330990:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193604337491:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193604339756:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193614341828:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193614344236:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193624350482:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193624352735:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251104:193634359652:sanity_check:sanity.c:0173:Time for sanity checking...
+assertion failed [!result.is_error]: Failed to create temporary file
+(ThreadContextFcntl.cpp:85 create_tempfile)
+ 
