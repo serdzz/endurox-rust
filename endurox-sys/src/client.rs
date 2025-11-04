@@ -1,0 +1,129 @@
+//! Client API - безопасные обертки для client functions
+
+use crate::ffi;
+use crate::{tplog_error, tplog_info};
+use libc::{c_char, c_long};
+use std::ffi::{CStr, CString};
+use std::ptr;
+
+/// Enduro/X клиент
+pub struct EnduroxClient {
+    initialized: bool,
+}
+
+impl EnduroxClient {
+    /// Создает и инициализирует клиента
+    pub fn new() -> Result<Self, String> {
+        unsafe {
+            tplog_info("Calling tpinit...");
+            let ret = ffi::tpinit(ptr::null_mut());
+            if ret == -1 {
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_ptr = ffi::tpstrerror(tperrno);
+                let err_msg = if !err_ptr.is_null() {
+                    CStr::from_ptr(err_ptr).to_string_lossy().into_owned()
+                } else {
+                    "Unknown error".to_string()
+                };
+                tplog_error(&format!("tpinit failed: ret={}, tperrno={}, msg={}", ret, tperrno, err_msg));
+                return Err(format!("tpinit failed: {}", err_msg));
+            }
+            tplog_info(&format!("tpinit succeeded: ret={}", ret));
+        }
+        
+        Ok(EnduroxClient {
+            initialized: true,
+        })
+    }
+    
+    /// Вызывает сервис (blocking)
+    pub fn call_service_blocking(&self, service: &str, data: &str) -> Result<String, String> {
+        unsafe {
+            tplog_info(&format!("call_service_blocking: service={}, data_len={}", service, data.len()));
+            
+            // Allocate STRING buffer for input
+            let string_type = CString::new("STRING").map_err(|e| e.to_string())?;
+            let send_buf = ffi::tpalloc(
+                string_type.as_ptr(),
+                ptr::null(),
+                (data.len() + 1) as c_long,
+            );
+            
+            if send_buf.is_null() {
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_msg = format!("Failed to allocate send buffer, tperrno={}", tperrno);
+                tplog_error(&err_msg);
+                return Err(err_msg);
+            }
+            
+            // Copy data to buffer
+            let c_data = CString::new(data).map_err(|e| e.to_string())?;
+            ptr::copy_nonoverlapping(
+                c_data.as_ptr(),
+                send_buf,
+                data.len() + 1,
+            );
+            
+            // Make synchronous call with tpcall
+            let c_service = CString::new(service).map_err(|e| e.to_string())?;
+            let mut recv_buf: *mut c_char = ptr::null_mut();
+            let mut recv_len: c_long = 0;
+            
+            tplog_info(&format!("Calling tpcall for service: {}", service));
+            
+            let ret = ffi::tpcall(
+                c_service.as_ptr(),
+                send_buf,
+                (data.len() + 1) as c_long,
+                &mut recv_buf,
+                &mut recv_len,
+                0, // Try with no flags first
+            );
+            
+            ffi::tpfree(send_buf);
+            
+            tplog_info(&format!("tpcall returned: ret={}, recv_buf={:?}, recv_len={}", 
+                ret, recv_buf, recv_len));
+            
+            if ret == -1 {
+                if !recv_buf.is_null() {
+                    ffi::tpfree(recv_buf);
+                }
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_ptr = ffi::tpstrerror(tperrno);
+                let err_msg = if !err_ptr.is_null() {
+                    CStr::from_ptr(err_ptr).to_string_lossy().into_owned()
+                } else {
+                    "Unknown error".to_string()
+                };
+                tplog_error(&format!("tpcall failed: ret={}, tperrno={}, msg={}", ret, tperrno, err_msg));
+                return Err(format!("tpcall failed: {}: {}", tperrno, err_msg));
+            }
+            
+            // Convert response to string
+            let response = if !recv_buf.is_null() && recv_len > 0 {
+                let c_str = CStr::from_ptr(recv_buf);
+                let result = c_str.to_string_lossy().into_owned();
+                ffi::tpfree(recv_buf);
+                result
+            } else {
+                if !recv_buf.is_null() {
+                    ffi::tpfree(recv_buf);
+                }
+                String::new()
+            };
+            
+            Ok(response)
+        }
+    }
+}
+
+impl Drop for EnduroxClient {
+    fn drop(&mut self) {
+        if self.initialized {
+            unsafe {
+                ffi::tpterm();
+            }
+        }
+    }
+}

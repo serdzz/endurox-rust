@@ -1,0 +1,21 @@
+[package]
+name = "endurox-sys"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "endurox_sys"
+
+[dependencies]
+libc = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[build-dependencies]
+
+[features]
+default = []
+server = []  # Включает server-specific биндинги (atmisrvnomain)
+client = []  # Включает client-specific биндинги
+ubf = []     # Включает UBF API

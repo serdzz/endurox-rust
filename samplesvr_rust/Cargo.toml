@@ -1,0 +1,16 @@
+[package]
+name = "samplesvr_rust"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "samplesvr_rust"
+path = "src/main.rs"
+
+[dependencies]
+endurox-sys = { path = "../endurox-sys", features = ["server"] }
+libc = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }

@@ -1,0 +1,28 @@
+services:
+  endurox_rust:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: ${HOST_NAME:-endurod8}
+    ports:
+      - 8080:8080
+      - 8090:8090
+    environment:
+      WAIT_FOR_DB: true
+      TIMEZONE: ${TIMEZONE:-UTC}
+      TZ: ${TIMEZONE:-UTC}
+    sysctls:
+      fs.mqueue.msg_max: 10000
+      fs.mqueue.msgsize_max: 1049600
+      fs.mqueue.queues_max: 10000
+    ulimits:
+      msgqueue:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 1024
+        hard: 65536
+    volumes:
+      - ./logs:/app/log
+    command:
+      ["/bin/sh", "-c", ". ./setenv.sh && xadmin start -y && tail -f /dev/null"]

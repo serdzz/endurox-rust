@@ -1,0 +1,11 @@
+[package]
+name = "rest_gateway"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+endurox-sys = { path = "../endurox-sys", features = ["client"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+axum = { workspace = true }

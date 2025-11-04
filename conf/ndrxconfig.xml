@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<endurox>
+    <appconfig>
+        <!-- Application name -->
+        <sanity>10</sanity>
+        <brrefresh>5</brrefresh>
+        <restart_min>1</restart_min>
+        <restart_step>1</restart_step>
+        <restart_max>5</restart_max>
+        <restart_to_check>20</restart_to_check>
+    </appconfig>
+
+    <resources>
+        <queuesvc>@qspace</queuesvc>
+    </resources>
+
+    <defaults>
+        <min>1</min>
+        <max>1</max>
+        <autokill>1</autokill>
+        <respawn>1</respawn>
+        <start_max>2</start_max>
+        <pingtime>10</pingtime>
+        <ping_max>4</ping_max>
+        <end_max>3</end_max>
+        <killtime>1</killtime>
+    </defaults>
+
+    <servers>
+    <server name="cconfsrv">
+            <min>1</min>
+            <max>1</max>
+            <srvid>1</srvid>
+            <sysopt>-e ${NDRX_APPHOME}/log/CCONF.log -r</sysopt>
+        </server>
+        <server name="cpmsrv">
+            <min>1</min>
+            <max>1</max>
+            <srvid>6</srvid>
+            <sysopt>-e ${NDRX_APPHOME}/log/cpmsrv.log -r -- -k1 -i1 --</sysopt>
+        </server>
+	<server name="tpevsrv">
+                        <min>1</min>
+
+                        <max>1</max>
+                        <srvid>3</srvid>
+                        <sysopt>-e ${NDRX_APPHOME}/log/tpevsrv.log -r</sysopt>
+                </server>
+                <server name="tpadmsv">
+                        <min>1</min>
+                        <max>1</max>
+                        <srvid>10</srvid>
+                        <sysopt>-e ${NDRX_APPHOME}/log/tpadmsv.log -r</sysopt>
+                </server>
+       		<server name="samplesvr_rust">
+            		<min>1</min>
+            		<max>1</max>
+            		<srvid>2</srvid>
+            		<cctag>default</cctag>
+            		<sysopt>-e ${NDRX_APPHOME}/log/samplesvr_rust.log -r</sysopt>
+        	</server>
+    </servers>
+
+    <clients>
+            <client cmdline="rest_gateway">
+            		<exec tag="RESTGW" subsect="1" autostart="Y" log="${NDRX_APPHOME}/log/rest_gateway.log"/>
+           	</client>
+        </clients>
+</endurox>
