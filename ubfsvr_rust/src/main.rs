@@ -8,14 +8,11 @@ const T_STRING_FLD: i32 = 1001;
 const T_NAME_FLD: i32 = 1002;
 const T_MESSAGE_FLD: i32 = 1003;
 const T_STATUS_FLD: i32 = 1004;
-const T_DATA_FLD: i32 = 1005;
 
-const T_LONG_FLD: i32 = 1010;
 const T_COUNT_FLD: i32 = 1011;
 const T_ID_FLD: i32 = 1012;
 const T_CODE_FLD: i32 = 1013;
 
-const T_DOUBLE_FLD: i32 = 1020;
 const T_PRICE_FLD: i32 = 1021;
 
 /// UBFECHO - Echo UBF buffer back
@@ -89,7 +86,7 @@ extern "C" fn service_ubftest(rqst: *mut TpSvcInfoRaw) {
         }
         
         let ptr = ubf.into_raw();
-        let len = unsafe { endurox_sys::ffi::Bused(ptr) };
+        let len = endurox_sys::ffi::Bused(ptr);
         
         tplog_info("UBFTEST: Returning success");
         endurox_sys::ffi::tpreturn(endurox_sys::TPSUCCESS, 0, ptr, len, 0);

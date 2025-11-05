@@ -46,7 +46,7 @@ pub fn derive_ubf_struct(input: TokenStream) -> TokenStream {
         let field_type = &field.ty;
         
         // Parse #[ubf(field = ...)] attribute
-        let mut field_id: Option<i32> = None;
+        let mut field_expr: Option<proc_macro2::TokenStream> = None;
         let mut default_value: Option<String> = None;
         
         for attr in &field.attrs {
@@ -61,12 +61,11 @@ pub fn derive_ubf_struct(input: TokenStream) -> TokenStream {
                     let part = part.trim();
                     
                     if part.starts_with("field") {
-                        // Parse "field = 1234"
+                        // Parse "field = <expr>" where expr can be a constant or literal
                         if let Some(eq_pos) = part.find('=') {
                             let value_str = part[eq_pos + 1..].trim();
-                            if let Ok(id) = value_str.parse::<i32>() {
-                                field_id = Some(id);
-                            }
+                            // Store as token stream to support both literals and constants
+                            field_expr = Some(value_str.parse().expect("Failed to parse field expression"));
                         }
                     } else if part.starts_with("default") {
                         // Parse "default = "value""
@@ -79,10 +78,10 @@ pub fn derive_ubf_struct(input: TokenStream) -> TokenStream {
             }
         }
         
-        let fid = field_id.expect(&format!("Field {} must have #[ubf(field = ...)] attribute", field_name));
+        let fid = field_expr.unwrap_or_else(|| panic!("Field {} must have #[ubf(field = ...)] attribute", field_name));
         
         // Generate field reading code based on type
-        let field_getter = generate_field_getter(field_name, field_type, fid, default_value.as_deref());
+        let field_getter = generate_field_getter(field_name, field_type, fid.clone(), default_value.as_deref());
         from_ubf_fields.push(field_getter);
         
         // Generate field writing code
@@ -123,7 +122,7 @@ pub fn derive_ubf_struct(input: TokenStream) -> TokenStream {
 fn generate_field_getter(
     field_name: &syn::Ident,
     field_type: &syn::Type,
-    field_id: i32,
+    field_id: proc_macro2::TokenStream,
     default_value: Option<&str>,
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
@@ -168,7 +167,7 @@ fn generate_field_getter(
 fn generate_field_setter(
     field_name: &syn::Ident,
     field_type: &syn::Type,
-    field_id: i32,
+    field_id: proc_macro2::TokenStream,
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
     

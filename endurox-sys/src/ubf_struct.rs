@@ -56,7 +56,7 @@ pub fn marshal<T: Serialize>(value: &T) -> Result<UbfBuffer, UbfError> {
     
     // Create UBF buffer and store JSON in T_DATA_FLD
     let mut buf = UbfBuffer::new(json.len() + 1024)
-        .map_err(|e| UbfError::AllocationError(e))?;
+        .map_err(UbfError::AllocationError)?;
     
     buf.add_string(1005, &json) // T_DATA_FLD = 1005
         .map_err(|e| UbfError::TypeError(format!("Failed to add JSON: {}", e)))?;
@@ -138,7 +138,7 @@ impl UbfStruct for UserData {
     
     fn to_ubf(&self) -> Result<UbfBuffer, UbfError> {
         let mut buf = UbfBuffer::new(1024)
-            .map_err(|e| UbfError::AllocationError(e))?;
+            .map_err(UbfError::AllocationError)?;
         
         self.update_ubf(&mut buf)?;
         Ok(buf)
@@ -172,28 +172,28 @@ impl UbfStructBuilder {
     /// Create new builder with specified size
     pub fn new(size: usize) -> Result<Self, UbfError> {
         let buffer = UbfBuffer::new(size)
-            .map_err(|e| UbfError::AllocationError(e))?;
+            .map_err(UbfError::AllocationError)?;
         Ok(UbfStructBuilder { buffer })
     }
     
     /// Add string field
     pub fn with_string(mut self, field_id: i32, value: &str) -> Result<Self, UbfError> {
         self.buffer.add_string(field_id, value)
-            .map_err(|e| UbfError::TypeError(e))?;
+            .map_err(UbfError::TypeError)?;
         Ok(self)
     }
     
     /// Add long field
     pub fn with_long(mut self, field_id: i32, value: i64) -> Result<Self, UbfError> {
         self.buffer.add_long(field_id, value)
-            .map_err(|e| UbfError::TypeError(e))?;
+            .map_err(UbfError::TypeError)?;
         Ok(self)
     }
     
     /// Add double field
     pub fn with_double(mut self, field_id: i32, value: f64) -> Result<Self, UbfError> {
         self.buffer.add_double(field_id, value)
-            .map_err(|e| UbfError::TypeError(e))?;
+            .map_err(UbfError::TypeError)?;
         Ok(self)
     }
     
@@ -261,7 +261,7 @@ impl UbfStruct for Transaction {
     
     fn to_ubf(&self) -> Result<UbfBuffer, UbfError> {
         let mut buf = UbfBuffer::new(2048)
-            .map_err(|e| UbfError::AllocationError(e))?;
+            .map_err(UbfError::AllocationError)?;
         self.update_ubf(&mut buf)?;
         Ok(buf)
     }

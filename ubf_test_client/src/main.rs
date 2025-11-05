@@ -1,9 +1,7 @@
 use endurox_sys::client::EnduroxClient;
 use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::tplog_info;
 
 // UBF Field IDs (from test.fd - base 1000)
-const T_STRING_FLD: i32 = 1001;
 const T_NAME_FLD: i32 = 1002;
 const T_MESSAGE_FLD: i32 = 1003;
 const T_STATUS_FLD: i32 = 1004;
@@ -56,7 +54,7 @@ fn test_ubfadd(client: &EnduroxClient) {
     
     let ptr = ubf.into_raw();
     
-    match client.call_service_raw("UBFADD", ptr) {
+    match unsafe { client.call_service_raw("UBFADD", ptr) } {
         Ok(response_ptr) => {
             let response = unsafe { UbfBuffer::from_raw(response_ptr) };
             
@@ -114,7 +112,7 @@ fn test_ubftest(client: &EnduroxClient) {
     
     let ptr = ubf.into_raw();
     
-    match client.call_service_raw("UBFTEST", ptr) {
+    match unsafe { client.call_service_raw("UBFTEST", ptr) } {
         Ok(response_ptr) => {
             let response = unsafe { UbfBuffer::from_raw(response_ptr) };
             
@@ -152,7 +150,7 @@ fn test_ubfecho(client: &EnduroxClient) {
     
     let ptr = ubf.into_raw();
     
-    match client.call_service_raw("UBFECHO", ptr) {
+    match unsafe { client.call_service_raw("UBFECHO", ptr) } {
         Ok(response_ptr) => {
             let response = unsafe { UbfBuffer::from_raw(response_ptr) };
             
@@ -191,9 +189,9 @@ fn test_ubfget(client: &EnduroxClient) {
     
     let ptr = ubf.into_raw();
     
-    match client.call_service_raw("UBFGET", ptr) {
+    match unsafe { client.call_service_raw("UBFGET", ptr) } {
         Ok(response_ptr) => {
-            let response = unsafe { UbfBuffer::from_raw(response_ptr) };
+            let _response = unsafe { UbfBuffer::from_raw(response_ptr) };
             
             println!("  Response received - buffer echoed back");
             println!("  ✓ Test passed");

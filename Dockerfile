@@ -52,9 +52,13 @@ COPY ubf_test_client ./ubf_test_client
 
 # Копирование и компиляция UBF field tables
 COPY ubftab ./ubftab
+
 RUN cd ubftab && \
-    mkfldhdr test.fd && \
-    cp test.h /app/endurox-sys/src/ || true
+    cp /opt/endurox/share/endurox/ubftab/* . && \
+    mv Excompat Excompat.fd && \
+    mv Exfields Exfields.fd && \
+    mkfldhdr *.fd && \
+    cp *.h /app/endurox-sys/src/
 
 # Set FLDTBLDIR and FIELDTBLS environment variables
 ENV FLDTBLDIR=/app/ubftab \

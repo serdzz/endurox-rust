@@ -19,7 +19,7 @@ fn test_ubfecho() {
     ubf.add_string(T_NAME_FLD, "Test").expect("Failed to add name");
     
     let ptr = ubf.into_raw();
-    let result = client.call_service_raw("UBFECHO", ptr);
+    let result = unsafe { client.call_service_raw("UBFECHO", ptr) };
     
     assert!(result.is_ok());
 }
@@ -34,7 +34,7 @@ fn test_ubftest() {
     ubf.add_string(T_NAME_FLD, "Rust").expect("Failed to add name");
     
     let ptr = ubf.into_raw();
-    let result = client.call_service_raw("UBFTEST", ptr);
+    let result = unsafe { client.call_service_raw("UBFTEST", ptr) };
     
     assert!(result.is_ok());
     
@@ -62,7 +62,7 @@ fn test_ubfadd() {
     let ubf = UbfBuffer::new(2048).expect("Failed to create UBF buffer");
     let ptr = ubf.into_raw();
     
-    let result = client.call_service_raw("UBFADD", ptr);
+    let result = unsafe { client.call_service_raw("UBFADD", ptr) };
     assert!(result.is_ok());
     
     // Parse response
@@ -100,7 +100,7 @@ fn test_ubfget() {
     ubf.add_double(T_PRICE_FLD, 123.45).expect("Failed to add price");
     
     let ptr = ubf.into_raw();
-    let result = client.call_service_raw("UBFGET", ptr);
+    let result = unsafe { client.call_service_raw("UBFGET", ptr) };
     
     assert!(result.is_ok());
 }

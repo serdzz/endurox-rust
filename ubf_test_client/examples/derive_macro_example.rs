@@ -5,46 +5,46 @@
 use endurox_sys::UbfStruct;
 use endurox_sys::ubf::UbfBuffer;
 use endurox_sys::ubf_struct::{UbfError, UbfStruct as UbfStructTrait};
-
-// Field IDs from test.fd
-const T_NAME_FLD: i32 = 1002;
-const T_ID_FLD: i32 = 1012;
-const T_PRICE_FLD: i32 = 1021;
-const T_STATUS_FLD: i32 = 1004;
+use endurox_sys::ubf_fields::*;  // Auto-generated field constants
 
 /// Simple transaction struct using derive macro
 #[derive(Debug, Clone, UbfStruct)]
 struct Transaction {
-    #[ubf(field = 1002)]  // T_NAME_FLD
+    #[ubf(field = T_NAME_FLD)]  // Auto-generated constant
     name: String,
     
-    #[ubf(field = 1012)]  // T_ID_FLD
+    #[ubf(field = T_ID_FLD)]  // Auto-generated constant
     id: i64,
     
-    #[ubf(field = 1021)]  // T_PRICE_FLD
+    #[ubf(field = T_PRICE_FLD)]  // Auto-generated constant
     amount: f64,
     
-    #[ubf(field = 1004, default = "pending")]  // T_STATUS_FLD with default
+    #[ubf(field = T_STATUS_FLD, default = "pending")]  // Auto-generated constant
     status: String,
 }
 
 /// User account with derive macro
 #[derive(Debug, Clone, UbfStruct)]
 struct UserAccount {
-    #[ubf(field = 1002)]
+    #[ubf(field = T_NAME_FLD)]  // Auto-generated constant
     username: String,
     
-    #[ubf(field = 1012)]
+    #[ubf(field = T_ID_FLD)]  // Auto-generated constant
     user_id: i64,
     
-    #[ubf(field = 1021)]
+    #[ubf(field = T_PRICE_FLD)]  // Auto-generated constant
     balance: f64,
     
-    #[ubf(field = 31)]  // T_FLAG_FLD
+    #[ubf(field = T_FLAG_FLD)]  // Auto-generated constant
     active: bool,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize ATMI context (required for UBF operations)
+    unsafe {
+        endurox_sys::ffi::tpinit(std::ptr::null_mut());
+    }
+    
     println!("=== UbfStruct Derive Macro Example ===\n");
     
     // Example 1: Create and convert Transaction
@@ -129,5 +129,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     
     println!("\n=== All examples completed successfully ===");
+    
+    // Cleanup ATMI context
+    unsafe {
+        endurox_sys::ffi::tpterm();
+    }
+    
     Ok(())
 }

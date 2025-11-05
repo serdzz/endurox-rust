@@ -27,6 +27,13 @@ impl UbfBuffer {
             return Err("Failed to allocate UBF buffer".to_string());
         }
         
+        // Initialize the UBF buffer
+        let result = unsafe { ffi::Binit(ptr, size as c_long) };
+        if result == -1 {
+            unsafe { ffi::tpfree(ptr); }
+            return Err("Failed to initialize UBF buffer".to_string());
+        }
+        
         Ok(UbfBuffer { ptr, size })
     }
     
@@ -57,7 +64,7 @@ impl UbfBuffer {
                 self.ptr,
                 field_id,
                 &val as *const c_long as *const c_char,
-                0,
+                0,  // 0 = use field type from field ID
             )
         };
         
@@ -75,7 +82,7 @@ impl UbfBuffer {
                 self.ptr,
                 field_id,
                 &value as *const f64 as *const c_char,
-                0,
+                0,  // 0 = use field type from field ID
             )
         };
         
@@ -256,6 +263,10 @@ impl UbfBuffer {
     }
     
     /// Create UbfBuffer from raw pointer (unsafe - caller must ensure validity)
+    /// 
+    /// # Safety
+    /// 
+    /// The caller must ensure that `ptr` is a valid pointer to a UBF buffer allocated by Balloc or tpalloc.
     pub unsafe fn from_raw(ptr: *mut c_char) -> Self {
         let size = ffi::Bsizeof(ptr) as usize;
         UbfBuffer { ptr, size }

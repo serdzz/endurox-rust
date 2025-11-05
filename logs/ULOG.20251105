@@ -1,4 +1,0 @@
-00015:20251105:08413238:ndrxd       :ERROR ! Duplicate startup, ndrxd with PID 15 already exists
-00023:20251105:08480008:ubfsvr_rust :Field table [Exfields] not found in [/app/ubftab]
-00023:20251105:08480008:ubfsvr_rust :Field table [ctp.fd] not found in [/app/ubftab]
-00023:20251105:08480008:ubfsvr_rust :Field table [api.fd] not found in [/app/ubftab]

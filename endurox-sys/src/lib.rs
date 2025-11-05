@@ -32,6 +32,9 @@ pub mod ubf;
 #[cfg(feature = "ubf")]
 pub mod ubf_struct;
 
+#[cfg(feature = "ubf")]
+pub mod ubf_fields;
+
 // Re-export derive macro
 #[cfg(feature = "derive")]
 pub use endurox_derive::UbfStruct;

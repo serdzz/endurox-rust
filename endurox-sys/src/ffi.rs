@@ -77,6 +77,9 @@ extern "C" {
     
     // UBF API
     #[cfg(feature = "ubf")]
+    pub fn Binit(p_ub: *mut c_char, len: c_long) -> c_int;
+    
+    #[cfg(feature = "ubf")]
     pub fn Badd(p_ub: *mut c_char, bfldid: c_int, buf: *const c_char, len: c_int) -> c_int;
     
     #[cfg(feature = "ubf")]

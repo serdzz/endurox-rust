@@ -118,7 +118,11 @@ impl EnduroxClient {
     }
     
     /// Call service with raw buffer (for UBF)
-    pub fn call_service_raw(&self, service: &str, send_buf: *mut c_char) -> Result<*mut c_char, String> {
+    /// 
+    /// # Safety
+    /// 
+    /// The caller must ensure that `send_buf` is a valid pointer to a buffer allocated by tpalloc.
+    pub unsafe fn call_service_raw(&self, service: &str, send_buf: *mut c_char) -> Result<*mut c_char, String> {
         unsafe {
             tplog_info(&format!("call_service_raw: service={}", service));
             

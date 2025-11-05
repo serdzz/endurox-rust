@@ -180,24 +180,35 @@ This will execute 4 tests:
 
 ### UBF Struct Derive Macro
 
-The project now includes an automatic derive macro for UBF struct conversion:
+The project includes an automatic derive macro for UBF struct conversion. You can use either numeric field IDs or field constants:
 
 ```rust
 use endurox_sys::UbfStruct;
+use endurox_sys::ubf_fields::*;  // Auto-generated field constants
 
 #[derive(UbfStruct)]
 struct Transaction {
-    #[ubf(field = 1002)]  // T_NAME_FLD
+    #[ubf(field = T_NAME_FLD)]  // Using field constant
     name: String,
     
-    #[ubf(field = 1012)]  // T_ID_FLD
+    #[ubf(field = T_ID_FLD)]  // Field constant
     id: i64,
     
-    #[ubf(field = 1021)]  // T_PRICE_FLD
+    #[ubf(field = T_PRICE_FLD)]  // Field constant
     amount: f64,
     
-    #[ubf(field = 1004, default = "pending")]  // T_STATUS_FLD with default
+    #[ubf(field = T_STATUS_FLD, default = "pending")]  // With default value
     status: String,
+}
+
+// Alternative: using numeric field IDs
+#[derive(UbfStruct)]
+struct Payment {
+    #[ubf(field = 1002)]  // Numeric field ID
+    name: String,
+    
+    #[ubf(field = 1012)]  // Numeric field ID
+    id: i64,
 }
 
 // Usage
