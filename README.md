@@ -178,6 +178,41 @@ This will execute 4 tests:
 3. **UBFECHO** - Echoes the UBF buffer back
 4. **UBFGET** - Sends multiple fields and reads them
 
+### UBF Struct Derive Macro
+
+The project now includes an automatic derive macro for UBF struct conversion:
+
+```rust
+use endurox_sys::UbfStruct;
+
+#[derive(UbfStruct)]
+struct Transaction {
+    #[ubf(field = 1002)]  // T_NAME_FLD
+    name: String,
+    
+    #[ubf(field = 1012)]  // T_ID_FLD
+    id: i64,
+    
+    #[ubf(field = 1021)]  // T_PRICE_FLD
+    amount: f64,
+    
+    #[ubf(field = 1004, default = "pending")]  // T_STATUS_FLD with default
+    status: String,
+}
+
+// Usage
+let txn = Transaction { name: "Payment".into(), id: 123, amount: 99.99, status: "completed".into() };
+let ubf = txn.to_ubf()?;  // Convert to UBF
+let restored = Transaction::from_ubf(&ubf)?;  // Convert from UBF
+```
+
+**Running the derive macro example:**
+```bash
+docker-compose exec endurox_rust bash /app/test_derive.sh
+```
+
+See [UBF_STRUCT_GUIDE.md](UBF_STRUCT_GUIDE.md) for complete documentation.
+
 ### UBF Field Table
 
 The project includes a UBF field table (`ubftab/test.fd`) with the following fields:
@@ -195,14 +230,19 @@ The project includes a UBF field table (`ubftab/test.fd`) with the following fie
 ├── Cargo.toml              # Workspace definition
 ├── docker-compose.yml      # Docker orchestration
 ├── Dockerfile              # Container image
-├── endurox-sys/           # Rust FFI bindings
+|── endurox-sys/           # Rust FFI bindings
 │   ├── src/
 │   │   ├── lib.rs         # Module exports
 │   │   ├── ffi.rs         # Raw FFI declarations
 │   │   ├── server.rs      # Server API
 │   │   ├── client.rs      # Client API
 │   │   ├── ubf.rs         # UBF API
+│   │   ├── ubf_struct.rs  # UBF struct trait & helpers
 │   │   └── log.rs         # Logging wrappers
+│   └── Cargo.toml
+├── endurox-derive/       # Proc-macro for UbfStruct
+│   ├── src/
+│   │   └── lib.rs         # Derive macro implementation
 │   └── Cargo.toml
 ├── samplesvr_rust/        # STRING/JSON server
 │   ├── src/
