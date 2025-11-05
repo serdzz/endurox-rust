@@ -178,11 +178,71 @@ txn.update_ubf(&mut existing_ubf)?;
 - `i64`, `i32` - mapped to UBF long fields
 - `f64`, `f32` - mapped to UBF double fields
 - `bool` - mapped to UBF long fields (0/1), checked with `is_present()`
+- **Nested structs** - any type implementing `UbfStruct`
 
 **Attributes:**
 - `#[ubf(field = CONSTANT)]` - Use auto-generated field constant (recommended)
 - `#[ubf(field = 1234)]` - Use numeric field ID
 - `#[ubf(field = T_NAME_FLD, default = "value")]` - Provide default value for optional fields (String only)
+- `#[ubf(field = 0)]` - For nested structs (field ID is not used, the nested struct's fields are used)
+
+### Nested Structs
+
+You can nest structs that implement `UbfStruct` within other structs:
+
+```rust
+use endurox_sys::UbfStruct;
+use endurox_sys::ubf_fields::*;
+
+// Define nested struct
+#[derive(Debug, Clone, UbfStruct)]
+struct Address {
+    #[ubf(field = T_STREET_FLD)]
+    street: String,
+    
+    #[ubf(field = T_CITY_FLD)]
+    city: String,
+    
+    #[ubf(field = T_ZIP_FLD)]
+    zip: String,
+}
+
+// Use nested struct in parent
+#[derive(Debug, Clone, UbfStruct)]
+struct Customer {
+    #[ubf(field = T_NAME_FLD)]
+    name: String,
+    
+    #[ubf(field = T_ID_FLD)]
+    customer_id: i64,
+    
+    #[ubf(field = 0)]  // Nested struct - field ID not used
+    address: Address,
+}
+
+// Usage
+let customer = Customer {
+    name: "John Doe".to_string(),
+    customer_id: 1001,
+    address: Address {
+        street: "123 Main St".to_string(),
+        city: "Springfield".to_string(),
+        zip: "12345".to_string(),
+    },
+};
+
+// All fields (including nested) are serialized to the same UBF buffer
+let ubf = customer.to_ubf()?;
+let restored = Customer::from_ubf(&ubf)?;
+
+assert_eq!(customer.address.city, restored.address.city);
+```
+
+**How it works:**
+- Nested structs are flattened into the same UBF buffer
+- All fields from both parent and nested structs are stored at the top level
+- Field IDs must be unique across all nested structures
+- The field ID for the nested struct field itself (specified with `#[ubf(field = 0)]`) is ignored
 
 **Running the example:**
 ```bash
@@ -339,14 +399,16 @@ See:
 ## Field Table Reference
 
 From `ubftab/test.fd`:
-
-| Field Name | Field ID | Type | Description |
+|| Field Name | Field ID | Type | Description |
 |-----------|----------|------|-------------|
 | T_STRING_FLD | 1001 | string | String field |
 | T_NAME_FLD | 1002 | string | Name field |
 | T_MESSAGE_FLD | 1003 | string | Message field |
 | T_STATUS_FLD | 1004 | string | Status field |
 | T_DATA_FLD | 1005 | string | Data field (used for JSON) |
+| T_STREET_FLD | 1006 | string | Street field |
+| T_CITY_FLD | 1007 | string | City field |
+| T_ZIP_FLD | 1008 | string | ZIP code field |
 | T_LONG_FLD | 1010 | long | Long integer field |
 | T_COUNT_FLD | 1011 | long | Count field |
 | T_ID_FLD | 1012 | long | ID field |
@@ -354,6 +416,7 @@ From `ubftab/test.fd`:
 | T_DOUBLE_FLD | 1020 | double | Double field |
 | T_PRICE_FLD | 1021 | double | Price field |
 | T_SHORT_FLD | 1030 | short | Short field |
+| T_FLAG_FLD | 1031 | short | Flag field |
 | T_FLAG_FLD | 1031 | short | Flag field |
 
 ## Best Practices

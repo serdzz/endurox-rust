@@ -83,6 +83,6 @@ COPY conf ./conf
 COPY setenv.sh ./
 COPY test_rest.sh ./
 COPY test_derive.sh ./
-RUN chmod +x test_rest.sh test_ubf.sh test_derive.sh
+RUN chmod +x test_rest.sh  test_derive.sh
 
 CMD ["/bin/bash"]

@@ -9,6 +9,9 @@ T_NAME_FLD       2    string  -  "Name field"
 T_MESSAGE_FLD    3    string  -  "Message field"
 T_STATUS_FLD     4    string  -  "Status field"
 T_DATA_FLD       5    string  -  "Data field"
+T_STREET_FLD     6    string  -  "Street field"
+T_CITY_FLD       7    string  -  "City field"
+T_ZIP_FLD        8    string  -  "ZIP code field"
 
 # Long/Integer fields
 T_LONG_FLD       10   long    -  "Long integer field"

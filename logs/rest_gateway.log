@@ -1,0 +1,188 @@
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145096974:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145098682:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145098950:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145098954:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145103359:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145103555:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145103558:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145103882:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105427:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105589:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105591:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105593:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105595:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105597:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105598:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105600:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105602:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105676:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105679:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105680:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105755:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105871:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7ffffdcf9000
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105891:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:200145105992:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145106056:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145106058:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145106060:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145106135:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:200145106179:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+t:USER:3:2fd996ca:00025:7ffffdf14640:000:20251105:200145108232:tplog       :/tplog.c:0583:t:USER:3:2fd996ca:00025:7fffff33d9c0:000:20251105:200145108257:tplog       :/tplog.c:0583:Calling tpinit...
+REST Gateway starting...
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145110445:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145111402:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145111814:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145112236:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145112395:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145112471:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145113246:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145113791:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115405:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115454:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115489:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115531:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115557:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+t:USER:3:2fd996ca:00025:7fffff33d9c0:000:20251105:200145115372:tplog       :/tplog.c:0583:REST Gateway listening on http://0.0.0.0:8080
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115614:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115969:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145115993:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116014:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+REST Gateway listening on http://0.0.0.0:8080
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116184:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116436:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116462:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116506:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116554:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116571:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116590:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116607:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116622:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116638:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116695:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116715:tpinit      :i/init.c:1057:Got prefix [/run]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116774:tpinit      :i/init.c:1065:Got PROGNAME [rest_gateway]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116854:drx_ctxid_op:i/init.c:0135:Got free context id=0 (0 base)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:200145116921:drx_ctxid_op:i/init.c:0146:Returning context id=1
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117102:tpinit      :i/init.c:1102:my_id=[clt,rest_gateway,25,1,1]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117144:tpinit      :i/init.c:1112:About to open client queue [/run,clt,reply,rest_gateway,25,1]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117277:tpinit      :i/init.c:1114:After client Q open: 27
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117299:tpinit      :i/init.c:1122:Client queue [/run,clt,reply,rest_gateway,25,1] opened mqd_t=27.
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117409:nternal_init:i/init.c:0920:NDRXD queue: [/run,sys,bg,ndrxd]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117488:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:200145117527:drx_sem_open:td_sem.c:0259:Semaphore exists [41001] - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117553:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117577:x_sem_attach:td_sem.c:0369:sem: [1] attached
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117606:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117704:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117725:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117744:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117764:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117800:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:200145117919:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,svcinfo]/41002 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145117965:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,svcinfo] 1/41002 attach size: 11120000 mem: 0x7ffffd1bb000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118013:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:200145118050:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routcrit]/41008 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118074:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routcrit] 2/41008 attach size: 204800 mem: 0x7ffffd189000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118090:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:200145118106:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routsvc]/41009 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118131:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routsvc] 3/41009 attach size: 176000 mem: 0x7ffffd15e000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118152:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:200145118170:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,brinfo]/41003 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118195:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,brinfo] 5/41003 attach size: 128 mem: 0x7ffffd15d000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:200145118223:x_shm_attach:_shmsv.c:0243:return 0
+t:USER:3:2fd996ca:00025:7ffffdf14640:001:20251105:200145118579:tplog       :/tplog.c:0583:tpinit succeeded: ret=0
+t:USER:3:2fd996ca:00025:7ffffdf14640:001:20251105:200145118600:tplog       :/tplog.c:0583:Enduro/X client initialized in worker thread
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516509824:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516511520:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516511767:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516511770:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516516250:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516516456:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516516459:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516516773:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518320:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518482:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518484:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518486:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518488:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518489:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518491:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518492:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518494:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518565:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518567:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518568:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518632:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518744:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7ffffdcf9000
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518761:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518862:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518927:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518929:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516518930:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516519003:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00025:7fffff33d9c0:000:20251105:201516519047:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+t:USER:3:2fd996ca:00025:7ffffdf14640:000:20251105:201516520004:tplog       :/tplog.c:0583:t:USER:3:2fd996ca:00025:7fffff33d9c0:000:20251105:201516520024:tplog       :/tplog.c:0583:Calling tpinit...
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520788:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520825:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520858:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520900:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520957:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516520988:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521050:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521081:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521118:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521151:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521183:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521227:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521259:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521291:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521321:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521354:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521384:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521534:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521564:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521591:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521621:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521648:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521672:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521697:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521722:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521748:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521772:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521835:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521866:tpinit      :i/init.c:1057:Got prefix [/run]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521892:tpinit      :i/init.c:1065:Got PROGNAME [rest_gateway]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521971:drx_ctxid_op:i/init.c:0135:Got free context id=0 (0 base)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:000:20251105:201516521996:drx_ctxid_op:i/init.c:0146:Returning context id=1
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522087:tpinit      :i/init.c:1102:my_id=[clt,rest_gateway,25,1,1]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522142:tpinit      :i/init.c:1112:About to open client queue [/run,clt,reply,rest_gateway,25,1]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522270:tpinit      :i/init.c:1114:After client Q open: 26
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522301:tpinit      :i/init.c:1122:Client queue [/run,clt,reply,rest_gateway,25,1] opened mqd_t=26.
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522410:nternal_init:i/init.c:0920:NDRXD queue: [/run,sys,bg,ndrxd]
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522457:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:201516522497:drx_sem_open:td_sem.c:0259:Semaphore exists [41001] - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522520:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522544:x_sem_attach:td_sem.c:0369:sem: [1] attached
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522568:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522677:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522701:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522725:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522749:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522775:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:201516522846:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,svcinfo]/41002 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522876:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,svcinfo] 1/41002 attach size: 11120000 mem: 0x7ffffd1bb000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522900:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:201516522925:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routcrit]/41008 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522955:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routcrit] 2/41008 attach size: 204800 mem: 0x7ffffd189000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516522978:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:201516523003:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routsvc]/41009 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516523030:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routsvc] 3/41009 attach size: 176000 mem: 0x7ffffd15e000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516523053:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00025:7ffffdf14640:001:20251105:201516523076:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,brinfo]/41003 - attaching
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516523104:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,brinfo] 5/41003 attach size: 128 mem: 0x7ffffd15d000
+N:NDRX:5:2fd996ca:00025:7ffffdf14640:001:20251105:201516523127:x_shm_attach:_shmsv.c:0243:return 0
+t:USER:3:2fd996ca:00025:7ffffdf14640:001:20251105:201516523513:tplog       :/tplog.c:0583:tpinit succeeded: ret=0
+t:USER:3:2fd996ca:00025:7ffffdf14640:001:20251105:201516523542:tplog       :/tplog.c:0583:Enduro/X client initialized in worker thread
+REST Gateway starting...
+t:USER:3:2fd996ca:00025:7fffff33d9c0:000:20251105:201516527526:tplog       :/tplog.c:0583:REST Gateway listening on http://0.0.0.0:8080
+REST Gateway listening on http://0.0.0.0:8080

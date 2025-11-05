@@ -39,6 +39,32 @@ struct UserAccount {
     active: bool,
 }
 
+/// Address struct for nested example
+#[derive(Debug, Clone, UbfStruct)]
+struct Address {
+    #[ubf(field = T_STREET_FLD)]  // Auto-generated constant
+    street: String,
+    
+    #[ubf(field = T_CITY_FLD)]  // Auto-generated constant
+    city: String,
+    
+    #[ubf(field = T_ZIP_FLD)]  // Auto-generated constant
+    zip: String,
+}
+
+/// Customer with nested Address struct
+#[derive(Debug, Clone, UbfStruct)]
+struct Customer {
+    #[ubf(field = T_NAME_FLD)]  // Auto-generated constant
+    name: String,
+    
+    #[ubf(field = T_ID_FLD)]  // Auto-generated constant
+    customer_id: i64,
+    
+    #[ubf(field = 0)]  // Nested struct doesn't use a specific field ID
+    address: Address,
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize ATMI context (required for UBF operations)
     unsafe {
@@ -116,8 +142,29 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("   Verified: {:?}", verified);
     println!();
     
-    // Example 5: Error handling
-    println!("5. Error handling:");
+    // Example 5: Nested struct
+    println!("5. Nested struct - Customer with Address:");
+    let customer = Customer {
+        name: "John Doe".to_string(),
+        customer_id: 1001,
+        address: Address {
+            street: "123 Main St".to_string(),
+            city: "Springfield".to_string(),
+            zip: "12345".to_string(),
+        },
+    };
+    
+    println!("   Original: {:?}", customer);
+    
+    let ubf_customer = customer.to_ubf()?;
+    let restored_customer = Customer::from_ubf(&ubf_customer)?;
+    
+    println!("   Restored: {:?}", restored_customer);
+    println!("   Address city: {}", restored_customer.address.city);
+    println!();
+    
+    // Example 6: Error handling
+    println!("6. Error handling:");
     let empty_buffer = UbfBuffer::new(1024)?;
     
     match Transaction::from_ubf(&empty_buffer) {

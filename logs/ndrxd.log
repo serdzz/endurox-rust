@@ -1,0 +1,1345 @@
+N:NDRX:4:00000000:00000:7ffffd067d80:000:20251105:200143877001:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143879010:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143879336:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143879339:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143883827:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143884006:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143884008:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:200143884303:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143885990:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886141:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886144:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143886145:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886147:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886149:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886150:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886152:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886153:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886674:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886677:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886686:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143886768:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143886881:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7ffffd04d000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143886905:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143887004:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143887073:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143887082:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143887087:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143887159:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143887203:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888166:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888243:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888265:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888302:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888322:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888365:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888413:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888434:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888462:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888481:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888499:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888531:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888550:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888570:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888589:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888609:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888628:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888776:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888793:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888808:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888822:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888837:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888851:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888865:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888879:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888894:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888908:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143888959:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889236:drxd_pid_get:ysutil.c:0164:ndrxd PID file [/app/ndrxd.pid] not found
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889281:main_init   :/ndrxd.c:0310:NDRXD Max Q size to: 3000 (override)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889311:main_init   :/ndrxd.c:0331:Command wait time set to 1 sec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889387:d_open_queue:cessor.c:0193:About to open deamon queue: [/run,sys,bg,ndrxd]
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143889460:d_open_queue:cessor.c:0208:Queue [/run,sys,bg,ndrxd] opened!
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143889482:main_init   :/ndrxd.c:0357:Using PID file [/app/ndrxd.pid]
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143889519:main_init   :/ndrxd.c:0372:Using QPath [/dev/mqueue]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889576:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889663:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889678:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889694:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889709:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889724:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143889788:drx_sem_open:td_sem.c:0286:Semaphore for key 41001 open, id: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889803:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143889818:main_init   :/ndrxd.c:0403:Create/attached to semaphores OK
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143889866:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,svcinfo] 1/41002 created size: 11120000 mem: 0x7ffffc5b2000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889881:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143889899:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,routcrit] 2/41008 created size: 204800 mem: 0x7ffffc580000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889913:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143889935:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,routsvc] 3/41009 created size: 176000 mem: 0x7ffffc555000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889950:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143889967:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,srvinfo] 4/41001 created size: 12440000 mem: 0x7ffffb977000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143889981:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143889998:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,brinfo] 5/41003 created size: 128 mem: 0x7fffff60d000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143890012:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143890026:main_init   :/ndrxd.c:0414:create/attached to shared memory OK
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143890067:sigchld_init:pmodel.c:0330:ndrxd_sigchld_init - enter
+N:NDRX:5:2fd996ca:00015:7ffffb976640:000:20251105:200143891114:k_child_exit:pmodel.c:0255:check_child_exit - enter...
+N:NDRX:5:2fd996ca:00015:7ffffb976640:000:20251105:200143891638:k_child_exit:pmodel.c:0263:about to sigwait()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143917763:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 256
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143917997:wait_and_run:cessor.c:0478:Command ID: 2
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143918016:wait_and_run:cessor.c:0497:Source: [/run,sys,bg,xadmin,14] Command: 2 Executing command: start
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143918036:wait_and_run:cessor.c:0569:Entering context: 1
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143918155:app_startup :pmodel.c:1528:Starting application domain
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143918277:ctive_config:config.c:0327:Active configuration not loaded - will load!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924071:se_appconfig:config.c:0912:Sanity Check: [10] - 10
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924102:se_appconfig:config.c:0944:brrefresh: [5] - 5 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924119:se_appconfig:config.c:0920:restart_min: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924160:se_appconfig:config.c:0928:restart_step: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924184:se_appconfig:config.c:0936:restart_max: [5] - 5
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924210:se_appconfig:config.c:0952:restart_to_check: [20] - 20 sec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924229:se_appconfig:config.c:1061:`checkpm' not set using default 2 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924252:se_appconfig:config.c:1068:`rqaddrtt' not set using default 10 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924276:se_appconfig:config.c:1075:`routereload' not set using default 60 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924398:rse_defaults:config.c:0446:Got default min: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924416:rse_defaults:config.c:0456:Got default max: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924432:rse_defaults:config.c:0464:Got default autokill: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924458:rse_defaults:config.c:0623:respawn: Y
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924473:rse_defaults:config.c:0495:start_max: [2] - 2 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924497:rse_defaults:config.c:0511:pingtime: [10] - 10 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924523:rse_defaults:config.c:0519:ping_max: [4] - 4 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924547:rse_defaults:config.c:0503:end_max: [3] - 3 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924570:rse_defaults:config.c:0557:killtime: [1] - 1 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924598:rse_defaults:config.c:0815:Server start wait defaulted to 30000 msec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924618:rse_defaults:config.c:0823:Server stop wait defaulted to 30000 msec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924746:parse_server:config.c:1656:Adding: cconfsrv SRVID=1 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/CCONF.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924805:parse_server:config.c:1656:Adding: cpmsrv SRVID=6 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/cpmsrv.log -r -- -k1 -i1 -- -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924851:parse_server:config.c:1656:Adding: tpevsrv SRVID=3 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/tpevsrv.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924892:parse_server:config.c:1656:Adding: tpadmsv SRVID=10 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/tpadmsv.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143924941:parse_server:config.c:1656:Adding: samplesvr_rust SRVID=2 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/samplesvr_rust.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="default" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143925022:parse_server:config.c:1656:Adding: ubfsvr_rust SRVID=4 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/ubfsvr_rust.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="default" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143925837:ctive_config:config.c:0347:building process model
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143925857:ctive_config:config.c:0350:G_sys_config.max_servers = 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926078:rocess_model:pmodel.c:0512:build_process_model enter
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926130:rocess_model:pmodel.c:0654:adding cconfsrv:1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926219:rocess_model:pmodel.c:0654:adding cpmsrv:6
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926236:rocess_model:pmodel.c:0654:adding tpevsrv:3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926253:rocess_model:pmodel.c:0654:adding tpadmsv:10
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926269:rocess_model:pmodel.c:0654:adding samplesvr_rust:2
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926292:rocess_model:pmodel.c:0654:adding ubfsvr_rust:4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926332:rocess_model:pmodel.c:0670:build_process_model return 0
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143926352:ctive_config:config.c:0397:load_active_config returns with status 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143926433:_ddr_install:_ndrxd.c:0099:Installing DDR infos to shared memory
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143926658:tart_process:pmodel.c:0933:*********processing for startup cconfsrv/1 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926695:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926798:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143926861:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143927012:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143927060:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143927935:_to_pid_hash:pmodel.c:0411:About to add pid 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928101:_to_pid_hash:pmodel.c:0423:Added pid 17 to hash with key 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928188:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928234:sanity_check:sanity.c:0139:client_prefix=[/run,clt,reply,]/15
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928249:sanity_check:sanity.c:0145:xadmin_prefix=[/run,sys,bg,xadmin,]/19
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928270:sanity_check:sanity.c:0151:server_prefix=[/run,srv,reply,]/15
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928370:sanity_check:sanity.c:0158:cnvclt_prefix=[/run,cnv,c,]/11
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143928390:sanity_check:sanity.c:0164:cnvsrv_prefix=[/run,cnv,s,]/11
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200143963480:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 456
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963515:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963586:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963659:cmd_srvinfo :rvinfo.c:0109:Call from server: 1, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963719:pid_hash_get:pmodel.c:0481:Search for pid 17 to hash with key 17, result: 0x5555555d4330
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143963787:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963911:cmd_srvinfo :rvinfo.c:0243:Server [cconfsrv] advertises: svc: [@CCONF] func: [CCONF]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143963984:_svc_to_hash:bridge.c:0569:ADDING @CCONF
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143964188:vc_to_hash_g:bridge.c:0615:Number of services of [@CCONF] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200143964225:vc_to_hash_g:bridge.c:0615:Number of services of [@CCONF] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964558:t_for_status:pmodel.c:0884:binary cconfsrv/cconfsrv, srvid 1 started with pid 17/17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964595:tart_process:pmodel.c:1350:PID of started process is 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964621:tup_progress:rtstop.c:0091:startup_progress enter, pid: 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964646:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964667:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 17, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964691:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964747:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200143964794:tart_process:pmodel.c:0933:*********processing for startup cpmsrv/6 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964816:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964847:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964873:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964899:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143964923:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143965160:_to_pid_hash:pmodel.c:0411:About to add pid 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143965206:_to_pid_hash:pmodel.c:0423:Added pid 18 to hash with key 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200143965230:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200144009625:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 456
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009703:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009752:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009783:cmd_srvinfo :rvinfo.c:0109:Call from server: 6, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009817:pid_hash_get:pmodel.c:0481:Search for pid 18 to hash with key 18, result: 0x5555555d4260
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144009848:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009887:cmd_srvinfo :rvinfo.c:0243:Server [cpmsrv] advertises: svc: [@CPMSVC] func: [CPMSVC]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144009917:_svc_to_hash:bridge.c:0569:ADDING @CPMSVC
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144010102:vc_to_hash_g:bridge.c:0615:Number of services of [@CPMSVC] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144010222:vc_to_hash_g:bridge.c:0615:Number of services of [@CPMSVC] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010440:t_for_status:pmodel.c:0884:binary cpmsrv/cpmsrv, srvid 6 started with pid 18/18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010470:tart_process:pmodel.c:1350:PID of started process is 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010500:tup_progress:rtstop.c:0091:startup_progress enter, pid: 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010529:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010551:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 18, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010576:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010607:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144010684:tart_process:pmodel.c:0933:*********processing for startup tpevsrv/3 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010738:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010776:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010822:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010875:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144010938:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144011363:_to_pid_hash:pmodel.c:0411:About to add pid 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144011429:_to_pid_hash:pmodel.c:0423:Added pid 20 to hash with key 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144011471:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200144051083:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051132:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051165:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051195:cmd_srvinfo :rvinfo.c:0109:Call from server: 3, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051225:pid_hash_get:pmodel.c:0481:Search for pid 20 to hash with key 20, result: 0x5555555f3120
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144051247:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051282:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVSUBS001] func: [TPEVSUBS]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051311:_svc_to_hash:bridge.c:0569:ADDING @TPEVSUBS001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051435:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVSUBS001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051466:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVSUBS001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051491:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVUNSUBS001] func: [TPEVUNSUBS]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051517:_svc_to_hash:bridge.c:0569:ADDING @TPEVUNSUBS001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051637:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVUNSUBS001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051664:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVUNSUBS001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051725:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVPOST001] func: [TPEVPOST]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051752:_svc_to_hash:bridge.c:0569:ADDING @TPEVPOST001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051774:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVPOST001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051794:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVPOST001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051814:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVDOPOST001] func: [TPEVDOPOST]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144051834:_svc_to_hash:bridge.c:0569:ADDING @TPEVDOPOST001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051853:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVDOPOST001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144051871:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVDOPOST001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052092:t_for_status:pmodel.c:0884:binary tpevsrv/tpevsrv, srvid 3 started with pid 20/20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052115:tart_process:pmodel.c:1350:PID of started process is 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052133:tup_progress:rtstop.c:0091:startup_progress enter, pid: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052149:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052166:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 20, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052186:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052207:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144052251:tart_process:pmodel.c:0933:*********processing for startup tpadmsv/10 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052276:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052300:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052323:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052348:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144052375:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144053228:_to_pid_hash:pmodel.c:0411:About to add pid 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144053307:_to_pid_hash:pmodel.c:0423:Added pid 21 to hash with key 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144053379:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200144093485:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 616
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093562:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093606:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093638:cmd_srvinfo :rvinfo.c:0109:Call from server: 10, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093660:pid_hash_get:pmodel.c:0481:Search for pid 21 to hash with key 21, result: 0x5555555f3450
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144093686:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093720:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093780:_svc_to_hash:bridge.c:0565:IGNORING .TMIB
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093801:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB-1-10] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093820:_svc_to_hash:bridge.c:0569:ADDING .TMIB-1-10
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144093885:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1-10] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144093977:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1-10] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144093996:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB-1] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094015:_svc_to_hash:bridge.c:0569:ADDING .TMIB-1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144094035:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144094055:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094225:t_for_status:pmodel.c:0884:binary tpadmsv/tpadmsv, srvid 10 started with pid 21/21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094251:tart_process:pmodel.c:1350:PID of started process is 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094271:tup_progress:rtstop.c:0091:startup_progress enter, pid: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094291:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094312:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 21, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094336:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094360:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144094409:tart_process:pmodel.c:0933:*********processing for startup samplesvr_rust/2 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094441:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094458:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094477:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094504:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094535:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144094962:_to_pid_hash:pmodel.c:0411:About to add pid 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144095010:_to_pid_hash:pmodel.c:0423:Added pid 22 to hash with key 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144095037:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200144138514:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138556:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138574:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138598:cmd_srvinfo :rvinfo.c:0109:Call from server: 2, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138631:pid_hash_get:pmodel.c:0481:Search for pid 22 to hash with key 22, result: 0x5555555d34b0
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144138653:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138682:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [ECHO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144138820:_svc_to_hash:bridge.c:0569:ADDING ECHO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144138972:vc_to_hash_g:bridge.c:0615:Number of services of [ECHO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139057:vc_to_hash_g:bridge.c:0615:Number of services of [ECHO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139079:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [HELLO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139101:_svc_to_hash:bridge.c:0569:ADDING HELLO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139211:vc_to_hash_g:bridge.c:0615:Number of services of [HELLO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139232:vc_to_hash_g:bridge.c:0615:Number of services of [HELLO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139252:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [STATUS] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139276:_svc_to_hash:bridge.c:0569:ADDING STATUS
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139350:vc_to_hash_g:bridge.c:0615:Number of services of [STATUS] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139371:vc_to_hash_g:bridge.c:0615:Number of services of [STATUS] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139390:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [DATAPROC] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139410:_svc_to_hash:bridge.c:0569:ADDING DATAPROC
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139484:vc_to_hash_g:bridge.c:0615:Number of services of [DATAPROC] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144139504:vc_to_hash_g:bridge.c:0615:Number of services of [DATAPROC] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139646:t_for_status:pmodel.c:0884:binary samplesvr_rust/samplesvr_rust, srvid 2 started with pid 22/22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139676:tart_process:pmodel.c:1350:PID of started process is 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139704:tup_progress:rtstop.c:0091:startup_progress enter, pid: 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139729:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139757:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 22, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139785:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139814:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144139857:tart_process:pmodel.c:0933:*********processing for startup ubfsvr_rust/4 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139886:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139912:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139940:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139962:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144139984:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144140336:_to_pid_hash:pmodel.c:0411:About to add pid 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144140386:_to_pid_hash:pmodel.c:0423:Added pid 23 to hash with key 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144140416:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200144177276:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177339:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177365:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177393:cmd_srvinfo :rvinfo.c:0109:Call from server: 4, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177421:pid_hash_get:pmodel.c:0481:Search for pid 23 to hash with key 23, result: 0x5555555d0b10
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144177442:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177466:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFECHO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177495:_svc_to_hash:bridge.c:0569:ADDING UBFECHO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177526:vc_to_hash_g:bridge.c:0615:Number of services of [UBFECHO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177554:vc_to_hash_g:bridge.c:0615:Number of services of [UBFECHO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177585:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFTEST] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177609:_svc_to_hash:bridge.c:0569:ADDING UBFTEST
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177640:vc_to_hash_g:bridge.c:0615:Number of services of [UBFTEST] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177669:vc_to_hash_g:bridge.c:0615:Number of services of [UBFTEST] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177695:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFADD] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177716:_svc_to_hash:bridge.c:0569:ADDING UBFADD
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177737:vc_to_hash_g:bridge.c:0615:Number of services of [UBFADD] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177774:vc_to_hash_g:bridge.c:0615:Number of services of [UBFADD] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177807:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFGET] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177829:_svc_to_hash:bridge.c:0569:ADDING UBFGET
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177849:vc_to_hash_g:bridge.c:0615:Number of services of [UBFGET] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:200144177872:vc_to_hash_g:bridge.c:0615:Number of services of [UBFGET] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144177976:t_for_status:pmodel.c:0884:binary ubfsvr_rust/ubfsvr_rust, srvid 4 started with pid 23/23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178002:tart_process:pmodel.c:1350:PID of started process is 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178022:tup_progress:rtstop.c:0091:startup_progress enter, pid: 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178041:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178061:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 23, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178083:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178104:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178180:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178200:ric_q_send_2:iutils.c:0473:len: 312 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:200144178236:cmd_start   :rtstop.c:0127:cmd_start returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200144178263:wait_and_run:cessor.c:0595:Restoring context: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200153930321:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200153933001:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200203939894:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200203942271:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200213947062:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200213949547:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200223955873:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200223959133:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200233964201:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200233983672:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200243990848:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200243994165:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200253999161:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200254002108:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200304009231:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200304012762:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200314019240:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200314022816:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200324029060:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200324043098:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334050110:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334053504:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334053745:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334053937:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054067:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054325:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334054431:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054526:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334054607:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054686:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054780:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334054882:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334055643:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334055891:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334055971:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334056046:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334056124:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334056227:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334056911:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334056999:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334057070:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334057142:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334057217:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334057302:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334057962:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334058046:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334058125:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334058200:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334058281:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334058374:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334058452:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334058535:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334059568:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334059655:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334059735:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334059851:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334059937:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334060898:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334061022:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334061102:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334061176:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334061691:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 1, rsptime: 8ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334061777:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334061943:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062018:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062098:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 1, rsptime: 7ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062166:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062227:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062291:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062357:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 1, rsptime: 6ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062426:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062488:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062556:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062628:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 1, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062698:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062759:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334062821:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062895:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 1, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334062977:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334063043:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200334063105:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200334063170:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 1, rsptime: 5ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200344067133:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200344071006:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200354077640:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200354081662:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200404086374:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200404089603:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200414094327:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200414098128:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200424104571:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200424108695:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200434114092:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200434117502:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200444123562:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200444129141:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200454122886:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200454141073:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200504147910:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200504151770:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200514154102:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200514158204:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524156008:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524158296:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524158482:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524158575:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524158666:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524158769:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524158856:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524158936:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524159010:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159077:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159151:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159230:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524159356:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159425:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524159490:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159556:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159624:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159707:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524159821:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524159889:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524159953:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160016:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160082:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160158:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524160359:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160425:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524160487:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160549:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160618:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160694:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524160790:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524160871:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524161161:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524161237:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524161312:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524161409:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524161461:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524162376:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524162493:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524162562:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524162651:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524162739:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 2, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524162798:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524162852:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524162904:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524162955:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 2, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163006:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163054:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163105:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163155:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 2, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163209:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163256:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163308:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163363:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 2, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163514:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163576:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163638:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163703:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 2, rsptime: 2ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163770:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163829:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200524163889:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200524163951:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 2, rsptime: 3ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200534168998:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200534172442:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200544175804:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200544179966:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200554185983:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200554190068:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200604196146:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200604199989:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200614201856:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200614205128:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200624211899:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200624214737:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200634220853:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200634223879:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200644229035:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200644232217:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200654239073:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200654242315:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200704247990:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200704250255:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714256028:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258031:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714258241:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258354:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258450:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258651:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714258747:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258831:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714258907:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714258980:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259058:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259146:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714259291:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259382:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714259458:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259531:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259609:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259695:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714259849:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714259927:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714260000:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260073:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260151:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260241:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714260359:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260436:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714260511:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260585:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260661:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260750:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714260832:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714260930:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714261928:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714262026:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714262120:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714262358:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714262438:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714263313:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714263431:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714263506:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714263581:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714263664:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 3, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714263745:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714263829:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714263911:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714263993:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 3, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264071:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264153:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264235:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264311:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 3, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264391:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264463:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264535:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264609:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 3, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264686:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264758:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714264858:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714264935:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 3, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714265013:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714265086:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200714265161:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200714265236:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 3, rsptime: 4ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200724264637:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200724267755:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200734273611:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200734276800:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200744283069:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200744286473:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200754292973:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200754296051:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200804298278:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200804303093:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200814309997:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200814331566:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200824337965:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200824341409:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200834345354:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200834349954:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200844355167:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200844360296:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200854362040:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200854364583:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904371059:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904373781:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904374034:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904374248:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904374441:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904374644:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904374848:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904374994:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904375099:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375190:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375287:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375399:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904375493:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375587:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904375678:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375877:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904375983:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904376105:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904376288:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904376381:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904376467:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904376552:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904376649:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904376766:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904376927:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377010:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904377083:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377165:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377249:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377349:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904377423:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377504:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904377882:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904377968:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904378056:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904378162:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904378226:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379126:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904379241:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379315:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379384:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904379473:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 4, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904379555:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379622:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379688:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904379774:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 4, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904379925:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904379988:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380050:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380118:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 4, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380186:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380250:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380312:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380377:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 4, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380443:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380506:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380568:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380634:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 4, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380703:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380766:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200904380829:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:200904380893:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 4, rsptime: 3ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200914384887:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200914388819:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200924394415:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200924398625:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200934400760:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200934403429:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200944409192:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200944412863:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200954419104:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:200954423090:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201004430157:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201004433877:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201014440151:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201014443739:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201024448993:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201024452611:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201034454416:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201034458608:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201044463996:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201044466774:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054470478:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054472889:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054473071:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473170:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473273:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473383:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054473494:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473591:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054473678:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473765:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473855:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054473954:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054474062:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054474169:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054474255:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054474339:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054474428:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054474525:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054474839:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054474917:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054475005:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475076:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475155:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475245:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054475420:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475513:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054475674:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475749:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475827:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054475924:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054476005:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054476103:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054476185:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054476264:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054476347:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054477355:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054477446:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054478387:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054478501:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054478577:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054478652:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054478738:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 5, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054478819:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054478895:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054478968:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479046:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 5, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479130:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479203:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479276:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479351:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 5, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479428:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479499:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479571:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479645:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 5, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054479722:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479793:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054479867:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054480019:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 5, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054480096:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054480168:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201054480241:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201054480315:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 5, rsptime: 4ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201104481410:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201104484265:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201114487122:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201114490607:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201124495083:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201124498725:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201134505353:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201134508903:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201144515397:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201144517885:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201154521376:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201154523799:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201204530387:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201204533593:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201214537371:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201214541381:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201224547984:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201224551906:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201234558508:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201234562082:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244568647:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244570877:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244571058:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571175:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571284:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571396:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244571512:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571717:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244571812:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571900:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244571992:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572094:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244572193:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572295:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244572388:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572464:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572542:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572628:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244572774:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572852:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244572924:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244572997:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573075:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573158:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244573276:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573357:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244573430:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573506:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573583:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573674:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244573750:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573839:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244573916:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244573994:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244574078:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244574210:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244574299:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244575182:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244575292:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244575366:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244575439:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244575541:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 6, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244575624:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244575701:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244575794:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244575875:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 6, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244575975:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576064:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576155:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576246:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 6, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576331:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576412:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576486:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576561:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 6, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576639:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576711:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244576791:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576880:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 6, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244576967:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244577049:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201244577126:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201244577207:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 6, rsptime: 3ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201254581224:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201254584508:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201304589659:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201304593075:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201314599258:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201314602711:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201324609443:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201324612621:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201334618420:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201334621859:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201344623232:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201344625192:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201354627574:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201354631919:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201404637081:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201404637781:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201414640307:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201414641404:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201424641924:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201424642524:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434648899:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434653416:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434653648:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434653785:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434653908:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654018:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434654094:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654168:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434654235:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654304:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654378:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654458:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434654570:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654654:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434654725:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654793:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654879:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434654970:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434655545:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434655615:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434655679:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434655747:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434655822:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434655908:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434656266:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656336:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434656403:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656466:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656546:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656641:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434656710:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656809:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434656876:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434656942:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434657024:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434657124:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434657212:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434658334:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434658470:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434658569:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434658671:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434658800:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 7, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434658897:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434658979:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434659059:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659141:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 7, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659232:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434659312:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434659474:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659557:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 7, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659647:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434659729:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434659810:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659892:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 7, rsptime: 4ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434659986:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434660063:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434660143:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434660226:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 7, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434660317:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434660398:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201434660478:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201434660557:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 7, rsptime: 4ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201444664959:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201444667991:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201454674449:sanity_check:sanity.c:0173:Time for sanity checking...
+assertion failed [!result.is_error]: Failed to create temporary file
+(ThreadContextFcntl.cpp:85 create_tempfile)
+ N:NDRX:4:00000000:00000:7ffffd067d80:000:20251105:201515294710:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515296783:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515297192:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515297200:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515301899:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515302083:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515302086:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7ffffd067d80:000:20251105:201515302419:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515304136:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304303:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304310:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515304312:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304318:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304320:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304325:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304331:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304332:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304876:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304883:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515304889:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515305101:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305237:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7ffffd04d000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305264:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515305370:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305443:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305450:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305455:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305538:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515305581:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306609:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306691:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306714:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306748:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306769:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306788:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306838:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306868:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306901:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306920:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306939:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306971:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515306991:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307010:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307035:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307068:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307091:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307276:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307293:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307308:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307325:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307354:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307375:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307392:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307411:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307428:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307443:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307496:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307771:drxd_pid_get:ysutil.c:0164:ndrxd PID file [/app/ndrxd.pid] not found
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307816:main_init   :/ndrxd.c:0310:NDRXD Max Q size to: 3000 (override)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307849:main_init   :/ndrxd.c:0331:Command wait time set to 1 sec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515307914:d_open_queue:cessor.c:0193:About to open deamon queue: [/run,sys,bg,ndrxd]
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515307984:d_open_queue:cessor.c:0208:Queue [/run,sys,bg,ndrxd] opened!
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515308001:main_init   :/ndrxd.c:0357:Using PID file [/app/ndrxd.pid]
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515308016:main_init   :/ndrxd.c:0372:Using QPath [/dev/mqueue]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308095:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308191:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308207:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308222:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308238:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308253:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515308318:drx_sem_open:td_sem.c:0286:Semaphore for key 41001 open, id: 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308335:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515308350:main_init   :/ndrxd.c:0403:Create/attached to semaphores OK
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515308400:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,svcinfo] 1/41002 created size: 11120000 mem: 0x7ffffc5b2000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308415:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515308433:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,routcrit] 2/41008 created size: 204800 mem: 0x7ffffc580000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308472:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515308492:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,routsvc] 3/41009 created size: 176000 mem: 0x7ffffc555000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308507:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515308525:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,srvinfo] 4/41001 created size: 12440000 mem: 0x7ffffb977000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308539:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515308556:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,brinfo] 5/41003 created size: 128 mem: 0x7fffff60d000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308571:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515308585:main_init   :/ndrxd.c:0414:create/attached to shared memory OK
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515308615:sigchld_init:pmodel.c:0330:ndrxd_sigchld_init - enter
+N:NDRX:5:2fd996ca:00015:7ffffb976640:000:20251105:201515309591:k_child_exit:pmodel.c:0255:check_child_exit - enter...
+N:NDRX:5:2fd996ca:00015:7ffffb976640:000:20251105:201515310090:k_child_exit:pmodel.c:0263:about to sigwait()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515337983:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 256
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515338207:wait_and_run:cessor.c:0478:Command ID: 2
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515338227:wait_and_run:cessor.c:0497:Source: [/run,sys,bg,xadmin,14] Command: 2 Executing command: start
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515338246:wait_and_run:cessor.c:0569:Entering context: 1
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515338369:app_startup :pmodel.c:1528:Starting application domain
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515338499:ctive_config:config.c:0327:Active configuration not loaded - will load!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344336:se_appconfig:config.c:0912:Sanity Check: [10] - 10
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344391:se_appconfig:config.c:0944:brrefresh: [5] - 5 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344410:se_appconfig:config.c:0920:restart_min: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344426:se_appconfig:config.c:0928:restart_step: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344452:se_appconfig:config.c:0936:restart_max: [5] - 5
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344488:se_appconfig:config.c:0952:restart_to_check: [20] - 20 sec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344513:se_appconfig:config.c:1061:`checkpm' not set using default 2 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344544:se_appconfig:config.c:1068:`rqaddrtt' not set using default 10 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344570:se_appconfig:config.c:1075:`routereload' not set using default 60 sty!
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344694:rse_defaults:config.c:0446:Got default min: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344712:rse_defaults:config.c:0456:Got default max: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344727:rse_defaults:config.c:0464:Got default autokill: [1] - 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344753:rse_defaults:config.c:0623:respawn: Y
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344769:rse_defaults:config.c:0495:start_max: [2] - 2 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344800:rse_defaults:config.c:0511:pingtime: [10] - 10 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344824:rse_defaults:config.c:0519:ping_max: [4] - 4 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344866:rse_defaults:config.c:0503:end_max: [3] - 3 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344890:rse_defaults:config.c:0557:killtime: [1] - 1 sty
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344920:rse_defaults:config.c:0815:Server start wait defaulted to 30000 msec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515344940:rse_defaults:config.c:0823:Server stop wait defaulted to 30000 msec
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345068:parse_server:config.c:1656:Adding: cconfsrv SRVID=1 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/CCONF.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345132:parse_server:config.c:1656:Adding: cpmsrv SRVID=6 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/cpmsrv.log -r -- -k1 -i1 -- -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345186:parse_server:config.c:1656:Adding: tpevsrv SRVID=3 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/tpevsrv.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345228:parse_server:config.c:1656:Adding: tpadmsv SRVID=10 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/tpadmsv.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345283:parse_server:config.c:1656:Adding: samplesvr_rust SRVID=2 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/samplesvr_rust.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="default" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515345332:parse_server:config.c:1656:Adding: ubfsvr_rust SRVID=4 MIN=1 MAX=1 CLOPT="-e ${NDRX_APPHOME}/log/ubfsvr_rust.log -r -- " ENV="" START_MAX=2 END_MAX=3 PINGTIME=10 PING_MAX=4 EXPORTSVCS="" START_WAIT=30000 STOP_WAIT=30000 CCTAG="default" RELOADONCHANGE="N"RESPAWN="Y" FULLPATH="" CMDLINE="" RSSMAX=-1 VSZMAX=-1 MINDISPATCHTHREADS=1 MAXDISPATCHTHREADS=1 THREADSTACKSIZE=0 PROCGRP(no)=0 PROCGRP_LP(no)=0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346068:ctive_config:config.c:0347:building process model
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346101:ctive_config:config.c:0350:G_sys_config.max_servers = 10000
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346333:rocess_model:pmodel.c:0512:build_process_model enter
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346405:rocess_model:pmodel.c:0654:adding cconfsrv:1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346506:rocess_model:pmodel.c:0654:adding cpmsrv:6
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346531:rocess_model:pmodel.c:0654:adding tpevsrv:3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346552:rocess_model:pmodel.c:0654:adding tpadmsv:10
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346572:rocess_model:pmodel.c:0654:adding samplesvr_rust:2
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346626:rocess_model:pmodel.c:0654:adding ubfsvr_rust:4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515346669:rocess_model:pmodel.c:0670:build_process_model return 0
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515346687:ctive_config:config.c:0397:load_active_config returns with status 0
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515346767:_ddr_install:_ndrxd.c:0099:Installing DDR infos to shared memory
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515347025:tart_process:pmodel.c:0933:*********processing for startup cconfsrv/1 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515347067:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515347164:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515347234:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515347397:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515347448:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348342:_to_pid_hash:pmodel.c:0411:About to add pid 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348378:_to_pid_hash:pmodel.c:0423:Added pid 17 to hash with key 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348465:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348527:sanity_check:sanity.c:0139:client_prefix=[/run,clt,reply,]/15
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348550:sanity_check:sanity.c:0145:xadmin_prefix=[/run,sys,bg,xadmin,]/19
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348565:sanity_check:sanity.c:0151:server_prefix=[/run,srv,reply,]/15
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348580:sanity_check:sanity.c:0158:cnvclt_prefix=[/run,cnv,c,]/11
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515348594:sanity_check:sanity.c:0164:cnvsrv_prefix=[/run,cnv,s,]/11
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515380253:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 456
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380308:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380348:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380433:cmd_srvinfo :rvinfo.c:0109:Call from server: 1, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380512:pid_hash_get:pmodel.c:0481:Search for pid 17 to hash with key 17, result: 0x5555555d5a80
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515380582:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380708:cmd_srvinfo :rvinfo.c:0243:Server [cconfsrv] advertises: svc: [@CCONF] func: [CCONF]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515380768:_svc_to_hash:bridge.c:0569:ADDING @CCONF
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515380968:vc_to_hash_g:bridge.c:0615:Number of services of [@CCONF] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515380991:vc_to_hash_g:bridge.c:0615:Number of services of [@CCONF] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381321:t_for_status:pmodel.c:0884:binary cconfsrv/cconfsrv, srvid 1 started with pid 17/17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381344:tart_process:pmodel.c:1350:PID of started process is 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381363:tup_progress:rtstop.c:0091:startup_progress enter, pid: 17
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381382:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381400:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 17, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381430:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381481:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515381541:tart_process:pmodel.c:0933:*********processing for startup cpmsrv/6 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381565:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381586:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381617:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381639:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381661:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381917:_to_pid_hash:pmodel.c:0411:About to add pid 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381959:_to_pid_hash:pmodel.c:0423:Added pid 18 to hash with key 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515381983:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515422816:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 456
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515422848:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515422879:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515422909:cmd_srvinfo :rvinfo.c:0109:Call from server: 6, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515422939:pid_hash_get:pmodel.c:0481:Search for pid 18 to hash with key 18, result: 0x5555555d0b10
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515422965:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423000:cmd_srvinfo :rvinfo.c:0243:Server [cpmsrv] advertises: svc: [@CPMSVC] func: [CPMSVC]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423022:_svc_to_hash:bridge.c:0569:ADDING @CPMSVC
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515423121:vc_to_hash_g:bridge.c:0615:Number of services of [@CPMSVC] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515423218:vc_to_hash_g:bridge.c:0615:Number of services of [@CPMSVC] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423310:t_for_status:pmodel.c:0884:binary cpmsrv/cpmsrv, srvid 6 started with pid 18/18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423332:tart_process:pmodel.c:1350:PID of started process is 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423349:tup_progress:rtstop.c:0091:startup_progress enter, pid: 18
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423364:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423380:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 18, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423397:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423415:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515423435:tart_process:pmodel.c:0933:*********processing for startup tpevsrv/3 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423465:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423517:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423544:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423582:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423601:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423832:_to_pid_hash:pmodel.c:0411:About to add pid 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423872:_to_pid_hash:pmodel.c:0423:Added pid 20 to hash with key 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515423903:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515458269:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458302:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458323:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458348:cmd_srvinfo :rvinfo.c:0109:Call from server: 3, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458379:pid_hash_get:pmodel.c:0481:Search for pid 20 to hash with key 20, result: 0x5555555d0160
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515458405:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458434:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVSUBS001] func: [TPEVSUBS]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458461:_svc_to_hash:bridge.c:0569:ADDING @TPEVSUBS001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458583:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVSUBS001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458610:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVSUBS001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458636:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVUNSUBS001] func: [TPEVUNSUBS]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458659:_svc_to_hash:bridge.c:0569:ADDING @TPEVUNSUBS001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458780:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVUNSUBS001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458799:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVUNSUBS001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458816:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVPOST001] func: [TPEVPOST]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458833:_svc_to_hash:bridge.c:0569:ADDING @TPEVPOST001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458850:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVPOST001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458869:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVPOST001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458885:cmd_srvinfo :rvinfo.c:0243:Server [tpevsrv] advertises: svc: [@TPEVDOPOST001] func: [TPEVDOPOST]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515458900:_svc_to_hash:bridge.c:0569:ADDING @TPEVDOPOST001
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458916:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVDOPOST001] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515458931:vc_to_hash_g:bridge.c:0615:Number of services of [@TPEVDOPOST001] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459011:t_for_status:pmodel.c:0884:binary tpevsrv/tpevsrv, srvid 3 started with pid 20/20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459035:tart_process:pmodel.c:1350:PID of started process is 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459055:tup_progress:rtstop.c:0091:startup_progress enter, pid: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459075:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459117:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 20, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459140:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459164:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515459220:tart_process:pmodel.c:0933:*********processing for startup tpadmsv/10 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459256:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459284:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459305:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459333:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459370:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459639:_to_pid_hash:pmodel.c:0411:About to add pid 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459685:_to_pid_hash:pmodel.c:0423:Added pid 21 to hash with key 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515459710:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515493735:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 616
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493784:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493804:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493822:cmd_srvinfo :rvinfo.c:0109:Call from server: 10, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493840:pid_hash_get:pmodel.c:0481:Search for pid 21 to hash with key 21, result: 0x5555555d0190
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515493862:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493889:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493911:_svc_to_hash:bridge.c:0565:IGNORING .TMIB
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493930:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB-1-10] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515493945:_svc_to_hash:bridge.c:0569:ADDING .TMIB-1-10
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515494000:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1-10] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515494078:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1-10] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494094:cmd_srvinfo :rvinfo.c:0243:Server [tpadmsv] advertises: svc: [.TMIB-1] func: [MIB]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494110:_svc_to_hash:bridge.c:0569:ADDING .TMIB-1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515494125:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515494146:vc_to_hash_g:bridge.c:0615:Number of services of [.TMIB-1] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494258:t_for_status:pmodel.c:0884:binary tpadmsv/tpadmsv, srvid 10 started with pid 21/21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494278:tart_process:pmodel.c:1350:PID of started process is 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494298:tup_progress:rtstop.c:0091:startup_progress enter, pid: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494315:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494352:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 21, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494372:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494390:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515494429:tart_process:pmodel.c:0933:*********processing for startup samplesvr_rust/2 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494464:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494486:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494528:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494548:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494570:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494873:_to_pid_hash:pmodel.c:0411:About to add pid 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494901:_to_pid_hash:pmodel.c:0423:Added pid 22 to hash with key 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515494923:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515533643:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533691:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533715:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533737:cmd_srvinfo :rvinfo.c:0109:Call from server: 2, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533760:pid_hash_get:pmodel.c:0481:Search for pid 22 to hash with key 22, result: 0x5555555d0a50
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515533780:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533805:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [ECHO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515533825:_svc_to_hash:bridge.c:0569:ADDING ECHO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515533921:vc_to_hash_g:bridge.c:0615:Number of services of [ECHO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534009:vc_to_hash_g:bridge.c:0615:Number of services of [ECHO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534031:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [HELLO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534048:_svc_to_hash:bridge.c:0569:ADDING HELLO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534151:vc_to_hash_g:bridge.c:0615:Number of services of [HELLO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534172:vc_to_hash_g:bridge.c:0615:Number of services of [HELLO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534188:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [STATUS] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534203:_svc_to_hash:bridge.c:0569:ADDING STATUS
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534281:vc_to_hash_g:bridge.c:0615:Number of services of [STATUS] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534298:vc_to_hash_g:bridge.c:0615:Number of services of [STATUS] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534313:cmd_srvinfo :rvinfo.c:0243:Server [samplesvr_rust] advertises: svc: [DATAPROC] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534343:_svc_to_hash:bridge.c:0569:ADDING DATAPROC
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534401:vc_to_hash_g:bridge.c:0615:Number of services of [DATAPROC] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515534417:vc_to_hash_g:bridge.c:0615:Number of services of [DATAPROC] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534519:t_for_status:pmodel.c:0884:binary samplesvr_rust/samplesvr_rust, srvid 2 started with pid 22/22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534538:tart_process:pmodel.c:1350:PID of started process is 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534553:tup_progress:rtstop.c:0091:startup_progress enter, pid: 22
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534567:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534582:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 22, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534599:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534616:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515534650:tart_process:pmodel.c:0933:*********processing for startup ubfsvr_rust/4 (state: 0)*********
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534684:tup_progress:rtstop.c:0091:startup_progress enter, pid: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534706:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534748:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 0, state: 20
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534767:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515534788:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515535115:_to_pid_hash:pmodel.c:0411:About to add pid 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515535152:_to_pid_hash:pmodel.c:0423:Added pid 23 to hash with key 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515535181:t_for_status:pmodel.c:0860:Waiting for response from srv...
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201515568835:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 696
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568861:wait_and_run:cessor.c:0478:Command ID: 4
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568880:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 4 Executing command: srvinfo
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568899:cmd_srvinfo :rvinfo.c:0109:Call from server: 4, state: 21 rqaddr: []
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568920:pid_hash_get:pmodel.c:0481:Search for pid 23 to hash with key 23, result: 0x5555555f3530
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515568940:cmd_srvinfo :rvinfo.c:0162:Binary was starting up, updating status
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568961:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFECHO] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515568981:_svc_to_hash:bridge.c:0569:ADDING UBFECHO
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569001:vc_to_hash_g:bridge.c:0615:Number of services of [UBFECHO] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569020:vc_to_hash_g:bridge.c:0615:Number of services of [UBFECHO] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569039:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFTEST] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569056:_svc_to_hash:bridge.c:0569:ADDING UBFTEST
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569076:vc_to_hash_g:bridge.c:0615:Number of services of [UBFTEST] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569123:vc_to_hash_g:bridge.c:0615:Number of services of [UBFTEST] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569140:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFADD] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569154:_svc_to_hash:bridge.c:0569:ADDING UBFADD
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569168:vc_to_hash_g:bridge.c:0615:Number of services of [UBFADD] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569183:vc_to_hash_g:bridge.c:0615:Number of services of [UBFADD] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569197:cmd_srvinfo :rvinfo.c:0243:Server [ubfsvr_rust] advertises: svc: [UBFGET] func: [service_dispatcher]
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569211:_svc_to_hash:bridge.c:0569:ADDING UBFGET
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569227:vc_to_hash_g:bridge.c:0615:Number of services of [UBFGET] = 1
+N:NDRX:2:2fd996ca:00015:7ffffd067d80:000:20251105:201515569241:vc_to_hash_g:bridge.c:0615:Number of services of [UBFGET] = 1
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569301:t_for_status:pmodel.c:0884:binary ubfsvr_rust/ubfsvr_rust, srvid 4 started with pid 23/23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569319:tart_process:pmodel.c:1350:PID of started process is 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569333:tup_progress:rtstop.c:0091:startup_progress enter, pid: 23
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569348:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569363:reply_mod   :rtstop.c:0076:magic: 1647474432, pid: 23, state: 21
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569378:ric_q_send_2:iutils.c:0473:len: 4464 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569394:tup_progress:rtstop.c:0105:startup_progress exit
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569460:ommand_reply:_reply.c:0085:Reply command: 3
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569490:ric_q_send_2:iutils.c:0473:len: 312 use timeout: 1 config: 3 prio: 50 snd_prio: 50
+N:NDRX:3:2fd996ca:00015:7ffffd067d80:000:20251105:201515569545:cmd_start   :rtstop.c:0127:cmd_start returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201515569686:wait_and_run:cessor.c:0595:Restoring context: 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201525352863:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201525354581:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201535358908:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201535359597:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201545365304:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201545366179:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201555372432:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201555373479:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201605379425:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201605392967:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201615398495:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201615399617:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201625406810:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201625408424:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201635409891:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201635411501:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201645412917:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201645414232:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201655420726:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201655438333:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705444740:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705447093:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705447261:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cconfsrv,1,17] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705447426:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705447519:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705447688:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705447787:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705447890:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705447980:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,cpmsrv,6,18] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448071:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448159:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448260:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705448337:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448436:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705448542:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpevsrv,3,20] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448631:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448715:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448807:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705448878:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705448950:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705449017:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,tpadmsv,10,21] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705449099:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705449181:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705449273:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705449878:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705450081:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705450168:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,samplesvr_rust,2,22] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705450254:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705450354:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705450457:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705450641:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705450732:neric_call_2:iutils.c:0639:gencall command: 52, reply_only=0, need_reply=0 call flags=0x0, getcall flags=1
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705450826:neric_call_2:iutils.c:0686:Sending data to [/run,srv,admin,ubfsvr_rust,4,23] call flags=0x0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705451038:ric_q_send_2:iutils.c:0408:Enabling NONBLOCK send
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705451143:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705451252:neric_call_2:iutils.c:0719:Reply not needed!
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705451535:rv_send_ping:d_ping.c:0103:srv_send_ping returns with status 0
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705452288:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705452412:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705452497:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705452578:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cconfsrv,1,17] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705453146:d_srvpingrsp:d_ping.c:0130:Server id=1 ok, binary: [cconfsrv] ping reply seq: 1, rsptime: 6ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705453335:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705453440:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705453527:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,cpmsrv,6,18] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705453617:d_srvpingrsp:d_ping.c:0130:Server id=6 ok, binary: [cpmsrv] ping reply seq: 1, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705453705:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705453782:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705453860:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpevsrv,3,20] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705453946:d_srvpingrsp:d_ping.c:0130:Server id=3 ok, binary: [tpevsrv] ping reply seq: 1, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454029:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454107:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454186:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,tpadmsv,10,21] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454268:d_srvpingrsp:d_ping.c:0130:Server id=10 ok, binary: [tpadmsv] ping reply seq: 1, rsptime: 5ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454354:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454505:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454585:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,ubfsvr_rust,4,23] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454670:d_srvpingrsp:d_ping.c:0130:Server id=4 ok, binary: [ubfsvr_rust] ping reply seq: 1, rsptime: 3ms
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454751:wait_and_run:cessor.c:0409:>>>>>>>>>>>>>>>>>>got message, len : 184
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454826:wait_and_run:cessor.c:0478:Command ID: 53
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201705454904:wait_and_run:cessor.c:0497:Source: [/run,srv,reply,samplesvr_rust,2,22] Command: 53 Executing command: srvping
+N:NDRX:4:2fd996ca:00015:7ffffd067d80:000:20251105:201705454985:d_srvpingrsp:d_ping.c:0130:Server id=2 ok, binary: [samplesvr_rust] ping reply seq: 1, rsptime: 4ms
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201715458750:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201715460643:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201725467762:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201725470352:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201735476787:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201735479380:ck_singlegrp:sanity.c:1081:Into check_singlegrp()
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201745485775:sanity_check:sanity.c:0173:Time for sanity checking...
+N:NDRX:5:2fd996ca:00015:7ffffd067d80:000:20251105:201745488387:ck_singlegrp:sanity.c:1081:Into check_singlegrp()

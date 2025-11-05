@@ -211,6 +211,23 @@ struct Payment {
     id: i64,
 }
 
+// Nested structs are also supported
+#[derive(UbfStruct)]
+struct Address {
+    #[ubf(field = T_STREET_FLD)]
+    street: String,
+    #[ubf(field = T_CITY_FLD)]
+    city: String,
+}
+
+#[derive(UbfStruct)]
+struct Customer {
+    #[ubf(field = T_NAME_FLD)]
+    name: String,
+    #[ubf(field = 0)]  // Nested struct
+    address: Address,
+}
+
 // Usage
 let txn = Transaction { name: "Payment".into(), id: 123, amount: 99.99, status: "completed".into() };
 let ubf = txn.to_ubf()?;  // Convert to UBF
@@ -228,7 +245,7 @@ See [UBF_STRUCT_GUIDE.md](UBF_STRUCT_GUIDE.md) for complete documentation.
 
 The project includes a UBF field table (`ubftab/test.fd`) with the following fields:
 
-- **String fields**: T_STRING_FLD, T_NAME_FLD, T_MESSAGE_FLD, T_STATUS_FLD, T_DATA_FLD
+- **String fields**: T_STRING_FLD, T_NAME_FLD, T_MESSAGE_FLD, T_STATUS_FLD, T_DATA_FLD, T_STREET_FLD, T_CITY_FLD, T_ZIP_FLD
 - **Long fields**: T_LONG_FLD, T_COUNT_FLD, T_ID_FLD, T_CODE_FLD, T_AMOUNT_FLD
 - **Double fields**: T_DOUBLE_FLD, T_PRICE_FLD, T_BALANCE_FLD
 - **Short fields**: T_SHORT_FLD, T_FLAG_FLD

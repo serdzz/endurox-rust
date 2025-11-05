@@ -160,7 +160,10 @@ fn generate_field_getter(
             let #field_name = buf.is_present(#field_id, 0);
         }
     } else {
-        panic!("Unsupported field type: {}", type_str);
+        // Assume it's a nested struct that implements UbfStruct
+        quote! {
+            let #field_name = <#field_type as ::endurox_sys::ubf_struct::UbfStruct>::from_ubf(buf)?;
+        }
     }
 }
 
@@ -202,6 +205,9 @@ fn generate_field_setter(
             }
         }
     } else {
-        panic!("Unsupported field type: {}", type_str);
+        // Assume it's a nested struct that implements UbfStruct
+        quote! {
+            self.#field_name.update_ubf(buf)?;
+        }
     }
 }
