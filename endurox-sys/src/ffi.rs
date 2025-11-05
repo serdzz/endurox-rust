@@ -74,4 +74,72 @@ extern "C" {
     // Logging
     pub fn tplog(lev: c_int, format: *const c_char, ...);
     pub fn userlog(format: *const c_char, ...);
+    
+    // UBF API
+    #[cfg(feature = "ubf")]
+    pub fn Badd(p_ub: *mut c_char, bfldid: c_int, buf: *const c_char, len: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bchg(p_ub: *mut c_char, bfldid: c_int, occ: c_int, buf: *const c_char, len: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bget(p_ub: *mut c_char, bfldid: c_int, occ: c_int, buf: *mut c_char, len: *mut c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn CBget(p_ub: *mut c_char, bfldid: c_int, occ: c_int, buf: *mut c_char, len: *mut c_int, usrtype: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bpres(p_ub: *mut c_char, bfldid: c_int, occ: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bdel(p_ub: *mut c_char, bfldid: c_int, occ: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bproj(p_ub: *mut c_char, fldlist: *const c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bfprint(p_ub: *mut c_char, outf: *mut c_void) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bprint(p_ub: *mut c_char) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Blen(p_ub: *mut c_char, bfldid: c_int, occ: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bused(p_ub: *mut c_char) -> c_long;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bunused(p_ub: *mut c_char) -> c_long;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bsizeof(p_ub: *mut c_char) -> c_long;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bfldid(fldname: *const c_char) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bfname(bfldid: c_int) -> *const c_char;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bfldtype(bfldid: c_int) -> c_int;
+    
+    #[cfg(feature = "ubf")]
+    pub fn Bnext(p_ub: *mut c_char, bfldid: *mut c_int, occ: *mut c_int, buf: *mut c_char, len: *mut c_int) -> c_int;
 }
+
+// UBF field types
+#[cfg(feature = "ubf")]
+pub const BFLD_SHORT: c_int = 0;
+#[cfg(feature = "ubf")]
+pub const BFLD_LONG: c_int = 1;
+#[cfg(feature = "ubf")]
+pub const BFLD_CHAR: c_int = 2;
+#[cfg(feature = "ubf")]
+pub const BFLD_FLOAT: c_int = 3;
+#[cfg(feature = "ubf")]
+pub const BFLD_DOUBLE: c_int = 4;
+#[cfg(feature = "ubf")]
+pub const BFLD_STRING: c_int = 5;
+#[cfg(feature = "ubf")]
+pub const BFLD_CARRAY: c_int = 6;

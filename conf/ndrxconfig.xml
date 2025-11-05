@@ -59,6 +59,13 @@
             		<cctag>default</cctag>
             		<sysopt>-e ${NDRX_APPHOME}/log/samplesvr_rust.log -r</sysopt>
         	</server>
+        	<server name="ubfsvr_rust">
+            		<min>1</min>
+            		<max>1</max>
+            		<srvid>4</srvid>
+            		<cctag>default</cctag>
+            		<sysopt>-e ${NDRX_APPHOME}/log/ubfsvr_rust.log -r</sysopt>
+        	</server>
     </servers>
 
     <clients>

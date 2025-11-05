@@ -1,21 +1,16 @@
 [package]
-name = "samplesvr_rust"
+name = "ubfsvr_rust"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "samplesvr_rust"
+name = "ubfsvr_rust"
 path = "src/main.rs"
 
 [dependencies]
-endurox-sys = { path = "../endurox-sys", features = ["server"] }
+endurox-sys = { path = "../endurox-sys", features = ["server", "ubf"] }
 libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
-
-[build-dependencies]
-
-[package.metadata.cargo-build]
-rustflags = ["-C", "link-arg=-latmisrvnomain"]

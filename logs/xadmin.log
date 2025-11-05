@@ -92,3 +92,548 @@ N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251104:192103819562:ndrx_tpterm :i/in
 N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251104:192103819587:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
 N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251104:192103819608:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
 N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251104:192103819690:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:083843763335:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843765497:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843765895:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843765898:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843770964:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843771198:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843771202:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083843771533:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843773996:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774151:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774154:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843774161:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774162:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774164:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774171:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774178:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843774179:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843775221:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843775241:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843775244:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843775427:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,lcf] 0/41007 created size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843775460:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:3:2fd996ca:00014:7fffff039900:000:20251105:083843775804:drx_sem_open:td_sem.c:0286:Semaphore for key 41004 open, id: 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843775812:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843775896:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843775992:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778482:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778643:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778685:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778737:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778777:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778815:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843778982:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779250:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779504:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779580:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779657:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779757:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779807:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779848:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843779891:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780081:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780141:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780400:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780436:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780469:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780500:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780544:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780587:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780636:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780672:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780705:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780736:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780862:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843780977:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843781024:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843781063:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843782124:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843782375:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843782545:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843782903:_open_rply_q:config.c:0098:About to open xadmin's reply queue
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:083843783111:_open_rply_q:config.c:0133:Reply queue [/run,sys,bg,xadmin,14] opened!
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843783469:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843783577:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843783718:drxd_running:n/exec.c:0174:ndrxd PID file [/app/ndrxd.pid] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843783795:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:083843784527:_daemon_idle:n/exec.c:0301:forked close ndrxd_q 0xffffffffffffffff
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:083843784715:_daemon_idle:n/exec.c:0306:forked close reply_queue 0xa
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843836859:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843838181:drxd_running:n/exec.c:0264:is_ndrxd_running returns: running
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843838351:_parse_clopt:nclopt.c:0092:clopt_string built: [i:s:g:Lyk] argc: [2]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843838508:_parse_clopt:nclopt.c:0136:y (Confirm) = [TRUE]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843838879:neric_call_2:iutils.c:0639:gencall command: 2, reply_only=0, need_reply=1 call flags=0x0, getcall flags=34
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:083843838912:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843839098:ric_q_send_2:iutils.c:0473:len: 256 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843839148:neric_call_2:iutils.c:0715:Waiting for response from ndrxd on [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843848354:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843890047:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843890274:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843939560:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843939704:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843974388:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083843974553:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844016177:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844016337:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844057270:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844057408:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844098983:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099097:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 312
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099217:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099260:un_init     :xadmin.c:1041:Closing reply_queue: 0xa
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099278:un_init     :xadmin.c:1046:Unlinking [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099782:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099799:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:083844099814:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:083844099862:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:083924517439:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924519150:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924519453:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924519455:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924523658:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924523832:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924523835:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:083924524095:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924525742:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525879:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525882:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924525884:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525885:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525886:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525887:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525889:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924525890:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924526405:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924526408:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924526409:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924526490:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526588:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526607:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924526699:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526752:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526754:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526755:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526818:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924526856:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528025:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528107:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528143:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528190:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528226:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528292:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528356:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528391:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528430:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528492:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528525:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528571:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528604:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528636:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528667:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528701:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528734:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528869:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528898:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528926:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528959:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924528987:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529019:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529048:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529077:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529106:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529138:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529207:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529256:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529293:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,61]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529322:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924529952:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924530039:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924530122:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924530500:_open_rply_q:config.c:0098:About to open xadmin's reply queue
+N:NDRX:2:2fd996ca:00061:7fffff039900:000:20251105:083924530610:_open_rply_q:config.c:0133:Reply queue [/run,sys,bg,xadmin,61] opened!
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924530763:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924530989:drxd_running:n/exec.c:0264:is_ndrxd_running returns: running
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924531107:_parse_clopt:nclopt.c:0092:clopt_string built: [s] argc: [1]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924531487:neric_call_2:iutils.c:0639:gencall command: 8, reply_only=0, need_reply=1 call flags=0x0, getcall flags=34
+N:NDRX:4:2fd996ca:00061:7fffff039900:000:20251105:083924531520:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924531666:ric_q_send_2:iutils.c:0473:len: 176 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924531718:neric_call_2:iutils.c:0715:Waiting for response from ndrxd on [/run,sys,bg,xadmin,61]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924532156:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 488
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924532505:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 488
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924532553:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 824
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924532911:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 712
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533201:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 824
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533440:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 824
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533571:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 312
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533661:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533688:un_init     :xadmin.c:1041:Closing reply_queue: 0xa
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924533715:un_init     :xadmin.c:1046:Unlinking [/run,sys,bg,xadmin,61]
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924534225:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924534262:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00061:7fffff039900:000:20251105:083924534301:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:2:2fd996ca:00061:7fffff039900:000:20251105:083924534377:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:084132351482:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132353143:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132353430:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132353433:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132357566:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132357739:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132357741:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084132357996:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132359397:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359531:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359533:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132359535:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359536:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359537:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359539:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359540:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132359541:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132360024:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132360026:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132360028:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132360092:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,lcf] 0/41007 created size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132360105:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:3:2fd996ca:00014:7fffff039900:000:20251105:084132360206:drx_sem_open:td_sem.c:0286:Semaphore for key 41004 open, id: 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132360208:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132360266:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132360303:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361092:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361157:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361179:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361205:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361225:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361244:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361288:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361309:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361332:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361351:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361370:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361400:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361419:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361438:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361457:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361505:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361525:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361666:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361683:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361698:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361714:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361729:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361744:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361759:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361775:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361790:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361805:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361849:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361874:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361893:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132361910:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132362527:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132362602:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132362682:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084132362852:_open_rply_q:config.c:0098:About to open xadmin's reply queue
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084132362920:_open_rply_q:config.c:0133:Reply queue [/run,sys,bg,xadmin,14] opened!
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132363059:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132363085:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084132363455:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132363489:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084132363836:_daemon_idle:n/exec.c:0301:forked close ndrxd_q 0xffffffffffffffff
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084132363932:_daemon_idle:n/exec.c:0306:forked close reply_queue 0xa
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132419229:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132419322:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084132419430:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084132419495:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084133425469:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084133425931:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084133426303:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084133426460:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084134431175:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084134431767:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084134432211:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084134432398:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084135433723:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084135433897:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084135434027:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084135434061:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084136438510:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084136438965:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084136439367:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084136439562:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084137445600:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084137446018:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084137446367:nning_procfs:_linux.c:0092:Failed to open process file: [/proc/15/cmdline]: No such file or directory
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084137446525:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137447931:_parse_clopt:nclopt.c:0092:clopt_string built: [i:s:g:Lyk] argc: [2]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137450838:_parse_clopt:nclopt.c:0136:y (Confirm) = [TRUE]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137452132:neric_call_2:iutils.c:0639:gencall command: 2, reply_only=0, need_reply=1 call flags=0x0, getcall flags=34
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084137452243:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084137452736:ric_q_send_2:iutils.c:0425:Failed to open queue [/run,sys,bg,ndrxd] with error: No such file or directory
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137452972:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137453082:un_init     :xadmin.c:1041:Closing reply_queue: 0xa
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137453182:un_init     :xadmin.c:1046:Unlinking [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137454490:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137454549:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084137454684:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084137454860:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:084156798558:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156800347:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156800645:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156800647:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156805204:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156805410:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156805414:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084156805753:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156807920:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808069:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808071:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156808074:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808075:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808076:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808078:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808079:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808081:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808560:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808563:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808565:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156808638:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,lcf] 0/41007 created size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156808655:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:3:2fd996ca:00014:7fffff039900:000:20251105:084156808777:drx_sem_open:td_sem.c:0286:Semaphore for key 41004 open, id: 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156808780:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156808843:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156808880:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156809860:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156809938:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156809967:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810001:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810026:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810079:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810129:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810155:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810184:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810209:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810233:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810270:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810295:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810319:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810342:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810394:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810419:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810546:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810567:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810587:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810606:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810626:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810645:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810664:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810684:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810703:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810722:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810775:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810809:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810833:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156810854:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156811522:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156811609:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156811690:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156811915:_open_rply_q:config.c:0098:About to open xadmin's reply queue
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084156812000:_open_rply_q:config.c:0133:Reply queue [/run,sys,bg,xadmin,14] opened!
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156812160:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156812195:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156812230:drxd_running:n/exec.c:0174:ndrxd PID file [/app/ndrxd.pid] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156812278:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084156812678:_daemon_idle:n/exec.c:0301:forked close ndrxd_q 0xffffffffffffffff
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084156812778:_daemon_idle:n/exec.c:0306:forked close reply_queue 0xa
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156865821:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156867021:drxd_running:n/exec.c:0264:is_ndrxd_running returns: running
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156867180:_parse_clopt:nclopt.c:0092:clopt_string built: [i:s:g:Lyk] argc: [2]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156867335:_parse_clopt:nclopt.c:0136:y (Confirm) = [TRUE]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156867640:neric_call_2:iutils.c:0639:gencall command: 2, reply_only=0, need_reply=1 call flags=0x0, getcall flags=34
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084156867673:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156867846:ric_q_send_2:iutils.c:0473:len: 256 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156867900:neric_call_2:iutils.c:0715:Waiting for response from ndrxd on [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156877829:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156915826:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156915999:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156958899:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156959084:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156991903:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084156992059:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157033266:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157033443:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157070428:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157070555:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157110617:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157110764:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 312
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157110927:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157110974:un_init     :xadmin.c:1041:Closing reply_queue: 0xa
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157110997:un_init     :xadmin.c:1046:Unlinking [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157111500:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157111547:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084157111564:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084157111612:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:084207433350:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207435205:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207435526:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207435529:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207439996:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207440182:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207440185:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084207440471:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207443409:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443544:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443547:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207443549:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443552:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443553:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443555:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443556:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207443557:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207444072:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207444076:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207444077:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207444133:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,lcf]/41007 - attaching
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444228:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,lcf] 0/41007 attach size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444246:x_shm_attach:_shmsv.c:0243:return 0
+N:NDRX:4:2fd996ca:00052:7fffff039900:000:20251105:084207444332:drx_sem_open:td_sem.c:0259:Semaphore exists [41004] - attaching
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444386:x_sem_attach:td_sem.c:0349:enter
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444387:x_sem_attach:td_sem.c:0369:sem: [0] attached
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444389:x_sem_attach:td_sem.c:0373:return 0
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444453:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207444490:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445673:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445795:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445832:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445875:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445909:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207445946:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446014:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446065:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446115:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446185:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446222:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446269:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446307:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446342:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446376:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446412:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446447:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446579:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446625:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446663:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446699:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446735:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446767:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446799:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446832:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446863:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446894:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207446965:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447007:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447045:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,52]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447079:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447726:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447836:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207447922:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207448340:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207448942:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207448974:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00052:7fffff039900:000:20251105:084207449003:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:4:00000000:00000:7fffff039900:000:20251105:084754911706:plugins_load:inbase.c:0217:No plugins defined by NDRX_PLUGINS env variable
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754914647:cconfig_load:config.c:0488:CC tag set to: []
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754914949:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754914956:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754919263:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754919447:x_inicfg_new:inicfg.c:0115:_ndrx_inicfg_new: load_global_env: 1
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754919449:ig_load_pass:config.c:0327:have config at slot [0] [/app/conf/ndrxconf.ini]
+N:NDRX:5:00000000:00000:7fffff039900:000:20251105:084754919726:ig_load_pass:config.c:0401:_ndrx_cconfig_load_pass: ret: 0 is_internal: 1 G_tried_to_load: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754921386:systest_init:s_test.c:0093:sys_test off
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921531:drx_lcf_init:td/lcf.c:0279:NDRX_QPREFIX set to /run
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921534:drx_lcf_init:td/lcf.c:0300:NDRX_PGMAX set to 64
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754921536:drx_lcf_init:td/lcf.c:0314:NDRX_SGREFRESH set to 30
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921537:drx_lcf_init:td/lcf.c:0327:NDRX_SVQREADERSMAX set to 50
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921539:drx_lcf_init:td/lcf.c:0340:NDRX_LCFREADERSMAX set to 1000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921540:drx_lcf_init:td/lcf.c:0353:NDRX_LCFMAX set to 20
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921542:drx_lcf_init:td/lcf.c:0361:Missing config key NDRX_MSGQUEUESMAX - defaulting to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754921543:drx_lcf_init:td/lcf.c:0368:NDRX_MSGQUEUESMAX set to 20000
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754922019:drx_lcf_init:td/lcf.c:0386:(sysv queues): SystemV IPC Key set to: [41001]
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754922022:drx_lcf_init:td/lcf.c:0400:NDRX_LCFCMDEXP set to 60
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754922027:drx_lcf_init:td/lcf.c:0405:Opening LCF shared memory...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754922118:drx_shm_open:_shmsv.c:0178:Shm: [/run,shm,lcf] 0/41007 created size: 98096 mem: 0x7fffff01f000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754922135:drx_shm_open:_shmsv.c:0190:return 0
+N:NDRX:3:2fd996ca:00014:7fffff039900:000:20251105:084754922238:drx_sem_open:td_sem.c:0286:Semaphore for key 41004 open, id: 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754922240:drx_sem_open:td_sem.c:0290:return 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754922303:func_add_int:td/lcf.c:0212:Adding [1] func lcf command [logrotate]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754922341:func_add_int:td/lcf.c:0212:Adding [2] func lcf command [logchg]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923245:d_common_env:i/init.c:0225:Max servers set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923326:d_common_env:i/init.c:0241:Max services set to 10000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923358:d_common_env:i/init.c:0255:Max services set to 20000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923390:d_common_env:i/init.c:0270:Random key set to: [ZUvbDoHI]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923414:d_common_env:i/init.c:0285:Posix queue msg_max set to: [100]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923436:d_common_env:i/init.c:0301:Posix queue msgsize_max set to: [30000]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923488:d_common_env:i/init.c:0321:Posix queue prefix set to: [/run], match string: [/run,] (len: 5)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923519:d_common_env:i/init.c:0340:Posix queue queue path set to: [/dev/mqueue]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923548:d_common_env:i/init.c:0361:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923573:d_common_env:i/init.c:0369:Using comms timeout: 1500
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923599:d_common_env:i/init.c:0386:Cluster node id=1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923641:d_common_env:i/init.c:0403:NDRX_LDBAL set to 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923674:d_common_env:i/init.c:0412:[NDRX_CLUSTERISED] says: We run in cluster mode
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923703:d_common_env:i/init.c:0429:`ndrxd' pid file set to: [/app/ndrxd.pid]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923730:d_common_env:i/init.c:0445:ndrxd normal wait set to: 60 attempts
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923826:d_common_env:i/init.c:0482:NDRX_SGLOCKINC set to 3600
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754923875:d_common_env:i/init.c:0491:[NDRX_XA_RES_ID]: XA Resource ID: 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924014:d_common_env:i/init.c:0500:[NDRX_XA_OPEN_STR]: XA Open String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924050:d_common_env:i/init.c:0509:[NDRX_XA_CLOSE_STR]: XA Close String: [ORACLE_XA+SqlNet=+ACC=P//+SesTM=180+LogDir=/most/log+nolocal=f+Threads=true]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924074:d_common_env:i/init.c:0525:[NDRX_XA_DRIVERLIB]: Enduro/X XA Driver lib (.so): [/usr/lib64/libndrxxaoras.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924114:d_common_env:i/init.c:0534:[NDRX_XA_RMLIB]: Resource manager lib (.so): [/ndrtools/oracle/lib/libclntsh.so]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924139:d_common_env:i/init.c:0558:[NDRX_XA_LAZY_INIT]: Lazy XA Init: TRUE
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924161:d_common_env:i/init.c:0581:XA config ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924182:d_common_env:i/init.c:0624:[NDRX_NRSEMS]: Number of services shared memory semaphores set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924203:d_common_env:i/init.c:0645:[NDRX_MAXSVCSRVS]: Max number of local servers per service set to: 30 (used only for poll() mode) (default: 30)
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924224:d_common_env:i/init.c:0683:routing criterion space: 102400 bytes, max services: 1000
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924251:d_common_env:i/init.c:0706:Routing group not used
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924312:d_common_env:i/init.c:0726:env loaded ok
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924349:d_env_config:config.c:0192:ndrxd pid file: /app/ndrxd.pid
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924377:d_env_config:config.c:0221:Reply queue: [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754924432:d_env_config:config.c:0250:SystemV SEM IPC Key set to: [41001]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754925173:dmin_add_int:td/lcf.c:0140:Adding [disable] xadmin lcf command 0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754925263:dmin_add_int:td/lcf.c:0140:Adding [logrotate] xadmin lcf command 1
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754925373:dmin_add_int:td/lcf.c:0140:Adding [logchg] xadmin lcf command 2
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754925572:_open_rply_q:config.c:0098:About to open xadmin's reply queue
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084754925661:_open_rply_q:config.c:0133:Reply queue [/run,sys,bg,xadmin,14] opened!
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754925821:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754925856:drxd_running:n/exec.c:0154:ndrxd queue [/run,sys,bg,ndrxd] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754925901:drxd_running:n/exec.c:0174:ndrxd PID file [/app/ndrxd.pid] not found - continue probing
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754925939:drxd_running:n/exec.c:0264:is_ndrxd_running returns: not running
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084754926337:_daemon_idle:n/exec.c:0301:forked close ndrxd_q 0xffffffffffffffff
+N:NDRX:5:2fd996ca:00015:7fffff039900:000:20251105:084754926441:_daemon_idle:n/exec.c:0306:forked close reply_queue 0xa
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754977351:drxd_running:n/exec.c:0144:Probing for ndrxd...
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754979085:drxd_running:n/exec.c:0264:is_ndrxd_running returns: running
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754979231:_parse_clopt:nclopt.c:0092:clopt_string built: [i:s:g:Lyk] argc: [2]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754979374:_parse_clopt:nclopt.c:0136:y (Confirm) = [TRUE]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754979701:neric_call_2:iutils.c:0639:gencall command: 2, reply_only=0, need_reply=1 call flags=0x0, getcall flags=34
+N:NDRX:4:2fd996ca:00014:7fffff039900:000:20251105:084754979729:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754979891:ric_q_send_2:iutils.c:0473:len: 256 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754979932:neric_call_2:iutils.c:0715:Waiting for response from ndrxd on [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084754988565:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755030173:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755030423:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755081226:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755081387:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755116585:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755116755:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755155780:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755155913:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755195547:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755195721:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755238842:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 4464
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755238953:ic_q_receive:iutils.c:0578:ndrx_generic_q_receive: 312
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239074:un_init     :xadmin.c:1030:into un-init
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239125:un_init     :xadmin.c:1041:Closing reply_queue: 0xa
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239149:un_init     :xadmin.c:1046:Unlinking [/run,sys,bg,xadmin,14]
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239679:ndrx_tpterm :i/init.c:0743:_tpterm called
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239706:ndrx_tpterm :i/init.c:0747:_tpterm ATMI is not initialized - nothing to do.
+N:NDRX:5:2fd996ca:00014:7fffff039900:000:20251105:084755239724:ndrx_tpterm :i/init.c:0813:_tpterm returns 0
+N:NDRX:2:2fd996ca:00014:7fffff039900:000:20251105:084755239774:hm_close_all:mi/shm.c:0199:ndrx shm library not initialized

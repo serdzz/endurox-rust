@@ -1,0 +1,32 @@
+$#ifndef _TEST_FD
+$#define _TEST_FD
+
+*base 1000
+
+# String fields
+T_STRING_FLD     1    string  -  "String field"
+T_NAME_FLD       2    string  -  "Name field"  
+T_MESSAGE_FLD    3    string  -  "Message field"
+T_STATUS_FLD     4    string  -  "Status field"
+T_DATA_FLD       5    string  -  "Data field"
+
+# Long/Integer fields
+T_LONG_FLD       10   long    -  "Long integer field"
+T_COUNT_FLD      11   long    -  "Count field"
+T_ID_FLD         12   long    -  "ID field"
+T_CODE_FLD       13   long    -  "Code field"
+T_AMOUNT_FLD     14   long    -  "Amount field"
+
+# Double fields
+T_DOUBLE_FLD     20   double  -  "Double field"
+T_PRICE_FLD      21   double  -  "Price field"
+T_BALANCE_FLD    22   double  -  "Balance field"
+
+# Short fields
+T_SHORT_FLD      30   short   -  "Short integer field"
+T_FLAG_FLD       31   short   -  "Flag field"
+
+# Character fields
+T_CHAR_FLD       40   char    -  "Character field"
+
+$#endif

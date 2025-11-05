@@ -46,19 +46,32 @@ COPY Cargo.toml ./
 COPY endurox-sys ./endurox-sys
 COPY samplesvr_rust ./samplesvr_rust
 COPY rest_gateway ./rest_gateway
+COPY ubfsvr_rust ./ubfsvr_rust
+COPY ubf_test_client ./ubf_test_client
 
-# Сборка samplesvr_rust и rest_gateway отдельно
-# Сначала server binary
+# Копирование и компиляция UBF field tables
+COPY ubftab ./ubftab
+RUN cd ubftab && \
+    mkfldhdr test.fd && \
+    cp test.h /app/endurox-sys/src/ || true
+
+# Set FLDTBLDIR and FIELDTBLS environment variables
+ENV FLDTBLDIR=/app/ubftab \
+    FIELDTBLS=test
+
+# Сборка всех server binaries
 RUN cargo build --release && \
     mkdir -p /app/bin && \
     cp /app/target/release/samplesvr_rust /app/bin/ && \
-    cp /app/target/release/rest_gateway /app/bin/
+    cp /app/target/release/rest_gateway /app/bin/ && \
+    cp /app/target/release/ubfsvr_rust /app/bin/ && \
+    cp /app/target/release/ubf_test_client /app/bin/
 
 # Копирование конфигурационных файлов
 COPY conf ./conf
-#COPY ndrxconfig.xml ./
 COPY setenv.sh ./
 COPY test_rest.sh ./
-RUN chmod +x test_rest.sh
+COPY test_ubf.sh ./
+RUN chmod +x test_rest.sh test_ubf.sh
 
 CMD ["/bin/bash"]

@@ -7,8 +7,10 @@ A modern Rust integration for [Enduro/X](https://www.endurox.org/) - a high-perf
 This project provides Rust bindings and a complete example implementation for building Enduro/X services and clients. It includes:
 
 - **endurox-sys** - Low-level FFI bindings and safe Rust wrappers for Enduro/X
-- **samplesvr_rust** - Example Enduro/X server implementing multiple services
+- **samplesvr_rust** - Example Enduro/X server implementing STRING/JSON services
+- **ubfsvr_rust** - UBF (Unified Buffer Format) server with example services
 - **rest_gateway** - REST API gateway built with Axum that exposes Enduro/X services over HTTP
+- **ubf_test_client** - Test client for UBF services
 
 ## Architecture
 
@@ -34,18 +36,30 @@ Safe Rust bindings for Enduro/X:
 
 - **Server API**: `tpsvrinit`, `tpsvrdone`, service advertisement, `tpreturn`
 - **Client API**: `tpinit`, `tpterm`, `tpcall`, `tpacall`, `tpgetrply`
+- **UBF API**: Complete UBF (Unified Buffer Format) support with safe wrappers
+  - `UbfBuffer` - Safe buffer management
+  - Field operations: `add_string()`, `add_long()`, `add_double()`, `get_*()`, `is_present()`, `delete()`
+  - Iteration support with `UbfIterator`
+  - Field table compilation and loading
 - **Logging**: Integrated Enduro/X logging (`tplog_*`)
-- **Buffer Management**: Safe wrappers for STRING and JSON buffers
+- **Buffer Management**: Safe wrappers for STRING, JSON, and UBF buffers
 - **Feature Flags**: Separate `server`, `client`, and `ubf` features for modular builds
 
 ### Sample Services
 
-The `samplesvr_rust` server implements:
+#### samplesvr_rust (STRING/JSON Services)
 
 - **ECHO** - Echo back the input data
 - **HELLO** - Personalized greeting service (JSON input/output)
 - **STATUS** - Server status and health check
 - **DATAPROC** - Data processing service with JSON support
+
+#### ubfsvr_rust (UBF Services)
+
+- **UBFECHO** - Echo UBF buffer back
+- **UBFTEST** - Test UBF operations with name field and response
+- **UBFADD** - Create UBF buffer with multiple fields (string, long, double)
+- **UBFGET** - Read and echo UBF fields
 
 ### REST Gateway
 
@@ -83,7 +97,12 @@ HTTP/REST interface powered by Axum:
    ./test_rest.sh
    ```
 
-4. **View logs:**
+4. **Test UBF services:**
+   ```bash
+   docker-compose exec endurox_rust bash -c '. ./setenv.sh && /app/bin/ubf_test_client'
+   ```
+
+5. **View logs:**
    ```bash
    docker-compose logs -f endurox_rust
    # or check the logs directory
@@ -108,7 +127,8 @@ HTTP/REST interface powered by Axum:
    ```
 
 4. **The services should now be running:**
-   - `samplesvr_rust` - Enduro/X server process
+   - `samplesvr_rust` - STRING/JSON services
+   - `ubfsvr_rust` - UBF services
    - `rest_gateway` - REST API on http://localhost:8080
 
 ## API Examples
@@ -144,11 +164,33 @@ curl -X POST http://localhost:8080/api/dataproc \
   -d '{"data":"test","count":123}'
 ```
 
+## UBF Examples
+
+### Running UBF Test Client
+
+```bash
+docker-compose exec endurox_rust bash -c '. ./setenv.sh && /app/bin/ubf_test_client'
+```
+
+This will execute 4 tests:
+1. **UBFADD** - Creates a UBF buffer with multiple fields
+2. **UBFTEST** - Sends a name and receives a greeting
+3. **UBFECHO** - Echoes the UBF buffer back
+4. **UBFGET** - Sends multiple fields and reads them
+
+### UBF Field Table
+
+The project includes a UBF field table (`ubftab/test.fd`) with the following fields:
+
+- **String fields**: T_STRING_FLD, T_NAME_FLD, T_MESSAGE_FLD, T_STATUS_FLD, T_DATA_FLD
+- **Long fields**: T_LONG_FLD, T_COUNT_FLD, T_ID_FLD, T_CODE_FLD, T_AMOUNT_FLD
+- **Double fields**: T_DOUBLE_FLD, T_PRICE_FLD, T_BALANCE_FLD
+- **Short fields**: T_SHORT_FLD, T_FLAG_FLD
+- **Char fields**: T_CHAR_FLD
+
 ## Development
 
 ### Project Structure
-
-```
 .
 ├── Cargo.toml              # Workspace definition
 ├── docker-compose.yml      # Docker orchestration
@@ -159,19 +201,33 @@ curl -X POST http://localhost:8080/api/dataproc \
 │   │   ├── ffi.rs         # Raw FFI declarations
 │   │   ├── server.rs      # Server API
 │   │   ├── client.rs      # Client API
+│   │   ├── ubf.rs         # UBF API
 │   │   └── log.rs         # Logging wrappers
 │   └── Cargo.toml
-├── samplesvr_rust/        # Example server
+├── samplesvr_rust/        # STRING/JSON server
 │   ├── src/
 │   │   ├── main.rs        # Server entry point
 │   │   └── services.rs    # Service implementations
+│   └── Cargo.toml
+├── ubfsvr_rust/           # UBF server
+│   ├── src/
+│   │   └── main.rs        # UBF services
+│   └── Cargo.toml
+├── ubf_test_client/       # UBF test client
+│   ├── src/
+│   │   └── main.rs        # Test runner
 │   └── Cargo.toml
 ├── rest_gateway/          # REST gateway
 │   ├── src/
 │   │   └── main.rs        # Axum server
 │   └── Cargo.toml
+├── ubftab/                # UBF field tables
+│   └── test.fd           # Field definitions
 ├── conf/                  # Enduro/X configuration
 ├── setenv.sh             # Environment setup
+├── test_rest.sh          # REST API test script
+└── test_ubf.sh           # UBF test script
+```
 └── test_rest.sh          # API test script
 ```
 
@@ -228,7 +284,11 @@ tail -f logs/ULOG.*
 
 ### Restart Services
 ```bash
+# Restart STRING/JSON server
 xadmin restart -s samplesvr_rust -i 1
+
+# Restart UBF server
+xadmin restart -s ubfsvr_rust -i 1
 ```
 
 ### Clean Rebuild

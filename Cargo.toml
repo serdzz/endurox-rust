@@ -3,6 +3,8 @@ members = [
     "endurox-sys",
     "samplesvr_rust",
     "rest_gateway",
+    "ubfsvr_rust",
+    "ubf_test_client",
 ]
 resolver = "2"
 

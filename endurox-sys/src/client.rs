@@ -116,6 +116,43 @@ impl EnduroxClient {
             Ok(response)
         }
     }
+    
+    /// Call service with raw buffer (for UBF)
+    pub fn call_service_raw(&self, service: &str, send_buf: *mut c_char) -> Result<*mut c_char, String> {
+        unsafe {
+            tplog_info(&format!("call_service_raw: service={}", service));
+            
+            let c_service = CString::new(service).map_err(|e| e.to_string())?;
+            let mut recv_buf: *mut c_char = send_buf;
+            let mut recv_len: c_long = 0;
+            
+            let ret = ffi::tpcall(
+                c_service.as_ptr(),
+                send_buf,
+                0, // 0 for UBF - length determined automatically
+                &mut recv_buf,
+                &mut recv_len,
+                0,
+            );
+            
+            if ret == -1 {
+                if !recv_buf.is_null() && recv_buf != send_buf {
+                    ffi::tpfree(recv_buf);
+                }
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_ptr = ffi::tpstrerror(tperrno);
+                let err_msg = if !err_ptr.is_null() {
+                    CStr::from_ptr(err_ptr).to_string_lossy().into_owned()
+                } else {
+                    "Unknown error".to_string()
+                };
+                tplog_error(&format!("tpcall failed: {}", err_msg));
+                return Err(err_msg);
+            }
+            
+            Ok(recv_buf)
+        }
+    }
 }
 
 impl Drop for EnduroxClient {

@@ -1,0 +1,661 @@
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844093033:ndrx_init   :rvmain.c:0693:Using comms timeout: 1500
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093218:tplog       :/tplog.c:0583:ubfsvr_rust starting...
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:083844093326:vertise_full:v/init.c:0855:About to advertise service [UBFECHO]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844093526:ise_full_int:v/init.c:0690:Service [UBFECHO] (function: [service_dispatcher]:0x55555556c9a0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093693:tplog       :/tplog.c:0583:Successfully advertised UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:083844093721:vertise_full:v/init.c:0855:About to advertise service [UBFTEST]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844093757:ise_full_int:v/init.c:0690:Service [UBFTEST] (function: [service_dispatcher]:0x55555556c9f0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093784:tplog       :/tplog.c:0583:Successfully advertised UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:083844093811:vertise_full:v/init.c:0855:About to advertise service [UBFADD]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844093837:ise_full_int:v/init.c:0690:Service [UBFADD] (function: [service_dispatcher]:0x55555556c230) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093864:tplog       :/tplog.c:0583:Successfully advertised UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:083844093890:vertise_full:v/init.c:0855:About to advertise service [UBFGET]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844093917:ise_full_int:v/init.c:0690:Service [UBFGET] (function: [service_dispatcher]:0x55555556c610) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093949:tplog       :/tplog.c:0583:Successfully advertised UBFGET
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:083844093985:tplog       :/tplog.c:0583:ubfsvr_rust initialized successfully
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844094166:drx_ctxid_op:i/init.c:0135:Got free context id=0 (0 base)
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:083844094193:drx_ctxid_op:i/init.c:0146:Returning context id=1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094233:atmi_library:v/init.c:0448:Server my_id=[srv,ubfsvr_rust,4,23,1,1]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094320:nternal_init:i/init.c:0920:NDRXD queue: [/run,sys,bg,ndrxd]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094362:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844094401:drx_sem_open:td_sem.c:0259:Semaphore exists [41001] - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094429:x_sem_attach:td_sem.c:0349:enter
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094456:x_sem_attach:td_sem.c:0369:sem: [1] attached
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094482:x_sem_attach:td_sem.c:0373:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094571:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094598:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094624:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094650:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094676:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844094737:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,svcinfo]/41002 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094768:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,svcinfo] 1/41002 attach size: 11120000 mem: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094794:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844094852:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routcrit]/41008 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094880:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routcrit] 2/41008 attach size: 204800 mem: 0x7ffffe80c000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094905:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844094931:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routsvc]/41009 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094959:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routsvc] 3/41009 attach size: 176000 mem: 0x7ffffe7e1000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844094984:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844095009:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,srvinfo]/41001 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095037:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,srvinfo] 4/41001 attach size: 12440000 mem: 0x7ffffdc03000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095064:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844095089:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,brinfo]/41003 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095117:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,brinfo] 5/41003 attach size: 128 mem: 0x7ffffdc02000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095148:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095384:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,admin,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095426:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,reply,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095809:tise_service:v/init.c:0190:Advertising: SVC: [UBFECHO] FN: [service_dispatcher] ADDR: [0x55555556c9a0] QUEUE: [/run,svc,UBFECHO] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095844:tise_service:v/init.c:0190:Advertising: SVC: [UBFTEST] FN: [service_dispatcher] ADDR: [0x55555556c9f0] QUEUE: [/run,svc,UBFTEST] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095870:tise_service:v/init.c:0190:Advertising: SVC: [UBFADD] FN: [service_dispatcher] ADDR: [0x55555556c230] QUEUE: [/run,svc,UBFADD] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095896:tise_service:v/init.c:0190:Advertising: SVC: [UBFGET] FN: [service_dispatcher] ADDR: [0x55555556c610] QUEUE: [/run,svc,UBFGET] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095921:e_array_list:v/init.c:0220:about to allocate 6 of svc ptrs
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095949:e_array_list:v/init.c:0233:assigning 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844095985:e_array_list:v/init.c:0233:assigning 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096021:e_array_list:v/init.c:0233:assigning 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096048:e_array_list:v/init.c:0233:assigning 3
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096074:e_array_list:v/init.c:0233:assigning 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096100:e_array_list:v/init.c:0233:assigning 5
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096188:v_open_queue:spatch.c:0150:About to listen on: /run,srv,admin,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096294:v_open_queue:spatch.c:0250:Got file descriptor: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096320:v_open_queue:spatch.c:0150:About to listen on: /run,srv,reply,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096349:v_open_queue:spatch.c:0250:Got file descriptor: 23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096404:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844096486:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096674:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096707:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096733:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096765:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096795:stall_svc_br:mi/shm.c:0957:Svc [UBFECHO] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096858:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096887:v_open_queue:spatch.c:0250:Got file descriptor: 24
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096921:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844096950:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844096978:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097005:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097031:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097056:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097082:stall_svc_br:mi/shm.c:0957:Svc [UBFTEST] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097109:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097134:v_open_queue:spatch.c:0250:Got file descriptor: 25
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097159:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844097185:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097212:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097239:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097264:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097289:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097315:stall_svc_br:mi/shm.c:0957:Svc [UBFADD] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097341:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097366:v_open_queue:spatch.c:0250:Got file descriptor: 26
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097391:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFGET
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844097422:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097482:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097510:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097541:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097569:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097595:stall_svc_br:mi/shm.c:0957:Svc [UBFGET] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097622:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097648:v_open_queue:spatch.c:0250:Got file descriptor: 27
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844097885:ort_to_ndrxd:rxdapi.c:0164:About to send: 696 bytes/4 svcs, srvid: 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844098121:neric_call_2:iutils.c:0639:gencall command: 4, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:083844098149:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844098292:ric_q_send_2:iutils.c:0473:len: 696 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844098346:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:083844098629:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033926423:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033926540:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033926705:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033926800:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033927088:ss_admin_req:spatch.c:1362:Got ping request: 1 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033927287:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084033927363:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033927441:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033927521:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084033927610:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157104267:ndrx_init   :rvmain.c:0693:Using comms timeout: 1500
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157104413:tplog       :/tplog.c:0583:ubfsvr_rust starting...
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084157104520:vertise_full:v/init.c:0855:About to advertise service [UBFECHO]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157104722:ise_full_int:v/init.c:0690:Service [UBFECHO] (function: [service_dispatcher]:0x55555556c9a0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157104911:tplog       :/tplog.c:0583:Successfully advertised UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084157104948:vertise_full:v/init.c:0855:About to advertise service [UBFTEST]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157104986:ise_full_int:v/init.c:0690:Service [UBFTEST] (function: [service_dispatcher]:0x55555556c9f0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157105047:tplog       :/tplog.c:0583:Successfully advertised UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084157105073:vertise_full:v/init.c:0855:About to advertise service [UBFADD]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157105103:ise_full_int:v/init.c:0690:Service [UBFADD] (function: [service_dispatcher]:0x55555556c230) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157105143:tplog       :/tplog.c:0583:Successfully advertised UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084157105181:vertise_full:v/init.c:0855:About to advertise service [UBFGET]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157105216:ise_full_int:v/init.c:0690:Service [UBFGET] (function: [service_dispatcher]:0x55555556c610) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157105243:tplog       :/tplog.c:0583:Successfully advertised UBFGET
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084157105269:tplog       :/tplog.c:0583:ubfsvr_rust initialized successfully
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157105444:drx_ctxid_op:i/init.c:0135:Got free context id=0 (0 base)
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084157105471:drx_ctxid_op:i/init.c:0146:Returning context id=1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105514:atmi_library:v/init.c:0448:Server my_id=[srv,ubfsvr_rust,4,23,1,1]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105601:nternal_init:i/init.c:0920:NDRXD queue: [/run,sys,bg,ndrxd]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105644:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157105684:drx_sem_open:td_sem.c:0259:Semaphore exists [41001] - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105711:x_sem_attach:td_sem.c:0349:enter
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105744:x_sem_attach:td_sem.c:0369:sem: [1] attached
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105779:x_sem_attach:td_sem.c:0373:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105871:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105897:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105922:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105947:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157105972:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157106028:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,svcinfo]/41002 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106057:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,svcinfo] 1/41002 attach size: 11120000 mem: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106082:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157106107:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routcrit]/41008 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106135:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routcrit] 2/41008 attach size: 204800 mem: 0x7ffffe80c000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106160:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157106185:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routsvc]/41009 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106212:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routsvc] 3/41009 attach size: 176000 mem: 0x7ffffe7e1000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106242:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157106275:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,srvinfo]/41001 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106342:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,srvinfo] 4/41001 attach size: 12440000 mem: 0x7ffffdc03000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106367:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157106392:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,brinfo]/41003 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106419:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,brinfo] 5/41003 attach size: 128 mem: 0x7ffffdc02000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106444:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106668:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,admin,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157106703:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,reply,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107133:tise_service:v/init.c:0190:Advertising: SVC: [UBFECHO] FN: [service_dispatcher] ADDR: [0x55555556c9a0] QUEUE: [/run,svc,UBFECHO] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107175:tise_service:v/init.c:0190:Advertising: SVC: [UBFTEST] FN: [service_dispatcher] ADDR: [0x55555556c9f0] QUEUE: [/run,svc,UBFTEST] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107211:tise_service:v/init.c:0190:Advertising: SVC: [UBFADD] FN: [service_dispatcher] ADDR: [0x55555556c230] QUEUE: [/run,svc,UBFADD] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107246:tise_service:v/init.c:0190:Advertising: SVC: [UBFGET] FN: [service_dispatcher] ADDR: [0x55555556c610] QUEUE: [/run,svc,UBFGET] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107281:e_array_list:v/init.c:0220:about to allocate 6 of svc ptrs
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107315:e_array_list:v/init.c:0233:assigning 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107351:e_array_list:v/init.c:0233:assigning 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107386:e_array_list:v/init.c:0233:assigning 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107419:e_array_list:v/init.c:0233:assigning 3
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107458:e_array_list:v/init.c:0233:assigning 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107493:e_array_list:v/init.c:0233:assigning 5
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107622:v_open_queue:spatch.c:0150:About to listen on: /run,srv,admin,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107750:v_open_queue:spatch.c:0250:Got file descriptor: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107786:v_open_queue:spatch.c:0150:About to listen on: /run,srv,reply,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107827:v_open_queue:spatch.c:0250:Got file descriptor: 23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157107867:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157107967:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108193:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108227:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108253:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108280:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108346:stall_svc_br:mi/shm.c:0957:Svc [UBFECHO] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108430:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108464:v_open_queue:spatch.c:0250:Got file descriptor: 24
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108491:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157108517:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108545:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108573:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108598:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108624:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108650:stall_svc_br:mi/shm.c:0957:Svc [UBFTEST] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108676:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108702:v_open_queue:spatch.c:0250:Got file descriptor: 25
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108727:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157108778:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108812:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108840:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108865:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108893:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108922:stall_svc_br:mi/shm.c:0957:Svc [UBFADD] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108949:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108974:v_open_queue:spatch.c:0250:Got file descriptor: 26
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157108999:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFGET
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157109033:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109061:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109088:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109115:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109144:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109175:stall_svc_br:mi/shm.c:0957:Svc [UBFGET] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109201:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109227:v_open_queue:spatch.c:0250:Got file descriptor: 27
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109507:ort_to_ndrxd:rxdapi.c:0164:About to send: 696 bytes/4 svcs, srvid: 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109735:neric_call_2:iutils.c:0639:gencall command: 4, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084157109764:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109910:ric_q_send_2:iutils.c:0473:len: 696 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157109964:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084157110254:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346982014:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346982180:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346982364:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346982449:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346982781:ss_admin_req:spatch.c:1362:Got ping request: 1 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346983038:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084346983131:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346983227:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346983307:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084346983408:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071242:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071421:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071536:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071627:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071731:ss_admin_req:spatch.c:1362:Got ping request: 2 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537071821:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084537071909:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537072004:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537072102:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084537072190:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136105:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136169:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136227:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136250:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136322:ss_admin_req:spatch.c:1362:Got ping request: 3 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136347:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084727136379:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136407:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136423:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084727136447:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755232527:ndrx_init   :rvmain.c:0693:Using comms timeout: 1500
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755232672:tplog       :/tplog.c:0583:ubfsvr_rust starting...
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084755232784:vertise_full:v/init.c:0855:About to advertise service [UBFECHO]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755232994:ise_full_int:v/init.c:0690:Service [UBFECHO] (function: [service_dispatcher]:0x55555556c9a0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755233182:tplog       :/tplog.c:0583:Successfully advertised UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084755233221:vertise_full:v/init.c:0855:About to advertise service [UBFTEST]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755233268:ise_full_int:v/init.c:0690:Service [UBFTEST] (function: [service_dispatcher]:0x55555556c9f0) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755233299:tplog       :/tplog.c:0583:Successfully advertised UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084755233334:vertise_full:v/init.c:0855:About to advertise service [UBFADD]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755233365:ise_full_int:v/init.c:0690:Service [UBFADD] (function: [service_dispatcher]:0x55555556c230) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755233396:tplog       :/tplog.c:0583:Successfully advertised UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:000:20251105:084755233427:vertise_full:v/init.c:0855:About to advertise service [UBFGET]
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755233460:ise_full_int:v/init.c:0690:Service [UBFGET] (function: [service_dispatcher]:0x55555556c610) successfully acknowledged
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755233491:tplog       :/tplog.c:0583:Successfully advertised UBFGET
+R:USER:3:2fd996ca:00023:7fffff394940:000:20251105:084755233520:tplog       :/tplog.c:0583:ubfsvr_rust initialized successfully
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755233716:drx_ctxid_op:i/init.c:0135:Got free context id=0 (0 base)
+n:NDRX:5:2fd996ca:00023:7fffff394940:000:20251105:084755233747:drx_ctxid_op:i/init.c:0146:Returning context id=1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755233792:atmi_library:v/init.c:0448:Server my_id=[srv,ubfsvr_rust,4,23,1,1]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755233886:nternal_init:i/init.c:0920:NDRXD queue: [/run,sys,bg,ndrxd]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755233933:rxd_sem_init:mi/sem.c:0087:Using service semaphore key: [266241]
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755233976:drx_sem_open:td_sem.c:0259:Semaphore exists [41001] - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234007:x_sem_attach:td_sem.c:0349:enter
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234041:x_sem_attach:td_sem.c:0369:sem: [1] attached
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234071:x_sem_attach:td_sem.c:0373:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234165:drx_shm_init:mi/shm.c:0136:G_srvinfo.size = 12440000 (1244 * 10000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234196:drx_shm_init:mi/shm.c:0140:G_svcinfo.size = 11120000 (556 * 20000)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234258:drx_shm_init:mi/shm.c:0144:G_brinfo.size = 11120000 (4 * 32)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234288:drx_shm_init:mi/shm.c:0148:ndrx_G_routcrit.size = 204800 bytes (102400 * 2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234318:drx_shm_init:mi/shm.c:0152:ndrx_G_routsvc.size = 176000 (1000 * 88 * 2)
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755234379:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,svcinfo]/41002 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234413:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,svcinfo] 1/41002 attach size: 11120000 mem: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234443:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755234473:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routcrit]/41008 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234506:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routcrit] 2/41008 attach size: 204800 mem: 0x7ffffe80c000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234535:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755234565:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,routsvc]/41009 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234600:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,routsvc] 3/41009 attach size: 176000 mem: 0x7ffffe7e1000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234629:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755234659:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,srvinfo]/41001 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234690:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,srvinfo] 4/41001 attach size: 12440000 mem: 0x7ffffdc03000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234721:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755234753:drx_shm_open:_shmsv.c:0149:Shared memory exists [/run,shm,brinfo]/41003 - attaching
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234785:x_shm_attach:_shmsv.c:0230:Shm: [/run,shm,brinfo] 5/41003 attach size: 128 mem: 0x7ffffdc02000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755234814:x_shm_attach:_shmsv.c:0243:return 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235046:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,admin,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235084:ecific_queue:v/init.c:0271:Advertising: SVC: [] FN: [] ADDR: [(nil)] QUEUE: [/run,srv,reply,ubfsvr_rust,4,23]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235463:tise_service:v/init.c:0190:Advertising: SVC: [UBFECHO] FN: [service_dispatcher] ADDR: [0x55555556c9a0] QUEUE: [/run,svc,UBFECHO] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235502:tise_service:v/init.c:0190:Advertising: SVC: [UBFTEST] FN: [service_dispatcher] ADDR: [0x55555556c9f0] QUEUE: [/run,svc,UBFTEST] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235533:tise_service:v/init.c:0190:Advertising: SVC: [UBFADD] FN: [service_dispatcher] ADDR: [0x55555556c230] QUEUE: [/run,svc,UBFADD] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235564:tise_service:v/init.c:0190:Advertising: SVC: [UBFGET] FN: [service_dispatcher] ADDR: [0x55555556c610] QUEUE: [/run,svc,UBFGET] AUTOTRAN [0] TRANTIME [0]
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235594:e_array_list:v/init.c:0220:about to allocate 6 of svc ptrs
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235624:e_array_list:v/init.c:0233:assigning 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235653:e_array_list:v/init.c:0233:assigning 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235713:e_array_list:v/init.c:0233:assigning 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235742:e_array_list:v/init.c:0233:assigning 3
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235772:e_array_list:v/init.c:0233:assigning 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235801:e_array_list:v/init.c:0233:assigning 5
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235889:v_open_queue:spatch.c:0150:About to listen on: /run,srv,admin,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755235996:v_open_queue:spatch.c:0250:Got file descriptor: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236026:v_open_queue:spatch.c:0150:About to listen on: /run,srv,reply,ubfsvr_rust,4,23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236060:v_open_queue:spatch.c:0250:Got file descriptor: 23
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236089:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFECHO
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755236172:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236368:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236400:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236429:_shm_get_svc:mi/shm.c:0759:Key for [UBFECHO] is 2465, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236459:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFECHO] - result: 0, iterations: 0, pos: 2465, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236492:stall_svc_br:mi/shm.c:0957:Svc [UBFECHO] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236556:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236587:v_open_queue:spatch.c:0250:Got file descriptor: 24
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236615:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFTEST
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755236645:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236676:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236706:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236736:_shm_get_svc:mi/shm.c:0759:Key for [UBFTEST] is 4066, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236764:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFTEST] - result: 0, iterations: 0, pos: 4066, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236794:stall_svc_br:mi/shm.c:0957:Svc [UBFTEST] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236823:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236852:v_open_queue:spatch.c:0250:Got file descriptor: 25
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236880:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFADD
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755236909:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236940:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236970:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755236999:_shm_get_svc:mi/shm.c:0759:Key for [UBFADD] is 4139, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237057:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFADD] - result: 0, iterations: 0, pos: 4139, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237095:stall_svc_br:mi/shm.c:0957:Svc [UBFADD] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237136:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237170:v_open_queue:spatch.c:0250:Got file descriptor: 26
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237202:v_open_queue:spatch.c:0150:About to listen on: /run,svc,UBFGET
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755237236:drx_sem_lock:td_sem.c:0169:sv_open_queue/1/0: semaphore locked... 
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237276:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237313:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237344:_shm_get_svc:mi/shm.c:0759:Key for [UBFGET] is 10722, shm is: 0x7ffffe83e000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237375:_shm_get_svc:mi/shm.c:0826:ndrx_shm_get_svc [UBFGET] - result: 0, iterations: 0, pos: 10722, install: 2
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237406:stall_svc_br:mi/shm.c:0957:Svc [UBFGET] not found in shm, installed with flags 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237437:x_sem_unlock:td_sem.c:0210:sv_open_queue/1/0 semaphore un-locked
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237468:v_open_queue:spatch.c:0250:Got file descriptor: 27
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237729:ort_to_ndrxd:rxdapi.c:0164:About to send: 696 bytes/4 svcs, srvid: 4
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755237946:neric_call_2:iutils.c:0639:gencall command: 4, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084755237977:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755238126:ric_q_send_2:iutils.c:0473:len: 696 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755238182:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084755238451:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800075810:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800075872:_for_request:spatch.c:1551:Receiving 0, user data: 26, fd: 26, evmqd: 26, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800075967:_for_request:spatch.c:1629:Got request on logical channel 4, fd: 26
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076050:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076298:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332480 callseq: 1, svc: UBFADD, flags: 0, call age: 0, data_len: 72, caller: clt,ubf_test_client,37,1,1  reply_to: /run,clt,reply,ubf_test_client,37,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076447:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076479:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 56
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076612:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800076815:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076926:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800076995:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 60)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800077162:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=60
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800077246:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800077353:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800077505:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800077578:tplog       :/tplog.c:0583:UBFADD service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800077892:tplog       :/tplog.c:0583:UBFADD: Added fields, used=104 bytes
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078079:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078306:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078449:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=120
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078473:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078556:are_outgoing:ltibuf.c:0658:120 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800078710:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078749:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,37,1 cd 16382, timestamp 1762332480, callseq: 1, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078783:ric_q_send_2:iutils.c:0473:len: 656 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078815:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078840:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800078963:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800079051:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800079206:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081093:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081147:_for_request:spatch.c:1551:Receiving 0, user data: 25, fd: 25, evmqd: 25, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081188:_for_request:spatch.c:1629:Got request on logical channel 3, fd: 25
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081230:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081267:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332480 callseq: 2, svc: UBFTEST, flags: 0, call age: 0, data_len: 80, caller: clt,ubf_test_client,37,1,1  reply_to: /run,clt,reply,ubf_test_client,37,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081301:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081334:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 64
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081365:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800081396:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081462:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081494:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 68)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081522:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=68
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081550:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081578:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800081608:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800081690:tplog       :/tplog.c:0583:UBFTEST service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800082147:tplog       :/tplog.c:0583:UBFTEST: Received name=30034
+((BFLDID32)1002)	30034
+((BFLDID32)1003)	25928
+((BFLDID32)1004)	19279
+((BFLDID32)1013)	0
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800083754:tplog       :/tplog.c:0583:UBFTEST: Returning success
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083784:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083817:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083849:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=104
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083879:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083910:are_outgoing:ltibuf.c:0658:104 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800083956:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800083992:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,37,1 cd 16382, timestamp 1762332480, callseq: 2, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084027:ric_q_send_2:iutils.c:0473:len: 640 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084063:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084103:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084154:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084209:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084253:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084384:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084420:_for_request:spatch.c:1551:Receiving 0, user data: 24, fd: 24, evmqd: 24, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084445:_for_request:spatch.c:1629:Got request on logical channel 2, fd: 24
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084467:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084489:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332480 callseq: 3, svc: UBFECHO, flags: 0, call age: 0, data_len: 88, caller: clt,ubf_test_client,37,1,1  reply_to: /run,clt,reply,ubf_test_client,37,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084511:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084532:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 72
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084577:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800084597:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084618:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084637:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 76)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084660:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=76
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084681:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084703:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084724:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800084755:tplog       :/tplog.c:0583:UBFECHO service called
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084780:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084801:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084821:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=88
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084840:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084860:are_outgoing:ltibuf.c:0658:88 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800084879:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084899:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,37,1 cd 16382, timestamp 1762332480, callseq: 3, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084933:ric_q_send_2:iutils.c:0473:len: 624 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800084964:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085001:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085046:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085118:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085155:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085185:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085224:_for_request:spatch.c:1551:Receiving 0, user data: 27, fd: 27, evmqd: 27, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085247:_for_request:spatch.c:1629:Got request on logical channel 5, fd: 27
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085269:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085290:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332480 callseq: 4, svc: UBFGET, flags: 0, call age: 0, data_len: 96, caller: clt,ubf_test_client,37,1,1  reply_to: /run,clt,reply,ubf_test_client,37,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085312:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085333:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 80
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085378:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800085399:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085420:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085441:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 84)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085461:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=84
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085482:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085504:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800085524:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800085583:tplog       :/tplog.c:0583:UBFGET service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800085607:tplog       :/tplog.c:0583:UBFGET: T_NAME_FLD=28490
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800085669:tplog       :/tplog.c:0583:UBFGET: T_ID_FLD=9999
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084800086091:tplog       :/tplog.c:0583:UBFGET: T_PRICE_FLD=-13107
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086122:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086148:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086171:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=96
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086192:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086215:are_outgoing:ltibuf.c:0658:96 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084800086237:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086259:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,37,1 cd 16382, timestamp 1762332480, callseq: 4, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086282:ric_q_send_2:iutils.c:0473:len: 632 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086306:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086331:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086365:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086417:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084800086459:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911890821:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911890917:_for_request:spatch.c:1551:Receiving 0, user data: 26, fd: 26, evmqd: 26, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911890958:_for_request:spatch.c:1629:Got request on logical channel 4, fd: 26
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891020:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891071:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332551 callseq: 1, svc: UBFADD, flags: 0, call age: 0, data_len: 72, caller: clt,ubf_test_client,50,1,1  reply_to: /run,clt,reply,ubf_test_client,50,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891209:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891248:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 56
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891286:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911891324:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891356:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891385:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 60)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891412:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=60
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891439:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891470:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891500:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911891533:tplog       :/tplog.c:0583:UBFADD service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911891566:tplog       :/tplog.c:0583:UBFADD: Added fields, used=104 bytes
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891593:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891621:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891648:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=120
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891674:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891700:are_outgoing:ltibuf.c:0658:120 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911891727:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891753:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,50,1 cd 16382, timestamp 1762332551, callseq: 1, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891783:ric_q_send_2:iutils.c:0473:len: 656 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891813:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891848:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891881:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891935:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911891968:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894224:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894267:_for_request:spatch.c:1551:Receiving 0, user data: 25, fd: 25, evmqd: 25, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894306:_for_request:spatch.c:1629:Got request on logical channel 3, fd: 25
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894339:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894405:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332551 callseq: 2, svc: UBFTEST, flags: 0, call age: 0, data_len: 80, caller: clt,ubf_test_client,50,1,1  reply_to: /run,clt,reply,ubf_test_client,50,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894432:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894457:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 64
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894482:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911894507:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894531:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894555:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 68)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894582:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=68
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894616:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894643:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894669:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911894695:tplog       :/tplog.c:0583:UBFTEST service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911894726:tplog       :/tplog.c:0583:UBFTEST: Received name=30034
+((BFLDID32)1002)	30034
+((BFLDID32)1003)	25928
+((BFLDID32)1004)	19279
+((BFLDID32)1013)	0
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911894781:tplog       :/tplog.c:0583:UBFTEST: Returning success
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894806:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894831:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894856:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=104
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894879:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894903:are_outgoing:ltibuf.c:0658:104 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911894928:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894952:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,50,1 cd 16382, timestamp 1762332551, callseq: 2, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911894978:ric_q_send_2:iutils.c:0473:len: 640 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895007:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895040:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895096:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895192:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895261:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895463:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895560:_for_request:spatch.c:1551:Receiving 0, user data: 24, fd: 24, evmqd: 24, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895598:_for_request:spatch.c:1629:Got request on logical channel 2, fd: 24
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895632:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895661:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332551 callseq: 3, svc: UBFECHO, flags: 0, call age: 0, data_len: 88, caller: clt,ubf_test_client,50,1,1  reply_to: /run,clt,reply,ubf_test_client,50,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895692:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895718:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 72
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895743:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911895768:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895792:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895819:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 76)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895843:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=76
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895867:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895892:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895918:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911895948:tplog       :/tplog.c:0583:UBFECHO service called
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911895975:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896001:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896028:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=88
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896053:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896077:are_outgoing:ltibuf.c:0658:88 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911896104:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896155:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,50,1 cd 16382, timestamp 1762332551, callseq: 3, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896196:ric_q_send_2:iutils.c:0473:len: 624 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896240:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896296:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896377:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896432:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896506:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896619:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896696:_for_request:spatch.c:1551:Receiving 0, user data: 27, fd: 27, evmqd: 27, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896729:_for_request:spatch.c:1629:Got request on logical channel 5, fd: 27
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896757:rver_request:spatch.c:0942:Got command: 1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896784:v_serve_call:spatch.c:0334:got call, cd: 16382 timestamp: 1762332551 callseq: 4, svc: UBFGET, flags: 0, call age: 0, data_len: 96, caller: clt,ubf_test_client,50,1,1  reply_to: /run,clt,reply,ubf_test_client,50,1, clttout: 1500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896810:are_incoming:ltibuf.c:0239:Parse incoming buffer TLV
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896835:are_incoming:ltibuf.c:0252:Received buffer tag: 0 type: 0 callinfo: 0 len: 80
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896860:are_incoming:ed_ubf.c:0121:Entering UBF_prepare_incoming
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911896884:are_incoming:ed_ubf.c:0160:User buffer type NULL is different, free it up and re-allocate as UBF
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896908:tpfree_inner:ed_buf.c:0440:_tpfree buf=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896932:are_incoming:ed_ubf.c:0209:UBF_prepare_incoming: Incoming buffer where missing - allocating new (size: 84)!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896957:ndrx_tpalloc:ed_buf.c:0237:ndrx_tpalloc: type=NULL, subtype=NULL len=84
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911896981:ndrx_tpalloc:ed_buf.c:0278:ndrx_tpalloc: type=UBF subtype=NULL len=1024 allocated=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897005:are_incoming:ltibuf.c:0341:Remap the vptrs (tags) to real pointers
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897029:v_serve_call:spatch.c:0377:Buffer=0x5555555bb500 autoalloc=1
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911897053:tplog       :/tplog.c:0583:UBFGET service called
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911897081:tplog       :/tplog.c:0583:UBFGET: T_NAME_FLD=28490
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911897118:tplog       :/tplog.c:0583:UBFGET: T_ID_FLD=9999
+R:USER:3:2fd996ca:00023:7fffff394940:001:20251105:084911897154:tplog       :/tplog.c:0583:UBFGET: T_PRICE_FLD=-13107
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897186:_tpreturn   :return.c:0107:_tpreturn enter data=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897221:_mbuf_tlv_do:ltibuf.c:0427:Prep tag: 0 (ttag 0, type 0). Src 0x5555555bb500, dst 0x555555601930 olen_max=65016 new_used=16 pad=0 buffer_left=65000
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897255:_mbuf_tlv_do:ltibuf.c:0443:tag=0 loaded new_used=96
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897285:are_outgoing:ltibuf.c:0631:Post-processing (vptr mapping) tag: 0 typed: 0 callinfo: 0 offset: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897311:are_outgoing:ltibuf.c:0658:96 data bytes ret=0
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084911897336:mp_nodestack:upport.c:0083:Node stack before bridge select: []
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897366:_tpreturn   :return.c:0433:Returning to /run,clt,reply,ubf_test_client,50,1 cd 16382, timestamp 1762332551, callseq: 4, rval: 2, rcode: 0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897393:ric_q_send_2:iutils.c:0473:len: 632 use timeout: 1 config: 1500 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897421:_tpreturn   :return.c:0480:_tpreturn free buffer 0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897454:tpfree_inner:ed_buf.c:0440:_tpfree buf=0x5555555bb500
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897515:_tpreturn   :return.c:0505:_tpreturn about to jump to main()
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897620:v_serve_call:spatch.c:0594:Got back from reply/forward (2)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084911897658:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081005:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081143:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081228:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081298:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081595:ss_admin_req:spatch.c:1362:Got ping request: 1 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081781:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:084945081854:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945081941:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945082019:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:084945082086:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168182:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168354:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168443:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168528:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168620:ss_admin_req:spatch.c:1362:Got ping request: 2 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168704:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:085135168779:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168855:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135168951:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085135169049:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325299288:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325299808:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325299970:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300079:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300175:ss_admin_req:spatch.c:1362:Got ping request: 3 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300316:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:085325300405:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300513:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300624:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085325300829:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515413704:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515413877:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515413979:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414071:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414165:ss_admin_req:spatch.c:1362:Got ping request: 4 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414255:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:085515414332:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414426:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414513:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085515414589:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705523824:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705523983:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524078:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524159:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524236:ss_admin_req:spatch.c:1362:Got ping request: 5 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524326:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:085705524408:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524503:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524578:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085705524645:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855622766:_for_request:spatch.c:1496:Poll says: 1 len: -1 tout: -1
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855622920:_for_request:spatch.c:1551:Receiving 0, user data: 22, fd: 22, evmqd: 22, is_mq_only: -1, G_pollext=(nil)
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623023:_for_request:spatch.c:1629:Got request on logical channel 0, fd: 22
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623115:_for_request:spatch.c:1634:Got admin request
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623204:ss_admin_req:spatch.c:1362:Got ping request: 6 seq
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623292:neric_call_2:iutils.c:0639:gencall command: 53, reply_only=0, need_reply=0 call flags=0x0, getcall flags=32
+n:NDRX:4:2fd996ca:00023:7fffff394940:001:20251105:085855623372:neric_call_2:iutils.c:0686:Sending data to [/run,sys,bg,ndrxd] call flags=0x0
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623465:ric_q_send_2:iutils.c:0473:len: 184 use timeout: 0 config: 0 prio: 50 snd_prio: 50
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623552:neric_call_2:iutils.c:0719:Reply not needed!
+n:NDRX:5:2fd996ca:00023:7fffff394940:001:20251105:085855623628:_for_request:spatch.c:1452:About to poll - timeout=-1 millisec
