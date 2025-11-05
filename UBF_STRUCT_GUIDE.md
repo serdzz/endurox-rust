@@ -121,24 +121,72 @@ impl UbfStruct for Transaction {
 }
 ```
 
-### Future Derive Macro (planned)
+### Derive Macro
+
+The `UbfStruct` derive macro automatically implements the trait for you:
 
 ```rust
-// Future syntax - not yet implemented
-#[derive(UbfStruct)]
+use endurox_sys::UbfStruct;
+use endurox_sys::ubf_fields::*;  // Auto-generated field constants
+
+#[derive(Debug, Clone, UbfStruct)]
 struct Transaction {
-    #[ubf(field = "T_NAME_FLD")]
+    #[ubf(field = T_NAME_FLD)]  // Using field constant
     name: String,
     
-    #[ubf(field = "T_ID_FLD")]
+    #[ubf(field = T_ID_FLD)]  // Field constant
     id: i64,
     
-    #[ubf(field = "T_PRICE_FLD")]
+    #[ubf(field = T_PRICE_FLD)]  // Field constant
     amount: f64,
     
-    #[ubf(field = "T_STATUS_FLD", default = "pending")]
+    #[ubf(field = T_STATUS_FLD, default = "pending")]  // With default value
     status: String,
 }
+
+// Alternative: using numeric field IDs
+#[derive(Debug, Clone, UbfStruct)]
+struct Payment {
+    #[ubf(field = 1002)]  // Numeric field ID
+    name: String,
+    
+    #[ubf(field = 1012)]  // Numeric field ID  
+    id: i64,
+}
+
+// Usage
+let txn = Transaction {
+    name: "Payment".to_string(),
+    id: 12345,
+    amount: 999.99,
+    status: "completed".to_string(),
+};
+
+// Convert to UBF
+let ubf = txn.to_ubf()?;
+
+// Convert back from UBF
+let restored = Transaction::from_ubf(&ubf)?;
+
+// Update existing buffer
+let mut existing_ubf = UbfBuffer::new(1024)?;
+txn.update_ubf(&mut existing_ubf)?;
+```
+
+**Supported Types:**
+- `String` - mapped to UBF string fields
+- `i64`, `i32` - mapped to UBF long fields
+- `f64`, `f32` - mapped to UBF double fields
+- `bool` - mapped to UBF long fields (0/1), checked with `is_present()`
+
+**Attributes:**
+- `#[ubf(field = CONSTANT)]` - Use auto-generated field constant (recommended)
+- `#[ubf(field = 1234)]` - Use numeric field ID
+- `#[ubf(field = T_NAME_FLD, default = "value")]` - Provide default value for optional fields (String only)
+
+**Running the example:**
+```bash
+docker-compose exec endurox_rust bash /app/test_derive.sh
 ```
 
 ### Advantages
@@ -284,6 +332,7 @@ cargo test --package endurox-sys ubf_struct
 
 See:
 - `endurox-sys/src/ubf_struct.rs` - Full implementation with tests
+- `ubf_test_client/examples/derive_macro_example.rs` - Derive macro examples
 - `ubfsvr_rust/examples/ubf_struct_example.rs` - Standalone examples
 - `ubf_test_client/src/main.rs` - Client usage
 

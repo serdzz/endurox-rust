@@ -50,12 +50,41 @@ pub const CUSTOM_FIELD_2: i32 = 33556482;
 
 Все константы доступны через один импорт:
 
+#### Вариант 1: Прямая работа с UBF буфером
 ```rust
 use endurox_sys::ubf_fields::*;
 
 // Используем поля из разных файлов
 buf.add_string(T_NAME_FLD, "test")?;           // из test.fd.h
 buf.add_string(CUSTOM_FIELD_1, "custom")?;     // из custom.fd.h
+```
+
+#### Вариант 2: С UbfStruct derive macro
+```rust
+use endurox_sys::UbfStruct;
+use endurox_sys::ubf_fields::*;
+
+#[derive(Debug, Clone, UbfStruct)]
+struct Payment {
+    #[ubf(field = PAYMENT_ID)]        // из payment.fd.h
+    id: i64,
+    
+    #[ubf(field = PAYMENT_AMOUNT)]    // из payment.fd.h
+    amount: f64,
+    
+    #[ubf(field = T_NAME_FLD)]        // из test.fd.h
+    name: String,
+}
+
+// Автоматическая конвертация
+let payment = Payment {
+    id: 12345,
+    amount: 99.99,
+    name: "Payment".to_string(),
+};
+
+let ubf = payment.to_ubf()?;
+let restored = Payment::from_ubf(&ubf)?;
 ```
 
 ## Преимущества
