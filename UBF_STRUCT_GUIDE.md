@@ -399,7 +399,8 @@ See:
 ## Field Table Reference
 
 From `ubftab/test.fd`:
-|| Field Name | Field ID | Type | Description |
+
+| Field Name | Field ID | Type | Description |
 |-----------|----------|------|-------------|
 | T_STRING_FLD | 1001 | string | String field |
 | T_NAME_FLD | 1002 | string | Name field |
