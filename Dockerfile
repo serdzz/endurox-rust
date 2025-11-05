@@ -44,6 +44,7 @@ COPY Cargo.toml ./
 
 # Копирование всех sub-crates
 COPY endurox-sys ./endurox-sys
+COPY endurox-derive ./endurox-derive
 COPY samplesvr_rust ./samplesvr_rust
 COPY rest_gateway ./rest_gateway
 COPY ubfsvr_rust ./ubfsvr_rust
@@ -67,11 +68,17 @@ RUN cargo build --release && \
     cp /app/target/release/ubfsvr_rust /app/bin/ && \
     cp /app/target/release/ubf_test_client /app/bin/
 
+# Build derive macro example
+RUN cd ubf_test_client && \
+    cargo build --release --example derive_macro_example --features "ubf,derive" && \
+    cp /app/target/release/examples/derive_macro_example /app/bin/
+
 # Копирование конфигурационных файлов
 COPY conf ./conf
 COPY setenv.sh ./
 COPY test_rest.sh ./
 COPY test_ubf.sh ./
-RUN chmod +x test_rest.sh test_ubf.sh
+COPY test_derive.sh ./
+RUN chmod +x test_rest.sh test_ubf.sh test_derive.sh
 
 CMD ["/bin/bash"]

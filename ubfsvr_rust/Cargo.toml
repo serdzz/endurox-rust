@@ -14,3 +14,8 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
+
+[features]
+default = []
+ubf = ["endurox-sys/ubf"]
+derive = ["endurox-sys/derive"]

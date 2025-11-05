@@ -29,6 +29,13 @@ pub mod client;
 #[cfg(feature = "ubf")]
 pub mod ubf;
 
+#[cfg(feature = "ubf")]
+pub mod ubf_struct;
+
+// Re-export derive macro
+#[cfg(feature = "derive")]
+pub use endurox_derive::UbfStruct;
+
 // Re-export common types
 pub use ffi::{TpSvcInfoRaw, TPSUCCESS, TPFAIL};
 pub use log::{tplog_info, tplog_error, tplog_warn, tplog_debug};

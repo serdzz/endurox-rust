@@ -11,6 +11,7 @@ libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
+endurox-derive = { path = "../endurox-derive", optional = true }
 
 [build-dependencies]
 
@@ -19,3 +20,4 @@ default = []
 server = []  # Включает server-specific биндинги (atmisrvnomain)
 client = []  # Включает client-specific биндинги
 ubf = []     # Включает UBF API
+derive = ["endurox-derive"]  # Включает derive макрос для UbfStruct

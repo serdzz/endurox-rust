@@ -99,9 +99,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
+name = "endurox-derive"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "endurox-sys"
 version = "0.1.0"
 dependencies = [
+ "endurox-derive",
  "libc",
  "serde",
  "serde_json",

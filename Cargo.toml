@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "endurox-sys",
+    "endurox-derive",
     "samplesvr_rust",
     "rest_gateway",
     "ubfsvr_rust",
