@@ -417,7 +417,6 @@ From `ubftab/test.fd`:
 | T_PRICE_FLD | 1021 | double | Price field |
 | T_SHORT_FLD | 1030 | short | Short field |
 | T_FLAG_FLD | 1031 | short | Flag field |
-| T_FLAG_FLD | 1031 | short | Flag field |
 
 ## Best Practices
 
