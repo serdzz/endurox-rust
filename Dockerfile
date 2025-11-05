@@ -6,6 +6,7 @@ ENV NDRX_HOME=/opt/endurox
 # Установка зависимостей
 RUN apt-get update && apt-get install -y \
     curl \
+    less\
     jq \
     libxml2 \
     build-essential \
@@ -81,7 +82,6 @@ RUN cd ubf_test_client && \
 COPY conf ./conf
 COPY setenv.sh ./
 COPY test_rest.sh ./
-COPY test_ubf.sh ./
 COPY test_derive.sh ./
 RUN chmod +x test_rest.sh test_ubf.sh test_derive.sh
 
