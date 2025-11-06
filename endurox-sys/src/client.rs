@@ -117,6 +117,91 @@ impl EnduroxClient {
         }
     }
     
+    /// Call service with UBF buffer (blocking)
+    pub fn call_service_ubf_blocking(&self, service: &str, buffer_data: &[u8]) -> Result<Vec<u8>, String> {
+        unsafe {
+            tplog_info(&format!("call_service_ubf_blocking: service={}, data_len={}", service, buffer_data.len()));
+            
+            // Allocate UBF buffer for input
+            let ubf_type = CString::new("UBF").map_err(|e| e.to_string())?;
+            let send_buf = ffi::tpalloc(
+                ubf_type.as_ptr(),
+                ptr::null(),
+                buffer_data.len() as c_long,
+            );
+            
+            if send_buf.is_null() {
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_msg = format!("Failed to allocate UBF send buffer, tperrno={}", tperrno);
+                tplog_error(&err_msg);
+                return Err(err_msg);
+            }
+            
+            // Copy data to buffer
+            ptr::copy_nonoverlapping(
+                buffer_data.as_ptr(),
+                send_buf as *mut u8,
+                buffer_data.len(),
+            );
+            
+            // Make synchronous call with tpcall
+            let c_service = CString::new(service).map_err(|e| e.to_string())?;
+            let mut recv_buf: *mut c_char = send_buf;
+            let mut recv_len: c_long = 0;
+            
+            tplog_info(&format!("Calling tpcall for UBF service: {}", service));
+            
+            let ret = ffi::tpcall(
+                c_service.as_ptr(),
+                send_buf,
+                0, // 0 for UBF - length determined automatically
+                &mut recv_buf,
+                &mut recv_len,
+                0,
+            );
+            
+            tplog_info(&format!("tpcall returned: ret={}, recv_buf={:?}, recv_len={}", 
+                ret, recv_buf, recv_len));
+            
+            if ret == -1 {
+                if !recv_buf.is_null() && recv_buf != send_buf {
+                    ffi::tpfree(recv_buf);
+                } else if !send_buf.is_null() {
+                    ffi::tpfree(send_buf);
+                }
+                let tperrno = *ffi::_exget_tperrno_addr();
+                let err_ptr = ffi::tpstrerror(tperrno);
+                let err_msg = if !err_ptr.is_null() {
+                    CStr::from_ptr(err_ptr).to_string_lossy().into_owned()
+                } else {
+                    "Unknown error".to_string()
+                };
+                tplog_error(&format!("tpcall failed: ret={}, tperrno={}, msg={}", ret, tperrno, err_msg));
+                return Err(format!("tpcall failed: {}: {}", tperrno, err_msg));
+            }
+            
+            // Get buffer size and convert to Vec<u8>
+            let used_size = if !recv_buf.is_null() {
+                ffi::Bused(recv_buf) as usize
+            } else {
+                0
+            };
+            
+            let response = if !recv_buf.is_null() && used_size > 0 {
+                let data = std::slice::from_raw_parts(recv_buf as *const u8, used_size).to_vec();
+                ffi::tpfree(recv_buf);
+                data
+            } else {
+                if !recv_buf.is_null() {
+                    ffi::tpfree(recv_buf);
+                }
+                Vec::new()
+            };
+            
+            Ok(response)
+        }
+    }
+    
     /// Call service with raw buffer (for UBF)
     /// 
     /// # Safety

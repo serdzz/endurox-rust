@@ -30,5 +30,31 @@ curl -X POST http://localhost:8080/api/dataproc \
   -d '{"data":"test","count":123}' | jq .
 echo -e "\n"
 
+echo "5. Testing TRANSACTION endpoint with SALE transaction (POST /api/transaction)"
+curl -X POST http://localhost:8080/api/transaction \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_type": "sale",
+    "transaction_id": "TXN-12345",
+    "account": "ACC-9876",
+    "amount": 15000,
+    "currency": "USD",
+    "description": "Payment for order #12345"
+  }' | jq .
+echo -e "\n"
+
+echo "6. Testing TRANSACTION endpoint with invalid type (should return error) (POST /api/transaction)"
+curl -X POST http://localhost:8080/api/transaction \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_type": "refund",
+    "transaction_id": "TXN-12346",
+    "account": "ACC-9876",
+    "amount": 5000,
+    "currency": "USD",
+    "description": "Refund request"
+  }' | jq .
+echo -e "\n"
+
 echo "====================================="
 echo "Tests completed"

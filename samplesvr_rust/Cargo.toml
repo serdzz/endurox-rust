@@ -8,7 +8,7 @@ name = "samplesvr_rust"
 path = "src/main.rs"
 
 [dependencies]
-endurox-sys = { path = "../endurox-sys", features = ["server"] }
+endurox-sys = { path = "../endurox-sys", features = ["server", "ubf", "derive"] }
 libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }

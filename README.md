@@ -7,9 +7,10 @@ A modern Rust integration for [Enduro/X](https://www.endurox.org/) - a high-perf
 This project provides Rust bindings and a complete example implementation for building Enduro/X services and clients. It includes:
 
 - **endurox-sys** - Low-level FFI bindings and safe Rust wrappers for Enduro/X
-- **samplesvr_rust** - Example Enduro/X server implementing STRING/JSON services
+- **endurox-derive** - Procedural macros for automatic UBF struct serialization
+- **samplesvr_rust** - Example Enduro/X server implementing STRING/JSON and UBF services
 - **ubfsvr_rust** - UBF (Unified Buffer Format) server with example services
-- **rest_gateway** - REST API gateway built with Axum that exposes Enduro/X services over HTTP
+- **rest_gateway** - REST API gateway built with Actix-web that exposes Enduro/X services over HTTP
 - **ubf_test_client** - Test client for UBF services
 
 ## Architecture
@@ -17,14 +18,16 @@ This project provides Rust bindings and a complete example implementation for bu
 ```
 ┌─────────────┐      HTTP/REST      ┌──────────────┐
 │   Client    │ ──────────────────> │ rest_gateway │
-│ (curl/web)  │                     │   (Axum)     │
+│ (curl/web)  │                     │  (Actix-web) │
 └─────────────┘                     └──────┬───────┘
                                            │ Enduro/X
                                            │ tpcall()
+                                           │ (STRING/UBF)
                                            ▼
                                     ┌──────────────┐
                                     │ samplesvr_   │
                                     │    rust      │
+                                    │ (JSON + UBF) │
                                     └──────────────┘
 ```
 
@@ -47,12 +50,13 @@ Safe Rust bindings for Enduro/X:
 
 ### Sample Services
 
-#### samplesvr_rust (STRING/JSON Services)
+#### samplesvr_rust (STRING/JSON and UBF Services)
 
 - **ECHO** - Echo back the input data
 - **HELLO** - Personalized greeting service (JSON input/output)
 - **STATUS** - Server status and health check
 - **DATAPROC** - Data processing service with JSON support
+- **TRANSACTION** - Complex transaction processing with UBF (validates sale transactions)
 
 #### ubfsvr_rust (UBF Services)
 
@@ -63,13 +67,14 @@ Safe Rust bindings for Enduro/X:
 
 ### REST Gateway
 
-HTTP/REST interface powered by Axum:
+HTTP/REST interface powered by Actix-web:
 
 - **GET /** - Health check endpoint
 - **GET /api/status** - Server status
 - **POST /api/hello** - Call HELLO service with JSON
 - **POST /api/echo** - Call ECHO service with plain text
 - **POST /api/dataproc** - Call DATAPROC service with JSON
+- **POST /api/transaction** - Process transactions with UBF (JSON → UBF → JSON)
 
 ## Prerequisites
 
@@ -164,6 +169,59 @@ curl -X POST http://localhost:8080/api/dataproc \
   -d '{"data":"test","count":123}'
 ```
 
+### Transaction Service (UBF)
+
+The transaction service demonstrates complex JSON ↔ UBF conversion with validation:
+
+**Valid sale transaction:**
+```bash
+curl -X POST http://localhost:8080/api/transaction \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_type": "sale",
+    "transaction_id": "TXN-12345",
+    "account": "ACC-9876",
+    "amount": 15000,
+    "currency": "USD",
+    "description": "Payment for order #12345"
+  }'
+```
+
+Response:
+```json
+{
+  "transaction_id": "TXN-12345",
+  "status": "SUCCESS",
+  "message": "Transaction TXN-12345 processed successfully"
+}
+```
+
+**Invalid transaction (non-sale type):**
+```bash
+curl -X POST http://localhost:8080/api/transaction \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_type": "refund",
+    "transaction_id": "TXN-12346",
+    "account": "ACC-9876",
+    "amount": 5000,
+    "currency": "USD"
+  }'
+```
+
+Response:
+```json
+{
+  "transaction_id": "TXN-12346",
+  "status": "ERROR",
+  "message": "Transaction validation failed",
+  "error": {
+    "code": "INVALID_TYPE",
+    "message": "Expected 'sale' transaction type, got 'refund'"
+  }
+}
+```
+
 ## UBF Examples
 
 ### Running UBF Test Client
@@ -241,11 +299,13 @@ docker-compose exec endurox_rust bash /app/test_derive.sh
 
 See [UBF_STRUCT_GUIDE.md](UBF_STRUCT_GUIDE.md) for complete documentation.
 
+For a complete example of JSON ↔ UBF conversion with validation, see [TRANSACTION_API.md](TRANSACTION_API.md).
+
 ### UBF Field Table
 
 The project includes a UBF field table (`ubftab/test.fd`) with the following fields:
 
-- **String fields**: T_STRING_FLD, T_NAME_FLD, T_MESSAGE_FLD, T_STATUS_FLD, T_DATA_FLD, T_STREET_FLD, T_CITY_FLD, T_ZIP_FLD
+- **String fields**: T_STRING_FLD, T_NAME_FLD, T_MESSAGE_FLD, T_STATUS_FLD, T_DATA_FLD, T_STREET_FLD, T_CITY_FLD, T_ZIP_FLD, T_TRANS_TYPE_FLD, T_TRANS_ID_FLD, T_ACCOUNT_FLD, T_CURRENCY_FLD, T_DESC_FLD, T_ERROR_CODE_FLD, T_ERROR_MSG_FLD
 - **Long fields**: T_LONG_FLD, T_COUNT_FLD, T_ID_FLD, T_CODE_FLD, T_AMOUNT_FLD
 - **Double fields**: T_DOUBLE_FLD, T_PRICE_FLD, T_BALANCE_FLD
 - **Short fields**: T_SHORT_FLD, T_FLAG_FLD
@@ -287,7 +347,7 @@ The project includes a UBF field table (`ubftab/test.fd`) with the following fie
 │   └── Cargo.toml
 ├── rest_gateway/          # REST gateway
 │   ├── src/
-│   │   └── main.rs        # Axum server
+│   │   └── main.rs        # Actix-web server
 │   └── Cargo.toml
 ├── ubftab/                # UBF field tables
 │   └── test.fd           # Field definitions

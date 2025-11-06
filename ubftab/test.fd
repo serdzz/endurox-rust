@@ -32,4 +32,13 @@ T_FLAG_FLD       31   short   -  "Flag field"
 # Character fields
 T_CHAR_FLD       40   char    -  "Character field"
 
+# Transaction fields
+T_TRANS_TYPE_FLD 50   string  -  "Transaction type field"
+T_TRANS_ID_FLD   51   string  -  "Transaction ID field"
+T_ACCOUNT_FLD    52   string  -  "Account field"
+T_CURRENCY_FLD   53   string  -  "Currency field"
+T_DESC_FLD       54   string  -  "Description field"
+T_ERROR_CODE_FLD 55   string  -  "Error code field"
+T_ERROR_MSG_FLD  56   string  -  "Error message field"
+
 $#endif

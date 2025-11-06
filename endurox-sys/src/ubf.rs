@@ -255,6 +255,32 @@ impl UbfBuffer {
         self.ptr
     }
     
+    /// Get buffer as byte slice
+    pub fn as_bytes(&self) -> &[u8] {
+        let used_size = self.used();
+        unsafe { std::slice::from_raw_parts(self.ptr as *const u8, used_size) }
+    }
+    
+    /// Create UbfBuffer from byte slice
+    pub fn from_bytes(data: &[u8]) -> Result<Self, String> {
+        let size = data.len();
+        let ubf_type = CString::new("UBF").map_err(|e| e.to_string())?;
+        let ptr = unsafe {
+            ffi::tpalloc(ubf_type.as_ptr(), ptr::null(), size as c_long)
+        };
+        
+        if ptr.is_null() {
+            return Err("Failed to allocate UBF buffer".to_string());
+        }
+        
+        // Copy data
+        unsafe {
+            std::ptr::copy_nonoverlapping(data.as_ptr(), ptr as *mut u8, size);
+        }
+        
+        Ok(UbfBuffer { ptr, size })
+    }
+    
     /// Get raw pointer and consume the buffer (for tpreturn)
     pub fn into_raw(self) -> *mut c_char {
         let ptr = self.ptr;

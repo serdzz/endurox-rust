@@ -31,6 +31,10 @@ fn init_services() {
         "DATAPROC".to_string(),
         dataproc_service as fn(&ServiceRequest) -> ServiceResult,
     );
+    registry.insert(
+        "TRANSACTION".to_string(),
+        transaction_service as fn(&ServiceRequest) -> ServiceResult,
+    );
 
     // Safe assignment with proper synchronization would be better in production
     unsafe {
@@ -82,7 +86,7 @@ pub extern "C" fn tpsvrinit(_argc: libc::c_int, _argv: *mut *mut libc::c_char) -
 
     init_services();
 
-    let services = ["ECHO", "HELLO", "STATUS", "DATAPROC"];
+    let services = ["ECHO", "HELLO", "STATUS", "DATAPROC", "TRANSACTION"];
 
     for service in &services {
         match advertise_service(service, service_dispatcher) {

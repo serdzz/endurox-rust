@@ -127,7 +127,12 @@ fn generate_field_getter(
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
     
-    if type_str.contains("String") {
+    if type_str.contains("Option") && type_str.contains("String") {
+        // Optional String field
+        quote! {
+            let #field_name = buf.get_string(#field_id, 0).ok();
+        }
+    } else if type_str.contains("String") {
         if let Some(default) = default_value {
             quote! {
                 let #field_name = buf.get_string(#field_id, 0)
@@ -174,7 +179,17 @@ fn generate_field_setter(
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
     
-    if type_str.contains("String") {
+    if type_str.contains("Option") && type_str.contains("String") {
+        // Optional String field
+        quote! {
+            if let Some(ref value) = self.#field_name {
+                buf.add_string(#field_id, value)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                        format!("Field {}: {}", stringify!(#field_name), e)
+                    ))?;
+            }
+        }
+    } else if type_str.contains("String") {
         quote! {
             buf.add_string(#field_id, &self.#field_name)
                 .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
