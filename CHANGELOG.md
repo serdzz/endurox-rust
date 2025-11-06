@@ -13,7 +13,12 @@
 
 #### UBF Improvements
 - Added `as_bytes()` and `from_bytes()` methods to `UbfBuffer`
-- Implemented `Option<String>` support in `UbfStruct` derive macro
+- **Full `Option<T>` support in `UbfStruct` derive macro**
+  - `Option<String>` - optional string fields
+  - `Option<i64>`, `Option<i32>` - optional integer fields
+  - `Option<f64>`, `Option<f32>` - optional floating-point fields
+  - `Option<bool>` - optional boolean fields
+  - `Option<NestedStruct>` - optional nested structures
 - Added `call_service_ubf_blocking()` method to `EnduroxClient`
 
 #### New UBF Fields
@@ -59,14 +64,23 @@ Added transaction-specific fields to `ubftab/test.fd`:
 
 #### Derive Macro Enhancements
 ```rust
-// Now supports Option<String> fields
+// Now supports all Option<T> types
 #[derive(UbfStruct)]
 struct Example {
     #[ubf(field = T_NAME_FLD)]
     name: String,
     
     #[ubf(field = T_DESC_FLD)]
-    description: Option<String>,  // ← New!
+    description: Option<String>,  // Optional string
+    
+    #[ubf(field = T_COUNT_FLD)]
+    count: Option<i64>,  // Optional integer
+    
+    #[ubf(field = T_PRICE_FLD)]
+    price: Option<f64>,  // Optional double
+    
+    #[ubf(field = 0)]
+    address: Option<Address>,  // Optional nested struct
 }
 ```
 

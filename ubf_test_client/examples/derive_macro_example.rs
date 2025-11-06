@@ -55,14 +55,14 @@ struct Address {
 /// Customer with nested Address struct
 #[derive(Debug, Clone, UbfStruct)]
 struct Customer {
-    #[ubf(field = T_NAME_FLD)]  // Auto-generated constant
+    #[ubf(field = T_NAME_FLD)] // Auto-generated constant
     name: String,
-    
-    #[ubf(field = T_ID_FLD)]  // Auto-generated constant
+
+    #[ubf(field = T_ID_FLD)] // Auto-generated constant
     customer_id: i64,
-    
-    #[ubf(field = 0)]  // Nested struct doesn't use a specific field ID
-    address: Address,
+
+    #[ubf(field = 0)] // Nested struct doesn't use a specific field ID
+    address: Option<Address>,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -147,11 +147,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let customer = Customer {
         name: "John Doe".to_string(),
         customer_id: 1001,
-        address: Address {
+        address: Some(Address {
             street: "123 Main St".to_string(),
             city: "Springfield".to_string(),
             zip: "12345".to_string(),
-        },
+        }),
     };
     
     println!("   Original: {:?}", customer);
@@ -160,7 +160,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let restored_customer = Customer::from_ubf(&ubf_customer)?;
     
     println!("   Restored: {:?}", restored_customer);
-    println!("   Address city: {}", restored_customer.address.city);
+    if let Some(addr) = &restored_customer.address {
+        println!("   Address city: {}", addr.city);
+    }
     println!();
     
     // Example 6: Error handling

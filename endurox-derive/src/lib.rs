@@ -127,47 +127,84 @@ fn generate_field_getter(
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
     
-    if type_str.contains("Option") && type_str.contains("String") {
-        // Optional String field
-        quote! {
-            let #field_name = buf.get_string(#field_id, 0).ok();
-        }
-    } else if type_str.contains("String") {
-        if let Some(default) = default_value {
+    // Check if it's an Option type
+    let is_option = type_str.starts_with("Option <");
+    
+    if is_option {
+        // Extract inner type from Option<T>
+        if type_str.contains("String") {
+            // Option<String>
             quote! {
-                let #field_name = buf.get_string(#field_id, 0)
-                    .unwrap_or_else(|_| #default.to_string());
+                let #field_name = buf.get_string(#field_id, 0).ok();
+            }
+        } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
+            // Option<i64/i32>
+            quote! {
+                let #field_name = buf.get_long(#field_id, 0).ok().map(|v| v as _);
+            }
+        } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
+            // Option<f64/f32>
+            quote! {
+                let #field_name = buf.get_double(#field_id, 0).ok().map(|v| v as _);
+            }
+        } else if type_str.contains("bool") {
+            // Option<bool>
+            quote! {
+                let #field_name = if buf.is_present(#field_id, 0) { Some(true) } else { None };
             }
         } else {
+            // Option<NestedStruct> - try to parse, return None if fails
+            // Extract inner type by removing "Option <" and ">"
+            let inner_type_str = type_str
+                .trim_start_matches("Option <")
+                .trim_end_matches(">")
+                .trim();
+            let inner_type: proc_macro2::TokenStream = inner_type_str.parse()
+                .expect("Failed to parse inner type");
+            
             quote! {
-                let #field_name = buf.get_string(#field_id, 0)
-                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
-                        format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
-                    ))?;
+                let #field_name = <#inner_type as ::endurox_sys::ubf_struct::UbfStruct>::from_ubf(buf).ok();
             }
         }
-    } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
-        quote! {
-            let #field_name = buf.get_long(#field_id, 0)
-                .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
-                    format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
-                ))? as #field_type;
-        }
-    } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
-        quote! {
-            let #field_name = buf.get_double(#field_id, 0)
-                .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
-                    format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
-                ))? as #field_type;
-        }
-    } else if type_str.contains("bool") {
-        quote! {
-            let #field_name = buf.is_present(#field_id, 0);
-        }
     } else {
-        // Assume it's a nested struct that implements UbfStruct
-        quote! {
-            let #field_name = <#field_type as ::endurox_sys::ubf_struct::UbfStruct>::from_ubf(buf)?;
+        // Non-optional types
+        if type_str.contains("String") {
+            if let Some(default) = default_value {
+                quote! {
+                    let #field_name = buf.get_string(#field_id, 0)
+                        .unwrap_or_else(|_| #default.to_string());
+                }
+            } else {
+                quote! {
+                    let #field_name = buf.get_string(#field_id, 0)
+                        .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
+                            format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
+                        ))?;
+                }
+            }
+        } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
+            quote! {
+                let #field_name = buf.get_long(#field_id, 0)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
+                        format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
+                    ))? as #field_type;
+            }
+        } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
+            quote! {
+                let #field_name = buf.get_double(#field_id, 0)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::FieldNotFound(
+                        format!("Field {} ({}): {}", stringify!(#field_name), #field_id, e)
+                    ))? as #field_type;
+            }
+        } else if type_str.contains("bool") {
+            quote! {
+                let #field_name = buf.is_present(#field_id, 0);
+            }
+        } else {
+            // Assume it's a nested struct that implements UbfStruct
+            quote! {
+                let #field_name = <#field_type as ::endurox_sys::ubf_struct::UbfStruct>::from_ubf(buf)?;
+            }
         }
     }
 }
@@ -179,50 +216,98 @@ fn generate_field_setter(
 ) -> proc_macro2::TokenStream {
     let type_str = quote!(#field_type).to_string();
     
-    if type_str.contains("Option") && type_str.contains("String") {
-        // Optional String field
-        quote! {
-            if let Some(ref value) = self.#field_name {
-                buf.add_string(#field_id, value)
-                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
-                        format!("Field {}: {}", stringify!(#field_name), e)
-                    ))?;
+    // Check if it's an Option type
+    let is_option = type_str.starts_with("Option <");
+    
+    if is_option {
+        // Handle all Option<T> types
+        if type_str.contains("String") {
+            // Option<String>
+            quote! {
+                if let Some(ref value) = self.#field_name {
+                    buf.add_string(#field_id, value)
+                        .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                            format!("Field {}: {}", stringify!(#field_name), e)
+                        ))?;
+                }
             }
-        }
-    } else if type_str.contains("String") {
-        quote! {
-            buf.add_string(#field_id, &self.#field_name)
-                .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
-                    format!("Field {}: {}", stringify!(#field_name), e)
-                ))?;
-        }
-    } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
-        quote! {
-            buf.add_long(#field_id, self.#field_name as i64)
-                .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
-                    format!("Field {}: {}", stringify!(#field_name), e)
-                ))?;
-        }
-    } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
-        quote! {
-            buf.add_double(#field_id, self.#field_name as f64)
-                .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
-                    format!("Field {}: {}", stringify!(#field_name), e)
-                ))?;
-        }
-    } else if type_str.contains("bool") {
-        quote! {
-            if self.#field_name {
-                buf.add_long(#field_id, 1)
-                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
-                        format!("Field {}: {}", stringify!(#field_name), e)
-                    ))?;
+        } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
+            // Option<i64/i32>
+            quote! {
+                if let Some(value) = self.#field_name {
+                    buf.add_long(#field_id, value as i64)
+                        .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                            format!("Field {}: {}", stringify!(#field_name), e)
+                        ))?;
+                }
+            }
+        } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
+            // Option<f64/f32>
+            quote! {
+                if let Some(value) = self.#field_name {
+                    buf.add_double(#field_id, value as f64)
+                        .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                            format!("Field {}: {}", stringify!(#field_name), e)
+                        ))?;
+                }
+            }
+        } else if type_str.contains("bool") {
+            // Option<bool>
+            quote! {
+                if let Some(value) = self.#field_name {
+                    if value {
+                        buf.add_long(#field_id, 1)
+                            .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                                format!("Field {}: {}", stringify!(#field_name), e)
+                            ))?;
+                    }
+                }
+            }
+        } else {
+            // Option<NestedStruct>
+            quote! {
+                if let Some(ref nested) = self.#field_name {
+                    nested.update_ubf(buf)?;
+                }
             }
         }
     } else {
-        // Assume it's a nested struct that implements UbfStruct
-        quote! {
-            self.#field_name.update_ubf(buf)?;
+        // Non-optional types
+        if type_str.contains("String") {
+            quote! {
+                buf.add_string(#field_id, &self.#field_name)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                        format!("Field {}: {}", stringify!(#field_name), e)
+                    ))?;
+            }
+        } else if type_str.contains("i64") || type_str.contains("i32") || type_str.contains("long") {
+            quote! {
+                buf.add_long(#field_id, self.#field_name as i64)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                        format!("Field {}: {}", stringify!(#field_name), e)
+                    ))?;
+            }
+        } else if type_str.contains("f64") || type_str.contains("f32") || type_str.contains("double") {
+            quote! {
+                buf.add_double(#field_id, self.#field_name as f64)
+                    .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                        format!("Field {}: {}", stringify!(#field_name), e)
+                    ))?;
+            }
+        } else if type_str.contains("bool") {
+            quote! {
+                if self.#field_name {
+                    buf.add_long(#field_id, 1)
+                        .map_err(|e| ::endurox_sys::ubf_struct::UbfError::TypeError(
+                            format!("Field {}: {}", stringify!(#field_name), e)
+                        ))?;
+                }
+            }
+        } else {
+            // Assume it's a nested struct that implements UbfStruct
+            quote! {
+                self.#field_name.update_ubf(buf)?;
+            }
         }
     }
 }

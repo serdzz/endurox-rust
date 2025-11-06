@@ -179,11 +179,12 @@ txn.update_ubf(&mut existing_ubf)?;
 - `f64`, `f32` - mapped to UBF double fields
 - `bool` - mapped to UBF long fields (0/1), checked with `is_present()`
 - **Nested structs** - any type implementing `UbfStruct`
+- **Optional types** - `Option<T>` for any supported type (including nested structs)
 
 **Attributes:**
 - `#[ubf(field = CONSTANT)]` - Use auto-generated field constant (recommended)
 - `#[ubf(field = 1234)]` - Use numeric field ID
-- `#[ubf(field = T_NAME_FLD, default = "value")]` - Provide default value for optional fields (String only)
+- `#[ubf(field = T_NAME_FLD, default = "value")]` - Provide default value for optional fields (deprecated, use `Option<T>` instead)
 - `#[ubf(field = 0)]` - For nested structs (field ID is not used, the nested struct's fields are used)
 
 ### Nested Structs
@@ -216,26 +217,29 @@ struct Customer {
     #[ubf(field = T_ID_FLD)]
     customer_id: i64,
     
-    #[ubf(field = 0)]  // Nested struct - field ID not used
-    address: Address,
+    #[ubf(field = 0)]  // Optional nested struct - field ID not used
+    address: Option<Address>,
 }
 
 // Usage
 let customer = Customer {
     name: "John Doe".to_string(),
     customer_id: 1001,
-    address: Address {
+    address: Some(Address {
         street: "123 Main St".to_string(),
         city: "Springfield".to_string(),
         zip: "12345".to_string(),
-    },
+    }),
 };
 
 // All fields (including nested) are serialized to the same UBF buffer
 let ubf = customer.to_ubf()?;
 let restored = Customer::from_ubf(&ubf)?;
 
-assert_eq!(customer.address.city, restored.address.city);
+// Handle optional nested struct
+if let Some(addr) = &restored.address {
+    assert_eq!("Springfield", addr.city);
+}
 ```
 
 **How it works:**
@@ -243,6 +247,7 @@ assert_eq!(customer.address.city, restored.address.city);
 - All fields from both parent and nested structs are stored at the top level
 - Field IDs must be unique across all nested structures
 - The field ID for the nested struct field itself (specified with `#[ubf(field = 0)]`) is ignored
+- Optional nested structs (`Option<T>`) work the same way - if `None`, fields are not written; if `Some`, all nested fields are written
 
 **Running the example:**
 ```bash

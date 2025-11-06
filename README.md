@@ -255,8 +255,11 @@ struct Transaction {
     #[ubf(field = T_PRICE_FLD)]  // Field constant
     amount: f64,
     
-    #[ubf(field = T_STATUS_FLD, default = "pending")]  // With default value
-    status: String,
+    #[ubf(field = T_STATUS_FLD)]  // Optional string field
+    status: Option<String>,
+    
+    #[ubf(field = T_DESC_FLD)]  // Optional description
+    description: Option<String>,
 }
 
 // Alternative: using numeric field IDs
@@ -269,7 +272,7 @@ struct Payment {
     id: i64,
 }
 
-// Nested structs are also supported
+// Nested structs are also supported (including optional)
 #[derive(UbfStruct)]
 struct Address {
     #[ubf(field = T_STREET_FLD)]
@@ -282,8 +285,8 @@ struct Address {
 struct Customer {
     #[ubf(field = T_NAME_FLD)]
     name: String,
-    #[ubf(field = 0)]  // Nested struct
-    address: Address,
+    #[ubf(field = 0)]  // Optional nested struct
+    address: Option<Address>,
 }
 
 // Usage
