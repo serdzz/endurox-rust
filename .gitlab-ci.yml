@@ -28,8 +28,8 @@ build:
   script:
     - rustc --version
     - cargo --version
-    - cargo build --release --verbose
-    - cargo build --release --all-features --verbose
+    - cargo build --release
+    - cargo build --release --all-features
   artifacts:
     paths:
       - target/release/samplesvr_rust
@@ -46,8 +46,8 @@ test:unit:
     - apt-get update -qq
     - apt-get install -y libxml2 pkg-config
   script:
-    - cargo test --lib --verbose
-    - cargo test --doc --verbose
+    - cargo test --lib --release
+    - cargo test --doc --release
   dependencies: []
 
 # Clippy linting
@@ -93,6 +93,7 @@ test:integration:
     - export PATH="$HOME/.cargo/bin:$PATH"
     # TODO: Install Enduro/X packages
     - dpkg -i endurox-*.deb || apt-get install -f -y
+    - export NDRX_HOME=/usr
   script:
     - echo "Integration tests require full Enduro/X setup"
     - echo "Skipping for now - implement when Enduro/X packages are available in CI"
