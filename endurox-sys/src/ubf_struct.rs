@@ -84,18 +84,21 @@ pub fn unmarshal<T: for<'de> Deserialize<'de>>(buf: &UbfBuffer) -> Result<T, Ubf
 /// ```
 /// use endurox_sys::ubf_struct::{UbfStruct, UserData};
 /// 
-/// let user = UserData {
-///     name: "John Doe".to_string(),
-///     id: 12345,
-///     balance: 100.50,
-///     active: true,
-/// };
+/// fn main() -> Result<(), Box<dyn std::error::Error>> {
+///     let user = UserData {
+///         name: "John Doe".to_string(),
+///         id: 12345,
+///         balance: 100.50,
+///         active: true,
+///     };
 /// 
-/// // Convert to UBF
-/// let ubf = user.to_ubf()?;
+///     // Convert to UBF
+///     let ubf = user.to_ubf()?;
 /// 
-/// // Convert from UBF
-/// let user2 = UserData::from_ubf(&ubf)?;
+///     // Convert from UBF
+///     let user2 = UserData::from_ubf(&ubf)?;
+///     Ok(())
+/// }
 /// ```
 #[derive(Debug, Clone)]
 pub struct UserData {
