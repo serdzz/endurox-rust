@@ -1,6 +1,6 @@
 //! Server API - безопасные обертки для server functions
 
-use crate::ffi::{self, TpSvcInfoRaw, TPSUCCESS, TPFAIL};
+use crate::ffi::{self, TpSvcInfoRaw, TPFAIL, TPSUCCESS};
 use libc::{c_char, c_int, c_long};
 use std::ffi::{CStr, CString};
 use std::ptr;
@@ -9,7 +9,7 @@ use std::ptr;
 pub struct TpBuffer {
     ptr: *mut c_char,
     len: usize,
-    allocated_size: usize,  // Size allocated with tpalloc
+    allocated_size: usize, // Size allocated with tpalloc
 }
 
 impl TpBuffer {
@@ -17,70 +17,60 @@ impl TpBuffer {
     pub fn new_string(content: &str) -> Result<Self, String> {
         let string_type = CString::new("STRING").map_err(|e| e.to_string())?;
         let allocated_size = content.len() + 1;
-        let ptr = unsafe {
-            ffi::tpalloc(string_type.as_ptr(), ptr::null(), allocated_size as c_long)
-        };
-        
+        let ptr =
+            unsafe { ffi::tpalloc(string_type.as_ptr(), ptr::null(), allocated_size as c_long) };
+
         if ptr.is_null() {
             return Err("Failed to allocate buffer".to_string());
         }
-        
+
         let c_content = CString::new(content).map_err(|e| e.to_string())?;
         unsafe {
-            ptr::copy_nonoverlapping(
-                c_content.as_ptr(),
-                ptr,
-                allocated_size,
-            );
+            ptr::copy_nonoverlapping(c_content.as_ptr(), ptr, allocated_size);
         }
-        
+
         Ok(TpBuffer {
             ptr,
             len: content.len(),
             allocated_size,
         })
     }
-    
+
     /// Создает новый JSON buffer
     pub fn new_json(content: &str) -> Result<Self, String> {
         let json_type = CString::new("JSON").map_err(|e| e.to_string())?;
         let allocated_size = content.len() + 1;
-        let ptr = unsafe {
-            ffi::tpalloc(json_type.as_ptr(), ptr::null(), allocated_size as c_long)
-        };
-        
+        let ptr =
+            unsafe { ffi::tpalloc(json_type.as_ptr(), ptr::null(), allocated_size as c_long) };
+
         if ptr.is_null() {
             return Err("Failed to allocate JSON buffer".to_string());
         }
-        
+
         let c_content = CString::new(content).map_err(|e| e.to_string())?;
         unsafe {
-            ptr::copy_nonoverlapping(
-                c_content.as_ptr(),
-                ptr,
-                allocated_size,
-            );
+            ptr::copy_nonoverlapping(c_content.as_ptr(), ptr, allocated_size);
         }
-        
+
         Ok(TpBuffer {
             ptr,
             len: content.len(),
             allocated_size,
         })
     }
-    
+
     pub fn len(&self) -> usize {
         self.len
     }
-    
+
     pub fn is_empty(&self) -> bool {
         self.len == 0
     }
-    
+
     /// Передает владение указателем (для tpreturn)
     pub fn into_raw(self) -> *mut c_char {
         let ptr = self.ptr;
-        std::mem::forget(self);  // Не вызываем Drop
+        std::mem::forget(self); // Не вызываем Drop
         ptr
     }
 }
@@ -102,9 +92,9 @@ pub fn advertise_service(
 ) -> Result<(), String> {
     let c_name = CString::new(name).map_err(|e| e.to_string())?;
     let c_funcname = CString::new("service_dispatcher").map_err(|e| e.to_string())?;
-    
+
     let result = unsafe { ffi::tpadvertise_full(c_name.as_ptr(), handler, c_funcname.as_ptr()) };
-    
+
     if result == -1 {
         let err_msg = unsafe {
             let tperrno = *ffi::_exget_tperrno_addr();
@@ -117,7 +107,7 @@ pub fn advertise_service(
         };
         return Err(err_msg);
     }
-    
+
     Ok(())
 }
 
@@ -127,32 +117,38 @@ pub fn advertise_service(
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
 pub unsafe fn tpreturn_success(rqst: *mut TpSvcInfoRaw, buffer: TpBuffer) {
     let req = &*rqst;
-        let len = buffer.len();
-        let ptr = buffer.into_raw();
-        // Log buffer content for debugging
-        if !ptr.is_null() {
-            let c_str = CStr::from_ptr(ptr);
-            crate::tplog_info(&format!("tpreturn_success: buffer content=[{}]", c_str.to_string_lossy()));
-        }
-        // Use request buffer if available, copy our data into it
-        let ret_ptr = if !req.data.is_null() {
-            // Reuse request buffer
-            let ret_buf = ffi::tprealloc(req.data, (len + 1) as c_long);
-            if !ret_buf.is_null() {
-                ptr::copy_nonoverlapping(ptr, ret_buf, len + 1);
-                // Free our temp buffer
-                ffi::tpfree(ptr);
-                ret_buf
-            } else {
-                ptr
-            }
+    let len = buffer.len();
+    let ptr = buffer.into_raw();
+    // Log buffer content for debugging
+    if !ptr.is_null() {
+        let c_str = CStr::from_ptr(ptr);
+        crate::tplog_info(&format!(
+            "tpreturn_success: buffer content=[{}]",
+            c_str.to_string_lossy()
+        ));
+    }
+    // Use request buffer if available, copy our data into it
+    let ret_ptr = if !req.data.is_null() {
+        // Reuse request buffer
+        let ret_buf = ffi::tprealloc(req.data, (len + 1) as c_long);
+        if !ret_buf.is_null() {
+            ptr::copy_nonoverlapping(ptr, ret_buf, len + 1);
+            // Free our temp buffer
+            ffi::tpfree(ptr);
+            ret_buf
         } else {
             ptr
-        };
-        
-        crate::tplog_info(&format!("tpreturn_success: calling tpreturn with TPSUCCESS, rcode=1, ptr={:?}, len={}", ret_ptr, len));
-        // Use standard success code - service specific code in rcode
-        ffi::tpreturn(TPSUCCESS, 1, ret_ptr, len as c_long, 0);
+        }
+    } else {
+        ptr
+    };
+
+    crate::tplog_info(&format!(
+        "tpreturn_success: calling tpreturn with TPSUCCESS, rcode=1, ptr={:?}, len={}",
+        ret_ptr, len
+    ));
+    // Use standard success code - service specific code in rcode
+    ffi::tpreturn(TPSUCCESS, 1, ret_ptr, len as c_long, 0);
 }
 
 /// Возвращает тот же buffer что пришел
@@ -183,7 +179,7 @@ pub unsafe fn get_request_data(rqst: *mut TpSvcInfoRaw) -> Result<Vec<u8>, Strin
     if req.data.is_null() || req.len <= 0 {
         return Ok(Vec::new());
     }
-    
+
     let slice = std::slice::from_raw_parts(req.data as *const u8, req.len as usize);
     Ok(slice.to_vec())
 }
@@ -194,11 +190,13 @@ pub unsafe fn get_request_data(rqst: *mut TpSvcInfoRaw) -> Result<Vec<u8>, Strin
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
 pub unsafe fn get_service_name(rqst: *mut TpSvcInfoRaw) -> Result<String, String> {
     let req = &*rqst;
-    let name_bytes: Vec<u8> = req.name.iter()
+    let name_bytes: Vec<u8> = req
+        .name
+        .iter()
         .take_while(|&&c| c != 0)
         .map(|&c| c as u8)
         .collect();
-    
+
     String::from_utf8(name_bytes).map_err(|e| e.to_string())
 }
 
@@ -212,17 +210,14 @@ pub fn run_server(
         G_tpsvrinit__ = tpsvrinit;
         G_tpsvrdone__ = tpsvrdone;
     }
-    
+
     // Вызываем ndrx_main
     let args: Vec<CString> = std::env::args()
         .map(|arg| CString::new(arg).unwrap())
         .collect();
-    let mut c_args: Vec<*mut c_char> = args
-        .iter()
-        .map(|arg| arg.as_ptr() as *mut c_char)
-        .collect();
+    let mut c_args: Vec<*mut c_char> = args.iter().map(|arg| arg.as_ptr() as *mut c_char).collect();
     c_args.push(ptr::null_mut());
-    
+
     unsafe {
         let result = ffi::ndrx_main(c_args.len() as c_int - 1, c_args.as_mut_ptr());
         std::process::exit(result);

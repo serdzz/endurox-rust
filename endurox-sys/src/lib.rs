@@ -40,8 +40,8 @@ pub mod ubf_fields;
 pub use endurox_derive::UbfStruct;
 
 // Re-export common types
-pub use ffi::{TpSvcInfoRaw, TPSUCCESS, TPFAIL};
-pub use log::{tplog_info, tplog_error, tplog_warn, tplog_debug};
+pub use ffi::{TpSvcInfoRaw, TPFAIL, TPSUCCESS};
+pub use log::{tplog_debug, tplog_error, tplog_info, tplog_warn};
 
 #[cfg(feature = "server")]
 pub use server::*;

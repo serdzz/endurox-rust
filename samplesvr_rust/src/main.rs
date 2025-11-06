@@ -1,6 +1,6 @@
 #![allow(static_mut_refs)]
-use endurox_sys::{self, TpSvcInfoRaw, tplog_info, tplog_error};
 use endurox_sys::server::*;
+use endurox_sys::{self, tplog_error, tplog_info, TpSvcInfoRaw};
 
 mod services;
 use services::*;

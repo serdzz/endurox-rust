@@ -1,9 +1,9 @@
 use endurox_sys::server::tpreturn_fail;
-use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
 use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_struct::UbfStruct;
 use endurox_sys::ubf_fields::*;
+use endurox_sys::ubf_struct::UbfStruct;
 use endurox_sys::UbfStruct as UbfStructDerive;
+use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
 use serde::{Deserialize, Serialize};
 use std::ffi::CStr;
 
@@ -28,14 +28,18 @@ impl ServiceRequest {
         let ubf_buffer = unsafe {
             let req = &*rqst;
             if !req.data.is_null() && req.len > 0 {
-                let buffer_data = std::slice::from_raw_parts(req.data as *const u8, req.len as usize);
+                let buffer_data =
+                    std::slice::from_raw_parts(req.data as *const u8, req.len as usize);
                 UbfBuffer::from_bytes(buffer_data).ok()
             } else {
                 None
             }
         };
 
-        Ok(ServiceRequest { service_name, ubf_buffer })
+        Ok(ServiceRequest {
+            service_name,
+            ubf_buffer,
+        })
     }
 
     pub fn service_name(&self) -> String {
@@ -95,7 +99,7 @@ impl ServiceResult {
                 // Check if we have UBF buffer to send
                 if let Some(ref ubf_buf) = self.ubf_buffer {
                     tplog_info("Service responded successfully with UBF buffer");
-                    
+
                     let buffer_data = ubf_buf.as_bytes();
                     let needed_len = buffer_data.len();
 
@@ -124,7 +128,7 @@ impl ServiceResult {
                 } else {
                     // String response
                     tplog_info(&format!("Service responded successfully: {}", self.message));
-                    
+
                     let msg_bytes = self.message.as_bytes();
                     let needed_len = msg_bytes.len() + 1;
 
@@ -154,11 +158,11 @@ impl ServiceResult {
                 // Error case
                 if let Some(ref ubf_buf) = self.ubf_buffer {
                     tplog_error("Service responded with UBF error");
-                    
+
                     use endurox_sys::ffi;
                     use libc::c_long;
                     use std::ffi::CString;
-                    
+
                     let req = &*rqst;
                     let buffer_data = ubf_buf.as_bytes();
                     let needed_len = buffer_data.len();
@@ -221,19 +225,19 @@ pub fn dataproc_service(request: &ServiceRequest) -> ServiceResult {
 struct TransactionRequest {
     #[ubf(field = T_TRANS_TYPE_FLD)]
     transaction_type: String,
-    
+
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
-    
+
     #[ubf(field = T_ACCOUNT_FLD)]
     account: String,
-    
+
     #[ubf(field = T_AMOUNT_FLD)]
     amount: i64,
-    
+
     #[ubf(field = T_CURRENCY_FLD)]
     currency: String,
-    
+
     #[ubf(field = T_DESC_FLD)]
     description: Option<String>,
 }
@@ -242,16 +246,16 @@ struct TransactionRequest {
 struct TransactionResponse {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
-    
+
     #[ubf(field = T_STATUS_FLD)]
     status: String,
-    
+
     #[ubf(field = T_MESSAGE_FLD)]
     message: String,
-    
+
     #[ubf(field = T_ERROR_CODE_FLD)]
     error_code: Option<String>,
-    
+
     #[ubf(field = T_ERROR_MSG_FLD)]
     error_message: Option<String>,
 }
@@ -264,13 +268,13 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
         Some(buf) => buf,
         None => {
             tplog_error("Transaction service requires UBF buffer");
-            
+
             // Return error in UBF format
             let mut error_buf = match UbfBuffer::new(512) {
                 Ok(buf) => buf,
                 Err(_) => return ServiceResult::error("Failed to create error buffer"),
             };
-            
+
             let error_response = TransactionResponse {
                 transaction_id: "unknown".to_string(),
                 status: "ERROR".to_string(),
@@ -278,7 +282,7 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
                 error_code: Some("MISSING_BUFFER".to_string()),
                 error_message: Some("Request must contain UBF buffer".to_string()),
             };
-            
+
             if error_response.update_ubf(&mut error_buf).is_ok() {
                 return ServiceResult::error_ubf(error_buf);
             }
@@ -291,12 +295,12 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
         Ok(req) => req,
         Err(e) => {
             tplog_error(&format!("Failed to decode transaction request: {}", e));
-            
+
             let mut error_buf = match UbfBuffer::new(512) {
                 Ok(buf) => buf,
                 Err(_) => return ServiceResult::error("Failed to create error buffer"),
             };
-            
+
             let error_response = TransactionResponse {
                 transaction_id: "unknown".to_string(),
                 status: "ERROR".to_string(),
@@ -304,7 +308,7 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
                 error_code: Some("DECODE_ERROR".to_string()),
                 error_message: Some(e.to_string()),
             };
-            
+
             if error_response.update_ubf(&mut error_buf).is_ok() {
                 return ServiceResult::error_ubf(error_buf);
             }
@@ -322,7 +326,7 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
     ));
 
     // Check if transaction type is "sale"
-    let (status, message, error_code, error_message) = 
+    let (status, message, error_code, error_message) =
         if trans_req.transaction_type.to_lowercase() != "sale" {
             tplog_error(&format!(
                 "Transaction validation failed: expected 'sale', got '{}'",
@@ -332,13 +336,22 @@ pub fn transaction_service(request: &ServiceRequest) -> ServiceResult {
                 "ERROR".to_string(),
                 "Transaction validation failed".to_string(),
                 Some("INVALID_TYPE".to_string()),
-                Some(format!("Expected 'sale' transaction type, got '{}'", trans_req.transaction_type)),
+                Some(format!(
+                    "Expected 'sale' transaction type, got '{}'",
+                    trans_req.transaction_type
+                )),
             )
         } else {
-            tplog_info(&format!("Transaction {} validated successfully", trans_req.transaction_id));
+            tplog_info(&format!(
+                "Transaction {} validated successfully",
+                trans_req.transaction_id
+            ));
             (
                 "SUCCESS".to_string(),
-                format!("Transaction {} processed successfully", trans_req.transaction_id),
+                format!(
+                    "Transaction {} processed successfully",
+                    trans_req.transaction_id
+                ),
                 None,
                 None,
             )

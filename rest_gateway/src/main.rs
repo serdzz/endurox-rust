@@ -1,10 +1,10 @@
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use endurox_sys::client::EnduroxClient;
-use endurox_sys::{tplog_info, tplog_error};
 use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_struct::UbfStruct;
 use endurox_sys::ubf_fields::*;
+use endurox_sys::ubf_struct::UbfStruct;
 use endurox_sys::UbfStruct as UbfStructDerive;
+use endurox_sys::{tplog_error, tplog_info};
 use serde::{Deserialize, Serialize};
 use std::sync::{Arc, Mutex};
 
@@ -30,19 +30,19 @@ struct ServiceResponse {
 struct TransactionRequest {
     #[ubf(field = T_TRANS_TYPE_FLD)]
     transaction_type: String,
-    
+
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
-    
+
     #[ubf(field = T_ACCOUNT_FLD)]
     account: String,
-    
+
     #[ubf(field = T_AMOUNT_FLD)]
     amount: i64,
-    
+
     #[ubf(field = T_CURRENCY_FLD)]
     currency: String,
-    
+
     #[ubf(field = T_DESC_FLD)]
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<String>,
@@ -52,17 +52,17 @@ struct TransactionRequest {
 struct TransactionResponse {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
-    
+
     #[ubf(field = T_STATUS_FLD)]
     status: String,
-    
+
     #[ubf(field = T_MESSAGE_FLD)]
     message: String,
-    
+
     #[ubf(field = T_ERROR_CODE_FLD)]
     #[serde(skip_serializing_if = "Option::is_none")]
     error_code: Option<String>,
-    
+
     #[ubf(field = T_ERROR_MSG_FLD)]
     #[serde(skip_serializing_if = "Option::is_none")]
     error_message: Option<String>,
@@ -91,7 +91,7 @@ async fn health_check() -> impl Responder {
 // STATUS service endpoint
 async fn call_status(data: web::Data<AppState>) -> impl Responder {
     tplog_info("REST API: Calling STATUS service");
-    
+
     let client = data.client.lock().unwrap();
     match client.call_service_blocking("STATUS", "") {
         Ok(result) => {
@@ -112,17 +112,17 @@ async fn call_status(data: web::Data<AppState>) -> impl Responder {
 }
 
 // HELLO service endpoint
-async fn call_hello(
-    data: web::Data<AppState>,
-    payload: web::Json<HelloRequest>,
-) -> impl Responder {
-    tplog_info(&format!("REST API: Calling HELLO with name={}", payload.name));
-    
+async fn call_hello(data: web::Data<AppState>, payload: web::Json<HelloRequest>) -> impl Responder {
+    tplog_info(&format!(
+        "REST API: Calling HELLO with name={}",
+        payload.name
+    ));
+
     let request_json = serde_json::json!({
         "name": payload.name
     })
     .to_string();
-    
+
     let client = data.client.lock().unwrap();
     match client.call_service_blocking("HELLO", &request_json) {
         Ok(result) => {
@@ -143,12 +143,9 @@ async fn call_hello(
 }
 
 // ECHO service endpoint
-async fn call_echo(
-    data: web::Data<AppState>,
-    body: String,
-) -> impl Responder {
+async fn call_echo(data: web::Data<AppState>, body: String) -> impl Responder {
     tplog_info(&format!("REST API: Calling ECHO with data: {}", body));
-    
+
     let client = data.client.lock().unwrap();
     match client.call_service_blocking("ECHO", &body) {
         Ok(result) => {
@@ -169,15 +166,12 @@ async fn call_echo(
 }
 
 // DATAPROC service endpoint
-async fn call_dataproc(
-    data: web::Data<AppState>,
-    body: String,
-) -> impl Responder {
+async fn call_dataproc(data: web::Data<AppState>, body: String) -> impl Responder {
     tplog_info(&format!(
         "REST API: Calling DATAPROC with {} bytes",
         body.len()
     ));
-    
+
     let client = data.client.lock().unwrap();
     match client.call_service_blocking("DATAPROC", &body) {
         Ok(result) => {
@@ -241,7 +235,7 @@ async fn call_transaction(
     // Call TRANSACTION service with UBF buffer
     let buffer_data = ubf_buf.as_bytes().to_vec();
     let client = data.client.lock().unwrap();
-    
+
     match client.call_service_ubf_blocking("TRANSACTION", &buffer_data) {
         Ok(response_data) => {
             // Decode UBF response
@@ -283,10 +277,7 @@ async fn call_transaction(
                 status: trans_response.status,
                 message: trans_response.message,
                 error: match (trans_response.error_code, trans_response.error_message) {
-                    (Some(code), Some(msg)) => Some(ErrorDetail {
-                        code,
-                        message: msg,
-                    }),
+                    (Some(code), Some(msg)) => Some(ErrorDetail { code, message: msg }),
                     _ => None,
                 },
             };
