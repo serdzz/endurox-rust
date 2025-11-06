@@ -17,7 +17,7 @@ cache:
 # Build job
 build:
   stage: build
-  image: rust:1.70
+  image: rust
   before_script:
     # Install Enduro/X dependencies
     - apt-get update -qq
@@ -41,7 +41,7 @@ build:
 # Test job (unit tests)
 test:unit:
   stage: test
-  image: rust:1.70
+  image: rust
   before_script:
     - apt-get update -qq
     - apt-get install -y libxml2 pkg-config
@@ -53,7 +53,7 @@ test:unit:
 # Clippy linting
 lint:clippy:
   stage: lint
-  image: rust:1.70
+  image: rust
   before_script:
     - rustup component add clippy
   script:
@@ -63,7 +63,7 @@ lint:clippy:
 # Formatting check
 lint:fmt:
   stage: lint
-  image: rust:1.70
+  image: rust
   before_script:
     - rustup component add rustfmt
   script:
@@ -73,7 +73,7 @@ lint:fmt:
 # Check for security vulnerabilities
 lint:audit:
   stage: lint
-  image: rust:1.70
+  image: rust
   before_script:
     - cargo install cargo-audit
   script:
