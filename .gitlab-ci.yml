@@ -1,0 +1,114 @@
+stages:
+  - build
+  - test
+  - lint
+
+variables:
+  CARGO_HOME: $CI_PROJECT_DIR/.cargo
+  RUST_BACKTRACE: "1"
+
+# Cache Rust dependencies
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cargo/
+    - target/
+
+# Build job
+build:
+  stage: build
+  image: rust:1.70
+  before_script:
+    # Install Enduro/X dependencies
+    - apt-get update -qq
+    - apt-get install -y curl jq libxml2 build-essential pkg-config git
+    # Install Enduro/X from packages (adjust URLs as needed)
+    - dpkg -i endurox-*.deb || apt-get install -f -y # For now, we'll just check if the Rust code compiles
+    - export NDRX_HOME=/usr
+  script:
+    - rustc --version
+    - cargo --version
+    - cargo build --release --verbose
+    - cargo build --release --all-features --verbose
+  artifacts:
+    paths:
+      - target/release/samplesvr_rust
+      - target/release/ubfsvr_rust
+      - target/release/rest_gateway
+      - target/release/ubf_test_client
+    expire_in: 1 day
+
+# Test job (unit tests)
+test:unit:
+  stage: test
+  image: rust:1.70
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y libxml2 pkg-config
+  script:
+    - cargo test --lib --verbose
+    - cargo test --doc --verbose
+  dependencies: []
+
+# Clippy linting
+lint:clippy:
+  stage: lint
+  image: rust:1.70
+  before_script:
+    - rustup component add clippy
+  script:
+    - cargo clippy --all-targets --all-features -- -D warnings
+  allow_failure: false
+
+# Formatting check
+lint:fmt:
+  stage: lint
+  image: rust:1.70
+  before_script:
+    - rustup component add rustfmt
+  script:
+    - cargo fmt -- --check
+  allow_failure: false
+
+# Check for security vulnerabilities
+lint:audit:
+  stage: lint
+  image: rust:1.70
+  before_script:
+    - cargo install cargo-audit
+  script:
+    - cargo audit
+  allow_failure: true
+
+# Integration tests with Enduro/X (requires full setup)
+test:integration:
+  stage: test
+  image: ubuntu:22.04
+  before_script:
+    # Install dependencies
+    - apt-get update -qq
+    - apt-get install -y curl jq libxml2 build-essential pkg-config git
+    # Install Rust
+    - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    - export PATH="$HOME/.cargo/bin:$PATH"
+    # TODO: Install Enduro/X packages
+    - dpkg -i endurox-*.deb || apt-get install -f -y
+  script:
+    - echo "Integration tests require full Enduro/X setup"
+    - echo "Skipping for now - implement when Enduro/X packages are available in CI"
+  when: manual
+  allow_failure: true
+
+# Docker build test
+docker:build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t endurox-rust:$CI_COMMIT_SHORT_SHA .
+    - docker images
+  only:
+    - main
+    - merge_requests
+  when: manual
