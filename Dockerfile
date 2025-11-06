@@ -37,6 +37,7 @@ ENV PATH="/opt/endurox/bin:${PATH}" \
     LD_LIBRARY_PATH="/opt/endurox/lib:${LD_LIBRARY_PATH}" \
     PKG_CONFIG_PATH="/opt/endurox/lib/pkgconfig:${PKG_CONFIG_PATH}" \
     CPATH="/opt/endurox/include:${CPATH}" \
+    LD_PRELOAD=/opt/endurox/lib/libnstd.so \
     NDRX_HOME="/opt/endurox"
 
 # Копирование workspace

@@ -4,6 +4,7 @@
 //! with JSON-like marshal/unmarshal API
 
 use crate::ubf::UbfBuffer;
+use crate::ubf_fields::*;  // Auto-generated field constants
 use std::fmt;
 use serde::{Serialize, Deserialize};
 
@@ -58,7 +59,7 @@ pub fn marshal<T: Serialize>(value: &T) -> Result<UbfBuffer, UbfError> {
     let mut buf = UbfBuffer::new(json.len() + 1024)
         .map_err(UbfError::AllocationError)?;
     
-    buf.add_string(1005, &json) // T_DATA_FLD = 1005
+    buf.add_string(T_DATA_FLD, &json)
         .map_err(|e| UbfError::TypeError(format!("Failed to add JSON: {}", e)))?;
     
     Ok(buf)
@@ -70,7 +71,7 @@ pub fn marshal<T: Serialize>(value: &T) -> Result<UbfBuffer, UbfError> {
 /// uses the field mappings. For plain types, deserializes from JSON in T_DATA_FLD.
 pub fn unmarshal<T: for<'de> Deserialize<'de>>(buf: &UbfBuffer) -> Result<T, UbfError> {
     // Get JSON from T_DATA_FLD
-    let json = buf.get_string(1005, 0) // T_DATA_FLD = 1005
+    let json = buf.get_string(T_DATA_FLD, 0)
         .map_err(|e| UbfError::FieldNotFound(format!("T_DATA_FLD: {}", e)))?;
     
     // Deserialize from JSON
@@ -104,11 +105,6 @@ pub struct UserData {
     pub active: bool,
 }
 
-// Field IDs from test.fd
-const T_NAME_FLD: i32 = 1002;
-const T_ID_FLD: i32 = 1012;
-const T_PRICE_FLD: i32 = 1021;
-const T_FLAG_FLD: i32 = 31;
 
 impl UbfStruct for UserData {
     fn from_ubf(buf: &UbfBuffer) -> Result<Self, UbfError> {
@@ -248,7 +244,7 @@ impl UbfStruct for Transaction {
         let amount = buf.get_double(T_PRICE_FLD, 0)
             .map_err(|e| UbfError::FieldNotFound(format!("T_PRICE_FLD: {}", e)))?;
         
-        let status = buf.get_string(1004, 0) // T_STATUS_FLD
+        let status = buf.get_string(T_STATUS_FLD, 0)
             .unwrap_or_else(|_| "pending".to_string());
         
         Ok(Transaction {
@@ -276,7 +272,7 @@ impl UbfStruct for Transaction {
         buf.add_double(T_PRICE_FLD, self.amount)
             .map_err(|e| UbfError::TypeError(format!("amount: {}", e)))?;
         
-        buf.add_string(1004, &self.status) // T_STATUS_FLD
+        buf.add_string(T_STATUS_FLD, &self.status)
             .map_err(|e| UbfError::TypeError(format!("status: {}", e)))?;
         
         Ok(())
@@ -436,9 +432,13 @@ mod tests {
             .and_then(|b| b.with_string(T_NAME_FLD, "Alice"))
             .and_then(|b| b.with_long(T_ID_FLD, 100))
             .and_then(|b| b.with_double(T_PRICE_FLD, 99.99))
-            .and_then(|b| b.with_string(1004, "active"))
+            .and_then(|b| b.with_string(T_STATUS_FLD, "active"))
             .map(|b| b.build())
             .expect("Builder should succeed");
+        
+        // Debug: check what we get when reading T_NAME_FLD
+        let name_val = ubf.get_string(T_NAME_FLD, 0);
+        eprintln!("DEBUG: T_NAME_FLD={}, get_string result={:?}", T_NAME_FLD, name_val);
         
         let txn = Transaction::from_ubf(&ubf).expect("Should parse transaction");
         assert_eq!(txn.name, "Alice");
