@@ -45,6 +45,8 @@ test:unit:
   before_script:
     - apt-get update -qq
     - apt-get install -y libxml2 pkg-config
+    - dpkg -i endurox-*.deb || apt-get install -f -y # For now, we'll just check if the Rust code compiles
+    - export NDRX_HOME=/usrs
   script:
     - cargo test --lib --release
     - cargo test --doc --release
