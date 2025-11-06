@@ -365,8 +365,8 @@ The project includes a UBF field table (`ubftab/test.fd`) with the following fie
 ### Running Tests
 
 ```bash
-# Run Clippy for linting
-cargo clippy --release
+# Run Clippy for linting (with strict mode)
+cargo clippy --all-targets --all-features -- -D warnings
 
 # Run tests
 cargo test

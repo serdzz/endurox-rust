@@ -2,6 +2,12 @@
 
 ## [Unreleased] - 2025-11-06
 
+### Fixed
+- **Clippy Warnings**: Fixed all clippy linting errors
+  - Removed empty lines after doc comments in example files
+  - Fixed `UbfError` type conversions in test file
+  - All code now passes `cargo clippy --all-targets --all-features -- -D warnings`
+
 ### Added
 
 #### Transaction API with Complex UBF Integration
