@@ -14,7 +14,12 @@ RUN apt-get update && apt-get install -y \
     libaio1 \
     wget \
     unzip \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages for Oracle migrations
+RUN pip3 install --no-cache-dir oracledb
 
 # Install Oracle Instant Client
 RUN mkdir -p /opt/oracle && \
