@@ -168,6 +168,7 @@ cargo build --release
 - **`UBF_FIELDS_GUIDE.md`** - полное руководство по использованию автогенерированных констант
 - **`UBF_STRUCT_GUIDE.md`** - руководство по UbfStruct trait и derive macro
 - **`MULTIPLE_FD_FILES.md`** - работа с несколькими .fd файлами
+- **`LD_PRELOAD_ISSUE.md`** - решение проблемы с libnstd.so и динамическим линковщиком
 - **`examples/ubf_fields_example.rs`** - рабочий пример с константами
 - **`examples/derive_macro_example.rs`** - пример derive macro с константами
 - **`SOLUTION_SUMMARY.md`** - этот файл

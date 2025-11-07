@@ -403,6 +403,16 @@ xadmin stop -y && xadmin start -y
 
 ## Troubleshooting
 
+### LD_PRELOAD Issue
+
+If you encounter errors like `undefined symbol: ndrx_Bget_long` or library loading issues, you need to set `LD_PRELOAD`:
+
+```bash
+export LD_PRELOAD=/opt/endurox/lib/libnstd.so
+```
+
+See [LD_PRELOAD_ISSUE.md](LD_PRELOAD_ISSUE.md) for detailed explanation and solutions.
+
 ### Check Service Status
 ```bash
 xadmin psc
