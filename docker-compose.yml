@@ -8,9 +8,13 @@ services:
       - 8080:8080
       - 8090:8090
     environment:
+      DATABASE_URL: oracle://ctp:ctp@oracledb:1521/XE
       WAIT_FOR_DB: true
       TIMEZONE: ${TIMEZONE:-UTC}
       TZ: ${TIMEZONE:-UTC}
+    depends_on:
+      oracledb:
+        condition: service_healthy
     sysctls:
       fs.mqueue.msg_max: 10000
       fs.mqueue.msgsize_max: 1049600
@@ -26,3 +30,25 @@ services:
       - ./logs:/app/log
     command:
       ["/bin/sh", "-c", ". ./setenv.sh && xadmin start -y && tail -f /dev/null"]
+
+  oracledb:
+    image: gitlab.d8corporation.com:5050/sh/docker/oracle_db:21.3.0-xe_updated
+    volumes:
+      - ./db/oracle:/docker-entrypoint-initdb.d/setup
+      - oracle:/opt/oracle/oradata
+    environment:
+      LANG: C.UTF-8
+      ORACLE_ALLOW_REMOTE: "true"
+      ORACLE_ENABLE_XDB: "true"
+      ORACLE_PASSWORD: oracle123
+    ports:
+      - "11521:1521"
+    healthcheck:
+      test: ["CMD", "sqlplus", "-L", "system/oracle123@//localhost:1521/XE", "@/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+volumes:
+  oracle:

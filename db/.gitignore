@@ -1,0 +1,5 @@
+# Ignore all files in db directory except init scripts
+*
+!.gitignore
+!oracle/
+!oracle/*.sql

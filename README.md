@@ -82,6 +82,7 @@ HTTP/REST interface powered by Actix-web:
 - **Enduro/X** 8.0+ (installed from `.deb` packages)
 - **Docker** (for containerized deployment)
 - **Docker Compose** (for orchestration)
+- **Oracle Database** XE 21c (optional, runs in Docker)
 
 ## Quick Start
 
@@ -92,7 +93,18 @@ HTTP/REST interface powered by Actix-web:
    docker-compose build endurox_rust
    ```
 
-2. **Start the services:**
+2. **Start all services (including Oracle DB):**
+   ```bash
+   docker-compose up -d
+   ```
+   
+   This will:
+   - Start Oracle Database XE 21c
+   - Wait for Oracle to be healthy (1-2 minutes on first start)
+   - Run database initialization scripts from `db/oracle/`
+   - Start Enduro/X services
+
+   Or start only Enduro/X (without Oracle):
    ```bash
    docker-compose up -d endurox_rust
    ```
@@ -313,8 +325,51 @@ The project includes a UBF field table (`ubftab/test.fd`) with the following fie
 - **Double fields**: T_DOUBLE_FLD, T_PRICE_FLD, T_BALANCE_FLD
 - **Short fields**: T_SHORT_FLD, T_FLAG_FLD
 - **Char fields**: T_CHAR_FLD
-## Development
 
+## Database Integration
+
+### Oracle Database
+
+The project includes Oracle Database XE 21c integration for transaction processing:
+
+**Connection Details:**
+- **Host**: `oracledb` (internal) / `localhost` (from host)
+- **Port**: `1521` (internal) / `11521` (host)
+- **SID**: `XE`
+- **User**: `ctp` / **Password**: `ctp`
+- **Connection String**: `oracle://ctp:ctp@oracledb:1521/XE`
+
+**Features:**
+- Automatic database initialization on first start
+- Health checks ensure DB is ready before app starts
+- Sample tables and test data created automatically
+- Persistent data stored in Docker volume
+
+**Initialization Scripts:**
+
+Place `.sql` files in `db/oracle/` directory. They run automatically on first container start:
+```bash
+db/oracle/
+└── 01_init.sql  # Creates CTP user and test tables
+```
+
+**Database Operations:**
+```bash
+# View database logs
+docker-compose logs oracledb
+
+# Connect to database from host
+sqlplus ctp/ctp@localhost:11521/XE
+
+# Reset database (removes all data)
+docker-compose down
+docker volume rm endurox-dev_oracle
+docker-compose up -d
+```
+
+See [db/README.md](db/README.md) for complete database documentation.
+
+## Development
 ### Project Structure
 
 ```

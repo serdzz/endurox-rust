@@ -11,7 +11,19 @@ RUN apt-get update && apt-get install -y \
     libxml2 \
     build-essential \
     pkg-config \
+    libaio1 \
+    wget \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Oracle Instant Client
+RUN mkdir -p /opt/oracle && \
+    cd /opt/oracle && \
+    wget https://download.oracle.com/otn_software/linux/instantclient/2340000/instantclient-basic-linux.x64-23.4.0.24.05.zip && \
+    unzip instantclient-basic-linux.x64-23.4.0.24.05.zip && \
+    rm instantclient-basic-linux.x64-23.4.0.24.05.zip && \
+    echo /opt/oracle/instantclient_23_4 > /etc/ld.so.conf.d/oracle-instantclient.conf && \
+    ldconfig
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -34,11 +46,12 @@ RUN dpkg-deb -x endurox-8.0.10-2.ubuntu22_04_gnu_epoll.x86_64.deb /tmp/extracted
 
 # Configure environment variables
 ENV PATH="/opt/endurox/bin:${PATH}" \
-    LD_LIBRARY_PATH="/opt/endurox/lib:${LD_LIBRARY_PATH}" \
+    LD_LIBRARY_PATH="/opt/endurox/lib:/opt/oracle/instantclient_23_4:${LD_LIBRARY_PATH}" \
     PKG_CONFIG_PATH="/opt/endurox/lib/pkgconfig:${PKG_CONFIG_PATH}" \
     CPATH="/opt/endurox/include:${CPATH}" \
     LD_PRELOAD=/opt/endurox/lib/libnstd.so \
-    NDRX_HOME="/opt/endurox"
+    NDRX_HOME="/opt/endurox" \
+    ORACLE_HOME=/opt/oracle/instantclient_23_4
 
 # Copy workspace
 WORKDIR /app
@@ -51,6 +64,7 @@ COPY samplesvr_rust ./samplesvr_rust
 COPY rest_gateway ./rest_gateway
 COPY ubfsvr_rust ./ubfsvr_rust
 COPY ubf_test_client ./ubf_test_client
+COPY oracle_txn_server ./oracle_txn_server
 
 # Copy and compile UBF field tables
 COPY ubftab ./ubftab
@@ -72,7 +86,8 @@ RUN cargo build --release && \
     cp /app/target/release/samplesvr_rust /app/bin/ && \
     cp /app/target/release/rest_gateway /app/bin/ && \
     cp /app/target/release/ubfsvr_rust /app/bin/ && \
-    cp /app/target/release/ubf_test_client /app/bin/
+    cp /app/target/release/ubf_test_client /app/bin/ && \
+    cp /app/target/release/oracle_txn_server /app/bin/ || true
 
 # Build derive macro example
 RUN cd ubf_test_client && \
