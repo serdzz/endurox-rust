@@ -1,3 +1,4 @@
+use diesel::prelude::*;
 use endurox_sys::server::tpreturn_fail;
 use endurox_sys::ubf::UbfBuffer;
 use endurox_sys::ubf_fields::*;
@@ -6,10 +7,9 @@ use endurox_sys::UbfStruct as UbfStructDerive;
 use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
 use serde::{Deserialize, Serialize};
 use std::ffi::CStr;
-use diesel::prelude::*;
 
 use crate::db::DbPool;
-use crate::models::{Transaction, NewTransaction};
+use crate::models::{NewTransaction, Transaction};
 use crate::schema::transactions;
 
 #[derive(Debug)]
@@ -354,7 +354,7 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
 
     // Query transaction using Diesel
     use crate::schema::transactions::dsl::*;
-    
+
     let result = transactions
         .filter(id.eq(&req.transaction_id))
         .first::<Transaction>(&mut conn);
@@ -392,7 +392,7 @@ pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> Se
 
     // Query all transactions using Diesel (limit 100)
     use crate::schema::transactions::dsl::*;
-    
+
     match transactions
         .order(created_at.desc())
         .limit(100)

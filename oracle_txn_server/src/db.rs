@@ -14,7 +14,7 @@ pub fn init_pool() -> Result<DbPool, String> {
     })?;
 
     let manager = ConnectionManager::<OciConnection>::new(&database_url);
-    
+
     r2d2::Pool::builder()
         .max_size(10)
         .build(manager)
