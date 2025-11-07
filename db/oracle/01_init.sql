@@ -38,28 +38,8 @@ INSERT INTO ctp.test_table (id, name) VALUES (ctp.test_table_seq.NEXTVAL, 'Test 
 INSERT INTO ctp.test_table (id, name) VALUES (ctp.test_table_seq.NEXTVAL, 'Test record 2');
 COMMIT;
 
--- Create transactions table for oracle_txn_server
-CREATE TABLE ctp.transactions (
-  id VARCHAR2(100) PRIMARY KEY,
-  transaction_type VARCHAR2(50) NOT NULL,
-  account VARCHAR2(100) NOT NULL,
-  amount NUMBER(19,2) NOT NULL,
-  currency VARCHAR2(10) NOT NULL,
-  description VARCHAR2(500),
-  status VARCHAR2(50) NOT NULL,
-  message VARCHAR2(500),
-  error_code VARCHAR2(50),
-  error_message VARCHAR2(500),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Create index on transaction type and status
-CREATE INDEX idx_transactions_type ON ctp.transactions(transaction_type);
-CREATE INDEX idx_transactions_status ON ctp.transactions(status);
-CREATE INDEX idx_transactions_created ON ctp.transactions(created_at DESC);
-
-COMMIT;
+-- Note: transactions table is now managed by Diesel migrations
+-- Run: oracle_txn_server/migrate.py run
 
 -- Verify
 SELECT COUNT(*) as record_count FROM ctp.test_table;
