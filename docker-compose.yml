@@ -5,34 +5,34 @@ services:
       context: .
       dockerfile: Dockerfile
     hostname: ${HOST_NAME:-endurod8}
-    
+
     # Expose ports for REST API and monitoring
     ports:
-      - "8080:8080"  # REST Gateway
-      - "8090:8090"  # Monitoring/Admin port
-    
+      - "8080:8080" # REST Gateway
+      - "8090:8090" # Monitoring/Admin port
+
     environment:
       # Oracle Database connection
       DATABASE_URL: oracle://ctp:ctp@oracledb:1521/XE
       WAIT_FOR_DB: "true"
-      
+
       # Timezone settings
       TIMEZONE: ${TIMEZONE:-UTC}
       TZ: ${TIMEZONE:-UTC}
-    
+
     # Wait for Oracle DB to be healthy before starting
     # Remove this section to start without database
     depends_on:
       oracledb:
         condition: service_healthy
         restart: true
-    
+
     # System limits for POSIX message queues (required by Enduro/X)
     sysctls:
       fs.mqueue.msg_max: 10000
       fs.mqueue.msgsize_max: 1049600
       fs.mqueue.queues_max: 10000
-    
+
     # Process limits
     ulimits:
       msgqueue:
@@ -41,56 +41,61 @@ services:
       nofile:
         soft: 1024
         hard: 65536
-    
+
     # Mount logs directory
     volumes:
       - ./logs:/app/log
-    
+
     # Start Enduro/X application server
     command:
-      ["/bin/sh", "-c", ". ./setenv.sh && xadmin start -y && tail -f /dev/null"]
-    
+      [
+        "/bin/sh",
+        "-c",
+        ". ./setenv.sh && /app/oracle_txn_server/migrate.py run && xadmin start -y && tail -f /dev/null",
+      ]
+
     # Restart policy
     restart: unless-stopped
-    
+
     networks:
       - endurox-network
 
   # Oracle Database XE 21c
   oracledb:
     image: gitlab.d8corporation.com:5050/sh/docker/oracle_db:21.3.0-xe_updated
-    
+
     volumes:
       # Mount init scripts (auto-executed on first start)
       - ./db/oracle:/docker-entrypoint-initdb.d
       # Persistent database storage
       - oracle_data:/opt/oracle/oradata
-    
+
     environment:
       LANG: C.UTF-8
       ORACLE_ALLOW_REMOTE: "true"
       ORACLE_ENABLE_XDB: "true"
-      ORACLE_PASSWORD: oracle123  # System user password
+      ORACLE_PASSWORD: oracle123 # System user password
       ORACLE_CHARACTERSET: AL32UTF8
-    
+
     # Expose Oracle port to host
     ports:
-      - "11521:1521"  # Map host:11521 -> container:1521
-    
+      - "11521:1521" # Map host:11521 -> container:1521
+
     # Health check ensures DB is ready before dependent services start
     healthcheck:
-      test: [
-        "CMD-SHELL",
-        "sqlplus -L system/oracle123@//localhost:1521/XE <<< 'SELECT 1 FROM DUAL;' | grep -q '1'"
-      ]
+      test:
+        [
+          "CMD-SHELL",
+          "sqlplus -L system/oracle123@//localhost:1521/XE <<< 'SELECT 1 FROM DUAL;' | grep -q '1'",
+        ]
       interval: 10s
       timeout: 5s
       retries: 30
-      start_period: 60s  # Give Oracle time to initialize
-    
+      start_period: 60s # Give Oracle time to initialize
+
     # Restart policy
     restart: unless-stopped
-    
+
     networks:
       - endurox-network
 
