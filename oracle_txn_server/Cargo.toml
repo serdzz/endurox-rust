@@ -15,9 +15,12 @@ serde_json = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
 
-# Oracle native driver
-oracle = "0.6"
+# Diesel ORM for Oracle
+diesel = { workspace = true }
+diesel-oci = { workspace = true }
+r2d2 = { workspace = true }
 chrono = { version = "0.4", features = ["serde"] }
+bigdecimal = { version = "0.4", features = ["serde"] }
 dotenv = "0.15"
 
 [build-dependencies]

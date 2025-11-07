@@ -6,10 +6,11 @@ use endurox_sys::UbfStruct as UbfStructDerive;
 use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
 use serde::{Deserialize, Serialize};
 use std::ffi::CStr;
+use diesel::prelude::*;
 
 use crate::db::DbPool;
-use crate::models::Transaction;
-use crate::schema;
+use crate::models::{Transaction, NewTransaction};
+use crate::schema::transactions;
 
 #[derive(Debug)]
 pub struct ServiceRequest {
@@ -278,7 +279,7 @@ pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Se
     }
 
     // Get database connection
-    let conn = match crate::db::get_connection(pool) {
+    let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
             tplog_error(&format!("Failed to get DB connection: {}", e));
@@ -289,33 +290,25 @@ pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Se
     // Create new transaction
     let message = format!("Transaction {} created successfully", req.transaction_id);
 
-    // Insert into database using prepared statement
-    match conn.execute(
-        schema::CREATE_TRANSACTION,
-        &[
-            &req.transaction_id,
-            &req.transaction_type,
-            &req.account,
-            &(req.amount as f64),
-            &req.currency,
-            &req.description,
-            &"SUCCESS",
-            &message,
-            &None::<String>,
-            &None::<String>,
-        ],
-    ) {
-        Ok(_) => {
-            // Commit the transaction
-            if let Err(e) = conn.commit() {
-                tplog_error(&format!("Failed to commit transaction: {}", e));
-                return create_error_response(
-                    &req.transaction_id,
-                    "DB_COMMIT_ERROR",
-                    &e.to_string(),
-                );
-            }
+    let new_txn = NewTransaction {
+        id: req.transaction_id.clone(),
+        transaction_type: req.transaction_type,
+        account: req.account,
+        amount: req.amount,
+        currency: req.currency,
+        description: req.description,
+        status: "SUCCESS".to_string(),
+        message: Some(message.clone()),
+        error_code: None,
+        error_message: None,
+    };
 
+    // Insert into database using Diesel
+    match diesel::insert_into(transactions::table)
+        .values(&new_txn)
+        .execute(&mut conn)
+    {
+        Ok(_) => {
             tplog_info(&format!(
                 "Transaction {} created successfully",
                 req.transaction_id
@@ -351,7 +344,7 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
 
     tplog_info(&format!("Getting transaction: id={}", req.transaction_id));
 
-    let conn = match crate::db::get_connection(pool) {
+    let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
             tplog_error(&format!("Failed to get DB connection: {}", e));
@@ -359,24 +352,22 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
         }
     };
 
-    // Query transaction
-    let result = conn.query_row(schema::GET_TRANSACTION, &[&req.transaction_id]);
+    // Query transaction using Diesel
+    use crate::schema::transactions::dsl::*;
+    
+    let result = transactions
+        .filter(id.eq(&req.transaction_id))
+        .first::<Transaction>(&mut conn);
 
     match result {
-        Ok(row) => match Transaction::from_row(&row) {
-            Ok(txn) => {
-                tplog_info(&format!(
-                    "Transaction {} found: status={}",
-                    txn.id, txn.status
-                ));
-                create_success_response(&txn.id, &txn.message.unwrap_or_else(|| "OK".to_string()))
-            }
-            Err(e) => {
-                tplog_error(&format!("Failed to parse row: {}", e));
-                create_error_response(&req.transaction_id, "PARSE_ERROR", &e.to_string())
-            }
-        },
-        Err(e) if e.kind() == oracle::ErrorKind::NoDataFound => {
+        Ok(txn) => {
+            tplog_info(&format!(
+                "Transaction {} found: status={}",
+                txn.id, txn.status
+            ));
+            create_success_response(&txn.id, &txn.message.unwrap_or_else(|| "OK".to_string()))
+        }
+        Err(diesel::result::Error::NotFound) => {
             tplog_error(&format!("Transaction {} not found", req.transaction_id));
             create_error_response(&req.transaction_id, "NOT_FOUND", "Transaction not found")
         }
@@ -391,7 +382,7 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
 pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
     tplog_info("LIST_TXN service called");
 
-    let conn = match crate::db::get_connection(pool) {
+    let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
             tplog_error(&format!("Failed to get DB connection: {}", e));
@@ -399,22 +390,19 @@ pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> Se
         }
     };
 
-    // Query all transactions
-    match conn.query(schema::LIST_TRANSACTIONS, &[]) {
-        Ok(rows) => {
-            let mut count = 0;
-            for row_result in rows {
-                match row_result {
-                    Ok(_row) => count += 1,
-                    Err(e) => {
-                        tplog_error(&format!("Error reading row: {}", e));
-                        return create_error_response("", "ROW_ERROR", &e.to_string());
-                    }
-                }
-            }
+    // Query all transactions using Diesel (limit 100)
+    use crate::schema::transactions::dsl::*;
+    
+    match transactions
+        .order(created_at.desc())
+        .limit(100)
+        .load::<Transaction>(&mut conn)
+    {
+        Ok(results) => {
+            let count = results.len();
             tplog_info(&format!("Found {} transactions", count));
-            let message = format!("Found {} transactions", count);
-            create_success_response("", &message)
+            let msg = format!("Found {} transactions", count);
+            create_success_response("", &msg)
         }
         Err(e) => {
             tplog_error(&format!("Failed to list transactions: {}", e));

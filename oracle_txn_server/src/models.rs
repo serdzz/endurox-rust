@@ -1,9 +1,12 @@
 use chrono::NaiveDateTime;
-use oracle::sql_type::Timestamp;
-use oracle::Row;
+use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+use crate::schema::transactions;
+
+// Diesel Queryable model for reading from database
+#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Selectable)]
+#[diesel(table_name = transactions)]
 pub struct Transaction {
     pub id: String,
     pub transaction_type: String,
@@ -19,61 +22,9 @@ pub struct Transaction {
     pub updated_at: NaiveDateTime,
 }
 
-impl Transaction {
-    pub fn from_row(row: &Row) -> Result<Self, oracle::Error> {
-        let created_ts: Timestamp = row.get(10)?;
-        let updated_ts: Timestamp = row.get(11)?;
-
-        // Convert Oracle Timestamp to NaiveDateTime
-        let created_at = NaiveDateTime::new(
-            chrono::NaiveDate::from_ymd_opt(
-                created_ts.year(),
-                created_ts.month(),
-                created_ts.day(),
-            )
-            .unwrap(),
-            chrono::NaiveTime::from_hms_opt(
-                created_ts.hour(),
-                created_ts.minute(),
-                created_ts.second(),
-            )
-            .unwrap(),
-        );
-
-        let updated_at = NaiveDateTime::new(
-            chrono::NaiveDate::from_ymd_opt(
-                updated_ts.year(),
-                updated_ts.month(),
-                updated_ts.day(),
-            )
-            .unwrap(),
-            chrono::NaiveTime::from_hms_opt(
-                updated_ts.hour(),
-                updated_ts.minute(),
-                updated_ts.second(),
-            )
-            .unwrap(),
-        );
-
-        Ok(Transaction {
-            id: row.get(0)?,
-            transaction_type: row.get(1)?,
-            account: row.get(2)?,
-            amount: row.get::<_, f64>(3)? as i64,
-            currency: row.get(4)?,
-            description: row.get(5)?,
-            status: row.get(6)?,
-            message: row.get(7)?,
-            error_code: row.get(8)?,
-            error_message: row.get(9)?,
-            created_at,
-            updated_at,
-        })
-    }
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[allow(dead_code)]
+// Diesel Insertable model for creating new records
+#[derive(Debug, Clone, Serialize, Deserialize, Insertable)]
+#[diesel(table_name = transactions)]
 pub struct NewTransaction {
     pub id: String,
     pub transaction_type: String,
