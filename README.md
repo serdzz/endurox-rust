@@ -313,53 +313,52 @@ The project includes a UBF field table (`ubftab/test.fd`) with the following fie
 - **Double fields**: T_DOUBLE_FLD, T_PRICE_FLD, T_BALANCE_FLD
 - **Short fields**: T_SHORT_FLD, T_FLAG_FLD
 - **Char fields**: T_CHAR_FLD
-
 ## Development
 
 ### Project Structure
+
+```
 .
 ├── Cargo.toml              # Workspace definition
 ├── docker-compose.yml      # Docker orchestration
 ├── Dockerfile              # Container image
-|── endurox-sys/           # Rust FFI bindings
+├── endurox-sys/            # Rust FFI bindings
 │   ├── src/
-│   │   ├── lib.rs         # Module exports
-│   │   ├── ffi.rs         # Raw FFI declarations
-│   │   ├── server.rs      # Server API
-│   │   ├── client.rs      # Client API
-│   │   ├── ubf.rs         # UBF API
-│   │   ├── ubf_struct.rs  # UBF struct trait & helpers
-│   │   └── log.rs         # Logging wrappers
+│   │   ├── lib.rs          # Module exports
+│   │   ├── ffi.rs          # Raw FFI declarations
+│   │   ├── server.rs       # Server API
+│   │   ├── client.rs       # Client API
+│   │   ├── ubf.rs          # UBF API
+│   │   ├── ubf_struct.rs   # UBF struct trait & helpers
+│   │   └── log.rs          # Logging wrappers
 │   └── Cargo.toml
-├── endurox-derive/       # Proc-macro for UbfStruct
+├── endurox-derive/         # Proc-macro for UbfStruct
 │   ├── src/
-│   │   └── lib.rs         # Derive macro implementation
+│   │   └── lib.rs          # Derive macro implementation
 │   └── Cargo.toml
-├── samplesvr_rust/        # STRING/JSON server
+├── samplesvr_rust/         # STRING/JSON server
 │   ├── src/
-│   │   ├── main.rs        # Server entry point
-│   │   └── services.rs    # Service implementations
+│   │   ├── main.rs         # Server entry point
+│   │   └── services.rs     # Service implementations
 │   └── Cargo.toml
-├── ubfsvr_rust/           # UBF server
+├── ubfsvr_rust/            # UBF server
 │   ├── src/
-│   │   └── main.rs        # UBF services
+│   │   └── main.rs         # UBF services
 │   └── Cargo.toml
-├── ubf_test_client/       # UBF test client
+├── ubf_test_client/        # UBF test client
 │   ├── src/
-│   │   └── main.rs        # Test runner
+│   │   └── main.rs         # Test runner
 │   └── Cargo.toml
-├── rest_gateway/          # REST gateway
+├── rest_gateway/           # REST gateway
 │   ├── src/
-│   │   └── main.rs        # Actix-web server
+│   │   └── main.rs         # Actix-web server
 │   └── Cargo.toml
-├── ubftab/                # UBF field tables
-│   └── test.fd           # Field definitions
-├── conf/                  # Enduro/X configuration
-├── setenv.sh             # Environment setup
-├── test_rest.sh          # REST API test script
-└── test_ubf.sh           # UBF test script
-```
-└── test_rest.sh          # API test script
+├── ubftab/                 # UBF field tables
+│   └── test.fd             # Field definitions
+├── conf/                   # Enduro/X configuration
+├── setenv.sh               # Environment setup
+├── test_rest.sh            # REST API test script
+└── test_ubf.sh             # UBF test script
 ```
 
 ### Running Tests
