@@ -13,21 +13,54 @@ pub fn init_pool() -> Result<DbPool, String> {
             "endurox/endurox@localhost:1521/XEPDB1".to_string()
         });
 
-    // Parse connection string (format: user/password@host:port/service)
-    let parts: Vec<&str> = database_url.split('@').collect();
-    if parts.len() != 2 {
-        return Err("Invalid DATABASE_URL format. Expected: user/password@host:port/service".to_string());
-    }
-
-    let credentials = parts[0];
-    let cred_parts: Vec<&str> = credentials.split('/').collect();
-    if cred_parts.len() != 2 {
-        return Err("Invalid credentials format. Expected: user/password".to_string());
-    }
-
-    let username = cred_parts[0];
-    let password = cred_parts[1];
-    let connection_str = parts[1];
+    // Parse connection string
+    // Supports two formats:
+    // 1. oracle://user:password@host:port/service
+    // 2. user/password@host:port/service
+    let (username, password, connection_str) = if database_url.starts_with("oracle://") {
+        // Remove oracle:// prefix
+        let url_without_scheme = database_url.strip_prefix("oracle://")
+            .ok_or("Failed to parse oracle:// URL")?;
+        
+        // Split by @ to separate credentials from connection string
+        let parts: Vec<&str> = url_without_scheme.split('@').collect();
+        if parts.len() != 2 {
+            return Err(format!(
+                "Invalid DATABASE_URL format. Expected: oracle://user:password@host:port/service. Got: {}",
+                database_url
+            ));
+        }
+        
+        // Parse credentials (user:password)
+        let cred_parts: Vec<&str> = parts[0].split(':').collect();
+        if cred_parts.len() != 2 {
+            return Err(format!(
+                "Invalid credentials format. Expected: user:password. Got: {}",
+                parts[0]
+            ));
+        }
+        
+        (cred_parts[0], cred_parts[1], parts[1])
+    } else {
+        // Legacy format: user/password@host:port/service
+        let parts: Vec<&str> = database_url.split('@').collect();
+        if parts.len() != 2 {
+            return Err(format!(
+                "Invalid DATABASE_URL format. Expected: user/password@host:port/service. Got: {}",
+                database_url
+            ));
+        }
+        
+        let cred_parts: Vec<&str> = parts[0].split('/').collect();
+        if cred_parts.len() != 2 {
+            return Err(format!(
+                "Invalid credentials format. Expected: user/password. Got: {}",
+                parts[0]
+            ));
+        }
+        
+        (cred_parts[0], cred_parts[1], parts[1])
+    };
 
     let pool = PoolBuilder::new(
         username,
