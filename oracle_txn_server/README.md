@@ -1,17 +1,17 @@
 # Oracle Transaction Server
 
-Enduro/X transaction server with Oracle Database integration using Diesel ORM.
+Enduro/X transaction server with Oracle Database integration using native Oracle driver.
 
 ## Features
 
-- **Diesel ORM** - Type-safe database access with Oracle support
+- **Native Oracle Driver** - Direct Oracle database access with `oracle` crate
 - **Connection Pooling** - R2D2 connection pool for efficient database access
-- **UBF Integration** - Seamless UBF buffer serialization/deserialization
-- **XA Transactions** - Full Enduro/X XA transaction support with Oracle
+- **UBF Integration** - Seamless UBF buffer serialization/deserialization using derive macros
+- **REST API Integration** - Full REST gateway support with automatic JSON ↔ UBF conversion
 - **Three Services**:
-  - `CREATE_TXN` - Create new transaction record
+  - `CREATE_TXN` - Create new transaction record with automatic commit
   - `GET_TXN` - Retrieve transaction by ID
-  - `LIST_TXN` - List all transactions
+  - `LIST_TXN` - List all transactions (max 100)
 
 ## Prerequisites
 
@@ -24,9 +24,10 @@ Enduro/X transaction server with Oracle Database integration using Diesel ORM.
    # Download from Oracle website and install
    ```
 
-2. **Oracle Database** - Running Oracle instance (local or remote)
-   - XE Edition works fine for development
-   - Default connection: `oracle://endurox:endurox@localhost:1521/XEPDB1`
+2. **Oracle Database** - Running Oracle instance (local or Docker)
+   - XE 21c Edition included in docker-compose.yml
+   - Default connection: `oracle://ctp:ctp@oracledb:1521/XE`
+   - Docker exposes port 11521 → 1521
 
 3. **Enduro/X** - Installed and configured
    ```bash
@@ -36,30 +37,36 @@ Enduro/X transaction server with Oracle Database integration using Diesel ORM.
 
 ## Setup
 
-### 1. Configure Database Connection
+### 1. Using Docker (Recommended)
 
-Copy the example environment file:
+The easiest way to run the Oracle transaction server is with Docker Compose:
+
 ```bash
-cp .env.example .env
+# Build and start all services
+docker-compose up -d
+
+# Wait for Oracle to initialize (1-2 minutes on first start)
+docker-compose logs -f oracledb
+
+# Verify oracle_txn_server is running
+docker-compose logs endurox_rust | grep oracle_txn_server
 ```
 
-Edit `.env` with your Oracle connection details:
-```env
-DATABASE_URL=oracle://username:password@hostname:port/service_name
-```
+The docker-compose.yml automatically:
+- Starts Oracle Database XE 21c
+- Runs database initialization scripts from `db/oracle/`
+- Creates CTP user and transactions table
+- Starts oracle_txn_server with correct DATABASE_URL
 
-### 2. Run Database Migrations
+### 2. Manual Setup
 
-Install diesel CLI if not already installed:
+If running outside Docker, set the DATABASE_URL environment variable:
+
 ```bash
-cargo install diesel_cli --no-default-features --features oracle
+export DATABASE_URL=oracle://username:password@hostname:port/service_name
 ```
 
-Run migrations:
-```bash
-cd oracle_txn_server
-diesel migration run
-```
+Create the database schema manually (see Database Schema section below).
 
 This creates the `transactions` table with the following schema:
 - `id` - Transaction ID (primary key)
@@ -169,96 +176,133 @@ EOF
 
 ### REST Gateway Integration
 
-You can also call these services through the REST gateway:
+The recommended way to interact with the Oracle transaction server is through the REST gateway:
 
+#### Create Transaction
 ```bash
-# Create transaction
 curl -X POST http://localhost:8080/api/oracle/create \
   -H "Content-Type: application/json" \
   -d '{
-    "transaction_id": "TXN-12345",
     "transaction_type": "sale",
-    "account": "ACC-9876",
-    "amount": 15000,
+    "transaction_id": "TXN001",
+    "account": "ACC123",
+    "amount": 10050,
     "currency": "USD",
-    "description": "Payment for order #12345"
+    "description": "Payment via REST API"
   }'
+```
 
-# Get transaction
+Response:
+```json
+{
+  "transaction_id": "TXN001",
+  "status": "SUCCESS",
+  "message": "Transaction TXN001 created successfully"
+}
+```
+
+#### Get Transaction
+```bash
 curl -X POST http://localhost:8080/api/oracle/get \
   -H "Content-Type: application/json" \
-  -d '{
-    "transaction_id": "TXN-12345"
-  }'
+  -d '{"transaction_id": "TXN001"}'
+```
+
+#### List All Transactions
+```bash
+curl -X GET http://localhost:8080/api/oracle/list
+```
+
+Response:
+```json
+{
+  "transaction_id": "",
+  "status": "SUCCESS",
+  "message": "Found 3 transactions"
+}
+```
+
+#### Run Complete Test Suite
+```bash
+./test_oracle_rest.sh
 ```
 
 ## Architecture
 
 ```
-┌─────────────┐         ┌──────────────────┐         ┌──────────────┐
-│   Client    │   UBF   │ oracle_txn_server│   SQL   │   Oracle DB  │
-│             │ ──────> │                  │ ──────> │              │
-│ (ud/REST)   │         │  + Diesel ORM    │         │   + XA       │
-│             │ <────── │  + Connection    │ <────── │              │
-└─────────────┘   UBF   │    Pool          │   SQL   └──────────────┘
-                        └──────────────────┘
+┌─────────────┐  HTTP/REST  ┌──────────────┐  Enduro/X  ┌─────────────────┐  Oracle  ┌──────────┐
+│   Client    │ ──────────> │ rest_gateway │ ──tpcall─> │oracle_txn_server│ ───SQL─> │ Oracle   │
+│ (curl/web)  │             │ (Actix-web)  │   (UBF)    │   + Connection  │          │ Database │
+│             │ <────────── │              │ <────────  │     Pool        │ <──────  │ XE 21c   │
+└─────────────┘    JSON     └──────────────┘    UBF     └─────────────────┘  Result  └──────────┘
 ```
 
 ### Data Flow
 
-1. **Client** sends UBF request to service
-2. **Server** decodes UBF to Rust struct using `#[derive(UbfStruct)]`
-3. **Diesel** executes type-safe SQL query on Oracle DB
-4. **XA Layer** manages distributed transaction (if enabled)
-5. **Server** encodes result to UBF and returns to client
+1. **Client** sends HTTP/JSON request to REST gateway
+2. **REST Gateway** converts JSON to Rust struct, then encodes to UBF using `#[derive(UbfStructDerive)]`
+3. **Enduro/X** transfers UBF buffer via IPC to oracle_txn_server using `tpcall()`
+4. **Oracle Server** decodes UBF to Rust struct using `UbfStruct::from_ubf()`
+5. **Oracle Driver** executes SQL query with connection pooling
+6. **Database** commits transaction explicitly (`conn.commit()`)
+7. **Response** flows back through the same chain: SQL result → UBF → JSON
 
-## XA Transactions
+## Transaction Management
 
-To use XA transactions in service calls:
+The server uses explicit commit for transaction persistence:
 
 ```rust
-use crate::xa;
-
-pub fn create_transaction_with_xa(
-    request: &ServiceRequest,
-    pool: &DbPool,
-) -> ServiceResult {
-    // Start XA transaction
-    xa::with_transaction(|| {
-        // All database operations here are part of XA transaction
-        let mut conn = crate::db::get_connection(pool)?;
+// Execute SQL
+match conn.execute(schema::CREATE_TRANSACTION, &[...]) {
+    Ok(_) => {
+        // IMPORTANT: Explicit commit required for Oracle
+        if let Err(e) = conn.commit() {
+            tplog_error(&format!("Failed to commit transaction: {}", e));
+            return create_error_response(&req.transaction_id, "DB_COMMIT_ERROR", &e.to_string());
+        }
         
-        diesel::insert_into(transactions::table)
-            .values(&new_txn)
-            .execute(&mut conn)
-            .map_err(|e| e.to_string())?;
-            
-        Ok(())
-    }).map_err(|e| create_error_response("", "XA_ERROR", &e))?;
-    
-    create_success_response(txn_id, "Transaction committed")
+        create_success_response(&req.transaction_id, &message)
+    }
+    Err(e) => {
+        create_error_response(&req.transaction_id, "DB_INSERT_ERROR", &e.to_string())
+    }
 }
 ```
 
+**Note**: Oracle doesn't auto-commit by default, so explicit `commit()` is required after INSERT/UPDATE operations.
+
 ## Database Schema
 
-The transactions table structure:
+The transactions table is automatically created by `db/oracle/01_init.sql`:
 
 ```sql
-CREATE TABLE transactions (
-    id VARCHAR2(50) PRIMARY KEY,
+CREATE TABLE ctp.transactions (
+    id VARCHAR2(100) PRIMARY KEY,
     transaction_type VARCHAR2(50) NOT NULL,
-    account VARCHAR2(50) NOT NULL,
-    amount NUMBER NOT NULL,
+    account VARCHAR2(100) NOT NULL,
+    amount NUMBER(19,2) NOT NULL,
     currency VARCHAR2(10) NOT NULL,
     description VARCHAR2(500),
-    status VARCHAR2(20) NOT NULL,
+    status VARCHAR2(50) NOT NULL,
     message VARCHAR2(500),
     error_code VARCHAR2(50),
     error_message VARCHAR2(500),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Performance indexes
+CREATE INDEX idx_transactions_type ON ctp.transactions(transaction_type);
+CREATE INDEX idx_transactions_status ON ctp.transactions(status);
+CREATE INDEX idx_transactions_created ON ctp.transactions(created_at DESC);
+```
+
+### Querying Transactions Directly
+
+```bash
+# Connect to Oracle in Docker
+docker-compose exec -T oracledb sqlplus -S ctp/ctp@//localhost:1521/XE <<< \
+  "SELECT id, transaction_type, amount, currency, status FROM transactions ORDER BY created_at;"
 ```
 
 ## Development
@@ -308,18 +352,21 @@ If XA transactions fail:
    GRANT EXECUTE ON dbms_xa TO username;
    ```
 
-### Migration Issues
+### Database Initialization
 
-If migrations fail:
+If you need to manually initialize the database:
+
 ```bash
-# Check migration status
-diesel migration list
+# Connect as system user
+docker-compose exec oracledb sqlplus / as sysdba
 
-# Revert last migration
-diesel migration revert
+# Create user (if not exists)
+ALTER SESSION SET "_ORACLE_SCRIPT"=true;
+CREATE USER ctp IDENTIFIED BY ctp;
+GRANT CONNECT, RESOURCE, CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE TO ctp;
 
-# Regenerate schema
-diesel migration redo
+# Run init script
+docker-compose exec -T oracledb sqlplus system/oracle123@//localhost:1521/XE < db/oracle/01_init.sql
 ```
 
 ## Performance Tuning
@@ -335,19 +382,31 @@ Pool::builder()
 
 ### Database Indexes
 
-Add indexes for frequently queried fields:
+The following indexes are created automatically:
+- `idx_transactions_type` - On transaction_type
+- `idx_transactions_status` - On status  
+- `idx_transactions_created` - On created_at DESC
+
+Add additional indexes for frequently queried fields:
 ```sql
-CREATE INDEX idx_transactions_account ON transactions(account);
-CREATE INDEX idx_transactions_type ON transactions(transaction_type);
+CREATE INDEX idx_transactions_account ON ctp.transactions(account);
+CREATE INDEX idx_transactions_currency ON ctp.transactions(currency);
 ```
 
 ## Security Notes
 
-- **Never commit** `.env` file with real credentials
+- **Never commit** production credentials to git
 - Use Oracle Wallet for production credentials
-- Enable SSL/TLS for database connections
+- Enable SSL/TLS for database connections in production
 - Implement proper access control in Enduro/X configuration
 - Rotate database passwords regularly
+- Docker Compose uses default credentials (ctp/ctp) - **change for production**
+
+## Additional Documentation
+
+- **REST Integration**: See [ORACLE_REST_INTEGRATION.md](../ORACLE_REST_INTEGRATION.md) for detailed implementation
+- **Main README**: See [../README.md](../README.md) for complete project documentation
+- **Docker Usage**: See [../DOCKER_USAGE.md](../DOCKER_USAGE.md) for Docker Compose guide
 
 ## License
 
