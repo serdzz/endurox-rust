@@ -1,7 +1,7 @@
 use chrono::NaiveDateTime;
-use serde::{Deserialize, Serialize};
-use oracle::Row;
 use oracle::sql_type::Timestamp;
+use oracle::Row;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Transaction {
@@ -23,34 +23,38 @@ impl Transaction {
     pub fn from_row(row: &Row) -> Result<Self, oracle::Error> {
         let created_ts: Timestamp = row.get(10)?;
         let updated_ts: Timestamp = row.get(11)?;
-        
+
         // Convert Oracle Timestamp to NaiveDateTime
         let created_at = NaiveDateTime::new(
             chrono::NaiveDate::from_ymd_opt(
                 created_ts.year(),
-                created_ts.month() as u32,
-                created_ts.day() as u32,
-            ).unwrap(),
+                created_ts.month(),
+                created_ts.day(),
+            )
+            .unwrap(),
             chrono::NaiveTime::from_hms_opt(
-                created_ts.hour() as u32,
-                created_ts.minute() as u32,
-                created_ts.second() as u32,
-            ).unwrap(),
+                created_ts.hour(),
+                created_ts.minute(),
+                created_ts.second(),
+            )
+            .unwrap(),
         );
-        
+
         let updated_at = NaiveDateTime::new(
             chrono::NaiveDate::from_ymd_opt(
                 updated_ts.year(),
-                updated_ts.month() as u32,
-                updated_ts.day() as u32,
-            ).unwrap(),
+                updated_ts.month(),
+                updated_ts.day(),
+            )
+            .unwrap(),
             chrono::NaiveTime::from_hms_opt(
-                updated_ts.hour() as u32,
-                updated_ts.minute() as u32,
-                updated_ts.second() as u32,
-            ).unwrap(),
+                updated_ts.hour(),
+                updated_ts.minute(),
+                updated_ts.second(),
+            )
+            .unwrap(),
         );
-        
+
         Ok(Transaction {
             id: row.get(0)?,
             transaction_type: row.get(1)?,
@@ -69,6 +73,7 @@ impl Transaction {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[allow(dead_code)]
 pub struct NewTransaction {
     pub id: String,
     pub transaction_type: String,

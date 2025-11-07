@@ -21,17 +21,17 @@ static mut DB_POOL: Option<DbPool> = None;
 // Initialize service registry
 fn init_services() {
     let mut registry = HashMap::new();
-    
+
     registry.insert(
         "CREATE_TXN".to_string(),
         create_transaction_service as ServiceHandler,
     );
-    
+
     registry.insert(
         "GET_TXN".to_string(),
         get_transaction_service as ServiceHandler,
     );
-    
+
     registry.insert(
         "LIST_TXN".to_string(),
         list_transactions_service as ServiceHandler,
@@ -56,7 +56,7 @@ extern "C" fn service_dispatcher(rqst: *mut TpSvcInfoRaw) {
     };
 
     let service_name = request.service_name();
-    
+
     let result = unsafe {
         let pool = match &DB_POOL {
             Some(pool) => pool,
@@ -136,7 +136,7 @@ pub extern "C" fn tpsvrinit(_argc: libc::c_int, _argv: *mut *mut libc::c_char) -
 #[no_mangle]
 pub extern "C" fn tpsvrdone() {
     tplog_info("oracle_txn_server shutting down...");
-    
+
     unsafe {
         if let Some(pool) = DB_POOL.take() {
             drop(pool);

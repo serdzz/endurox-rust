@@ -10,6 +10,7 @@ This project provides Rust bindings and a complete example implementation for bu
 - **endurox-derive** - Procedural macros for automatic UBF struct serialization
 - **samplesvr_rust** - Example Enduro/X server implementing STRING/JSON and UBF services
 - **ubfsvr_rust** - UBF (Unified Buffer Format) server with example services
+- **oracle_txn_server** - Transaction server with Oracle Database integration
 - **rest_gateway** - REST API gateway built with Actix-web that exposes Enduro/X services over HTTP
 - **ubf_test_client** - Test client for UBF services
 
@@ -65,16 +66,28 @@ Safe Rust bindings for Enduro/X:
 - **UBFADD** - Create UBF buffer with multiple fields (string, long, double)
 - **UBFGET** - Read and echo UBF fields
 
+#### oracle_txn_server (Oracle Database Services)
+
+- **CREATE_TXN** - Create transaction in Oracle database
+- **GET_TXN** - Retrieve transaction by ID
+- **LIST_TXN** - List all transactions (max 100)
+
 ### REST Gateway
 
 HTTP/REST interface powered by Actix-web:
 
+#### Basic Endpoints
 - **GET /** - Health check endpoint
 - **GET /api/status** - Server status
 - **POST /api/hello** - Call HELLO service with JSON
 - **POST /api/echo** - Call ECHO service with plain text
 - **POST /api/dataproc** - Call DATAPROC service with JSON
-- **POST /api/transaction** - Process transactions with UBF (JSON → UBF → JSON)
+- **POST /api/transaction** - Process transactions with UBF (calls samplesvr_rust)
+
+#### Oracle Transaction Endpoints
+- **POST /api/oracle/create** - Create transaction in Oracle DB (calls CREATE_TXN)
+- **POST /api/oracle/get** - Get transaction by ID (calls GET_TXN)
+- **GET /api/oracle/list** - List all transactions (calls LIST_TXN)
 
 ## Prerequisites
 
@@ -111,7 +124,11 @@ HTTP/REST interface powered by Actix-web:
 
 3. **Test the REST API:**
    ```bash
+   # Test basic endpoints
    ./test_rest.sh
+   
+   # Test Oracle transaction endpoints
+   ./test_oracle_rest.sh
    ```
 
 4. **Test UBF services:**
@@ -197,6 +214,45 @@ curl -X POST http://localhost:8080/api/transaction \
     "currency": "USD",
     "description": "Payment for order #12345"
   }'
+```
+
+### Oracle Transaction Services
+
+The Oracle transaction server provides database-backed transaction management:
+
+**Create transaction:**
+```bash
+curl -X POST http://localhost:8080/api/oracle/create \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_type": "sale",
+    "transaction_id": "TXN001",
+    "account": "ACC123",
+    "amount": 10050,
+    "currency": "USD",
+    "description": "Payment via REST API"
+  }'
+```
+
+Response:
+```json
+{
+  "transaction_id": "TXN001",
+  "status": "SUCCESS",
+  "message": "Transaction TXN001 created successfully"
+}
+```
+
+**Get transaction:**
+```bash
+curl -X POST http://localhost:8080/api/oracle/get \
+  -H "Content-Type: application/json" \
+  -d '{"transaction_id": "TXN001"}'
+```
+
+**List all transactions:**
+```bash
+curl -X GET http://localhost:8080/api/oracle/list
 ```
 
 Response:

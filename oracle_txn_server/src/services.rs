@@ -57,6 +57,7 @@ pub struct ServiceResult {
 }
 
 impl ServiceResult {
+    #[allow(dead_code)]
     pub fn success(message: &str) -> Self {
         ServiceResult {
             success: true,
@@ -152,39 +153,37 @@ impl ServiceResult {
 
                     ffi::tpreturn(ffi::TPSUCCESS, 0, ret_buf, msg_bytes.len() as c_long, 0);
                 }
-            } else {
-                if let Some(ref ubf_buf) = self.ubf_buffer {
-                    tplog_error("Service responded with UBF error");
+            } else if let Some(ref ubf_buf) = self.ubf_buffer {
+                tplog_error("Service responded with UBF error");
 
-                    use endurox_sys::ffi;
-                    use libc::c_long;
-                    use std::ffi::CString;
+                use endurox_sys::ffi;
+                use libc::c_long;
+                use std::ffi::CString;
 
-                    let req = &*rqst;
-                    let buffer_data = ubf_buf.as_bytes();
-                    let needed_len = buffer_data.len();
+                let req = &*rqst;
+                let buffer_data = ubf_buf.as_bytes();
+                let needed_len = buffer_data.len();
 
-                    let ret_buf = if req.data.is_null() {
-                        let ubf_type = CString::new("UBF").unwrap();
-                        ffi::tpalloc(ubf_type.as_ptr(), std::ptr::null(), needed_len as c_long)
-                    } else {
-                        ffi::tprealloc(req.data, needed_len as c_long)
-                    };
-
-                    if !ret_buf.is_null() {
-                        std::ptr::copy_nonoverlapping(
-                            buffer_data.as_ptr(),
-                            ret_buf as *mut u8,
-                            buffer_data.len(),
-                        );
-                        ffi::tpreturn(ffi::TPFAIL, 0, ret_buf, buffer_data.len() as c_long, 0);
-                    } else {
-                        tpreturn_fail(rqst);
-                    }
+                let ret_buf = if req.data.is_null() {
+                    let ubf_type = CString::new("UBF").unwrap();
+                    ffi::tpalloc(ubf_type.as_ptr(), std::ptr::null(), needed_len as c_long)
                 } else {
-                    tplog_error(&format!("Service responded with error: {}", self.message));
+                    ffi::tprealloc(req.data, needed_len as c_long)
+                };
+
+                if !ret_buf.is_null() {
+                    std::ptr::copy_nonoverlapping(
+                        buffer_data.as_ptr(),
+                        ret_buf as *mut u8,
+                        buffer_data.len(),
+                    );
+                    ffi::tpreturn(ffi::TPFAIL, 0, ret_buf, buffer_data.len() as c_long, 0);
+                } else {
                     tpreturn_fail(rqst);
                 }
+            } else {
+                tplog_error(&format!("Service responded with error: {}", self.message));
+                tpreturn_fail(rqst);
             }
         }
         Ok(())
@@ -238,10 +237,7 @@ struct GetTransactionRequest {
 }
 
 /// CREATE_TXN - Create new transaction in Oracle DB
-pub fn create_transaction_service(
-    request: &ServiceRequest,
-    pool: &DbPool,
-) -> ServiceResult {
+pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
     tplog_info("CREATE_TXN service called");
 
     let ubf_buf = match &request.ubf_buffer {
@@ -267,11 +263,17 @@ pub fn create_transaction_service(
 
     // Validate transaction type
     if req.transaction_type.to_lowercase() != "sale" {
-        tplog_error(&format!("Invalid transaction type: {}", req.transaction_type));
+        tplog_error(&format!(
+            "Invalid transaction type: {}",
+            req.transaction_type
+        ));
         return create_error_response(
             &req.transaction_id,
             "INVALID_TYPE",
-            &format!("Only 'sale' transactions are supported, got '{}'", req.transaction_type),
+            &format!(
+                "Only 'sale' transactions are supported, got '{}'",
+                req.transaction_type
+            ),
         );
     }
 
@@ -304,7 +306,20 @@ pub fn create_transaction_service(
         ],
     ) {
         Ok(_) => {
-            tplog_info(&format!("Transaction {} created successfully", req.transaction_id));
+            // Commit the transaction
+            if let Err(e) = conn.commit() {
+                tplog_error(&format!("Failed to commit transaction: {}", e));
+                return create_error_response(
+                    &req.transaction_id,
+                    "DB_COMMIT_ERROR",
+                    &e.to_string(),
+                );
+            }
+
+            tplog_info(&format!(
+                "Transaction {} created successfully",
+                req.transaction_id
+            ));
             create_success_response(&req.transaction_id, &message)
         }
         Err(e) => {
@@ -315,10 +330,7 @@ pub fn create_transaction_service(
 }
 
 /// GET_TXN - Get transaction from Oracle DB
-pub fn get_transaction_service(
-    request: &ServiceRequest,
-    pool: &DbPool,
-) -> ServiceResult {
+pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
     tplog_info("GET_TXN service called");
 
     let ubf_buf = match &request.ubf_buffer {
@@ -349,20 +361,21 @@ pub fn get_transaction_service(
 
     // Query transaction
     let result = conn.query_row(schema::GET_TRANSACTION, &[&req.transaction_id]);
-    
+
     match result {
-        Ok(row) => {
-            match Transaction::from_row(&row) {
-                Ok(txn) => {
-                    tplog_info(&format!("Transaction {} found: status={}", txn.id, txn.status));
-                    create_success_response(&txn.id, &txn.message.unwrap_or_else(|| "OK".to_string()))
-                }
-                Err(e) => {
-                    tplog_error(&format!("Failed to parse row: {}", e));
-                    create_error_response(&req.transaction_id, "PARSE_ERROR", &e.to_string())
-                }
+        Ok(row) => match Transaction::from_row(&row) {
+            Ok(txn) => {
+                tplog_info(&format!(
+                    "Transaction {} found: status={}",
+                    txn.id, txn.status
+                ));
+                create_success_response(&txn.id, &txn.message.unwrap_or_else(|| "OK".to_string()))
             }
-        }
+            Err(e) => {
+                tplog_error(&format!("Failed to parse row: {}", e));
+                create_error_response(&req.transaction_id, "PARSE_ERROR", &e.to_string())
+            }
+        },
         Err(e) if e.kind() == oracle::ErrorKind::NoDataFound => {
             tplog_error(&format!("Transaction {} not found", req.transaction_id));
             create_error_response(&req.transaction_id, "NOT_FOUND", "Transaction not found")
@@ -375,10 +388,7 @@ pub fn get_transaction_service(
 }
 
 /// LIST_TXN - List all transactions
-pub fn list_transactions_service(
-    _request: &ServiceRequest,
-    pool: &DbPool,
-) -> ServiceResult {
+pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
     tplog_info("LIST_TXN service called");
 
     let conn = match crate::db::get_connection(pool) {
@@ -439,7 +449,11 @@ fn create_success_response(transaction_id: &str, message: &str) -> ServiceResult
     ServiceResult::success_ubf(response_buf)
 }
 
-fn create_error_response(transaction_id: &str, error_code: &str, error_message: &str) -> ServiceResult {
+fn create_error_response(
+    transaction_id: &str,
+    error_code: &str,
+    error_message: &str,
+) -> ServiceResult {
     let response = TransactionResponse {
         transaction_id: transaction_id.to_string(),
         status: "ERROR".to_string(),

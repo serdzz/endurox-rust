@@ -62,7 +62,7 @@ services:
     
     volumes:
       # Mount init scripts (auto-executed on first start)
-      - ./db/oracle:/docker-entrypoint-initdb.d/setup
+      - ./db/oracle:/docker-entrypoint-initdb.d
       # Persistent database storage
       - oracle_data:/opt/oracle/oradata
     
