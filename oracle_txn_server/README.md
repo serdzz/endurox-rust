@@ -1,27 +1,38 @@
 # Oracle Transaction Server
 
-Enduro/X transaction server with Oracle Database integration using native Oracle driver.
+Enduro/X transaction server with Oracle Database integration using Diesel ORM and diesel-oci driver.
 
 ## Features
 
-- **Native Oracle Driver** - Direct Oracle database access with `oracle` crate
-- **Connection Pooling** - R2D2 connection pool for efficient database access
+- **Diesel ORM** - Type-safe database queries with diesel-oci 0.4.0
+- **Connection Pooling** - r2d2 connection pool (max 10 connections) for efficient database access
+- **Type Safety** - Compile-time query validation prevents SQL errors
+- **Schema Migrations** - Database schema versioning with Diesel migrations
+- **Automatic Transactions** - Diesel handles commit/rollback automatically
 - **UBF Integration** - Seamless UBF buffer serialization/deserialization using derive macros
 - **REST API Integration** - Full REST gateway support with automatic JSON ↔ UBF conversion
 - **Three Services**:
-  - `CREATE_TXN` - Create new transaction record with automatic commit
+  - `CREATE_TXN` - Create new transaction record
   - `GET_TXN` - Retrieve transaction by ID
-  - `LIST_TXN` - List all transactions (max 100)
+  - `LIST_TXN` - List all transactions (max 100, ordered by created_at DESC)
+
+## Technology Stack
+
+- **ORM**: Diesel 2.1.0
+- **Oracle Driver**: diesel-oci 0.4.0
+- **Connection Pool**: r2d2 0.8
+- **Serialization**: serde, serde_json
+- **Database**: Oracle Database XE 21c
 
 ## Prerequisites
 
-1. **Oracle Instant Client** - Install Oracle instant client libraries
+1. **Oracle Instant Client** - Required for diesel-oci
    ```bash
    # On macOS (example)
    brew install oracle-instantclient
    
-   # On Linux
-   # Download from Oracle website and install
+   # On Linux (Docker handles this automatically)
+   # Download from Oracle website and install if running locally
    ```
 
 2. **Oracle Database** - Running Oracle instance (local or Docker)
@@ -33,6 +44,11 @@ Enduro/X transaction server with Oracle Database integration using native Oracle
    ```bash
    export NDRX_HOME=/opt/endurox
    export PATH=$NDRX_HOME/bin:$PATH
+   ```
+
+4. **Python 3** (optional) - For migration management with `migrate.py`
+   ```bash
+   pip install oracledb
    ```
 
 ## Setup
@@ -68,7 +84,118 @@ export DATABASE_URL=oracle://username:password@hostname:port/service_name
 
 Create the database schema manually (see Database Schema section below).
 
-This creates the `transactions` table with the following schema:
+### Database Migrations
+
+The project uses Diesel migrations for schema management. Migrations are located in `migrations/` directory.
+
+#### Using Diesel CLI (Recommended for Development)
+
+**Note**: Diesel CLI doesn't fully support Oracle migrations, but you can use the Python migration tool instead.
+
+#### Using Python Migration Tool (migrate.py)
+
+For easier Oracle migration management, use the included `migrate.py` script:
+
+**Installation:**
+```bash
+# Install Oracle Python driver
+pip install oracledb
+
+# Make script executable
+chmod +x migrate.py
+```
+
+**Usage:**
+```bash
+# Check migration status
+./migrate.py status
+
+# Apply all pending migrations
+./migrate.py run
+
+# Rollback last migration
+./migrate.py rollback
+
+# Rollback last N migrations
+./migrate.py rollback 2
+
+# Rollback all migrations (reset database)
+./migrate.py reset
+```
+
+**Example Output:**
+```
+$ ./migrate.py status
+
+Migration Status:
+------------------------------------------------------------
+✓ Applied    2025-11-07-000000_create_transactions
+------------------------------------------------------------
+Total: 1 migrations, 1 applied, 0 pending
+
+$ ./migrate.py run
+
+Applying 1 migration(s)...
+⬆ Running migration: 2025-11-07-000000_create_transactions
+✓ Applied: 2025-11-07-000000_create_transactions
+
+✓ Successfully applied 1 migration(s)
+```
+
+**Features:**
+- Uses Diesel-compatible migration tracking table (`__diesel_schema_migrations`)
+- Supports up/down migrations from `migrations/<version>/up.sql` and `down.sql`
+- Automatic connection to Oracle database (configured for Docker setup)
+- Safe rollback functionality
+- Clear status reporting
+
+**Configuration:**
+
+By default, `migrate.py` connects to:
+- Host: `localhost:11521`
+- User: `ctp`
+- Password: `ctp`
+- Service: `XE`
+
+Edit the `DB_CONFIG` in `migrate.py` if your setup differs.
+
+#### Migration Files
+
+Current migration: `migrations/2025-11-07-000000_create_transactions/`
+
+**up.sql** - Creates the transactions table:
+```sql
+CREATE TABLE transactions (
+    id VARCHAR2(255) PRIMARY KEY,
+    transaction_type VARCHAR2(50) NOT NULL,
+    account VARCHAR2(255) NOT NULL,
+    amount NUMBER(19) NOT NULL,
+    currency VARCHAR2(10) NOT NULL,
+    description VARCHAR2(1000),
+    status VARCHAR2(50) NOT NULL,
+    message VARCHAR2(1000),
+    error_code VARCHAR2(100),
+    error_message VARCHAR2(1000),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE INDEX idx_account ON transactions(account);
+CREATE INDEX idx_status ON transactions(status);
+CREATE INDEX idx_created_at ON transactions(created_at);
+```
+
+**down.sql** - Drops the table and indexes:
+```sql
+DROP INDEX idx_created_at;
+DROP INDEX idx_status;
+DROP INDEX idx_account;
+DROP TABLE transactions;
+```
+
+### Database Schema
+
+The `transactions` table has the following schema:
 - `id` - Transaction ID (primary key)
 - `transaction_type` - Type of transaction (e.g., "sale")
 - `account` - Account number
@@ -230,11 +357,11 @@ Response:
 ## Architecture
 
 ```
-┌─────────────┐  HTTP/REST  ┌──────────────┐  Enduro/X  ┌─────────────────┐  Oracle  ┌──────────┐
-│   Client    │ ──────────> │ rest_gateway │ ──tpcall─> │oracle_txn_server│ ───SQL─> │ Oracle   │
-│ (curl/web)  │             │ (Actix-web)  │   (UBF)    │   + Connection  │          │ Database │
-│             │ <────────── │              │ <────────  │     Pool        │ <──────  │ XE 21c   │
-└─────────────┘    JSON     └──────────────┘    UBF     └─────────────────┘  Result  └──────────┘
+┌─────────────┐  HTTP/REST  ┌──────────────┐  Enduro/X  ┌─────────────────┐  Diesel   ┌──────────┐
+│   Client    │ ──────────> │ rest_gateway │ ──tpcall─> │oracle_txn_server│ ─Diesel─> │ Oracle   │
+│ (curl/web)  │             │ (Actix-web)  │   (UBF)    │  + Diesel ORM  │   ORM    │ Database │
+│             │ <────────── │              │ <────────  │   + r2d2 Pool  │ <──────  │ XE 21c   │
+└─────────────┘    JSON     └──────────────┘    UBF     └─────────────────┘ diesel-oci └──────────┘
 ```
 
 ### Data Flow
@@ -243,33 +370,82 @@ Response:
 2. **REST Gateway** converts JSON to Rust struct, then encodes to UBF using `#[derive(UbfStructDerive)]`
 3. **Enduro/X** transfers UBF buffer via IPC to oracle_txn_server using `tpcall()`
 4. **Oracle Server** decodes UBF to Rust struct using `UbfStruct::from_ubf()`
-5. **Oracle Driver** executes SQL query with connection pooling
-6. **Database** commits transaction explicitly (`conn.commit()`)
-7. **Response** flows back through the same chain: SQL result → UBF → JSON
+5. **Diesel ORM** builds type-safe SQL query with query builder
+6. **diesel-oci** executes query via Oracle Instant Client
+7. **Database** processes query and returns results
+8. **Diesel** deserializes results into Rust structs (automatic type mapping)
+9. **Response** flows back through the same chain: Diesel Result → UBF → JSON
+
+### Components
+
+**oracle_txn_server/src/**
+- `main.rs` - Server initialization, service advertisement
+- `services.rs` - Business logic for CREATE_TXN, GET_TXN, LIST_TXN
+- `db.rs` - Diesel connection pool management (r2d2)
+- `models.rs` - Rust structs with Diesel derives (Queryable, Insertable)
+- `schema.rs` - Diesel schema (auto-generated by `diesel print-schema`)
+
+**Diesel Benefits:**
+- Type-safe queries validated at compile time
+- Automatic serialization between SQL types and Rust structs
+- Clean query builder API (no raw SQL strings)
+- Connection pooling with r2d2
+- Schema migrations for version control
 
 ## Transaction Management
 
-The server uses explicit commit for transaction persistence:
+Diesel ORM handles transactions automatically - no explicit commit required:
 
 ```rust
-// Execute SQL
-match conn.execute(schema::CREATE_TRANSACTION, &[...]) {
+use diesel::prelude::*;
+use crate::schema::transactions;
+
+// Get connection from pool
+let mut conn = match crate::db::get_connection(pool) {
+    Ok(conn) => conn,
+    Err(e) => {
+        tplog_error(&format!("Failed to get DB connection: {}", e));
+        return create_error_response(&req.transaction_id, "DB_ERROR", &e);
+    }
+};
+
+// Insert transaction using Diesel - automatic commit
+match diesel::insert_into(transactions::table)
+    .values(&new_txn)
+    .execute(&mut conn)
+{
     Ok(_) => {
-        // IMPORTANT: Explicit commit required for Oracle
-        if let Err(e) = conn.commit() {
-            tplog_error(&format!("Failed to commit transaction: {}", e));
-            return create_error_response(&req.transaction_id, "DB_COMMIT_ERROR", &e.to_string());
-        }
-        
+        tplog_info(&format!("Transaction {} created successfully", req.transaction_id));
         create_success_response(&req.transaction_id, &message)
     }
     Err(e) => {
+        tplog_error(&format!("Failed to insert transaction: {}", e));
         create_error_response(&req.transaction_id, "DB_INSERT_ERROR", &e.to_string())
     }
 }
 ```
 
-**Note**: Oracle doesn't auto-commit by default, so explicit `commit()` is required after INSERT/UPDATE operations.
+**Benefits of Diesel ORM:**
+- **Automatic Transactions**: Diesel handles commit/rollback automatically
+- **Type Safety**: Compile-time query validation prevents SQL errors
+- **Query Builder**: Clean, composable API for building complex queries
+- **Connection Pooling**: r2d2 provides efficient connection management
+
+**Example Queries:**
+```rust
+// Get transaction by ID
+use crate::schema::transactions::dsl::*;
+
+let result = transactions
+    .filter(id.eq(&req.transaction_id))
+    .first::<Transaction>(&mut conn);
+
+// List transactions (ordered, limited)
+let txn_list = transactions
+    .order(created_at.desc())
+    .limit(100)
+    .load::<Transaction>(&mut conn)?;
+```
 
 ## Database Schema
 
@@ -369,6 +545,56 @@ GRANT CONNECT, RESOURCE, CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE TO c
 docker-compose exec -T oracledb sqlplus system/oracle123@//localhost:1521/XE < db/oracle/01_init.sql
 ```
 
+## Performance Benchmarks
+
+The Oracle transaction server has been benchmarked with Diesel ORM:
+
+### Benchmark Results
+
+| Operation | Throughput | Latency (mean) | Notes |
+|-----------|------------|----------------|-------|
+| **GET_TXN** | 1,677 req/sec | 5.96ms | Single row lookup by primary key |
+| **LIST_TXN** | 1,134 req/sec | 8.81ms | 100 rows, ordered by created_at DESC |
+| **CREATE_TXN** | ~85 req/sec | 11-12ms | Sequential insert with commit |
+
+**Test Environment:**
+- Concurrency: 10 concurrent requests
+- Database: Oracle XE 21c in Docker
+- Connection pool: r2d2 (max 10 connections)
+- Zero failures across all tests
+
+### Diesel vs Native Driver Comparison
+
+| Operation | Native Driver | Diesel ORM | Difference |
+|-----------|--------------|------------|------------|
+| GET_TXN | 1,292-2,089 req/sec | 1,677 req/sec | **Similar** (±5%) |
+| LIST_TXN | 1,781-1,907 req/sec | 1,134 req/sec | **-37%** slower |
+| CREATE_TXN | ~88 req/sec | ~85 req/sec | **Similar** (±3%) |
+
+**Analysis:**
+- ✅ **GET operations**: Diesel overhead is negligible (~5% difference)
+- ⚠️ **LIST operations**: 37% slower due to row deserialization overhead (100 rows)
+- ✅ **CREATE operations**: Nearly identical - database commit dominates latency
+
+**Trade-off:** Diesel sacrifices some LIST performance in exchange for:
+- Type safety with compile-time query validation
+- Better code maintainability
+- Schema version control with migrations
+- Automatic transaction management
+
+### Running Benchmarks
+
+```bash
+# Run all benchmarks
+../benchmark_oracle_rest_v2.sh
+
+# Individual endpoint benchmarks
+ab -n 1000 -c 10 -p get_req.json -T application/json http://localhost:8080/api/oracle/get
+ab -n 1000 -c 10 http://localhost:8080/api/oracle/list
+```
+
+See [../DIESEL_BENCHMARK_RESULTS.md](../DIESEL_BENCHMARK_RESULTS.md) for detailed performance analysis.
+
 ## Performance Tuning
 
 ### Connection Pool
@@ -404,9 +630,11 @@ CREATE INDEX idx_transactions_currency ON ctp.transactions(currency);
 
 ## Additional Documentation
 
-- **REST Integration**: See [ORACLE_REST_INTEGRATION.md](../ORACLE_REST_INTEGRATION.md) for detailed implementation
-- **Main README**: See [../README.md](../README.md) for complete project documentation
-- **Docker Usage**: See [../DOCKER_USAGE.md](../DOCKER_USAGE.md) for Docker Compose guide
+- **Performance Analysis**: [../DIESEL_BENCHMARK_RESULTS.md](../DIESEL_BENCHMARK_RESULTS.md) - Detailed benchmark comparison (Diesel vs native driver)
+- **Main README**: [../README.md](../README.md) - Complete project documentation
+- **REST Integration**: [ORACLE_REST_INTEGRATION.md](../ORACLE_REST_INTEGRATION.md) - REST gateway implementation details (if exists)
+- **Diesel Documentation**: [diesel.rs](https://diesel.rs/) - Official Diesel ORM documentation
+- **diesel-oci**: [crates.io/crates/diesel-oci](https://crates.io/crates/diesel-oci) - Oracle driver for Diesel
 
 ## License
 
