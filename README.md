@@ -66,11 +66,16 @@ Safe Rust bindings for Enduro/X:
 - **UBFADD** - Create UBF buffer with multiple fields (string, long, double)
 - **UBFGET** - Read and echo UBF fields
 
-#### oracle_txn_server (Oracle Database Services)
+#### oracle_txn_server (Oracle Database Services with Diesel ORM)
 
 - **CREATE_TXN** - Create transaction in Oracle database
 - **GET_TXN** - Retrieve transaction by ID
 - **LIST_TXN** - List all transactions (max 100)
+
+**Technology Stack:**
+- **ORM**: Diesel 2.1.0 with diesel-oci 0.4.0
+- **Connection Pool**: r2d2 (max 10 connections)
+- **Features**: Type-safe queries, automatic transactions, schema migrations
 
 ### REST Gateway
 
@@ -425,6 +430,33 @@ docker-compose up -d
 
 See [db/README.md](db/README.md) for complete database documentation.
 
+### Performance Benchmarks
+
+The Oracle transaction server uses Diesel ORM with excellent performance characteristics:
+
+**Benchmark Results (Diesel ORM):**
+- **GET_TXN**: 1,677 requests/sec (similar to native driver)
+- **LIST_TXN**: 1,134 requests/sec (37% slower than native, but acceptable)
+- **CREATE_TXN**: ~85 requests/sec sequential (similar to native driver)
+- **Zero failures**: All tests completed successfully
+
+**Performance Analysis:**
+- GET and CREATE operations have negligible ORM overhead (~5% difference)
+- LIST operations are 37% slower due to row deserialization (100 rows)
+- Database commit overhead dominates CREATE performance (2-3ms per txn)
+- Trade-off: Diesel provides type safety and maintainability with minimal performance impact
+
+**Run benchmarks yourself:**
+```bash
+# Benchmark all endpoints
+./benchmark_oracle_rest_v2.sh
+
+# Test individual endpoints
+ab -n 1000 -c 10 http://localhost:8080/api/oracle/list
+```
+
+See [DIESEL_BENCHMARK_RESULTS.md](DIESEL_BENCHMARK_RESULTS.md) for detailed performance analysis and comparison with native Oracle driver.
+
 ## Development
 ### Project Structure
 
@@ -456,6 +488,16 @@ See [db/README.md](db/README.md) for complete database documentation.
 │   ├── src/
 │   │   └── main.rs         # UBF services
 │   └── Cargo.toml
+├── oracle_txn_server/      # Oracle transaction server (Diesel ORM)
+│   ├── src/
+│   │   ├── main.rs         # Server entry point
+│   │   ├── services.rs     # Transaction services
+│   │   ├── db.rs           # Diesel connection pool
+│   │   ├── models.rs       # Database models
+│   │   └── schema.rs       # Diesel schema (auto-generated)
+│   ├── migrations/         # Database migrations
+│   ├── diesel.toml         # Diesel configuration
+│   └── Cargo.toml
 ├── ubf_test_client/        # UBF test client
 │   ├── src/
 │   │   └── main.rs         # Test runner
@@ -469,7 +511,10 @@ See [db/README.md](db/README.md) for complete database documentation.
 ├── conf/                   # Enduro/X configuration
 ├── setenv.sh               # Environment setup
 ├── test_rest.sh            # REST API test script
-└── test_ubf.sh             # UBF test script
+├── test_oracle_rest.sh     # Oracle transaction API test script
+├── benchmark_oracle_rest_v2.sh  # Oracle benchmark script
+├── BENCHMARK_RESULTS.md    # Native driver benchmark results
+└── DIESEL_BENCHMARK_RESULTS.md  # Diesel ORM benchmark results
 ```
 
 ### Running Tests
