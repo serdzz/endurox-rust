@@ -1,14 +1,14 @@
 # LD_PRELOAD libnstd.so Issue
 
-## Проблема
+## Problem
 
-При запуске Rust приложений, использующих Enduro/X UBF библиотеки, возникает ошибка с неопределенными символами:
+When running Rust applications that use Enduro/X UBF libraries, an error with undefined symbols occurs:
 
 ```
 error while loading shared libraries: libubf.so: cannot open shared object file: No such file or directory
 ```
 
-или
+or
 
 ```
 undefined symbol: ndrx_Bget_long
@@ -16,37 +16,37 @@ undefined symbol: ndrx_Badd_string
 ...
 ```
 
-## Причина
+## Root Cause
 
-Библиотека `libubf.so` зависит от символов из `libnstd.so` (Enduro/X standard library), но стандартный линковщик не всегда правильно разрешает эти зависимости при динамической загрузке библиотек через FFI в Rust приложениях.
+The `libubf.so` library depends on symbols from `libnstd.so` (Enduro/X standard library), but the standard linker doesn't always correctly resolve these dependencies when dynamically loading libraries through FFI in Rust applications.
 
-### Техническая деталь
+### Technical Detail
 
-Enduro/X использует многоуровневую архитектуру библиотек:
-- **libnstd.so** - базовая библиотека с utility функциями и общими символами
-- **libubf.so** - UBF (Unified Buffer Format) библиотека, зависящая от libnstd
-- **libatmi.so** - ATMI (Application-to-Transaction Monitor Interface), также зависящая от libnstd
+Enduro/X uses a multi-level library architecture:
+- **libnstd.so** - base library with utility functions and common symbols
+- **libubf.so** - UBF (Unified Buffer Format) library, depending on libnstd
+- **libatmi.so** - ATMI (Application-to-Transaction Monitor Interface), also depending on libnstd
 
-При загрузке `libubf.so` через Rust FFI, динамический линковщик не всегда автоматически загружает `libnstd.so`, что приводит к ошибкам "undefined symbol".
+When loading `libubf.so` through Rust FFI, the dynamic linker doesn't always automatically load `libnstd.so`, leading to "undefined symbol" errors.
 
-## Решение
+## Solution
 
-Использовать `LD_PRELOAD` для принудительной загрузки `libnstd.so` **перед** запуском приложения:
+Use `LD_PRELOAD` to force load `libnstd.so` **before** running the application:
 
 ```bash
 export LD_PRELOAD=/opt/endurox/lib/libnstd.so
 ./your_rust_app
 ```
 
-### Для Docker
+### For Docker
 
-В `Dockerfile` добавить переменную окружения:
+Add environment variable in `Dockerfile`:
 
 ```dockerfile
 ENV LD_PRELOAD=/opt/endurox/lib/libnstd.so
 ```
 
-Пример из проекта:
+Example from the project:
 ```dockerfile
 ENV PATH="/opt/endurox/bin:${PATH}" \
     LD_LIBRARY_PATH="/opt/endurox/lib:${LD_LIBRARY_PATH}" \
@@ -54,9 +54,9 @@ ENV PATH="/opt/endurox/bin:${PATH}" \
     NDRX_HOME="/opt/endurox"
 ```
 
-### Для shell скриптов
+### For Shell Scripts
 
-В скриптах запуска добавить export:
+Add export in startup scripts:
 
 ```bash
 #!/bin/bash
@@ -71,9 +71,9 @@ export LD_PRELOAD=/opt/endurox/lib/libnstd.so
 /app/bin/your_app
 ```
 
-### Для systemd сервисов
+### For systemd Services
 
-В unit файле добавить:
+Add to unit file:
 
 ```ini
 [Service]
@@ -82,166 +82,166 @@ Environment="LD_LIBRARY_PATH=/opt/endurox/lib"
 ExecStart=/app/bin/your_rust_app
 ```
 
-## Альтернативные решения
+## Alternative Solutions
 
-### 1. Статическая линковка (не рекомендуется)
+### 1. Static Linking (not recommended)
 
-Можно попробовать статически слинковать все Enduro/X библиотеки, но это:
-- Увеличивает размер бинарника
-- Усложняет обновление Enduro/X
-- Может вызывать конфликты версий
+You can try to statically link all Enduro/X libraries, but this:
+- Increases binary size
+- Complicates Enduro/X updates
+- Can cause version conflicts
 
-### 2. Явная загрузка через dlopen (сложно)
+### 2. Explicit Loading via dlopen (complex)
 
-В `build.rs` можно добавить явную загрузку `libnstd.so`:
+In `build.rs` you can add explicit loading of `libnstd.so`:
 
 ```rust
-// В build.rs
+// In build.rs
 println!("cargo:rustc-link-arg=-Wl,--no-as-needed");
 println!("cargo:rustc-link-lib=dylib=nstd");
 println!("cargo:rustc-link-lib=dylib=ubf");
 ```
 
-Но это не всегда работает корректно с FFI.
+But this doesn't always work correctly with FFI.
 
-### 3. Использование rpath (работает в некоторых случаях)
+### 3. Using rpath (works in some cases)
 
 ```rust
-// В build.rs
+// In build.rs
 println!("cargo:rustc-link-arg=-Wl,-rpath,/opt/endurox/lib");
 ```
 
-Однако `LD_PRELOAD` остается самым надежным решением.
+However, `LD_PRELOAD` remains the most reliable solution.
 
-## Как проверить
+## How to Verify
 
-### 1. Проверить зависимости библиотеки
+### 1. Check library dependencies
 
 ```bash
 ldd /opt/endurox/lib/libubf.so
 ```
 
-Должно показать:
+Should show:
 ```
 libnstd.so => /opt/endurox/lib/libnstd.so (0x...)
 libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x...)
 ...
 ```
 
-### 2. Проверить загруженные библиотеки в runtime
+### 2. Check loaded libraries at runtime
 
 ```bash
 LD_PRELOAD=/opt/endurox/lib/libnstd.so ldd /app/bin/your_app
 ```
 
-### 3. Проверить экспортируемые символы
+### 3. Check exported symbols
 
 ```bash
 nm -D /opt/endurox/lib/libnstd.so | grep ndrx_
 ```
 
-Должно показать все `ndrx_*` функции.
+Should show all `ndrx_*` functions.
 
-## Проявление проблемы
+## Problem Manifestation
 
-Проблема проявляется в следующих случаях:
+The problem manifests in the following cases:
 
-### ✅ Работает БЕЗ LD_PRELOAD:
-- C/C++ приложения, скомпилированные с правильными `-l` флагами
-- Приложения, использующие только ATMI (без UBF)
-- Статически слинкованные приложения
+### ✅ Works WITHOUT LD_PRELOAD:
+- C/C++ applications compiled with correct `-l` flags
+- Applications using only ATMI (without UBF)
+- Statically linked applications
 
-### ❌ НЕ работает БЕЗ LD_PRELOAD:
-- Rust приложения с FFI к UBF функциям
-- Go приложения с CGo вызовами UBF
-- Python приложения с ctypes/cffi к libubf.so
-- Любые динамически загружаемые модули
+### ❌ Does NOT work WITHOUT LD_PRELOAD:
+- Rust applications with FFI to UBF functions
+- Go applications with CGo UBF calls
+- Python applications with ctypes/cffi to libubf.so
+- Any dynamically loaded modules
 
-## В нашем проекте
+## In Our Project
 
-### Где настроено:
+### Where it's configured:
 
-1. **Dockerfile** (строка 40):
+1. **Dockerfile** (line 40):
    ```dockerfile
    ENV LD_PRELOAD=/opt/endurox/lib/libnstd.so
    ```
 
-2. **test_derive.sh** (строка 7):
+2. **test_derive.sh** (line 7):
    ```bash
    export LD_PRELOAD=/opt/endurox/lib/libnstd.so
    ```
 
-3. **GitLab CI** (.gitlab-ci.yml, строка 50):
+3. **GitLab CI** (.gitlab-ci.yml, line 50):
    ```yaml
    variables:
      LD_PRELOAD: /opt/endurox/lib/libnstd.so
    ```
 
-### Какие компоненты нуждаются в LD_PRELOAD:
+### Components that need LD_PRELOAD:
 
-- ✅ **ubf_test_client** - использует UBF напрямую
-- ✅ **derive_macro_example** - использует UBF через derive macro
-- ✅ **ubfsvr_rust** - UBF сервер
-- ✅ **samplesvr_rust** - использует UBF для TRANSACTION сервиса
-- ✅ **Unit tests** - тесты в endurox-sys/tests/
+- ✅ **ubf_test_client** - uses UBF directly
+- ✅ **derive_macro_example** - uses UBF via derive macro
+- ✅ **ubfsvr_rust** - UBF server
+- ✅ **samplesvr_rust** - uses UBF for TRANSACTION service
+- ✅ **Unit tests** - tests in endurox-sys/tests/
 
-### Компоненты, которые МОГУТ работать без LD_PRELOAD:
+### Components that MAY work without LD_PRELOAD:
 
-- ⚠️ **rest_gateway** - если не использует UBF напрямую (зависит от реализации)
-- ⚠️ **xadmin** утилиты - нативные C приложения Enduro/X
+- ⚠️ **rest_gateway** - if not using UBF directly (depends on implementation)
+- ⚠️ **xadmin** utilities - native C applications from Enduro/X
 
-## Отладка
+## Debugging
 
-Если проблема сохраняется даже с `LD_PRELOAD`:
+If the problem persists even with `LD_PRELOAD`:
 
-### 1. Проверить путь к библиотеке:
+### 1. Check library path:
 ```bash
 ls -la /opt/endurox/lib/libnstd.so
 ```
 
-### 2. Проверить права доступа:
+### 2. Check access permissions:
 ```bash
-# Должен быть readable для всех
+# Should be readable for all
 chmod 644 /opt/endurox/lib/libnstd.so
 ```
 
-### 3. Проверить ldconfig cache:
+### 3. Check ldconfig cache:
 ```bash
 ldconfig -p | grep nstd
 ```
 
-Если не найдено:
+If not found:
 ```bash
 echo "/opt/endurox/lib" > /etc/ld.so.conf.d/endurox.conf
 ldconfig
 ```
 
-### 4. Использовать LD_DEBUG для диагностики:
+### 4. Use LD_DEBUG for diagnostics:
 ```bash
 LD_DEBUG=libs LD_PRELOAD=/opt/endurox/lib/libnstd.so ./your_app 2>&1 | grep nstd
 ```
 
-### 5. Проверить конфликты версий:
+### 5. Check version conflicts:
 ```bash
 strings /opt/endurox/lib/libnstd.so | grep "NDRX"
 strings /opt/endurox/lib/libubf.so | grep "NDRX"
 ```
 
-Версии должны совпадать.
+Versions should match.
 
-## Заключение
+## Conclusion
 
-`LD_PRELOAD=/opt/endurox/lib/libnstd.so` - это **обязательная** настройка для Rust приложений, использующих Enduro/X UBF.
+`LD_PRELOAD=/opt/endurox/lib/libnstd.so` is a **mandatory** setting for Rust applications using Enduro/X UBF.
 
-### Checklist для новых компонентов:
+### Checklist for new components:
 
-- [ ] Добавить `LD_PRELOAD` в Dockerfile если используется
-- [ ] Добавить `export LD_PRELOAD` в shell скрипты запуска
-- [ ] Добавить в CI/CD pipeline если есть тесты с UBF
-- [ ] Документировать в README компонента
-- [ ] Проверить что работает в контейнере и на голом железе
+- [ ] Add `LD_PRELOAD` to Dockerfile if used
+- [ ] Add `export LD_PRELOAD` to shell startup scripts
+- [ ] Add to CI/CD pipeline if there are UBF tests
+- [ ] Document in component's README
+- [ ] Verify it works in container and on bare metal
 
-### Ссылки:
+### Links:
 
 - [Enduro/X Documentation](https://www.endurox.org/dokuwiki/)
 - [Linux LD_PRELOAD](https://man7.org/linux/man-pages/man8/ld.so.8.html)

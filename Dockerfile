@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NDRX_HOME=/opt/endurox
 
-# Установка зависимостей
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     less\
@@ -13,16 +13,16 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-# Установка Rust
+# Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-# Установка Enduro/X из .deb пакета
+# Install Enduro/X from .deb package
 WORKDIR /tmp
 COPY endurox-8.0.10-2.ubuntu22_04_gnu_epoll.x86_64.deb /tmp/
 COPY endurox-connect-8.0.4-1.ubuntu22_04.x86_64.deb /tmp/
 
-# Используем dpkg для установки, но перенаправляя в /opt/endurox
+# Use dpkg for installation, redirecting to /opt/endurox
 RUN dpkg-deb -x endurox-8.0.10-2.ubuntu22_04_gnu_epoll.x86_64.deb /tmp/extracted && \
     mkdir -p /opt/endurox && \
     cp -r /tmp/extracted/usr/* /opt/endurox/ && \
@@ -32,7 +32,7 @@ RUN dpkg-deb -x endurox-8.0.10-2.ubuntu22_04_gnu_epoll.x86_64.deb /tmp/extracted
     rm -rf /tmp/extracted /tmp/endurox-connect-8.0.4-1.ubuntu22_04.x86_64.deb && \
     ldconfig /opt/endurox/lib
 
-# Настройка переменных окружения
+# Configure environment variables
 ENV PATH="/opt/endurox/bin:${PATH}" \
     LD_LIBRARY_PATH="/opt/endurox/lib:${LD_LIBRARY_PATH}" \
     PKG_CONFIG_PATH="/opt/endurox/lib/pkgconfig:${PKG_CONFIG_PATH}" \
@@ -40,11 +40,11 @@ ENV PATH="/opt/endurox/bin:${PATH}" \
     LD_PRELOAD=/opt/endurox/lib/libnstd.so \
     NDRX_HOME="/opt/endurox"
 
-# Копирование workspace
+# Copy workspace
 WORKDIR /app
 COPY Cargo.toml ./
 
-# Копирование всех sub-crates
+# Copy all sub-crates
 COPY endurox-sys ./endurox-sys
 COPY endurox-derive ./endurox-derive
 COPY samplesvr_rust ./samplesvr_rust
@@ -52,7 +52,7 @@ COPY rest_gateway ./rest_gateway
 COPY ubfsvr_rust ./ubfsvr_rust
 COPY ubf_test_client ./ubf_test_client
 
-# Копирование и компиляция UBF field tables
+# Copy and compile UBF field tables
 COPY ubftab ./ubftab
 
 RUN cd ubftab && \
@@ -66,7 +66,7 @@ RUN cd ubftab && \
 ENV FLDTBLDIR=/app/ubftab \
     FIELDTBLS=test
 
-# Сборка всех server binaries
+# Build all server binaries
 RUN cargo build --release && \
     mkdir -p /app/bin && \
     cp /app/target/release/samplesvr_rust /app/bin/ && \
@@ -79,7 +79,7 @@ RUN cd ubf_test_client && \
     cargo build --release --example derive_macro_example --features "ubf,derive" && \
     cp /app/target/release/examples/derive_macro_example /app/bin/
 
-# Копирование конфигурационных файлов
+# Copy configuration files
 COPY conf ./conf
 COPY setenv.sh ./
 COPY test_rest.sh ./
