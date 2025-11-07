@@ -1,0 +1,93 @@
+Starting benchmark at Fri Nov  7 21:14:35 EET 2025
+
+✓ Server is available
+
+Starting benchmarks...
+
+================================================
+Benchmark: CREATE Transaction (Low concurrency)
+  Requests: 50, Concurrency: 5
+------------------------------------------------
+Failed requests:        49
+Non-2xx responses:      49
+Requests per second:    535.80 [#/sec] (mean)
+Time per request:       9.332 [ms] (mean)
+Time per request:       1.866 [ms] (mean, across all concurrent requests)
+Transfer rate:          154.86 [Kbytes/sec] received
+
+================================================
+Benchmark: CREATE Transaction (Medium concurrency)
+  Requests: 100, Concurrency: 10
+------------------------------------------------
+Failed requests:        99
+Non-2xx responses:      99
+Requests per second:    1225.72 [#/sec] (mean)
+Time per request:       8.159 [ms] (mean)
+Time per request:       0.816 [ms] (mean, across all concurrent requests)
+Transfer rate:          354.88 [Kbytes/sec] received
+
+================================================
+Benchmark: CREATE Transaction (High concurrency)
+  Requests: 200, Concurrency: 20
+------------------------------------------------
+Failed requests:        199
+Non-2xx responses:      199
+Requests per second:    1213.95 [#/sec] (mean)
+Time per request:       16.475 [ms] (mean)
+Time per request:       0.824 [ms] (mean, across all concurrent requests)
+Transfer rate:          351.79 [Kbytes/sec] received
+
+Creating test transactions for GET benchmarks...
+✓ Test transaction created: BENCH-TEST-1762542875
+
+================================================
+Benchmark: GET Transaction (Low concurrency)
+  Requests: 100, Concurrency: 10
+------------------------------------------------
+Failed requests:        0
+Requests per second:    1803.98 [#/sec] (mean)
+Time per request:       5.543 [ms] (mean)
+Time per request:       0.554 [ms] (mean, across all concurrent requests)
+Transfer rate:          417.52 [Kbytes/sec] received
+
+================================================
+Benchmark: GET Transaction (High concurrency)
+  Requests: 500, Concurrency: 50
+------------------------------------------------
+Failed requests:        0
+Requests per second:    1724.77 [#/sec] (mean)
+Time per request:       28.989 [ms] (mean)
+Time per request:       0.580 [ms] (mean, across all concurrent requests)
+Transfer rate:          399.19 [Kbytes/sec] received
+
+================================================
+Benchmark: LIST Transactions (Low concurrency)
+  Requests: 50, Concurrency: 5
+------------------------------------------------
+Failed requests:        0
+Requests per second:    1661.57 [#/sec] (mean)
+Time per request:       3.009 [ms] (mean)
+Time per request:       0.602 [ms] (mean, across all concurrent requests)
+Transfer rate:          293.70 [Kbytes/sec] received
+
+================================================
+Benchmark: LIST Transactions (High concurrency)
+  Requests: 200, Concurrency: 20
+------------------------------------------------
+Failed requests:        0
+Requests per second:    1905.72 [#/sec] (mean)
+Time per request:       10.495 [ms] (mean)
+Time per request:       0.525 [ms] (mean, across all concurrent requests)
+Transfer rate:          336.85 [Kbytes/sec] received
+
+================================================
+Benchmark Summary
+================================================
+
+Total transactions created: 350
+
+Checking database...
+Total records in database: 
+
+Benchmark completed at Fri Nov  7 21:14:37 EET 2025
+
