@@ -15,10 +15,16 @@ from pathlib import Path
 from datetime import datetime
 
 # Connection parameters
+# Use environment variable or default to Docker internal hostname
+import os
+
+DB_HOST = os.environ.get("ORACLE_HOST", "oracledb")
+DB_PORT = os.environ.get("ORACLE_PORT", "1521")
+
 DB_CONFIG = {
     "user": "ctp",
     "password": "ctp",
-    "dsn": "localhost:11521/XE"
+    "dsn": f"{DB_HOST}:{DB_PORT}/XE"
 }
 
 MIGRATIONS_DIR = Path(__file__).parent / "migrations"
