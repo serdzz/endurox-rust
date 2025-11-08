@@ -1,5 +1,8 @@
 # endurox-sys
 
+[![Crates.io](https://img.shields.io/crates/v/endurox-sys.svg)](https://crates.io/crates/endurox-sys)
+[![Documentation](https://docs.rs/endurox-sys/badge.svg)](https://docs.rs/endurox-sys)
+
 Low-level Rust FFI bindings for [Enduro/X](https://www.endurox.org/) middleware.
 
 Enduro/X is a high-performance, open-source middleware platform that implements the XATMI API. This crate provides safe and unsafe Rust bindings to the Enduro/X C API, enabling you to build distributed transaction processing applications in Rust.
@@ -19,7 +22,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-endurox-sys = { version = "0.1", features = ["ubf", "server"] }
+endurox-sys = { version = "0.1.1", features = ["ubf", "server"] }
 ```
 
 ### Prerequisites

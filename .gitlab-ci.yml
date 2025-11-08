@@ -47,6 +47,7 @@ test:unit:
     - apt-get install -y libxml2 pkg-config
     - dpkg -i endurox-*.deb || apt-get install -f -y # For now, we'll just check if the Rust code compiles
     - export NDRX_HOME=/usr
+    - export NDRX_APPHOME=.
     - export LD_PRELOAD=/usr/lib/libnstd.so
   script:
     - cargo test --lib --release
@@ -59,6 +60,7 @@ lint:clippy:
   image: rust
   before_script:
     - rustup component add clippy
+    - export NDRX_APPHOME=.
   script:
     - cargo clippy --all-targets --all-features -- -D warnings
   allow_failure: false

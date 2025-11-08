@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.1.1] - 2025-11-08
+
+### Published
+- 🎉 **endurox-sys published to [crates.io](https://crates.io/crates/endurox-sys)**
+  - Version 0.1.1 now available on crates.io
+  - Includes all features: `server`, `client`, `ubf`, `derive`
+  - Public API documentation at [docs.rs/endurox-sys](https://docs.rs/endurox-sys)
+
+### Changed
+- **Migrated to crates.io dependencies**
+  - All projects now use `endurox-sys = "0.1.1"` from crates.io
+  - Removed local path dependencies
+  - Removed `endurox-sys` and `endurox-derive` from workspace members
+  - Projects can now be built independently without local endurox-sys
+
+### Added
+- **NDRX_APPHOME support for UBF field discovery**
+  - Build script now checks `NDRX_APPHOME/ubftab/*.fd.h`
+  - Falls back to `../ubftab/*.fd.h` for local development
+  - Generates empty constants if no field tables found (build succeeds)
+- **Documentation updates**
+  - Added crates.io badges to all README files
+  - Updated installation instructions with crates.io examples
+  - Added "Using endurox-sys in Your Project" section to main README
+  - Updated Resources section with crates.io and docs.rs links
+
+### Fixed
+- UBF field table discovery in deployment environments
+- Build script now properly uses `NDRX_APPHOME` environment variable
+
+---
+
 ## [Unreleased] - 2025-11-06
 
 ### Fixed

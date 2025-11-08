@@ -4,6 +4,8 @@ Procedural macros for [Enduro/X](https://www.endurox.org/) middleware integratio
 
 This crate provides derive macros for automatic serialization and deserialization of Rust structs to/from UBF (Unified Buffer Format) buffers used by Enduro/X.
 
+**Note:** This crate is bundled with [`endurox-sys`](https://crates.io/crates/endurox-sys) when using the `derive` feature. You typically don't need to add this as a separate dependency.
+
 ## Features
 
 - `#[derive(UbfStructDerive)]` - Automatic UBF serialization/deserialization
@@ -17,8 +19,10 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-endurox-sys = { version = "0.1", features = ["derive"] }
+endurox-sys = { version = "0.1.1", features = ["derive"] }
 ```
+
+The `derive` feature automatically includes this crate.
 
 ### Basic Example
 

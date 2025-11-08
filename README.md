@@ -6,8 +6,8 @@ A modern Rust integration for [Enduro/X](https://www.endurox.org/) - a high-perf
 
 This project provides Rust bindings and a complete example implementation for building Enduro/X services and clients. It includes:
 
-- **endurox-sys** - Low-level FFI bindings and safe Rust wrappers for Enduro/X
-- **endurox-derive** - Procedural macros for automatic UBF struct serialization
+- **[endurox-sys](https://crates.io/crates/endurox-sys)** - Low-level FFI bindings and safe Rust wrappers for Enduro/X (published on crates.io)
+- **endurox-derive** - Procedural macros for automatic UBF struct serialization (bundled with endurox-sys)
 - **samplesvr_rust** - Example Enduro/X server implementing STRING/JSON and UBF services
 - **ubfsvr_rust** - UBF (Unified Buffer Format) server with example services
 - **oracle_txn_server** - Transaction server with Oracle Database integration
@@ -34,9 +34,9 @@ This project provides Rust bindings and a complete example implementation for bu
 
 ## Features
 
-### endurox-sys
+### endurox-sys [![Crates.io](https://img.shields.io/crates/v/endurox-sys.svg)](https://crates.io/crates/endurox-sys)
 
-Safe Rust bindings for Enduro/X:
+Safe Rust bindings for Enduro/X, available on [crates.io](https://crates.io/crates/endurox-sys):
 
 - **Server API**: `tpsvrinit`, `tpsvrdone`, service advertisement, `tpreturn`
 - **Client API**: `tpinit`, `tpterm`, `tpcall`, `tpacall`, `tpgetrply`
@@ -101,6 +101,23 @@ HTTP/REST interface powered by Actix-web:
 - **Docker** (for containerized deployment)
 - **Docker Compose** (for orchestration)
 - **Oracle Database** XE 21c (optional, runs in Docker)
+
+## Using endurox-sys in Your Project
+
+Add to your `Cargo.toml`:
+
+```toml
+[dependencies]
+endurox-sys = { version = "0.1.1", features = ["server", "client", "ubf", "derive"] }
+```
+
+Available features:
+- **`server`** - Server API support (`tpsvrinit`, `tpsvrdone`, service advertisement)
+- **`client`** - Client API support (`tpinit`, `tpterm`, `tpcall`, `tpacall`, `tpgetrply`)
+- **`ubf`** - UBF (Unified Buffer Format) support
+- **`derive`** - Procedural macros for UBF struct serialization (`#[derive(UbfStruct)]`)
+
+See the [endurox-sys documentation](https://docs.rs/endurox-sys) for detailed API reference.
 
 ## Quick Start
 
@@ -465,20 +482,6 @@ See [DIESEL_BENCHMARK_RESULTS.md](DIESEL_BENCHMARK_RESULTS.md) for detailed perf
 ├── Cargo.toml              # Workspace definition
 ├── docker-compose.yml      # Docker orchestration
 ├── Dockerfile              # Container image
-├── endurox-sys/            # Rust FFI bindings
-│   ├── src/
-│   │   ├── lib.rs          # Module exports
-│   │   ├── ffi.rs          # Raw FFI declarations
-│   │   ├── server.rs       # Server API
-│   │   ├── client.rs       # Client API
-│   │   ├── ubf.rs          # UBF API
-│   │   ├── ubf_struct.rs   # UBF struct trait & helpers
-│   │   └── log.rs          # Logging wrappers
-│   └── Cargo.toml
-├── endurox-derive/         # Proc-macro for UbfStruct
-│   ├── src/
-│   │   └── lib.rs          # Derive macro implementation
-│   └── Cargo.toml
 ├── samplesvr_rust/         # STRING/JSON server
 │   ├── src/
 │   │   ├── main.rs         # Server entry point
@@ -597,6 +600,20 @@ cargo build --release
 
 This project is provided as-is for demonstration and development purposes.
 
+## Documentation
+
+📖 **[Complete Documentation Index](DOCUMENTATION_INDEX.md)** - Full guide to all project documentation
+
+### Quick Links
+
+- **[Getting Started Guide](GETTING_STARTED.md)** - Quick start guide for using endurox-sys
+- **[Release Notes](RELEASE_NOTES.md)** - Latest release information (v0.1.1)
+- **[Changelog](CHANGELOG.md)** - Complete version history
+- **[UBF Struct Guide](UBF_STRUCT_GUIDE.md)** - Guide to UBF struct serialization
+- **[Transaction API](TRANSACTION_API.md)** - Complex JSON ↔ UBF conversion examples
+- **[Oracle Integration](oracle_txn_server/README.md)** - Oracle Database integration with Diesel ORM
+- **[Performance Benchmarks](DIESEL_BENCHMARK_RESULTS.md)** - Detailed performance analysis
+
 ## Contributing
 
 Contributions are welcome! Please ensure code passes:
@@ -607,5 +624,7 @@ Contributions are welcome! Please ensure code passes:
 ## Resources
 
 - [Enduro/X Documentation](https://www.endurox.org/dokuwiki/)
+- [endurox-sys on crates.io](https://crates.io/crates/endurox-sys)
+- [endurox-sys API Documentation](https://docs.rs/endurox-sys)
 - [Rust FFI Guide](https://doc.rust-lang.org/nomicon/ffi.html)
-- [Axum Documentation](https://docs.rs/axum/latest/axum/)
+- [Actix-web Documentation](https://actix.rs/)

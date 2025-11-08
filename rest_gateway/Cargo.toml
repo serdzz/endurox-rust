@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-endurox-sys = { path = "../endurox-sys", features = ["client", "ubf", "derive"] }
+endurox-sys = { version = "0.1", features = ["client", "ubf", "derive"] }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }
