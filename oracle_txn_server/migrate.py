@@ -150,8 +150,13 @@ class MigrationManager:
         # Execute each statement
         for i, statement in enumerate(statements, 1):
             if statement:
-                # Remove trailing semicolon (Oracle python driver doesn't want it)
-                statement = statement.rstrip().rstrip(';')
+                # Remove trailing semicolon for regular SQL, but keep it for PL/SQL blocks (END;)
+                statement_stripped = statement.rstrip()
+                # Check if this is a PL/SQL block (ends with END;)
+                if not statement_stripped.upper().endswith('END;'):
+                    statement = statement_stripped.rstrip(';')
+                else:
+                    statement = statement_stripped
                 self.cursor.execute(statement)
     
     def status(self):
