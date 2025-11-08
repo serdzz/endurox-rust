@@ -13,19 +13,39 @@ import os
 import sys
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import urlparse
+
+def parse_database_url(url):
+    """
+    Parse DATABASE_URL in format: oracle://user:password@host:port/service
+    Returns dict with connection parameters for oracledb
+    """
+    parsed = urlparse(url)
+    return {
+        "user": parsed.username,
+        "password": parsed.password,
+        "dsn": f"{parsed.hostname}:{parsed.port or 1521}{parsed.path}"
+    }
 
 # Connection parameters
-# Use environment variable or default to Docker internal hostname
-import os
-
-DB_HOST = os.environ.get("ORACLE_HOST", "oracledb")
-DB_PORT = os.environ.get("ORACLE_PORT", "1521")
-
-DB_CONFIG = {
-    "user": "ctp",
-    "password": "ctp",
-    "dsn": f"{DB_HOST}:{DB_PORT}/XE"
-}
+# Priority: DATABASE_URL > individual env vars > defaults
+if os.environ.get("DATABASE_URL"):
+    DB_CONFIG = parse_database_url(os.environ["DATABASE_URL"])
+    print(f"Using DATABASE_URL: {DB_CONFIG['dsn']}")
+else:
+    # Fallback to individual environment variables
+    DB_HOST = os.environ.get("ORACLE_HOST", "oracledb")
+    DB_PORT = os.environ.get("ORACLE_PORT", "1521")
+    DB_USER = os.environ.get("ORACLE_USER", "ctp")
+    DB_PASSWORD = os.environ.get("ORACLE_PASSWORD", "ctp")
+    DB_SERVICE = os.environ.get("ORACLE_SERVICE", "XE")
+    
+    DB_CONFIG = {
+        "user": DB_USER,
+        "password": DB_PASSWORD,
+        "dsn": f"{DB_HOST}:{DB_PORT}/{DB_SERVICE}"
+    }
+    print(f"Using connection: {DB_CONFIG['user']}@{DB_CONFIG['dsn']}")
 
 MIGRATIONS_DIR = Path(__file__).parent / "migrations"
 
