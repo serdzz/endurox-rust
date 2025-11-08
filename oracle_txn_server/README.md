@@ -125,19 +125,21 @@ chmod +x migrate.py
 
 **Example Output:**
 ```
-$ ./migrate.py status
+$ python3 migrate.py status
+Using DATABASE_URL: localhost:11521/XE
 
 Migration Status:
 ------------------------------------------------------------
-✓ Applied    2025-11-07-000000_create_transactions
+✓ Applied    2025-11-07-000000_create_txn_opt_lock
 ------------------------------------------------------------
 Total: 1 migrations, 1 applied, 0 pending
 
-$ ./migrate.py run
+$ python3 migrate.py run
+Using DATABASE_URL: localhost:11521/XE
 
 Applying 1 migration(s)...
-⬆ Running migration: 2025-11-07-000000_create_transactions
-✓ Applied: 2025-11-07-000000_create_transactions
+⬆ Running migration: 2025-11-07-000000_create_txn_opt_lock
+✓ Applied: 2025-11-07-000000_create_txn_opt_lock
 
 ✓ Successfully applied 1 migration(s)
 ```
@@ -145,57 +147,85 @@ Applying 1 migration(s)...
 **Features:**
 - Uses Diesel-compatible migration tracking table (`__diesel_schema_migrations`)
 - Supports up/down migrations from `migrations/<version>/up.sql` and `down.sql`
+- Handles PL/SQL blocks (DECLARE/BEGIN/END, CREATE TRIGGER)
 - Automatic connection to Oracle database (configured for Docker setup)
 - Safe rollback functionality
 - Clear status reporting
 
 **Configuration:**
 
-By default, `migrate.py` connects to:
-- Host: `localhost:11521`
-- User: `ctp`
-- Password: `ctp`
-- Service: `XE`
+The script supports DATABASE_URL environment variable or falls back to individual settings:
 
-Edit the `DB_CONFIG` in `migrate.py` if your setup differs.
+```bash
+# Using DATABASE_URL (recommended)
+export DATABASE_URL=oracle://ctp:ctp@localhost:11521/XE
+python3 migrate.py run
+
+# Or using individual environment variables
+export ORACLE_HOST=localhost
+export ORACLE_PORT=11521
+export ORACLE_USER=ctp
+export ORACLE_PASSWORD=ctp
+export ORACLE_SERVICE=XE
+python3 migrate.py run
+```
+
+Defaults: `localhost:11521`, user `ctp`, password `ctp`, service `XE`
 
 #### Migration Files
 
-Current migration: `migrations/2025-11-07-000000_create_transactions/`
+Current migration: `migrations/2025-11-07-000000_create_txn_opt_lock/`
 
-**up.sql** - Creates the transactions table:
+**up.sql** - Creates the transactions table with optimistic locking:
 ```sql
+-- Create transactions table with optimistic locking support
 CREATE TABLE transactions (
-    id VARCHAR2(255) PRIMARY KEY,
+    Recver NUMBER(10) DEFAULT 0 NOT NULL,
+    id VARCHAR2(100) PRIMARY KEY,
     transaction_type VARCHAR2(50) NOT NULL,
-    account VARCHAR2(255) NOT NULL,
-    amount NUMBER(19) NOT NULL,
+    account VARCHAR2(100) NOT NULL,
+    amount NUMBER(19,2) NOT NULL,
     currency VARCHAR2(10) NOT NULL,
-    description VARCHAR2(1000),
+    description VARCHAR2(500),
     status VARCHAR2(50) NOT NULL,
-    message VARCHAR2(1000),
-    error_code VARCHAR2(100),
-    error_message VARCHAR2(1000),
+    message VARCHAR2(500),
+    error_code VARCHAR2(50),
+    error_message VARCHAR2(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-CREATE INDEX idx_account ON transactions(account);
-CREATE INDEX idx_status ON transactions(status);
-CREATE INDEX idx_created_at ON transactions(created_at);
+CREATE INDEX idx_transactions_type ON transactions(transaction_type);
+CREATE INDEX idx_transactions_status ON transactions(status);
+CREATE INDEX idx_transactions_created ON transactions(created_at DESC);
+
+-- Create trigger to auto-increment Recver on any UPDATE
+CREATE OR REPLACE TRIGGER trg_transactions_optimistic_lock
+BEFORE UPDATE ON transactions
+FOR EACH ROW
+BEGIN
+    :NEW.Recver := :OLD.Recver + 1;
+END;
 ```
 
-**down.sql** - Drops the table and indexes:
+**down.sql** - Drops trigger, indexes and table:
 ```sql
-DROP INDEX idx_created_at;
-DROP INDEX idx_status;
-DROP INDEX idx_account;
+DROP TRIGGER trg_transactions_optimistic_lock;
+DROP INDEX idx_transactions_created;
+DROP INDEX idx_transactions_status;
+DROP INDEX idx_transactions_type;
 DROP TABLE transactions;
 ```
+
+**Optimistic Locking:**
+- `Recver` column stores version number for each row (starts at 0)
+- Automatically incremented by trigger on every UPDATE
+- Enables optimistic concurrency control for Enduro/X transactions
 
 ### Database Schema
 
 The `transactions` table has the following schema:
+- `Recver` - Version number for optimistic locking (auto-incremented on UPDATE)
 - `id` - Transaction ID (primary key)
 - `transaction_type` - Type of transaction (e.g., "sale")
 - `account` - Account number
@@ -449,10 +479,11 @@ let txn_list = transactions
 
 ## Database Schema
 
-The transactions table is automatically created by `db/oracle/01_init.sql`:
+The transactions table is created by the migration system:
 
 ```sql
-CREATE TABLE ctp.transactions (
+CREATE TABLE transactions (
+    Recver NUMBER(10) DEFAULT 0 NOT NULL,
     id VARCHAR2(100) PRIMARY KEY,
     transaction_type VARCHAR2(50) NOT NULL,
     account VARCHAR2(100) NOT NULL,
@@ -463,14 +494,22 @@ CREATE TABLE ctp.transactions (
     message VARCHAR2(500),
     error_code VARCHAR2(50),
     error_message VARCHAR2(500),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 -- Performance indexes
-CREATE INDEX idx_transactions_type ON ctp.transactions(transaction_type);
-CREATE INDEX idx_transactions_status ON ctp.transactions(status);
-CREATE INDEX idx_transactions_created ON ctp.transactions(created_at DESC);
+CREATE INDEX idx_transactions_type ON transactions(transaction_type);
+CREATE INDEX idx_transactions_status ON transactions(status);
+CREATE INDEX idx_transactions_created ON transactions(created_at DESC);
+
+-- Optimistic locking trigger
+CREATE OR REPLACE TRIGGER trg_transactions_optimistic_lock
+BEFORE UPDATE ON transactions
+FOR EACH ROW
+BEGIN
+    :NEW.Recver := :OLD.Recver + 1;
+END;
 ```
 
 ### Querying Transactions Directly
