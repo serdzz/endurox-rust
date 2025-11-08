@@ -105,31 +105,45 @@ class MigrationManager:
     
     def _execute_sql(self, sql):
         """Execute SQL statement(s) - handles PL/SQL blocks"""
-        # For PL/SQL blocks (CREATE TRIGGER, BEGIN/END), we need smart parsing
-        # Simple approach: split by semicolon, but treat BEGIN...END as one block
+        # For PL/SQL blocks (CREATE TRIGGER, BEGIN/END, DECLARE/BEGIN/END), we need smart parsing
         statements = []
         current_statement = []
         in_plsql_block = False
+        plsql_depth = 0
         
         for line in sql.split('\n'):
-            stripped = line.strip()
+            stripped = line.strip().upper()
             
-            # Skip comment-only lines and empty lines
-            if not stripped or stripped.startswith('--'):
+            # Skip comment-only lines
+            if stripped.startswith('--'):
+                continue
+            
+            # Skip empty lines when not in a block
+            if not stripped and not in_plsql_block:
                 continue
             
             # Check if we're entering a PL/SQL block
-            if 'BEGIN' in stripped.upper() and not in_plsql_block:
-                in_plsql_block = True
+            if not in_plsql_block:
+                if stripped.startswith('DECLARE') or stripped.startswith('BEGIN') or 'CREATE OR REPLACE TRIGGER' in stripped:
+                    in_plsql_block = True
+                    plsql_depth = 0
+            
+            # Track nested BEGIN/END blocks
+            if in_plsql_block:
+                if 'BEGIN' in stripped:
+                    plsql_depth += 1
+                if stripped.startswith('END;') or stripped == 'END;':
+                    plsql_depth -= 1
             
             current_statement.append(line)
             
             # Check if statement ends
             if stripped.endswith(';'):
                 if in_plsql_block:
-                    # Check if this is END; which closes the block
-                    if 'END' in stripped.upper():
+                    # Check if this is the final END; that closes the entire block
+                    if plsql_depth <= 0 and ('END;' in stripped):
                         in_plsql_block = False
+                        plsql_depth = 0
                         statement_text = '\n'.join(current_statement).strip()
                         if statement_text:
                             statements.append(statement_text)
