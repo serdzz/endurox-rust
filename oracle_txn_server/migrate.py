@@ -104,11 +104,55 @@ class MigrationManager:
             return f.read().strip()
     
     def _execute_sql(self, sql):
-        """Execute SQL statement(s)"""
-        # Split by semicolons and execute each statement
-        statements = [s.strip() for s in sql.split(';') if s.strip()]
-        for statement in statements:
-            self.cursor.execute(statement)
+        """Execute SQL statement(s) - handles PL/SQL blocks"""
+        # For PL/SQL blocks (CREATE TRIGGER, BEGIN/END), we need smart parsing
+        # Simple approach: split by semicolon, but treat BEGIN...END as one block
+        statements = []
+        current_statement = []
+        in_plsql_block = False
+        
+        for line in sql.split('\n'):
+            stripped = line.strip()
+            
+            # Skip comment-only lines and empty lines
+            if not stripped or stripped.startswith('--'):
+                continue
+            
+            # Check if we're entering a PL/SQL block
+            if 'BEGIN' in stripped.upper() and not in_plsql_block:
+                in_plsql_block = True
+            
+            current_statement.append(line)
+            
+            # Check if statement ends
+            if stripped.endswith(';'):
+                if in_plsql_block:
+                    # Check if this is END; which closes the block
+                    if 'END' in stripped.upper():
+                        in_plsql_block = False
+                        statement_text = '\n'.join(current_statement).strip()
+                        if statement_text:
+                            statements.append(statement_text)
+                        current_statement = []
+                else:
+                    # Regular statement
+                    statement_text = '\n'.join(current_statement).strip()
+                    if statement_text:
+                        statements.append(statement_text)
+                    current_statement = []
+        
+        # Add any remaining statement
+        if current_statement:
+            statement_text = '\n'.join(current_statement).strip()
+            if statement_text:
+                statements.append(statement_text)
+        
+        # Execute each statement
+        for i, statement in enumerate(statements, 1):
+            if statement:
+                # Remove trailing semicolon (Oracle python driver doesn't want it)
+                statement = statement.rstrip().rstrip(';')
+                self.cursor.execute(statement)
     
     def status(self):
         """Show migration status"""

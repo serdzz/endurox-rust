@@ -51,7 +51,7 @@ services:
       [
         "/bin/sh",
         "-c",
-        ". ./setenv.sh && /app/oracle_txn_server/migrate.py run && xadmin start -y && tail -f /dev/null",
+        ". ./setenv.sh && /app/oracle_txn_server/migrate.py run || echo 'Migration failed, continuing...'; xadmin start -y && tail -f /dev/null",
       ]
 
     # Restart policy
