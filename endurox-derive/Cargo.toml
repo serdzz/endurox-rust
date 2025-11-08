@@ -2,6 +2,15 @@
 name = "endurox-derive"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sergej Lepin"]
+description = "Derive macros for Enduro/X UBF buffer serialization"
+license = "MIT"
+repository = "https://github.com/serdzz/endurox-rust"
+homepage = "https://github.com/serdzz/endurox-rust"
+documentation = "https://docs.rs/endurox-derive"
+readme = "README.md"
+keywords = ["endurox", "middleware", "xatmi", "ubf", "derive"]
+categories = ["api-bindings", "encoding"]
 
 [lib]
 proc-macro = true

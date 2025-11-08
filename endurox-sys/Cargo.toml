@@ -2,6 +2,16 @@
 name = "endurox-sys"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sergej Lepin"]
+description = "Low-level FFI bindings for Enduro/X middleware"
+license = "MIT"
+repository = "https://github.com/serdzz/endurox-rust"
+homepage = "https://github.com/serdzz/endurox-rust"
+documentation = "https://docs.rs/endurox-sys"
+readme = "README.md"
+keywords = ["endurox", "middleware", "xatmi", "ubf", "ffi"]
+categories = ["api-bindings", "external-ffi-bindings"]
+links = "endurox"
 
 [lib]
 name = "endurox_sys"
