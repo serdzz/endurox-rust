@@ -25,8 +25,46 @@ endurox-sys = { version = "0.1", features = ["ubf", "server"] }
 ### Prerequisites
 
 - Enduro/X middleware installed and configured
-- `NDRX_HOME` environment variable set
+- Required environment variables (see below)
 - Oracle Instant Client (if using Oracle features)
+
+### Environment Variables
+
+#### `NDRX_HOME` (Required)
+Points to the Enduro/X installation directory. Used by the build script to locate Enduro/X libraries and headers.
+
+```bash
+export NDRX_HOME=/opt/endurox
+```
+
+The build script uses this to:
+- Link against Enduro/X libraries (`libatmi`, `libubf`, `libnstd`, etc.)
+- Find header files during compilation
+
+#### `NDRX_APPHOME` (Optional)
+Points to your application's home directory. Used by the build script to locate UBF field table definitions (`ubftab/` directory) for generating Rust constants.
+
+```bash
+export NDRX_APPHOME=/path/to/your/app
+```
+
+When set, the build script looks for `*.fd.h` files in `$NDRX_APPHOME/ubftab/` and generates Rust constants for UBF field IDs. This allows you to use field constants like `T_NAME_FLD` directly in your code.
+
+**Build-time behavior:**
+- If `NDRX_APPHOME` is set: looks for `$NDRX_APPHOME/ubftab/*.fd.h`
+- If not set: looks for `../ubftab/*.fd.h` (relative to crate directory, for local development)
+- If no UBF tables found: generates empty constants file (build still succeeds)
+
+**Example:**
+```rust
+use endurox_sys::*;
+
+unsafe {
+    // Use generated field constants
+    Bchg(buffer, T_NAME_FLD, 0, name.as_ptr() as *mut i8, 0);
+    Bchg(buffer, T_AMOUNT_FLD, 0, &amount as *const _ as *mut i8, 0);
+}
+```
 
 ## Usage
 

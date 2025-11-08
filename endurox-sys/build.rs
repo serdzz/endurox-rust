@@ -26,6 +26,7 @@ fn main() {
     println!("cargo:rustc-link-lib=m");
 
     println!("cargo:rerun-if-env-changed=NDRX_HOME");
+    println!("cargo:rerun-if-env-changed=NDRX_APPHOME");
     println!("cargo:rerun-if-changed=build.rs");
 
     // Generate UBF field constants from test.fd.h
@@ -33,64 +34,68 @@ fn main() {
 }
 
 fn generate_ubf_constants() {
-    let ubftab_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("../ubftab");
-
-    if !ubftab_dir.exists() {
-        println!("cargo:warning=ubftab directory not found, skipping UBF constants generation");
-        return;
-    }
+    // Try NDRX_APPHOME first (for deployed apps), fall back to CARGO_MANIFEST_DIR (for development)
+    let ubftab_dir = if let Ok(apphome) = env::var("NDRX_APPHOME") {
+        PathBuf::from(apphome).join("ubftab")
+    } else {
+        PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("../ubftab")
+    };
 
     // Parse constants from all *.fd.h files
     let mut rust_code = String::from("// Auto-generated UBF field constants\n");
     rust_code.push_str("// DO NOT EDIT - generated from *.fd.h files in ubftab/\n\n");
 
-    let mut found_files = false;
+    if !ubftab_dir.exists() {
+        println!("cargo:warning=ubftab directory not found, skipping UBF constants generation");
+        // Still create an empty file so include! doesn't fail
+    } else {
+        let mut found_files = false;
 
-    // Read all .fd.h files in ubftab directory
-    if let Ok(entries) = fs::read_dir(&ubftab_dir) {
-        for entry in entries.flatten() {
-            let path = entry.path();
+        // Read all .fd.h files in ubftab directory
+        if let Ok(entries) = fs::read_dir(&ubftab_dir) {
+            for entry in entries.flatten() {
+                let path = entry.path();
 
-            // Process only *.fd.h files
-            if let Some(ext) = path.extension() {
-                if ext == "h"
-                    && path
-                        .file_name()
-                        .unwrap()
-                        .to_str()
-                        .unwrap()
-                        .ends_with(".fd.h")
-                {
-                    found_files = true;
+                // Process only *.fd.h files
+                if let Some(ext) = path.extension() {
+                    if ext == "h"
+                        && path
+                            .file_name()
+                            .unwrap()
+                            .to_str()
+                            .unwrap()
+                            .ends_with(".fd.h")
+                    {
+                        found_files = true;
 
-                    let filename = path.file_name().unwrap().to_str().unwrap();
-                    println!("cargo:rerun-if-changed=../ubftab/{}", filename);
+                        let filename = path.file_name().unwrap().to_str().unwrap();
+                        println!("cargo:rerun-if-changed=../ubftab/{}", filename);
 
-                    rust_code.push_str(&format!("\n// Fields from {}\n", filename));
+                        rust_code.push_str(&format!("\n// Fields from {}\n", filename));
 
-                    if let Ok(content) = fs::read_to_string(&path) {
-                        parse_ubf_header(&content, &mut rust_code);
+                        if let Ok(content) = fs::read_to_string(&path) {
+                            parse_ubf_header(&content, &mut rust_code);
+                        }
                     }
                 }
             }
         }
+
+        if !found_files {
+            println!(
+                "cargo:warning=No *.fd.h files found in ubftab/, skipping UBF constants generation"
+            );
+        }
+
+        // Watch for changes in ubftab directory
+        println!("cargo:rerun-if-changed=../ubftab");
     }
 
-    if !found_files {
-        println!(
-            "cargo:warning=No *.fd.h files found in ubftab/, skipping UBF constants generation"
-        );
-        return;
-    }
-
-    // Write generated Rust code
+    // Always write the file (even if empty) so include! doesn't fail
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("ubf_fields.rs");
     let mut file = fs::File::create(&out_path).expect("Failed to create ubf_fields.rs");
     file.write_all(rust_code.as_bytes())
         .expect("Failed to write ubf_fields.rs");
-
-    // Watch for changes in ubftab directory
-    println!("cargo:rerun-if-changed=../ubftab");
 }
 
 fn parse_ubf_header(content: &str, rust_code: &mut String) {

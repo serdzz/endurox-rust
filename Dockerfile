@@ -78,25 +78,22 @@ RUN cd ubftab && \
     cp /opt/endurox/share/endurox/ubftab/* . && \
     mv Excompat Excompat.fd && \
     mv Exfields Exfields.fd && \
-    mkfldhdr *.fd && \
-    cp *.h /app/endurox-sys/src/
+    mkfldhdr *.fd
 
 # Set FLDTBLDIR and FIELDTBLS environment variables
 ENV FLDTBLDIR=/app/ubftab \
-    FIELDTBLS=test
+    FIELDTBLS=test \
+    NDRX_APPHOME=/app
 
-# Build all server binaries
+# Build all server binaries and derive macro example
 RUN cargo build --release && \
+    cargo build --release --example derive_macro_example --features "ubf,derive" -p ubf_test_client && \
     mkdir -p /app/bin && \
     cp /app/target/release/samplesvr_rust /app/bin/ && \
     cp /app/target/release/rest_gateway /app/bin/ && \
     cp /app/target/release/ubfsvr_rust /app/bin/ && \
     cp /app/target/release/ubf_test_client /app/bin/ && \
-    cp /app/target/release/oracle_txn_server /app/bin/ || true
-
-# Build derive macro example
-RUN cd ubf_test_client && \
-    cargo build --release --example derive_macro_example --features "ubf,derive" && \
+    cp /app/target/release/oracle_txn_server /app/bin/ || true && \
     cp /app/target/release/examples/derive_macro_example /app/bin/
 
 # Copy configuration files
