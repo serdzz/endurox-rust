@@ -21,7 +21,8 @@ libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
-endurox-derive = { path = "../endurox-derive", optional = true }
+endurox-derive = { version = "0.1.0", optional = true }
+
 
 [build-dependencies]
 
