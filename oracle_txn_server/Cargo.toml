@@ -8,7 +8,7 @@ name = "oracle_txn_server"
 path = "src/main.rs"
 
 [dependencies]
-endurox-sys = { version = "0.1", features = ["server", "ubf", "derive"] }
+endurox-sys = { path = "../endurox-sys", features = ["server", "ubf", "derive"] }
 libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }

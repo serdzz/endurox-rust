@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-endurox-sys = { version = "0.1", features = ["client", "ubf"] }
+endurox-sys = { path = "../endurox-sys", features = ["client", "ubf"] }
 
 [features]
 default = []

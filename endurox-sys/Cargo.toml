@@ -11,7 +11,7 @@ documentation = "https://docs.rs/endurox-sys"
 readme = "README.md"
 keywords = ["endurox", "middleware", "xatmi", "ubf", "ffi"]
 categories = ["api-bindings", "external-ffi-bindings"]
-#links = "endurox"
+slinks = "endurox"
 
 [lib]
 name = "endurox_sys"
