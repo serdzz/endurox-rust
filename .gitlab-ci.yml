@@ -51,6 +51,7 @@ test:unit:
     - export NDRX_APPHOME=$(pwd)
     - export LD_PRELOAD=/usr/lib/libnstd.so
   script:
+    - cd endurox-sys
     - cargo test --lib --release
     - cargo test --doc --release
   dependencies: []

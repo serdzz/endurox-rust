@@ -9,6 +9,7 @@ members = [
     "oracle_txn_server",
 ]
 resolver = "2"
+exclude = ["endurox-sys"]
 
 [workspace.dependencies]
 libc = "0.2"

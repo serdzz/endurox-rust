@@ -17,11 +17,11 @@ links = "endurox"
 name = "endurox_sys"
 
 [dependencies]
-libc = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
-thiserror = { workspace = true }
-endurox-derive = { version = "0.1.0", optional = true }
+libc = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+endurox-derive = { version = "0.1", optional = true }
 
 
 [build-dependencies]
