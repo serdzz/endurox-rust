@@ -349,12 +349,25 @@ curl -X POST http://localhost:8080/api/oracle/create \
   }'
 ```
 
-Response:
+Success Response:
 ```json
 {
   "transaction_id": "TXN001",
   "status": "SUCCESS",
   "message": "Transaction TXN001 created successfully"
+}
+```
+
+Error Response (invalid transaction type):
+```json
+{
+  "transaction_id": "TXN002",
+  "status": "ERROR",
+  "message": "Operation failed",
+  "error": {
+    "code": "INVALID_TYPE",
+    "message": "Only 'sale' transactions are supported, got 'refund'"
+  }
 }
 ```
 
@@ -421,6 +434,46 @@ Response:
 - Clean query builder API (no raw SQL strings)
 - Connection pooling with r2d2
 - Schema migrations for version control
+
+### Error Handling
+
+The Oracle transaction server uses a consistent error handling approach:
+
+**Error Response Format:**
+- All service errors return `TPSUCCESS` with error details in the UBF buffer
+- REST gateway returns HTTP 200 OK with error details in JSON body
+- Error responses include `status: "ERROR"`, `error.code`, and `error.message` fields
+- This matches the behavior of the legacy TRANSACTION service
+
+**Error Codes:**
+- `INVALID_TYPE` - Invalid transaction type (only "sale" is supported)
+- `DB_ERROR` - Database connection error
+- `DB_INSERT_ERROR` - Failed to insert transaction
+- `DB_QUERY_ERROR` - Failed to query transaction
+- `DB_COMMIT_ERROR` - Failed to commit transaction
+- `NOT_FOUND` - Transaction not found
+- `MISSING_BUFFER` - Missing UBF buffer in request
+- `DECODE_ERROR` - Failed to decode UBF request
+
+**Implementation:**
+```rust
+fn create_error_response(
+    transaction_id: &str,
+    error_code: &str,
+    error_message: &str,
+) -> ServiceResult {
+    let response = TransactionResponse {
+        transaction_id: transaction_id.to_string(),
+        status: "ERROR".to_string(),
+        message: "Operation failed".to_string(),
+        error_code: Some(error_code.to_string()),
+        error_message: Some(error_message.to_string()),
+    };
+    
+    // Return success with error details inside UBF
+    ServiceResult::success_ubf(response_buf)
+}
+```
 
 ## Transaction Management
 

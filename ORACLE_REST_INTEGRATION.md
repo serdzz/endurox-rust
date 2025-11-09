@@ -100,6 +100,14 @@ if let Err(e) = conn.commit() {
 
 This was critical - Oracle doesn't auto-commit, so transactions were being inserted but rolled back.
 
+**Error Handling Fix**: Changed `create_error_response()` to return `ServiceResult::success_ubf()` instead of `ServiceResult::error_ubf()`:
+```rust
+// Return success with error details inside UBF, like TRANSACTION service does
+ServiceResult::success_ubf(response_buf)
+```
+
+This ensures errors are returned in the response body with HTTP 200 status, matching the behavior of the legacy TRANSACTION service. Errors now properly include `error.code` and `error.message` fields in JSON responses.
+
 #### 3. db/oracle/01_init.sql
 
 Added transactions table schema:
@@ -215,12 +223,31 @@ docker-compose exec -T oracledb sqlplus -S ctp/ctp@//localhost:1521/XE <<< \
 - ✅ Test script with multiple scenarios
 - ✅ Documentation in README
 
+### Error Handling
+- Errors are returned in response body with HTTP 200 OK status (not HTTP 500)
+- Error responses include `error.code` and `error.message` fields in JSON
+- Service errors (validation, database errors) return `TPSUCCESS` with error details in UBF
+- This matches the behavior of legacy TRANSACTION service for consistent error handling
+
+**Example error response:**
+```json
+{
+  "transaction_id": "TXN102",
+  "status": "ERROR",
+  "message": "Operation failed",
+  "error": {
+    "code": "INVALID_TYPE",
+    "message": "Only 'sale' transactions are supported, got 'invalid'"
+  }
+}
+```
+
 ### Data Flow
 - JSON requests automatically mapped to UBF using `#[derive(UbfStructDerive)]`
 - UBF buffers efficiently transferred via Enduro/X IPC
 - Oracle connection pool provides connection management
 - Transactions explicitly committed for data persistence
-- Errors properly propagated through all layers
+- Errors properly propagated through all layers with consistent format
 
 ### Performance Considerations
 - Connection pooling minimizes Oracle connection overhead

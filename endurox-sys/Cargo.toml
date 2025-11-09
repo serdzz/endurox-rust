@@ -11,16 +11,16 @@ documentation = "https://docs.rs/endurox-sys"
 readme = "README.md"
 keywords = ["endurox", "middleware", "xatmi", "ubf", "ffi"]
 categories = ["api-bindings", "external-ffi-bindings"]
-links = "endurox"
+#links = "endurox"
 
 [lib]
 name = "endurox_sys"
 
 [dependencies]
-libc = "0.2"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-thiserror = "1.0"
+libc = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
 endurox-derive = { version = "0.1", optional = true }
 
 

@@ -1,6 +1,6 @@
 //! Raw FFI биндинги к Enduro/X C API
 
-use libc::{c_char, c_int, c_long, c_void};
+use libc::{c_char, c_int, c_long};
 
 // Return codes (from xatmi.h)
 pub const TPFAIL: c_int = 0x00000001;

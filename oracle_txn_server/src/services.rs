@@ -463,5 +463,6 @@ fn create_error_response(
         return ServiceResult::error(&format!("Encode error: {}", e));
     }
 
-    ServiceResult::error_ubf(response_buf)
+    // Return success with error details inside UBF, like TRANSACTION service does
+    ServiceResult::success_ubf(response_buf)
 }
