@@ -15,6 +15,9 @@ serde_json = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
 
+[dev-dependencies]
+endurox-sys = { version = "0.1", features = ["client", "ubf"] }
+
 [features]
 default = []
 ubf = ["endurox-sys/ubf"]
