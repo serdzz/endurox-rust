@@ -1,0 +1,65 @@
+Starting benchmark at Mon Nov 10 19:00:27 EET 2025
+
+✓ Server is available
+
+Using Apache Bench for benchmarking
+
+Creating test transaction...
+✓ Test transaction created: BENCH-TEST-1762794027
+
+================================================
+Benchmark: GET Transaction by ID
+  Testing read performance with existing transaction
+------------------------------------------------
+Test 1: 100 requests, 10 concurrent
+Complete requests:      100
+Failed requests:        0
+Requests per second:    722.98 [#/sec] (mean)
+Time per request:       13.832 [ms] (mean)
+Time per request:       1.383 [ms] (mean, across all concurrent requests)
+
+Test 2: 500 requests, 50 concurrent
+Complete requests:      500
+Failed requests:        0
+Requests per second:    2236.92 [#/sec] (mean)
+Time per request:       22.352 [ms] (mean)
+Time per request:       0.447 [ms] (mean, across all concurrent requests)
+
+================================================
+Benchmark: LIST Transactions
+  Testing list/scan performance
+------------------------------------------------
+Test 1: 50 requests, 5 concurrent
+Complete requests:      50
+Failed requests:        0
+Requests per second:    1000.74 [#/sec] (mean)
+Time per request:       4.996 [ms] (mean)
+Time per request:       0.999 [ms] (mean, across all concurrent requests)
+
+Test 2: 200 requests, 20 concurrent
+Complete requests:      200
+Failed requests:        0
+Requests per second:    1210.87 [#/sec] (mean)
+Time per request:       16.517 [ms] (mean)
+Time per request:       0.826 [ms] (mean, across all concurrent requests)
+
+================================================
+Benchmark: CREATE Transaction (Sequential)
+  Testing write performance with unique IDs
+------------------------------------------------
+Creating 50 transactions sequentially...
+Results:
+  Total requests: 50
+  Failed requests: 0
+  Duration: 1.202831000s
+  Throughput: 41.56 req/sec
+
+================================================
+Benchmark Summary
+================================================
+
+Database Status:
+  Total records in database: 
+
+Benchmark completed at Mon Nov 10 19:00:30 EET 2025
+
