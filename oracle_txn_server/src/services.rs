@@ -83,6 +83,7 @@ impl ServiceResult {
         }
     }
 
+    #[allow(dead_code)]
     pub fn error_ubf(ubf_buffer: UbfBuffer) -> Self {
         ServiceResult {
             success: false,
