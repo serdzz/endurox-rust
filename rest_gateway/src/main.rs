@@ -6,12 +6,41 @@ use endurox_sys::ubf_struct::UbfStruct;
 use endurox_sys::UbfStruct as UbfStructDerive;
 use endurox_sys::{tplog_error, tplog_info};
 use serde::{Deserialize, Serialize};
-use std::sync::{Arc, Mutex};
+use std::cell::RefCell;
 
-// Wrapper for EnduroxClient with synchronization
-struct AppState {
-    client: Arc<Mutex<EnduroxClient>>,
+thread_local! {
+    static CLIENT: RefCell<Option<EnduroxClient>> = RefCell::new(None);
 }
+
+fn get_client() -> Result<(), String> {
+    CLIENT.with(|c| {
+        if c.borrow().is_none() {
+            match EnduroxClient::new() {
+                Ok(client) => {
+                    *c.borrow_mut() = Some(client);
+                    Ok(())
+                }
+                Err(e) => Err(e),
+            }
+        } else {
+            Ok(())
+        }
+    })
+}
+
+fn with_client<F, R>(f: F) -> Result<R, String>
+where
+    F: FnOnce(&EnduroxClient) -> Result<R, String>,
+{
+    get_client()?;
+    CLIENT.with(|c| {
+        let client_ref = c.borrow();
+        let client = client_ref.as_ref().unwrap();
+        f(client)
+    })
+}
+
+struct AppState {}
 
 #[derive(Debug, Deserialize)]
 struct HelloRequest {
@@ -96,11 +125,10 @@ async fn health_check() -> impl Responder {
 }
 
 // STATUS service endpoint
-async fn call_status(data: web::Data<AppState>) -> impl Responder {
+async fn call_status(_data: web::Data<AppState>) -> impl Responder {
     tplog_info("REST API: Calling STATUS service");
 
-    let client = data.client.lock().unwrap();
-    match client.call_service_blocking("STATUS", "") {
+    match with_client(|client| client.call_service_blocking("STATUS", "")) {
         Ok(result) => {
             let result = result.trim_end_matches('\0').to_string();
             HttpResponse::Ok().json(ServiceResponse {
@@ -119,7 +147,7 @@ async fn call_status(data: web::Data<AppState>) -> impl Responder {
 }
 
 // HELLO service endpoint
-async fn call_hello(data: web::Data<AppState>, payload: web::Json<HelloRequest>) -> impl Responder {
+async fn call_hello(_data: web::Data<AppState>, payload: web::Json<HelloRequest>) -> impl Responder {
     tplog_info(&format!(
         "REST API: Calling HELLO with name={}",
         payload.name
@@ -130,8 +158,7 @@ async fn call_hello(data: web::Data<AppState>, payload: web::Json<HelloRequest>)
     })
     .to_string();
 
-    let client = data.client.lock().unwrap();
-    match client.call_service_blocking("HELLO", &request_json) {
+    match with_client(|client| client.call_service_blocking("HELLO", &request_json)) {
         Ok(result) => {
             let result = result.trim_end_matches('\0').to_string();
             HttpResponse::Ok().json(ServiceResponse {
@@ -150,11 +177,10 @@ async fn call_hello(data: web::Data<AppState>, payload: web::Json<HelloRequest>)
 }
 
 // ECHO service endpoint
-async fn call_echo(data: web::Data<AppState>, body: String) -> impl Responder {
+async fn call_echo(_data: web::Data<AppState>, body: String) -> impl Responder {
     tplog_info(&format!("REST API: Calling ECHO with data: {}", body));
 
-    let client = data.client.lock().unwrap();
-    match client.call_service_blocking("ECHO", &body) {
+    match with_client(|client| client.call_service_blocking("ECHO", &body)) {
         Ok(result) => {
             let result = result.trim_end_matches('\0').to_string();
             HttpResponse::Ok().json(ServiceResponse {
@@ -173,14 +199,13 @@ async fn call_echo(data: web::Data<AppState>, body: String) -> impl Responder {
 }
 
 // DATAPROC service endpoint
-async fn call_dataproc(data: web::Data<AppState>, body: String) -> impl Responder {
+async fn call_dataproc(_data: web::Data<AppState>, body: String) -> impl Responder {
     tplog_info(&format!(
         "REST API: Calling DATAPROC with {} bytes",
         body.len()
     ));
 
-    let client = data.client.lock().unwrap();
-    match client.call_service_blocking("DATAPROC", &body) {
+    match with_client(|client| client.call_service_blocking("DATAPROC", &body)) {
         Ok(result) => {
             let result = result.trim_end_matches('\0').to_string();
             HttpResponse::Ok().json(ServiceResponse {
@@ -200,7 +225,7 @@ async fn call_dataproc(data: web::Data<AppState>, body: String) -> impl Responde
 
 // Oracle CREATE_TXN service endpoint
 async fn create_oracle_transaction(
-    data: web::Data<AppState>,
+    _data: web::Data<AppState>,
     payload: web::Json<TransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
@@ -241,9 +266,8 @@ async fn create_oracle_transaction(
 
     // Call CREATE_TXN service with UBF buffer
     let buffer_data = ubf_buf.as_bytes().to_vec();
-    let client = data.client.lock().unwrap();
 
-    match client.call_service_ubf_blocking("CREATE_TXN", &buffer_data) {
+    match with_client(|client| client.call_service_ubf_blocking("CREATE_TXN", &buffer_data)) {
         Ok(response_data) => process_transaction_response(&response_data, &transaction_id),
         Err(e) => {
             tplog_error(&format!("CREATE_TXN call failed: {}", e));
@@ -262,7 +286,7 @@ async fn create_oracle_transaction(
 
 // Oracle GET_TXN service endpoint
 async fn get_oracle_transaction(
-    data: web::Data<AppState>,
+    _data: web::Data<AppState>,
     payload: web::Json<GetTransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
@@ -303,9 +327,8 @@ async fn get_oracle_transaction(
 
     // Call GET_TXN service with UBF buffer
     let buffer_data = ubf_buf.as_bytes().to_vec();
-    let client = data.client.lock().unwrap();
 
-    match client.call_service_ubf_blocking("GET_TXN", &buffer_data) {
+    match with_client(|client| client.call_service_ubf_blocking("GET_TXN", &buffer_data)) {
         Ok(response_data) => process_transaction_response(&response_data, &transaction_id),
         Err(e) => {
             tplog_error(&format!("GET_TXN call failed: {}", e));
@@ -323,7 +346,7 @@ async fn get_oracle_transaction(
 }
 
 // Oracle LIST_TXN service endpoint
-async fn list_oracle_transactions(data: web::Data<AppState>) -> impl Responder {
+async fn list_oracle_transactions(_data: web::Data<AppState>) -> impl Responder {
     tplog_info("REST API: Listing Oracle transactions");
 
     // Call LIST_TXN service with empty UBF buffer
@@ -344,9 +367,8 @@ async fn list_oracle_transactions(data: web::Data<AppState>) -> impl Responder {
     };
 
     let buffer_data = ubf_buf.as_bytes().to_vec();
-    let client = data.client.lock().unwrap();
 
-    match client.call_service_ubf_blocking("LIST_TXN", &buffer_data) {
+    match with_client(|client| client.call_service_ubf_blocking("LIST_TXN", &buffer_data)) {
         Ok(response_data) => process_transaction_response(&response_data, ""),
         Err(e) => {
             tplog_error(&format!("LIST_TXN call failed: {}", e));
@@ -417,7 +439,7 @@ fn process_transaction_response(
 
 // TRANSACTION service endpoint with UBF (legacy, calls samplesvr_rust)
 async fn call_transaction(
-    data: web::Data<AppState>,
+    _data: web::Data<AppState>,
     payload: web::Json<TransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
@@ -458,9 +480,8 @@ async fn call_transaction(
 
     // Call TRANSACTION service with UBF buffer
     let buffer_data = ubf_buf.as_bytes().to_vec();
-    let client = data.client.lock().unwrap();
 
-    match client.call_service_ubf_blocking("TRANSACTION", &buffer_data) {
+    match with_client(|client| client.call_service_ubf_blocking("TRANSACTION", &buffer_data)) {
         Ok(response_data) => {
             // Decode UBF response
             let response_buf = match UbfBuffer::from_bytes(&response_data) {
@@ -525,23 +546,22 @@ async fn call_transaction(
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // Initialize Enduro/X client
-    let client = match EnduroxClient::new() {
-        Ok(c) => c,
-        Err(e) => {
-            eprintln!("Failed to initialize Enduro/X client: {}", e);
-            std::process::exit(1);
-        }
-    };
-
     tplog_info("REST Gateway starting...");
 
-    let app_state = web::Data::new(AppState {
-        client: Arc::new(Mutex::new(client)),
-    });
+    let app_state = web::Data::new(AppState {});
+
+    // Get number of workers from environment or use default
+    let workers = std::env::var("REST_WORKERS")
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or_else(|| num_cpus::get() * 2);
 
     println!("REST Gateway listening on http://0.0.0.0:8080");
-    tplog_info("REST Gateway listening on http://0.0.0.0:8080");
+    println!("Workers: {}", workers);
+    tplog_info(&format!(
+        "REST Gateway listening on http://0.0.0.0:8080 with {} workers",
+        workers
+    ));
 
     HttpServer::new(move || {
         App::new()
@@ -560,6 +580,7 @@ async fn main() -> std::io::Result<()> {
             .route("/api/oracle/get", web::post().to(get_oracle_transaction))
             .route("/api/oracle/list", web::get().to(list_oracle_transactions))
     })
+    .workers(workers)
     .bind(("0.0.0.0", 8080))?
     .run()
     .await

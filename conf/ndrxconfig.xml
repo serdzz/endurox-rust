@@ -67,8 +67,8 @@
             		<sysopt>-e ${NDRX_APPHOME}/log/ubfsvr_rust.log -r</sysopt>
         	</server>
             <server name="oracle_txn_server">
-                <min>1</min>
-                <max>1</max>
+                <min>5</min>
+                <max>10</max>
                 <srvid>11</srvid>
                 <sysopt>-e ${NDRX_APPHOME}/log/oracle_txn_server.log -r</sysopt>
             </server>

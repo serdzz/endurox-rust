@@ -10,3 +10,4 @@ serde_json = { workspace = true }
 tokio = { workspace = true }
 actix-web = "4.9"
 actix-rt = "2.10"
+num_cpus = "1.16"
