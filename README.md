@@ -79,7 +79,13 @@ Safe Rust bindings for Enduro/X, available on [crates.io](https://crates.io/crat
 
 ### REST Gateway
 
-HTTP/REST interface powered by Actix-web:
+HTTP/REST interface powered by Actix-web with **thread-local client architecture** for optimal performance:
+
+**Key Features:**
+- Thread-local EnduroxClient per worker (zero mutex contention)
+- Configurable worker pool (`REST_WORKERS` environment variable)
+- True parallel request processing
+- Auto-initialization of clients on first use
 
 #### Basic Endpoints
 - **GET /** - Health check endpoint
@@ -93,6 +99,8 @@ HTTP/REST interface powered by Actix-web:
 - **POST /api/oracle/create** - Create transaction in Oracle DB (calls CREATE_TXN)
 - **POST /api/oracle/get** - Get transaction by ID (calls GET_TXN)
 - **GET /api/oracle/list** - List all transactions (calls LIST_TXN)
+
+See [rest_gateway/README.md](rest_gateway/README.md) for detailed configuration and performance tuning.
 
 ## Prerequisites
 
@@ -449,30 +457,63 @@ See [db/README.md](db/README.md) for complete database documentation.
 
 ### Performance Benchmarks
 
-The Oracle transaction server uses Diesel ORM with excellent performance characteristics:
+The system is optimized for high throughput with thread-local clients and multiple backend instances:
 
-**Benchmark Results (Diesel ORM):**
-- **GET_TXN**: 1,677 requests/sec (similar to native driver)
-- **LIST_TXN**: 1,134 requests/sec (37% slower than native, but acceptable)
-- **CREATE_TXN**: ~85 requests/sec sequential (similar to native driver)
+**Benchmark Results (16 workers + 5 backend instances):**
+- **GET_TXN**: ~1,700-1,800 requests/sec (read-heavy workload)
+- **LIST_TXN**: ~1,600-1,900 requests/sec (scan operations)
+- **CREATE_TXN**: ~100-150 requests/sec with parallel benchmark (write-heavy)
 - **Zero failures**: All tests completed successfully
 
-**Performance Analysis:**
-- GET and CREATE operations have negligible ORM overhead (~5% difference)
-- LIST operations are 37% slower due to row deserialization (100 rows)
-- Database commit overhead dominates CREATE performance (2-3ms per txn)
-- Trade-off: Diesel provides type safety and maintainability with minimal performance impact
+**Performance Characteristics:**
+- **Thread-local clients**: Zero mutex contention between workers
+- **Load distribution**: Enduro/X distributes across multiple service instances
+- **Parallel processing**: Multiple requests handled simultaneously
+- **Database bottleneck**: CREATE limited by Oracle INSERT + commit (2-3ms)
 
-**Run benchmarks yourself:**
+**Run benchmarks:**
+
+1. **Sequential benchmark** (basic test):
 ```bash
-# Benchmark all endpoints
 ./benchmark_oracle_rest_v2.sh
+```
 
-# Test individual endpoints
+2. **Parallel benchmark** (realistic concurrent load):
+```bash
+# 10 concurrent connections, 100 requests
+./benchmark_create_parallel.sh 10 100
+
+# 20 concurrent connections, 200 requests  
+./benchmark_create_parallel.sh 20 200
+```
+
+3. **Individual endpoint testing**:
+```bash
 ab -n 1000 -c 10 http://localhost:8080/api/oracle/list
 ```
 
-See [DIESEL_BENCHMARK_RESULTS.md](DIESEL_BENCHMARK_RESULTS.md) for detailed performance analysis and comparison with native Oracle driver.
+**Performance Tuning:**
+
+1. Configure REST Gateway workers:
+```bash
+export REST_WORKERS=16  # Recommended: num_cpus * 2
+./target/release/rest_gateway
+```
+
+2. Configure backend service instances in `ndrxconfig.xml`:
+```xml
+<server name="oracle_txn_server">
+    <min>5</min>  <!-- Run 5 instances -->
+    <max>5</max>
+</server>
+```
+
+3. Verify load distribution:
+```bash
+xadmin psc  # Check DONE count across all instances
+```
+
+See [DIESEL_BENCHMARK_RESULTS.md](DIESEL_BENCHMARK_RESULTS.md) for detailed ORM performance analysis and [rest_gateway/README.md](rest_gateway/README.md) for architecture details.
 
 ## Development
 ### Project Structure
