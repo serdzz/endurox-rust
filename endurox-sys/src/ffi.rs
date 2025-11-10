@@ -1,4 +1,4 @@
-//! Raw FFI биндинги к Enduro/X C API
+//! Raw FFI bindings to Enduro/X C API
 
 use libc::{c_char, c_int, c_long, c_void};
 

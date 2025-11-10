@@ -1,4 +1,4 @@
-//! Client API - безопасные обертки для client functions
+//! Client API - safe wrappers for client functions
 
 use crate::ffi;
 use crate::{tplog_error, tplog_info};
@@ -6,13 +6,13 @@ use libc::{c_char, c_long};
 use std::ffi::{CStr, CString};
 use std::ptr;
 
-/// Enduro/X клиент
+/// Enduro/X client
 pub struct EnduroxClient {
     initialized: bool,
 }
 
 impl EnduroxClient {
-    /// Создает и инициализирует клиента
+    /// Creates and initializes the client
     pub fn new() -> Result<Self, String> {
         unsafe {
             tplog_info("Calling tpinit...");
@@ -37,7 +37,7 @@ impl EnduroxClient {
         Ok(EnduroxClient { initialized: true })
     }
 
-    /// Вызывает сервис (blocking)
+    /// Calls a service (blocking)
     pub fn call_service_blocking(&self, service: &str, data: &str) -> Result<String, String> {
         unsafe {
             tplog_info(&format!(

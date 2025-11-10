@@ -1,6 +1,6 @@
-//! Enduro/X FFI биндинги
+//! Enduro/X FFI bindings
 //!
-//! Этот crate предоставляет безопасные обертки вокруг Enduro/X C API.
+//! This crate provides safe wrappers around the Enduro/X C API.
 //!
 //! ## Features
 //! - `server` - Server API (tpsvrinit, tpsvrdone, ndrx_main)
@@ -8,11 +8,11 @@
 //! - `ubf` - UBF (Unified Buffer Format) API
 //!
 //! ## Modules
-//! - `ffi` - Raw FFI биндинги
+//! - `ffi` - Raw FFI bindings
 //! - `server` - Server API
 //! - `client` - Client API
 //! - `ubf` - UBF API
-//! - `log` - Logging функции
+//! - `log` - Logging functions
 
 #![allow(dead_code)]
 #![allow(static_mut_refs)]

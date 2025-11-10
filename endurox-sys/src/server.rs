@@ -1,11 +1,11 @@
-//! Server API - безопасные обертки для server functions
+//! Server API - safe wrappers for server functions
 
 use crate::ffi::{self, TpSvcInfoRaw, TPFAIL, TPSUCCESS};
 use libc::{c_char, c_int, c_long};
 use std::ffi::{CStr, CString};
 use std::ptr;
 
-/// Buffer wrapper для автоматического управления памятью
+/// Buffer wrapper for automatic memory management
 pub struct TpBuffer {
     ptr: *mut c_char,
     len: usize,
@@ -13,7 +13,7 @@ pub struct TpBuffer {
 }
 
 impl TpBuffer {
-    /// Создает новый STRING buffer
+    /// Creates a new STRING buffer
     pub fn new_string(content: &str) -> Result<Self, String> {
         let string_type = CString::new("STRING").map_err(|e| e.to_string())?;
         let allocated_size = content.len() + 1;
@@ -36,7 +36,7 @@ impl TpBuffer {
         })
     }
 
-    /// Создает новый JSON buffer
+    /// Creates a new JSON buffer
     pub fn new_json(content: &str) -> Result<Self, String> {
         let json_type = CString::new("JSON").map_err(|e| e.to_string())?;
         let allocated_size = content.len() + 1;
@@ -67,10 +67,10 @@ impl TpBuffer {
         self.len == 0
     }
 
-    /// Передает владение указателем (для tpreturn)
+    /// Transfers ownership of the pointer (for tpreturn)
     pub fn into_raw(self) -> *mut c_char {
         let ptr = self.ptr;
-        std::mem::forget(self); // Не вызываем Drop
+        std::mem::forget(self); // Don't call Drop
         ptr
     }
 }
@@ -85,7 +85,7 @@ impl Drop for TpBuffer {
     }
 }
 
-/// Регистрирует сервис
+/// Registers a service
 pub fn advertise_service(
     name: &str,
     handler: extern "C" fn(*mut TpSvcInfoRaw),
@@ -111,7 +111,7 @@ pub fn advertise_service(
     Ok(())
 }
 
-/// Возвращает успешный результат
+/// Returns a successful result
 ///
 /// # Safety
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
@@ -151,7 +151,7 @@ pub unsafe fn tpreturn_success(rqst: *mut TpSvcInfoRaw, buffer: TpBuffer) {
     ffi::tpreturn(TPSUCCESS, 1, ret_ptr, len as c_long, 0);
 }
 
-/// Возвращает тот же buffer что пришел
+/// Returns the same buffer that was received
 ///
 /// # Safety
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
@@ -161,7 +161,7 @@ pub unsafe fn tpreturn_echo(rqst: *mut TpSvcInfoRaw) {
     ffi::tpreturn(TPSUCCESS, 0, req.data, 0, 0);
 }
 
-/// Возвращает ошибку
+/// Returns an error
 ///
 /// # Safety
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
@@ -170,7 +170,7 @@ pub unsafe fn tpreturn_fail(rqst: *mut TpSvcInfoRaw) {
     ffi::tpreturn(TPFAIL, 0, req.data, 0, 0);
 }
 
-/// Читает данные из запроса
+/// Reads data from the request
 ///
 /// # Safety
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
@@ -184,7 +184,7 @@ pub unsafe fn get_request_data(rqst: *mut TpSvcInfoRaw) -> Result<Vec<u8>, Strin
     Ok(slice.to_vec())
 }
 
-/// Получает имя сервиса
+/// Gets the service name
 ///
 /// # Safety
 /// Caller must ensure rqst is a valid pointer to TpSvcInfoRaw
@@ -200,18 +200,18 @@ pub unsafe fn get_service_name(rqst: *mut TpSvcInfoRaw) -> Result<String, String
     String::from_utf8(name_bytes).map_err(|e| e.to_string())
 }
 
-/// Точка входа для server binary
+/// Entry point for server binary
 pub fn run_server(
     tpsvrinit: extern "C" fn(c_int, *mut *mut c_char) -> c_int,
     tpsvrdone: extern "C" fn(),
 ) -> ! {
-    // Экспортируем функции для libatmisrvnomain
+    // Export functions for libatmisrvnomain
     unsafe {
         G_tpsvrinit__ = tpsvrinit;
         G_tpsvrdone__ = tpsvrdone;
     }
 
-    // Вызываем ndrx_main
+    // Call ndrx_main
     let args: Vec<CString> = std::env::args()
         .map(|arg| CString::new(arg).unwrap())
         .collect();
@@ -224,7 +224,7 @@ pub fn run_server(
     }
 }
 
-// Глобальные указатели для libatmisrvnomain
+// Global pointers for libatmisrvnomain
 type TpsvrInitFn = extern "C" fn(c_int, *mut *mut c_char) -> c_int;
 type TpsvrDoneFn = extern "C" fn();
 
@@ -240,7 +240,7 @@ extern "C" fn stub_tpsvrinit(_: c_int, _: *mut *mut c_char) -> c_int {
 
 extern "C" fn stub_tpsvrdone() {}
 
-// Дополнительные указатели
+// Additional pointers
 type TpsvrInitPtr = *mut extern "C" fn(c_int, *mut *mut c_char) -> c_int;
 type TpsvrDonePtr = *mut extern "C" fn();
 

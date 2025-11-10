@@ -108,7 +108,7 @@ pub extern "C" fn tpsvrdone() {
     tplog_info("samplesvr_rust shutting down...");
 }
 
-// Main function - использует endurox_sys::server::run_server
+// Main function - uses endurox_sys::server::run_server
 fn main() -> ! {
     run_server(tpsvrinit, tpsvrdone)
 }

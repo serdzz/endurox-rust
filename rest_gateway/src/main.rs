@@ -8,7 +8,7 @@ use endurox_sys::{tplog_error, tplog_info};
 use serde::{Deserialize, Serialize};
 use std::sync::{Arc, Mutex};
 
-// Wrapper для EnduroxClient с синхронизацией
+// Wrapper for EnduroxClient with synchronization
 struct AppState {
     client: Arc<Mutex<EnduroxClient>>,
 }
