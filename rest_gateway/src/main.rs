@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 use std::cell::RefCell;
 
 thread_local! {
-    static CLIENT: RefCell<Option<EnduroxClient>> = RefCell::new(None);
+    static CLIENT: RefCell<Option<EnduroxClient>> = const { RefCell::new(None) };
 }
 
 fn get_client() -> Result<(), String> {
@@ -147,7 +147,10 @@ async fn call_status(_data: web::Data<AppState>) -> impl Responder {
 }
 
 // HELLO service endpoint
-async fn call_hello(_data: web::Data<AppState>, payload: web::Json<HelloRequest>) -> impl Responder {
+async fn call_hello(
+    _data: web::Data<AppState>,
+    payload: web::Json<HelloRequest>,
+) -> impl Responder {
     tplog_info(&format!(
         "REST API: Calling HELLO with name={}",
         payload.name
