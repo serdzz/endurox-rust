@@ -1,10 +1,13 @@
 # Oracle Transaction Server
 
-Enduro/X transaction server with Oracle Database integration using Diesel ORM and diesel-oci driver.
+Enduro/X transaction server with PostgreSQL and Oracle Database support using Diesel ORM.
 
 ## Features
 
-- **Diesel ORM** - Type-safe database queries with diesel-oci 0.4.0
+- **Diesel ORM** - Type-safe database queries
+- **Multi-Database Support** - Automatic database detection from DATABASE_URL:
+  - PostgreSQL (via diesel postgres feature)
+  - Oracle (via diesel-oci 0.4.0)
 - **Connection Pooling** - r2d2 connection pool (max 10 connections) for efficient database access
 - **Type Safety** - Compile-time query validation prevents SQL errors
 - **Schema Migrations** - Database schema versioning with Diesel migrations
@@ -19,10 +22,11 @@ Enduro/X transaction server with Oracle Database integration using Diesel ORM an
 ## Technology Stack
 
 - **ORM**: Diesel 2.1.0
+- **PostgreSQL Driver**: diesel postgres feature
 - **Oracle Driver**: diesel-oci 0.4.0
 - **Connection Pool**: r2d2 0.8
 - **Serialization**: serde, serde_json
-- **Database**: Oracle Database XE 21c
+- **Databases**: PostgreSQL or Oracle Database XE 21c
 
 ## Prerequisites
 
@@ -76,11 +80,23 @@ The docker-compose.yml automatically:
 
 ### 2. Manual Setup
 
-If running outside Docker, set the DATABASE_URL environment variable:
+If running outside Docker, set the DATABASE_URL environment variable.
 
+**For PostgreSQL:**
+```bash
+export DATABASE_URL=postgres://username:password@hostname:port/database
+# Example:
+export DATABASE_URL=postgres://endurox:endurox@localhost:5432/endurox
+```
+
+**For Oracle:**
 ```bash
 export DATABASE_URL=oracle://username:password@hostname:port/service_name
+# Example:
+export DATABASE_URL=oracle://endurox:endurox@localhost:1521/XEPDB1
 ```
+
+The server automatically detects the database type from the URL prefix (`postgres://`, `postgresql://`, or `oracle://`).
 
 Create the database schema manually (see Database Schema section below).
 

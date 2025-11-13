@@ -12,20 +12,26 @@ services:
       - "8090:8090" # Monitoring/Admin port
 
     environment:
-      # Oracle Database connection
-      DATABASE_URL: oracle://ctp:ctp@oracledb:1521/XE
+      # Database connection - override with env var or .env file
+      # For PostgreSQL: DATABASE_URL=postgres://endurox:endurox@postgres:5432/endurox
+      # For Oracle: DATABASE_URL=oracle://ctp:ctp@oracledb:1521/XE
+      DATABASE_URL: ${DATABASE_URL:-postgres://endurox:endurox@postgres:5432/endurox}
       WAIT_FOR_DB: "true"
 
       # Timezone settings
       TIMEZONE: ${TIMEZONE:-UTC}
       TZ: ${TIMEZONE:-UTC}
 
-    # Wait for Oracle DB to be healthy before starting
-    # Remove this section to start without database
+    # Wait for database to be healthy before starting
     depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+        required: false
       oracledb:
         condition: service_healthy
         restart: true
+        required: false
 
     # System limits for POSIX message queues (required by Enduro/X)
     sysctls:
@@ -51,7 +57,7 @@ services:
       [
         "/bin/sh",
         "-c",
-        ". ./setenv.sh && /app/oracle_txn_server/migrate.py run || echo 'Migration failed, continuing...'; xadmin start -y && tail -f /dev/null",
+        ". ./setenv.sh && python3 /app/oracle_txn_server/migrate_universal.py run || echo 'Migration failed, continuing...'; xadmin start -y && tail -f /dev/null",
       ]
 
     # Restart policy
@@ -99,6 +105,63 @@ services:
     networks:
       - endurox-network
 
+    # Use profiles to optionally enable this service
+    profiles:
+      - oracle
+      - all
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+
+    environment:
+      POSTGRES_USER: endurox
+      POSTGRES_PASSWORD: endurox
+      POSTGRES_DB: endurox
+      LANG: C.UTF-8
+
+    # Expose PostgreSQL port to host
+    ports:
+      - "5432:5432"
+
+    # Health check ensures DB is ready before dependent services start
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U endurox"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+    # Persistent database storage
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Optional: Mount init scripts
+      # - ./db/postgres:/docker-entrypoint-initdb.d
+
+    # Restart policy
+    restart: unless-stopped
+
+    networks:
+      - endurox-network
+
+    # Use profiles to optionally enable this service
+    profiles:
+      - postgres
+      - all
+
+  # Adminer - Database management tool
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    networks:
+      - endurox-network
+    profiles:
+      - postgres
+      - oracle
+      - all
+
 # Docker networks
 networks:
   endurox-network:
@@ -110,3 +173,7 @@ volumes:
   # Oracle database data (survives container restarts)
   oracle_data:
     name: endurox-oracle-data
+
+  # PostgreSQL database data (survives container restarts)
+  postgres_data:
+    name: endurox-postgres-data

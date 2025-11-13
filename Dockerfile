@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NDRX_HOME=/opt/endurox
 
-# Install dependencies
+# Install dependencies including PostgreSQL client libraries
 RUN apt-get update && apt-get install -y \
     curl \
     less\
@@ -16,10 +16,12 @@ RUN apt-get update && apt-get install -y \
     unzip \
     python3 \
     python3-pip \
+    postgresql-client \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python packages for Oracle migrations
-RUN pip3 install --no-cache-dir oracledb
+# Install Python packages for database migrations
+RUN pip3 install --no-cache-dir oracledb psycopg2-binary
 
 # Install Oracle Instant Client
 RUN mkdir -p /opt/oracle && \

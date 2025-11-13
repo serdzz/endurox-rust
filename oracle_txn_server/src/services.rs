@@ -8,9 +8,19 @@ use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
 use serde::{Deserialize, Serialize};
 use std::ffi::CStr;
 
-use crate::db::DbPool;
+use crate::db::{DbConnection, DbPool};
 use crate::models::{NewTransaction, Transaction};
 use crate::schema::transactions;
+
+// Macro to execute database operations for both PostgreSQL and Oracle
+macro_rules! execute_db {
+    ($conn:expr, $operation:expr) => {
+        match $conn {
+            DbConnection::Postgres(ref mut pg_conn) => $operation(pg_conn),
+            DbConnection::Oracle(ref mut oci_conn) => $operation(oci_conn),
+        }
+    };
+}
 
 #[derive(Debug)]
 pub struct ServiceRequest {
@@ -305,10 +315,13 @@ pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Se
     };
 
     // Insert into database using Diesel
-    match diesel::insert_into(transactions::table)
-        .values(&new_txn)
-        .execute(&mut conn)
-    {
+    let result = execute_db!(&mut conn, |conn| {
+        diesel::insert_into(transactions::table)
+            .values(&new_txn)
+            .execute(conn)
+    });
+
+    match result {
         Ok(_) => {
             tplog_info(&format!(
                 "Transaction {} created successfully",
@@ -356,9 +369,11 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
     // Query transaction using Diesel
     use crate::schema::transactions::dsl::*;
 
-    let result = transactions
-        .filter(id.eq(&req.transaction_id))
-        .first::<Transaction>(&mut conn);
+    let result = execute_db!(&mut conn, |conn| {
+        transactions
+            .filter(id.eq(&req.transaction_id))
+            .first::<Transaction>(conn)
+    });
 
     match result {
         Ok(txn) => {
@@ -394,11 +409,14 @@ pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> Se
     // Query all transactions using Diesel (limit 100)
     use crate::schema::transactions::dsl::*;
 
-    match transactions
-        .order(created_at.desc())
-        .limit(100)
-        .load::<Transaction>(&mut conn)
-    {
+    let result = execute_db!(&mut conn, |conn| {
+        transactions
+            .order(created_at.desc())
+            .limit(100)
+            .load::<Transaction>(conn)
+    });
+
+    match result {
         Ok(results) => {
             let count = results.len();
             tplog_info(&format!("Found {} transactions", count));

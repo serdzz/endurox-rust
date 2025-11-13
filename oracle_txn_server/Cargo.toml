@@ -15,8 +15,8 @@ serde_json = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
 
-# Diesel ORM for Oracle
-diesel = { workspace = true }
+# Diesel ORM for Oracle and PostgreSQL
+diesel = { workspace = true, features = ["postgres", "r2d2"] }
 diesel-oci = { workspace = true }
 r2d2 = { workspace = true }
 chrono = { version = "0.4", features = ["serde"] }
