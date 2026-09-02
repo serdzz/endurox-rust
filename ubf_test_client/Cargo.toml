@@ -4,9 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-endurox-sys = { path = "../endurox-sys", features = ["client", "ubf"] }
-
-[features]
-default = []
-ubf = ["endurox-sys/ubf"]
-derive = ["endurox-sys/derive"]
+endurox-rs = { workspace = true }

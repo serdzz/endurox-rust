@@ -1,13 +1,18 @@
-use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_fields::*;
-use endurox_sys::ubf_struct::{UbfError, UbfStruct as UbfStructTrait};
-/// Example of using UbfStruct derive macro
+/// Example of using UBF serde derive macros from endurox-rs
 ///
-/// Run with: cargo run --example derive_macro_example --features "ubf,derive"
-use endurox_sys::UbfStruct; // Auto-generated field constants
+/// Run with: cargo run --example derive_macro_example
+use endurox_rs::{AtmiCtx, TypedUbf, UbfResult, UbfValue};
+use endurox_rs::{UbfDeserialize, UbfSerialize};
 
-/// Simple transaction struct using derive macro
-#[derive(Debug, Clone, UbfStruct)]
+// Auto-generated UBF field constants (from ubftab/*.fd.h)
+#[allow(dead_code)]
+mod ubf_fields {
+    include!(concat!(env!("OUT_DIR"), "/ubf_fields.rs"));
+}
+use ubf_fields::*;
+
+/// Simple transaction struct using derive macros
+#[derive(Debug, Clone, UbfSerialize, UbfDeserialize)]
 struct Transaction {
     #[ubf(field = T_NAME_FLD)] // Auto-generated constant
     name: String,
@@ -18,12 +23,18 @@ struct Transaction {
     #[ubf(field = T_PRICE_FLD)] // Auto-generated constant
     amount: f64,
 
-    #[ubf(field = T_STATUS_FLD, default = "pending")] // Auto-generated constant
-    status: String,
+    #[ubf(field = T_STATUS_FLD)] // Auto-generated constant
+    status: Option<String>, // may be absent - defaulted to "pending" below
 }
 
-/// User account with derive macro
-#[derive(Debug, Clone, UbfStruct)]
+impl Transaction {
+    fn status_or_default(&self) -> &str {
+        self.status.as_deref().unwrap_or("pending")
+    }
+}
+
+/// User account with derive macros
+#[derive(Debug, Clone, UbfSerialize, UbfDeserialize)]
 struct UserAccount {
     #[ubf(field = T_NAME_FLD)] // Auto-generated constant
     username: String,
@@ -35,11 +46,11 @@ struct UserAccount {
     balance: f64,
 
     #[ubf(field = T_FLAG_FLD)] // Auto-generated constant
-    active: bool,
+    active: i16,
 }
 
 /// Address struct for nested example
-#[derive(Debug, Clone, UbfStruct)]
+#[derive(Debug, Clone, UbfSerialize, UbfDeserialize)]
 struct Address {
     #[ubf(field = T_STREET_FLD)] // Auto-generated constant
     street: String,
@@ -51,8 +62,8 @@ struct Address {
     zip: String,
 }
 
-/// Customer with nested Address struct
-#[derive(Debug, Clone, UbfStruct)]
+/// Customer with address serialized into the same flat buffer
+#[derive(Debug, Clone, UbfSerialize, UbfDeserialize)]
 struct Customer {
     #[ubf(field = T_NAME_FLD)] // Auto-generated constant
     name: String,
@@ -60,17 +71,33 @@ struct Customer {
     #[ubf(field = T_ID_FLD)] // Auto-generated constant
     customer_id: i64,
 
-    #[ubf(field = 0)] // Nested struct doesn't use a specific field ID
-    address: Option<Address>,
+    #[ubf(field = T_STREET_FLD)]
+    street: String,
+
+    #[ubf(field = T_CITY_FLD)]
+    city: String,
+
+    #[ubf(field = T_ZIP_FLD)]
+    zip: String,
+}
+
+fn roundtrip<'ctx, T>(ctx: &'ctx AtmiCtx, value: &T) -> UbfResult<TypedUbf<'ctx>>
+where
+    T: endurox_rs::UbfSerialize,
+{
+    let mut ubf = ctx
+        .tpalloc_ubf(2048)
+        .map_err(|e| endurox_rs::UbfError::new(endurox_rs::UbfError::BMALLOC, e.to_string()))?;
+    ubf.ubf_write(value, true)?;
+    Ok(ubf)
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize ATMI context (required for UBF operations)
-    unsafe {
-        endurox_sys::ffi::tpinit(std::ptr::null_mut());
-    }
+    let ctx = AtmiCtx::new()?;
+    ctx.tpinit()?;
 
-    println!("=== UbfStruct Derive Macro Example ===\n");
+    println!("=== UBF Serde Derive Macro Example ===\n");
 
     // Example 1: Create and convert Transaction
     println!("1. Transaction with derive macro:");
@@ -78,31 +105,39 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         name: "Payment".to_string(),
         id: 12345,
         amount: 999.99,
-        status: "completed".to_string(),
+        status: Some("completed".to_string()),
     };
 
     println!("   Original: {:?}", txn);
 
     // Convert to UBF
-    let ubf = txn.to_ubf()?;
-    println!("   Converted to UBF (used: {} bytes)", ubf.used());
+    let ubf = roundtrip(&ctx, &txn)?;
+    println!("   Converted to UBF (used: {} bytes)", ctx.bused(&ubf)?);
 
     // Convert back
-    let restored = Transaction::from_ubf(&ubf)?;
+    let restored: Transaction = ubf.ubf_read()?;
     println!("   Restored: {:?}", restored);
     println!();
 
     // Example 2: Test default value
     println!("2. Transaction with default status:");
-    let mut ubf2 = UbfBuffer::new(1024)?;
-    ubf2.add_string(T_NAME_FLD, "Transfer")?;
-    ubf2.add_long(T_ID_FLD, 999)?;
-    ubf2.add_double(T_PRICE_FLD, 50.0)?;
+    let mut ubf2 = ctx.tpalloc_ubf(1024)?;
+    ubf2.bchg(
+        T_NAME_FLD,
+        0,
+        UbfValue::String("Transfer".to_string()),
+        true,
+    )?;
+    ubf2.bchg(T_ID_FLD, 0, UbfValue::Long(999), true)?;
+    ubf2.bchg(T_PRICE_FLD, 0, UbfValue::Double(50.0), true)?;
     // Note: no status field - should use default
 
-    let txn2 = Transaction::from_ubf(&ubf2)?;
+    let txn2: Transaction = ubf2.ubf_read()?;
     println!("   Transaction: {:?}", txn2);
-    println!("   Status (should be 'pending'): {}", txn2.status);
+    println!(
+        "   Status (should be 'pending'): {}",
+        txn2.status_or_default()
+    );
     println!();
 
     // Example 3: UserAccount
@@ -111,13 +146,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         username: "alice".to_string(),
         user_id: 42,
         balance: 1500.50,
-        active: true,
+        active: 1,
     };
 
     println!("   Original: {:?}", user);
 
-    let ubf_user = user.to_ubf()?;
-    let restored_user = UserAccount::from_ubf(&ubf_user)?;
+    let ubf_user = roundtrip(&ctx, &user)?;
+    let restored_user: UserAccount = ubf_user.ubf_read()?;
 
     println!("   Restored: {:?}", restored_user);
     println!("   Active: {}", restored_user.active);
@@ -125,63 +160,52 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Example 4: Update existing buffer
     println!("4. Updating existing UBF buffer:");
-    let mut ubf_mut = UbfBuffer::new(2048)?;
+    let mut ubf_mut = ctx.tpalloc_ubf(2048)?;
 
     let updated_txn = Transaction {
         name: "Refund".to_string(),
         id: 777,
         amount: 123.45,
-        status: "processed".to_string(),
+        status: Some("processed".to_string()),
     };
 
-    updated_txn.update_ubf(&mut ubf_mut)?;
+    updated_txn.ubf_serialize(&mut ubf_mut, true)?;
     println!("   Updated buffer with transaction");
 
-    let verified = Transaction::from_ubf(&ubf_mut)?;
+    let verified: Transaction = ubf_mut.ubf_read()?;
     println!("   Verified: {:?}", verified);
     println!();
 
-    // Example 5: Nested struct
-    println!("5. Nested struct - Customer with Address:");
+    // Example 5: Composed struct - Customer carries flat Address fields
+    println!("5. Composed struct - Customer with Address fields:");
     let customer = Customer {
         name: "John Doe".to_string(),
         customer_id: 1001,
-        address: Some(Address {
-            street: "123 Main St".to_string(),
-            city: "Springfield".to_string(),
-            zip: "12345".to_string(),
-        }),
+        street: "123 Main St".to_string(),
+        city: "Springfield".to_string(),
+        zip: "12345".to_string(),
     };
 
     println!("   Original: {:?}", customer);
 
-    let ubf_customer = customer.to_ubf()?;
-    let restored_customer = Customer::from_ubf(&ubf_customer)?;
-
+    let ubf_customer = roundtrip(&ctx, &customer)?;
+    let restored_customer: Customer = ubf_customer.ubf_read()?;
     println!("   Restored: {:?}", restored_customer);
-    if let Some(addr) = &restored_customer.address {
-        println!("   Address city: {}", addr.city);
-    }
+
+    // The same buffer can also be read as the Address sub-structure
+    let restored_address: Address = ubf_customer.ubf_read()?;
+    println!("   Address city: {}", restored_address.city);
     println!();
 
     // Example 6: Error handling
     println!("6. Error handling:");
-    let empty_buffer = UbfBuffer::new(1024)?;
+    let empty_buffer = ctx.tpalloc_ubf(1024)?;
 
-    match Transaction::from_ubf(&empty_buffer) {
+    match empty_buffer.ubf_read::<Transaction>() {
         Ok(t) => println!("   Got transaction: {:?}", t),
-        Err(UbfError::FieldNotFound(field)) => {
-            println!("   ✓ Expected error - missing field: {}", field);
-        }
-        Err(e) => println!("   Unexpected error: {}", e),
+        Err(e) => println!("   ✓ Expected error - missing field: {}", e),
     }
 
     println!("\n=== All examples completed successfully ===");
-
-    // Cleanup ATMI context
-    unsafe {
-        endurox_sys::ffi::tpterm();
-    }
-
     Ok(())
 }

@@ -1,43 +1,82 @@
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
-use endurox_sys::client::EnduroxClient;
-use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_fields::*;
-use endurox_sys::ubf_struct::UbfStruct;
-use endurox_sys::UbfStruct as UbfStructDerive;
-use endurox_sys::{tplog_error, tplog_info};
+use endurox_rs::{tp_error, tp_info, AtmiCtx, TypedBuffer, UbfDeserialize, UbfSerialize};
 use serde::{Deserialize, Serialize};
 use std::cell::RefCell;
 
+// Auto-generated UBF field constants (from ubftab/*.fd.h)
+#[allow(dead_code)]
+mod ubf_fields {
+    include!(concat!(env!("OUT_DIR"), "/ubf_fields.rs"));
+}
+use ubf_fields::*;
+
 thread_local! {
-    static CLIENT: RefCell<Option<EnduroxClient>> = const { RefCell::new(None) };
+    // One ATMI context per Actix worker thread. AtmiCtx is !Send/!Sync, so it
+    // must never leave the thread that created it; the blocking tpcall API is
+    // used directly from the worker (see endurox-rs README on async).
+    static CLIENT: RefCell<Option<AtmiCtx>> = const { RefCell::new(None) };
 }
 
-fn get_client() -> Result<(), String> {
-    CLIENT.with(|c| {
-        if c.borrow().is_none() {
-            match EnduroxClient::new() {
-                Ok(client) => {
-                    *c.borrow_mut() = Some(client);
-                    Ok(())
-                }
-                Err(e) => Err(e),
-            }
-        } else {
-            Ok(())
-        }
-    })
-}
-
-fn with_client<F, R>(f: F) -> Result<R, String>
+fn with_ctx<F, R>(f: F) -> Result<R, String>
 where
-    F: FnOnce(&EnduroxClient) -> Result<R, String>,
+    F: FnOnce(&AtmiCtx) -> Result<R, String>,
 {
-    get_client()?;
     CLIENT.with(|c| {
-        let client_ref = c.borrow();
-        let client = client_ref.as_ref().unwrap();
-        f(client)
+        let mut slot = c.borrow_mut();
+        if slot.is_none() {
+            let ctx = AtmiCtx::new().map_err(|e| format!("failed to create context: {}", e))?;
+            ctx.tpinit().map_err(|e| format!("tpinit failed: {}", e))?;
+            *slot = Some(ctx);
+        }
+        f(slot.as_ref().unwrap())
     })
+}
+
+/// Call a service with a STRING request buffer and return the STRING reply.
+fn call_service_string(ctx: &AtmiCtx, service: &str, data: &str) -> Result<String, String> {
+    let mut req = ctx
+        .tpalloc("STRING", "", data.len() + 1)
+        .map_err(|e| format!("tpalloc failed: {}", e))?;
+    let mut bytes = data.as_bytes().to_vec();
+    bytes.push(0);
+    req.set_bytes(&bytes)
+        .map_err(|e| format!("failed to fill request buffer: {}", e))?;
+
+    let mut rsp = ctx
+        .tpalloc("STRING", "", 1024)
+        .map_err(|e| format!("reply tpalloc failed: {}", e))?;
+    ctx.tpcall(service, &req, &mut rsp, 0)
+        .map_err(|e| format!("{}", e))?;
+
+    Ok(buffer_to_string(&rsp))
+}
+
+fn buffer_to_string(buf: &TypedBuffer<'_>) -> String {
+    let bytes = buf.as_bytes();
+    let end = bytes.iter().position(|&b| b == 0).unwrap_or(bytes.len());
+    String::from_utf8_lossy(&bytes[..end]).into_owned()
+}
+
+/// Call a service with a UBF request built from `request` and decode the
+/// UBF reply into `R`.
+fn call_service_ubf<T, R>(ctx: &AtmiCtx, service: &str, request: &T) -> Result<R, String>
+where
+    T: UbfSerialize,
+    R: UbfDeserialize,
+{
+    let mut req = ctx
+        .tpalloc_ubf(1024)
+        .map_err(|e| format!("Failed to create UBF buffer: {}", e))?;
+    req.ubf_write(request, true)
+        .map_err(|e| format!("ENCODING_ERROR: {}", e))?;
+
+    let mut rsp = ctx
+        .tpalloc_ubf(1024)
+        .map_err(|e| format!("Failed to create UBF reply buffer: {}", e))?;
+    ctx.tpcall(service, &req, &mut rsp, 0)
+        .map_err(|e| format!("{}", e))?;
+
+    rsp.ubf_read().map_err(|e| format!("DECODING_ERROR: {}", e))
 }
 
 struct AppState {}
@@ -55,7 +94,7 @@ struct ServiceResponse {
 }
 
 // Transaction request/response structures
-#[derive(Debug, Deserialize, Serialize, UbfStructDerive)]
+#[derive(Debug, Deserialize, Serialize, UbfSerialize, UbfDeserialize)]
 struct TransactionRequest {
     #[ubf(field = T_TRANS_TYPE_FLD)]
     transaction_type: String,
@@ -77,7 +116,7 @@ struct TransactionRequest {
     description: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize, UbfStructDerive)]
+#[derive(Debug, Serialize, Deserialize, UbfSerialize, UbfDeserialize)]
 struct TransactionResponse {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
@@ -113,22 +152,27 @@ struct ErrorDetail {
 }
 
 // Get transaction request
-#[derive(Debug, Deserialize, Serialize, UbfStructDerive)]
+#[derive(Debug, Deserialize, Serialize, UbfSerialize, UbfDeserialize)]
 struct GetTransactionRequest {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
 }
+
+// Empty UBF request (e.g. for LIST_TXN)
+#[derive(Debug, UbfSerialize)]
+struct EmptyRequest {}
 
 // Health check endpoint
 async fn health_check() -> impl Responder {
     "OK"
 }
 
-// STATUS service endpoint
-async fn call_status(_data: web::Data<AppState>) -> impl Responder {
-    tplog_info("REST API: Calling STATUS service");
-
-    match with_client(|client| client.call_service_blocking("STATUS", "")) {
+/// Common string-service handler body.
+fn string_service_call(service: &str, payload: &str, log: &str) -> HttpResponse {
+    match with_ctx(|ctx| {
+        tp_info!(ctx, "REST API: {}", log);
+        call_service_string(ctx, service, payload)
+    }) {
         Ok(result) => {
             let result = result.trim_end_matches('\0').to_string();
             HttpResponse::Ok().json(ServiceResponse {
@@ -137,13 +181,21 @@ async fn call_status(_data: web::Data<AppState>) -> impl Responder {
             })
         }
         Err(e) => {
-            tplog_error(&format!("STATUS call failed: {}", e));
+            let _ = with_ctx(|ctx| {
+                tp_error!(ctx, "{} call failed: {}", service, e);
+                Ok(())
+            });
             HttpResponse::InternalServerError().json(ServiceResponse {
                 result: String::new(),
                 error: Some(format!("Service call failed: {}", e)),
             })
         }
     }
+}
+
+// STATUS service endpoint
+async fn call_status(_data: web::Data<AppState>) -> impl Responder {
+    string_service_call("STATUS", "", "Calling STATUS service")
 }
 
 // HELLO service endpoint
@@ -151,76 +203,79 @@ async fn call_hello(
     _data: web::Data<AppState>,
     payload: web::Json<HelloRequest>,
 ) -> impl Responder {
-    tplog_info(&format!(
-        "REST API: Calling HELLO with name={}",
-        payload.name
-    ));
-
     let request_json = serde_json::json!({
         "name": payload.name
     })
     .to_string();
 
-    match with_client(|client| client.call_service_blocking("HELLO", &request_json)) {
-        Ok(result) => {
-            let result = result.trim_end_matches('\0').to_string();
-            HttpResponse::Ok().json(ServiceResponse {
-                result,
-                error: None,
-            })
-        }
-        Err(e) => {
-            tplog_error(&format!("HELLO call failed: {}", e));
-            HttpResponse::InternalServerError().json(ServiceResponse {
-                result: String::new(),
-                error: Some(format!("Service call failed: {}", e)),
-            })
-        }
-    }
+    string_service_call(
+        "HELLO",
+        &request_json,
+        &format!("Calling HELLO with name={}", payload.name),
+    )
 }
 
 // ECHO service endpoint
 async fn call_echo(_data: web::Data<AppState>, body: String) -> impl Responder {
-    tplog_info(&format!("REST API: Calling ECHO with data: {}", body));
-
-    match with_client(|client| client.call_service_blocking("ECHO", &body)) {
-        Ok(result) => {
-            let result = result.trim_end_matches('\0').to_string();
-            HttpResponse::Ok().json(ServiceResponse {
-                result,
-                error: None,
-            })
-        }
-        Err(e) => {
-            tplog_error(&format!("ECHO call failed: {}", e));
-            HttpResponse::InternalServerError().json(ServiceResponse {
-                result: String::new(),
-                error: Some(format!("Service call failed: {}", e)),
-            })
-        }
-    }
+    string_service_call("ECHO", &body, &format!("Calling ECHO with data: {}", body))
 }
 
 // DATAPROC service endpoint
 async fn call_dataproc(_data: web::Data<AppState>, body: String) -> impl Responder {
-    tplog_info(&format!(
-        "REST API: Calling DATAPROC with {} bytes",
-        body.len()
-    ));
+    string_service_call(
+        "DATAPROC",
+        &body,
+        &format!("Calling DATAPROC with {} bytes", body.len()),
+    )
+}
 
-    match with_client(|client| client.call_service_blocking("DATAPROC", &body)) {
-        Ok(result) => {
-            let result = result.trim_end_matches('\0').to_string();
-            HttpResponse::Ok().json(ServiceResponse {
-                result,
-                error: None,
-            })
+/// Common UBF transaction-service handler body.
+fn transaction_service_call<T: UbfSerialize>(
+    service: &str,
+    request: &T,
+    transaction_id: &str,
+    log: &str,
+) -> HttpResponse {
+    let result: Result<TransactionResponse, String> = with_ctx(|ctx| {
+        tp_info!(ctx, "REST API: {}", log);
+        call_service_ubf(ctx, service, request)
+    });
+
+    match result {
+        Ok(trans_response) => {
+            // Convert to JSON response
+            let json_response = TransactionJsonResponse {
+                transaction_id: trans_response.transaction_id,
+                status: trans_response.status,
+                message: trans_response.message,
+                error: match (trans_response.error_code, trans_response.error_message) {
+                    (Some(code), Some(msg)) => Some(ErrorDetail { code, message: msg }),
+                    _ => None,
+                },
+            };
+            HttpResponse::Ok().json(json_response)
         }
         Err(e) => {
-            tplog_error(&format!("DATAPROC call failed: {}", e));
-            HttpResponse::InternalServerError().json(ServiceResponse {
-                result: String::new(),
-                error: Some(format!("Service call failed: {}", e)),
+            let _ = with_ctx(|ctx| {
+                tp_error!(ctx, "{} call failed: {}", service, e);
+                Ok(())
+            });
+            let (status, code) = if e.starts_with("ENCODING_ERROR") {
+                (HttpResponse::BadRequest(), "ENCODING_ERROR")
+            } else if e.starts_with("DECODING_ERROR") {
+                (HttpResponse::InternalServerError(), "DECODING_ERROR")
+            } else {
+                (HttpResponse::InternalServerError(), "SERVICE_ERROR")
+            };
+            let mut status = status;
+            status.json(TransactionJsonResponse {
+                transaction_id: transaction_id.to_string(),
+                status: "ERROR".to_string(),
+                message: "Service call failed".to_string(),
+                error: Some(ErrorDetail {
+                    code: code.to_string(),
+                    message: e,
+                }),
             })
         }
     }
@@ -232,59 +287,11 @@ async fn create_oracle_transaction(
     payload: web::Json<TransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
-    tplog_info(&format!(
-        "REST API: Creating Oracle transaction {} of type {} for account {}",
+    let log = format!(
+        "Creating Oracle transaction {} of type {} for account {}",
         transaction_id, payload.transaction_type, payload.account
-    ));
-
-    // Encode request to UBF
-    let mut ubf_buf = match UbfBuffer::new(1024) {
-        Ok(buf) => buf,
-        Err(e) => {
-            tplog_error(&format!("Failed to create UBF buffer: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Failed to create UBF buffer".to_string(),
-                error: Some(ErrorDetail {
-                    code: "INTERNAL_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    if let Err(e) = payload.update_ubf(&mut ubf_buf) {
-        tplog_error(&format!("Failed to encode request to UBF: {}", e));
-        return HttpResponse::BadRequest().json(TransactionJsonResponse {
-            transaction_id: transaction_id.clone(),
-            status: "ERROR".to_string(),
-            message: "Failed to encode request".to_string(),
-            error: Some(ErrorDetail {
-                code: "ENCODING_ERROR".to_string(),
-                message: e.to_string(),
-            }),
-        });
-    }
-
-    // Call CREATE_TXN service with UBF buffer
-    let buffer_data = ubf_buf.as_bytes().to_vec();
-
-    match with_client(|client| client.call_service_ubf_blocking("CREATE_TXN", &buffer_data)) {
-        Ok(response_data) => process_transaction_response(&response_data, &transaction_id),
-        Err(e) => {
-            tplog_error(&format!("CREATE_TXN call failed: {}", e));
-            HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Service call failed".to_string(),
-                error: Some(ErrorDetail {
-                    code: "SERVICE_ERROR".to_string(),
-                    message: e,
-                }),
-            })
-        }
-    }
+    );
+    transaction_service_call("CREATE_TXN", &*payload, &transaction_id, &log)
 }
 
 // Oracle GET_TXN service endpoint
@@ -293,151 +300,18 @@ async fn get_oracle_transaction(
     payload: web::Json<GetTransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
-    tplog_info(&format!(
-        "REST API: Getting Oracle transaction {}",
-        transaction_id
-    ));
-
-    // Encode request to UBF
-    let mut ubf_buf = match UbfBuffer::new(1024) {
-        Ok(buf) => buf,
-        Err(e) => {
-            tplog_error(&format!("Failed to create UBF buffer: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Failed to create UBF buffer".to_string(),
-                error: Some(ErrorDetail {
-                    code: "INTERNAL_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    if let Err(e) = payload.update_ubf(&mut ubf_buf) {
-        tplog_error(&format!("Failed to encode request to UBF: {}", e));
-        return HttpResponse::BadRequest().json(TransactionJsonResponse {
-            transaction_id: transaction_id.clone(),
-            status: "ERROR".to_string(),
-            message: "Failed to encode request".to_string(),
-            error: Some(ErrorDetail {
-                code: "ENCODING_ERROR".to_string(),
-                message: e.to_string(),
-            }),
-        });
-    }
-
-    // Call GET_TXN service with UBF buffer
-    let buffer_data = ubf_buf.as_bytes().to_vec();
-
-    match with_client(|client| client.call_service_ubf_blocking("GET_TXN", &buffer_data)) {
-        Ok(response_data) => process_transaction_response(&response_data, &transaction_id),
-        Err(e) => {
-            tplog_error(&format!("GET_TXN call failed: {}", e));
-            HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Service call failed".to_string(),
-                error: Some(ErrorDetail {
-                    code: "SERVICE_ERROR".to_string(),
-                    message: e,
-                }),
-            })
-        }
-    }
+    let log = format!("Getting Oracle transaction {}", transaction_id);
+    transaction_service_call("GET_TXN", &*payload, &transaction_id, &log)
 }
 
 // Oracle LIST_TXN service endpoint
 async fn list_oracle_transactions(_data: web::Data<AppState>) -> impl Responder {
-    tplog_info("REST API: Listing Oracle transactions");
-
-    // Call LIST_TXN service with empty UBF buffer
-    let ubf_buf = match UbfBuffer::new(512) {
-        Ok(buf) => buf,
-        Err(e) => {
-            tplog_error(&format!("Failed to create UBF buffer: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: "".to_string(),
-                status: "ERROR".to_string(),
-                message: "Failed to create UBF buffer".to_string(),
-                error: Some(ErrorDetail {
-                    code: "INTERNAL_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    let buffer_data = ubf_buf.as_bytes().to_vec();
-
-    match with_client(|client| client.call_service_ubf_blocking("LIST_TXN", &buffer_data)) {
-        Ok(response_data) => process_transaction_response(&response_data, ""),
-        Err(e) => {
-            tplog_error(&format!("LIST_TXN call failed: {}", e));
-            HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: "".to_string(),
-                status: "ERROR".to_string(),
-                message: "Service call failed".to_string(),
-                error: Some(ErrorDetail {
-                    code: "SERVICE_ERROR".to_string(),
-                    message: e,
-                }),
-            })
-        }
-    }
-}
-
-// Helper function to process transaction response
-fn process_transaction_response(
-    response_data: &[u8],
-    fallback_transaction_id: &str,
-) -> HttpResponse {
-    // Decode UBF response
-    let response_buf = match UbfBuffer::from_bytes(response_data) {
-        Ok(buf) => buf,
-        Err(e) => {
-            tplog_error(&format!("Failed to parse UBF response: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: fallback_transaction_id.to_string(),
-                status: "ERROR".to_string(),
-                message: "Failed to parse response".to_string(),
-                error: Some(ErrorDetail {
-                    code: "PARSING_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    let trans_response = match TransactionResponse::from_ubf(&response_buf) {
-        Ok(resp) => resp,
-        Err(e) => {
-            tplog_error(&format!("Failed to decode UBF response: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: fallback_transaction_id.to_string(),
-                status: "ERROR".to_string(),
-                message: "Failed to decode response".to_string(),
-                error: Some(ErrorDetail {
-                    code: "DECODING_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    // Convert to JSON response
-    let json_response = TransactionJsonResponse {
-        transaction_id: trans_response.transaction_id,
-        status: trans_response.status,
-        message: trans_response.message,
-        error: match (trans_response.error_code, trans_response.error_message) {
-            (Some(code), Some(msg)) => Some(ErrorDetail { code, message: msg }),
-            _ => None,
-        },
-    };
-
-    HttpResponse::Ok().json(json_response)
+    transaction_service_call(
+        "LIST_TXN",
+        &EmptyRequest {},
+        "",
+        "Listing Oracle transactions",
+    )
 }
 
 // TRANSACTION service endpoint with UBF (legacy, calls samplesvr_rust)
@@ -446,110 +320,16 @@ async fn call_transaction(
     payload: web::Json<TransactionRequest>,
 ) -> impl Responder {
     let transaction_id = payload.transaction_id.clone();
-    tplog_info(&format!(
-        "REST API: Processing transaction {} of type {} for account {}",
+    let log = format!(
+        "Processing transaction {} of type {} for account {}",
         transaction_id, payload.transaction_type, payload.account
-    ));
-
-    // Encode request to UBF
-    let mut ubf_buf = match UbfBuffer::new(1024) {
-        Ok(buf) => buf,
-        Err(e) => {
-            tplog_error(&format!("Failed to create UBF buffer: {}", e));
-            return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Failed to create UBF buffer".to_string(),
-                error: Some(ErrorDetail {
-                    code: "INTERNAL_ERROR".to_string(),
-                    message: e.to_string(),
-                }),
-            });
-        }
-    };
-
-    if let Err(e) = payload.update_ubf(&mut ubf_buf) {
-        tplog_error(&format!("Failed to encode request to UBF: {}", e));
-        return HttpResponse::BadRequest().json(TransactionJsonResponse {
-            transaction_id: transaction_id.clone(),
-            status: "ERROR".to_string(),
-            message: "Failed to encode request".to_string(),
-            error: Some(ErrorDetail {
-                code: "ENCODING_ERROR".to_string(),
-                message: e.to_string(),
-            }),
-        });
-    }
-
-    // Call TRANSACTION service with UBF buffer
-    let buffer_data = ubf_buf.as_bytes().to_vec();
-
-    match with_client(|client| client.call_service_ubf_blocking("TRANSACTION", &buffer_data)) {
-        Ok(response_data) => {
-            // Decode UBF response
-            let response_buf = match UbfBuffer::from_bytes(&response_data) {
-                Ok(buf) => buf,
-                Err(e) => {
-                    tplog_error(&format!("Failed to parse UBF response: {}", e));
-                    return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                        transaction_id: transaction_id.clone(),
-                        status: "ERROR".to_string(),
-                        message: "Failed to parse response".to_string(),
-                        error: Some(ErrorDetail {
-                            code: "PARSING_ERROR".to_string(),
-                            message: e.to_string(),
-                        }),
-                    });
-                }
-            };
-
-            let trans_response = match TransactionResponse::from_ubf(&response_buf) {
-                Ok(resp) => resp,
-                Err(e) => {
-                    tplog_error(&format!("Failed to decode UBF response: {}", e));
-                    return HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                        transaction_id: transaction_id.clone(),
-                        status: "ERROR".to_string(),
-                        message: "Failed to decode response".to_string(),
-                        error: Some(ErrorDetail {
-                            code: "DECODING_ERROR".to_string(),
-                            message: e.to_string(),
-                        }),
-                    });
-                }
-            };
-
-            // Convert to JSON response
-            let json_response = TransactionJsonResponse {
-                transaction_id: trans_response.transaction_id,
-                status: trans_response.status,
-                message: trans_response.message,
-                error: match (trans_response.error_code, trans_response.error_message) {
-                    (Some(code), Some(msg)) => Some(ErrorDetail { code, message: msg }),
-                    _ => None,
-                },
-            };
-
-            HttpResponse::Ok().json(json_response)
-        }
-        Err(e) => {
-            tplog_error(&format!("TRANSACTION call failed: {}", e));
-            HttpResponse::InternalServerError().json(TransactionJsonResponse {
-                transaction_id: transaction_id.clone(),
-                status: "ERROR".to_string(),
-                message: "Service call failed".to_string(),
-                error: Some(ErrorDetail {
-                    code: "SERVICE_ERROR".to_string(),
-                    message: e,
-                }),
-            })
-        }
-    }
+    );
+    transaction_service_call("TRANSACTION", &*payload, &transaction_id, &log)
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    tplog_info("REST Gateway starting...");
+    println!("REST Gateway starting...");
 
     let app_state = web::Data::new(AppState {});
 
@@ -561,10 +341,6 @@ async fn main() -> std::io::Result<()> {
 
     println!("REST Gateway listening on http://0.0.0.0:8080");
     println!("Workers: {}", workers);
-    tplog_info(&format!(
-        "REST Gateway listening on http://0.0.0.0:8080 with {} workers",
-        workers
-    ));
 
     HttpServer::new(move || {
         App::new()

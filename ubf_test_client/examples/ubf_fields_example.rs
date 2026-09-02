@@ -1,62 +1,79 @@
 /// Example using auto-generated UBF field constants
 ///
 /// This demonstrates the correct way to use UBF fields with proper type encoding
-use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_fields::*; // Import auto-generated constants
+use endurox_rs::{AtmiCtx, UbfValue};
+
+// Auto-generated UBF field constants (from ubftab/*.fd.h)
+#[allow(dead_code)]
+mod ubf_fields {
+    include!(concat!(env!("OUT_DIR"), "/ubf_fields.rs"));
+}
+use ubf_fields::*; // Import auto-generated constants
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize ATMI context
-    unsafe {
-        endurox_sys::ffi::tpinit(std::ptr::null_mut());
-    }
+    let ctx = AtmiCtx::new()?;
+    ctx.tpinit()?;
 
     println!("=== UBF Fields Example with Auto-Generated Constants ===\n");
 
     // Create UBF buffer
-    let mut buf = UbfBuffer::new(1024)?;
+    let mut buf = ctx.tpalloc_ubf(1024)?;
 
     // Add fields using auto-generated constants
     // These constants already have proper type encoding
     println!("Adding fields to UBF buffer...");
-    buf.add_string(T_NAME_FLD, "John Doe")?;
+    buf.bchg(
+        T_NAME_FLD,
+        0,
+        UbfValue::String("John Doe".to_string()),
+        true,
+    )?;
     println!("  T_NAME_FLD ({}): \"John Doe\"", T_NAME_FLD);
 
-    buf.add_long(T_ID_FLD, 12345)?;
+    buf.bchg(T_ID_FLD, 0, UbfValue::Long(12345), true)?;
     println!("  T_ID_FLD ({}): 12345", T_ID_FLD);
 
-    buf.add_double(T_PRICE_FLD, 999.99)?;
+    buf.bchg(T_PRICE_FLD, 0, UbfValue::Double(999.99), true)?;
     println!("  T_PRICE_FLD ({}): 999.99", T_PRICE_FLD);
 
-    buf.add_string(T_STATUS_FLD, "ACTIVE")?;
+    buf.bchg(
+        T_STATUS_FLD,
+        0,
+        UbfValue::String("ACTIVE".to_string()),
+        true,
+    )?;
     println!("  T_STATUS_FLD ({}): \"ACTIVE\"", T_STATUS_FLD);
 
-    buf.add_long(T_COUNT_FLD, 42)?;
+    buf.bchg(T_COUNT_FLD, 0, UbfValue::Long(42), true)?;
     println!("  T_COUNT_FLD ({}): 42", T_COUNT_FLD);
 
+    let size = buf.bsizeof()?;
+    let used = ctx.bused(&buf)?;
     println!("\nBuffer info:");
-    println!("  Size: {} bytes", buf.size());
-    println!("  Used: {} bytes", buf.used());
-    println!("  Unused: {} bytes", buf.unused());
+    println!("  Size: {} bytes", size);
+    println!("  Used: {} bytes", used);
+    println!("  Unused: {} bytes", size.saturating_sub(used));
 
     // Print UBF buffer contents
     println!("\nBuffer contents:");
-    buf.print()?;
+    buf.bprint()?;
 
     // Read fields back
     println!("\nReading fields back...");
-    let name = buf.get_string(T_NAME_FLD, 0)?;
+    let name = buf.bget_string(T_NAME_FLD, 0)?;
     println!("  Name: {}", name);
 
-    let id = buf.get_long(T_ID_FLD, 0)?;
+    let id = buf.bget_long(T_ID_FLD, 0)?;
     println!("  ID: {}", id);
 
-    let price = buf.get_double(T_PRICE_FLD, 0)?;
+    let price = buf.bget_double(T_PRICE_FLD, 0)?;
     println!("  Price: {:.2}", price);
 
-    let status = buf.get_string(T_STATUS_FLD, 0)?;
+    let status = buf.bget_string(T_STATUS_FLD, 0)?;
     println!("  Status: {}", status);
 
-    let count = buf.get_long(T_COUNT_FLD, 0)?;
+    let count = buf.bget_long(T_COUNT_FLD, 0)?;
     println!("  Count: {}", count);
 
     // Verify data integrity
@@ -69,9 +86,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("\n✅ All fields read correctly!");
 
     // Cleanup
-    unsafe {
-        endurox_sys::ffi::tpterm();
-    }
+    ctx.tpterm()?;
 
     Ok(())
 }
