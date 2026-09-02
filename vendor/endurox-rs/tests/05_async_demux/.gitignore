@@ -1,0 +1,15 @@
+# Anchor the generated directories to this crate's root. Unanchored patterns
+# like `bin/` match at any depth and would also swallow `src/bin/`, which holds
+# the test server and client sources.
+/Cargo.lock
+/bin/
+/target/
+/log/
+/tmp/
+/qdata/
+/tmlogs/
+/ubftab/
+/conf/app.ini
+/conf/settest1
+/conf/setnrd*
+ULOG*

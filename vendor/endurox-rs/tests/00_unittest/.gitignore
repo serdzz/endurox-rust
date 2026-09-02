@@ -1,0 +1,6 @@
+conf/
+log/
+tmp/
+ubftab/
+ULOG*
+settings.ini

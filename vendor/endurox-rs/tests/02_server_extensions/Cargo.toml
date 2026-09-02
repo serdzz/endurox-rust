@@ -1,0 +1,12 @@
+[package]
+name = "endurox-rs-02-server-extensions-tests"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[features]
+ctx-send = ["endurox-rs/ctx-send"]
+
+[dependencies]
+endurox-rs = { path = "../.." }
+libc = "0.2"

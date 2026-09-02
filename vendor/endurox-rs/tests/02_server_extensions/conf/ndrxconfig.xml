@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<endurox>
+    <appconfig>
+         <sanity>5</sanity>
+         <brrefresh>6</brrefresh>
+         <restart_min>1</restart_min>
+         <restart_step>1</restart_step>
+         <restart_max>5</restart_max>
+         <restart_to_check>20</restart_to_check>
+         <gather_pq_stats>Y</gather_pq_stats>
+    </appconfig>
+    <defaults>
+        <min>1</min>
+        <max>1</max>
+        <autokill>1</autokill>
+        <start_max>2</start_max>
+        <pingtime>10</pingtime>
+        <ping_max>40</ping_max>
+        <end_max>30</end_max>
+        <killtime>1</killtime>
+    </defaults>
+    <servers>
+        <server name="rs_it_ext_server">
+            <srvid>1</srvid>
+            <min>1</min>
+            <max>1</max>
+            <!-- Single dispatch thread, deliberately. The tpext_* poller
+                 extensions mutate the global ndrx_G_pollext list and the
+                 shared epollfd with no locking (libatmisrv/pollextension.c),
+                 while the main thread walks that same list. Registering them
+                 from a service handler on a worker thread races the poll loop
+                 and intermittently wedges the server. Dispatch threading is
+                 covered by tests/01_server_api instead. -->
+            <mindispatchthreads>1</mindispatchthreads>
+            <maxdispatchthreads>1</maxdispatchthreads>
+            <sysopt>-e ${NDRX_APPHOME}/log/rs_it_ext_server.log -r</sysopt>
+        </server>
+    </servers>
+</endurox>

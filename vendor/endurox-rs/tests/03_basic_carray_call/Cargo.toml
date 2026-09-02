@@ -1,0 +1,8 @@
+[package]
+name = "endurox-rs-03-basic-carray-call-tests"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+endurox-rs = { path = "../.." }

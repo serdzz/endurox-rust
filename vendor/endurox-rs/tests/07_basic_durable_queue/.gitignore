@@ -1,0 +1,11 @@
+Cargo.lock
+ULOG*
+conf/app.ini
+conf/ndrxconfig.xml
+conf/settest1
+conf/setnrq*
+log/
+tmp/
+qdata/
+tmlogs/
+ubftab/

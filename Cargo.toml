@@ -11,6 +11,7 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
+endurox-rs = { git = "https://github.com/endurox-dev/endurox-rs" }
 libc = "0.2"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
@@ -20,3 +21,9 @@ tokio = { version = "1", features = ["full"] }
 diesel = { version = "2.1", default-features = false }
 diesel-oci = "0.4.0"
 r2d2 = "0.8"
+
+# The upstream endurox-rs sources currently target Enduro/X master headers.
+# vendor/endurox-rs carries minimal compatibility fixes for the system-wide
+# Enduro/X 8.0.10 install (TPQKEEPORIG fallback, two const-pointer casts).
+[patch.'https://github.com/endurox-dev/endurox-rs']
+endurox-rs = { path = "vendor/endurox-rs" }

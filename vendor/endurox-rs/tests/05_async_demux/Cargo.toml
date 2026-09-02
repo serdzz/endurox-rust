@@ -1,0 +1,17 @@
+[package]
+name = "rs-it-async-demux"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+endurox-rs = { path = "../..", features = ["tokio"] }
+tokio = { version = "1", features = ["macros", "rt", "time"] }
+
+[[bin]]
+name = "rs_it_demux_server"
+path = "src/bin/rs_it_demux_server.rs"
+
+[[bin]]
+name = "rs_it_demux_client"
+path = "src/bin/rs_it_demux_client.rs"

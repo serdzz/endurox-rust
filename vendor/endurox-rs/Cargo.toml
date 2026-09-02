@@ -1,0 +1,60 @@
+[package]
+name = "endurox-rs"
+version = "0.1.334"
+edition = "2021"
+
+# REQUIRED by crates.io
+description = "Dev middleware utilities for Enduro/X projects (Rust bindings)."
+license = "AGPL-3.0"   # pick one license or an SPDX expression
+
+# Strongly recommended
+readme = "README.md"
+repository = "https://github.com/endurox-dev/endurox-rs"
+homepage = "https://www.mavimax.com"
+documentation = "https://www.endurox.org/dokuwiki"
+keywords = ["middleware", "development", "endurox", "bindings", "rust"]
+categories = ["development-tools"]
+exclude = [
+    "CLAUDE.md",
+    "target/**",
+    "endurox-rs-derive/target/**",
+]
+
+[dependencies]
+async-io = { version = "2", optional = true }
+endurox-rs-derive = { version = "0.1.0", path = "endurox-rs-derive" }
+libc = "0.2"
+tokio = { version = "1", features = ["net", "rt", "time"], optional = true }
+
+[dev-dependencies]
+# Integration suites share one Enduro/X domain and must exclude each other
+# across processes; see tests/common/endurox_domain_lock.rs.
+libc = "0.2"
+
+[build-dependencies]
+bindgen = "0.70"        # pin a version for stability
+cc = "1.0"
+pkg-config = "0.3"
+
+[features]
+# default = []     # default: !Send & !Sync
+ctx-send = []      # enable to make AtmiCtx: Send & !Sync
+async = ["ctx-send"] # runtime-neutral reply demux; needs a driver feature to be useful
+async-io = ["async", "dep:async-io"] # executor-independent async-io adapter
+tokio = ["async", "dep:tokio"] # Tokio-native reply-fd adapter
+
+[[test]]
+name = "atmictx_tests"
+path = "tests/00_unittest/atmictx_tests.rs"
+
+[[test]]
+name = "ubf_tests"
+path = "tests/00_unittest/ubf_tests.rs"
+
+[[test]]
+name = "nstd_tests"
+path = "tests/00_unittest/nstd_tests.rs"
+
+[[test]]
+name = "boolexpr_print_tests"
+path = "tests/00_unittest/boolexpr_print_tests.rs"

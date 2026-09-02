@@ -1,0 +1,20 @@
+# Workspace-level build configuration.
+#
+# The endurox-rs build script generates Rust UBF field constants with the
+# `mkfldhdr -m4` Rust language mode, which the Enduro/X 8.0.10 mkfldhdr does
+# not have yet. tools/mkfldhdr-rust is a drop-in shim implementing exactly
+# that mode.
+[env]
+ENDUROX_MKFLDHDR = { value = "tools/mkfldhdr-rust", relative = true }
+
+# Enduro/X shared libraries do not declare all inter-library DT_NEEDED entries
+# (e.g. libubf uses libnstd symbols without linking it), so binaries linked
+# with the default --as-needed prune libnstd and fail at runtime with
+# "undefined symbol: G_ndrx_debug". Force the full Enduro/X stack in.
+[target.'cfg(target_os = "linux")']
+rustflags = [
+    "-C", "link-arg=-Wl,--no-as-needed",
+    "-C", "link-arg=-lnstd",
+    "-C", "link-arg=-lubf",
+    "-C", "link-arg=-latmi",
+]

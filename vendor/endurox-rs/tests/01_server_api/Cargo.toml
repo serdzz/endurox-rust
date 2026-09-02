@@ -1,0 +1,11 @@
+[package]
+name = "endurox-rs-01-server-api-tests"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[features]
+ctx-send = ["endurox-rs/ctx-send"]
+
+[dependencies]
+endurox-rs = { path = "../.." }
