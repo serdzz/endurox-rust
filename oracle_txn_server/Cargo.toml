@@ -7,8 +7,16 @@ edition = "2021"
 name = "oracle_txn_server"
 path = "src/main.rs"
 
+[features]
+# PostgreSQL is the default backend. The Oracle backend (diesel-oci) needs the
+# Oracle client libraries at build/run time, so it is opt-in:
+#   cargo build -p oracle_txn_server --features oracle
+default = ["postgres"]
+postgres = []
+oracle = ["dep:diesel-oci"]
+
 [dependencies]
-endurox-sys = { path = "../endurox-sys", features = ["server", "ubf", "derive"] }
+endurox-rs = { workspace = true }
 libc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
@@ -16,14 +24,11 @@ anyhow = { workspace = true }
 thiserror = { workspace = true }
 
 # Diesel ORM for Oracle and PostgreSQL
-diesel = { workspace = true, features = ["postgres", "r2d2"] }
-diesel-oci = { workspace = true }
+diesel = { workspace = true, features = ["postgres", "r2d2", "chrono"] }
+diesel-oci = { workspace = true, optional = true }
 r2d2 = { workspace = true }
 chrono = { version = "0.4", features = ["serde"] }
 bigdecimal = { version = "0.4", features = ["serde"] }
 dotenv = "0.15"
 
 [build-dependencies]
-
-[package.metadata.cargo-build]
-rustflags = ["-C", "link-arg=-latmisrvnomain"]

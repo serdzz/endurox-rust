@@ -1,74 +1,65 @@
-use endurox_sys::ffi;
-use endurox_sys::{tplog_error, tplog_info};
+use endurox_rs::{tp_error, tp_info, AtmiCtx};
 
 /// Start an XA transaction
-pub fn begin_transaction() -> Result<(), String> {
-    let ret = unsafe { ffi::tpbegin(60, 0) }; // 60 second timeout
-    
-    if ret == -1 {
-        let err = unsafe { ffi::tperrno };
-        tplog_error(&format!("Failed to begin transaction: error={}", err));
-        return Err(format!("tpbegin failed with error {}", err));
+pub fn begin_transaction(ctx: &AtmiCtx) -> Result<(), String> {
+    if let Err(e) = ctx.tpbegin(60, 0) {
+        // 60 second timeout
+        tp_error!(ctx, "Failed to begin transaction: {}", e);
+        return Err(format!("tpbegin failed: {}", e));
     }
-    
-    tplog_info("XA transaction started");
+
+    tp_info!(ctx, "XA transaction started");
     Ok(())
 }
 
 /// Commit an XA transaction
-pub fn commit_transaction() -> Result<(), String> {
-    let ret = unsafe { ffi::tpcommit(0) };
-    
-    if ret == -1 {
-        let err = unsafe { ffi::tperrno };
-        tplog_error(&format!("Failed to commit transaction: error={}", err));
-        return Err(format!("tpcommit failed with error {}", err));
+pub fn commit_transaction(ctx: &AtmiCtx) -> Result<(), String> {
+    if let Err(e) = ctx.tpcommit(0) {
+        tp_error!(ctx, "Failed to commit transaction: {}", e);
+        return Err(format!("tpcommit failed: {}", e));
     }
-    
-    tplog_info("XA transaction committed");
+
+    tp_info!(ctx, "XA transaction committed");
     Ok(())
 }
 
 /// Abort/rollback an XA transaction
-pub fn abort_transaction() -> Result<(), String> {
-    let ret = unsafe { ffi::tpabort(0) };
-    
-    if ret == -1 {
-        let err = unsafe { ffi::tperrno };
-        tplog_error(&format!("Failed to abort transaction: error={}", err));
-        return Err(format!("tpabort failed with error {}", err));
+pub fn abort_transaction(ctx: &AtmiCtx) -> Result<(), String> {
+    if let Err(e) = ctx.tpabort(0) {
+        tp_error!(ctx, "Failed to abort transaction: {}", e);
+        return Err(format!("tpabort failed: {}", e));
     }
-    
-    tplog_info("XA transaction aborted");
+
+    tp_info!(ctx, "XA transaction aborted");
     Ok(())
 }
 
 /// Check if currently in a transaction
-pub fn is_in_transaction() -> bool {
-    unsafe { ffi::tpgetlev() > 0 }
+pub fn is_in_transaction(ctx: &AtmiCtx) -> bool {
+    ctx.tpgetlev().map(|lev| lev > 0).unwrap_or(false)
 }
 
 /// Get current transaction level
-pub fn get_transaction_level() -> i32 {
-    unsafe { ffi::tpgetlev() }
+pub fn get_transaction_level(ctx: &AtmiCtx) -> i32 {
+    ctx.tpgetlev().unwrap_or(0)
 }
 
 /// Execute a function within an XA transaction
 /// Automatically commits on success or aborts on error
-pub fn with_transaction<F, T>(f: F) -> Result<T, String>
+pub fn with_transaction<F, T>(ctx: &AtmiCtx, f: F) -> Result<T, String>
 where
     F: FnOnce() -> Result<T, String>,
 {
-    begin_transaction()?;
-    
+    begin_transaction(ctx)?;
+
     match f() {
         Ok(result) => {
-            commit_transaction()?;
+            commit_transaction(ctx)?;
             Ok(result)
         }
         Err(e) => {
-            tplog_error(&format!("Transaction failed: {}", e));
-            abort_transaction()?;
+            tp_error!(ctx, "Transaction failed: {}", e);
+            abort_transaction(ctx)?;
             Err(e)
         }
     }

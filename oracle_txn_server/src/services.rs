@@ -1,12 +1,9 @@
+use crate::ubf_fields::*;
 use diesel::prelude::*;
-use endurox_sys::server::tpreturn_fail;
-use endurox_sys::ubf::UbfBuffer;
-use endurox_sys::ubf_fields::*;
-use endurox_sys::ubf_struct::UbfStruct;
-use endurox_sys::UbfStruct as UbfStructDerive;
-use endurox_sys::{tplog_error, tplog_info, TpSvcInfoRaw};
+use endurox_rs::{
+    tp_error, tp_info, AtmiCtx, TpReturnStatus, TpSvcInfo, TypedUbf, UbfDeserialize, UbfSerialize,
+};
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
 
 use crate::db::{DbConnection, DbPool};
 use crate::models::{NewTransaction, Transaction};
@@ -17,193 +14,85 @@ macro_rules! execute_db {
     ($conn:expr, $operation:expr) => {
         match $conn {
             DbConnection::Postgres(ref mut pg_conn) => $operation(pg_conn),
+            #[cfg(feature = "oracle")]
             DbConnection::Oracle(ref mut oci_conn) => $operation(oci_conn),
         }
     };
 }
 
+/// Outcome of a service handler, consumed by the dispatcher in `main.rs`.
 #[derive(Debug)]
-pub struct ServiceRequest {
-    pub service_name: String,
-    pub ubf_buffer: Option<UbfBuffer>,
-}
-
-impl ServiceRequest {
-    pub fn from_raw(rqst: *mut TpSvcInfoRaw) -> Result<Self, String> {
-        let service_name = unsafe {
-            let name_array = &(*rqst).name;
-            CStr::from_ptr(name_array.as_ptr())
-                .to_str()
-                .map_err(|e| format!("Invalid UTF-8 in service name: {}", e))?
-                .to_string()
-        };
-
-        let ubf_buffer = unsafe {
-            let req = &*rqst;
-            if !req.data.is_null() && req.len > 0 {
-                let buffer_data =
-                    std::slice::from_raw_parts(req.data as *const u8, req.len as usize);
-                UbfBuffer::from_bytes(buffer_data).ok()
-            } else {
-                None
-            }
-        };
-
-        Ok(ServiceRequest {
-            service_name,
-            ubf_buffer,
-        })
-    }
-
-    pub fn service_name(&self) -> String {
-        self.service_name.clone()
-    }
-}
-
-#[derive(Debug)]
-pub struct ServiceResult {
-    pub success: bool,
-    pub message: String,
-    pub ubf_buffer: Option<UbfBuffer>,
-}
-
-impl ServiceResult {
+pub enum ServiceResult<'ctx> {
+    /// Success with a plain STRING response.
     #[allow(dead_code)]
-    pub fn success(message: &str) -> Self {
-        ServiceResult {
-            success: true,
-            message: message.to_string(),
-            ubf_buffer: None,
-        }
-    }
-
-    pub fn success_ubf(ubf_buffer: UbfBuffer) -> Self {
-        ServiceResult {
-            success: true,
-            message: String::new(),
-            ubf_buffer: Some(ubf_buffer),
-        }
-    }
-
-    pub fn error(message: &str) -> Self {
-        ServiceResult {
-            success: false,
-            message: message.to_string(),
-            ubf_buffer: None,
-        }
-    }
-
+    Message(String),
+    /// Success with a UBF response buffer.
+    Ubf(TypedUbf<'ctx>),
+    /// Failure with a log message; TPFAIL is returned to the caller.
+    Error(String),
+    /// Failure with error details carried in a UBF buffer.
     #[allow(dead_code)]
-    pub fn error_ubf(ubf_buffer: UbfBuffer) -> Self {
-        ServiceResult {
-            success: false,
-            message: String::new(),
-            ubf_buffer: Some(ubf_buffer),
-        }
-    }
+    ErrorUbf(TypedUbf<'ctx>),
+}
 
-    pub fn send_response(&self, rqst: *mut TpSvcInfoRaw) -> Result<(), String> {
-        unsafe {
-            if self.success {
-                use endurox_sys::ffi;
-                use libc::c_long;
-                use std::ffi::CString;
-
-                let req = &*rqst;
-
-                if let Some(ref ubf_buf) = self.ubf_buffer {
-                    tplog_info("Service responded successfully with UBF buffer");
-
-                    let buffer_data = ubf_buf.as_bytes();
-                    let needed_len = buffer_data.len();
-
-                    let ret_buf = if req.data.is_null() {
-                        let ubf_type = CString::new("UBF").unwrap();
-                        ffi::tpalloc(ubf_type.as_ptr(), std::ptr::null(), needed_len as c_long)
-                    } else {
-                        ffi::tprealloc(req.data, needed_len as c_long)
-                    };
-
-                    if ret_buf.is_null() {
-                        tplog_error("Failed to allocate UBF return buffer");
-                        tpreturn_fail(rqst);
-                        return Ok(());
+/// Send the handler outcome back to the caller via tpreturn.
+pub fn send_response<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    svc: &mut TpSvcInfo<'ctx>,
+    result: ServiceResult<'ctx>,
+) {
+    match result {
+        ServiceResult::Message(msg) => {
+            tp_info!(ctx, "Service responded successfully: {}", msg);
+            match ctx.tpalloc("STRING", "", msg.len() + 1) {
+                Ok(mut buf) => {
+                    let mut bytes = msg.into_bytes();
+                    bytes.push(0);
+                    if let Err(e) = buf.set_bytes(&bytes) {
+                        tp_error!(ctx, "Failed to fill return buffer: {}", e);
+                        ctx.tpreturn(TpReturnStatus::Fail, 0, buf, 0);
+                        return;
                     }
-
-                    std::ptr::copy_nonoverlapping(
-                        buffer_data.as_ptr(),
-                        ret_buf as *mut u8,
-                        buffer_data.len(),
-                    );
-
-                    ffi::tpreturn(ffi::TPSUCCESS, 0, ret_buf, buffer_data.len() as c_long, 0);
-                } else {
-                    tplog_info(&format!("Service responded successfully: {}", self.message));
-
-                    let msg_bytes = self.message.as_bytes();
-                    let needed_len = msg_bytes.len() + 1;
-
-                    let ret_buf = if req.data.is_null() {
-                        let string_type = CString::new("STRING").unwrap();
-                        ffi::tpalloc(string_type.as_ptr(), std::ptr::null(), needed_len as c_long)
-                    } else {
-                        ffi::tprealloc(req.data, needed_len as c_long)
-                    };
-
-                    if ret_buf.is_null() {
-                        tplog_error("Failed to allocate return buffer");
-                        tpreturn_fail(rqst);
-                        return Ok(());
-                    }
-
-                    std::ptr::copy_nonoverlapping(
-                        msg_bytes.as_ptr(),
-                        ret_buf as *mut u8,
-                        msg_bytes.len(),
-                    );
-                    *ret_buf.add(msg_bytes.len()) = 0;
-
-                    ffi::tpreturn(ffi::TPSUCCESS, 0, ret_buf, msg_bytes.len() as c_long, 0);
+                    ctx.tpreturn(TpReturnStatus::Success, 0, buf, 0);
                 }
-            } else if let Some(ref ubf_buf) = self.ubf_buffer {
-                tplog_error("Service responded with UBF error");
-
-                use endurox_sys::ffi;
-                use libc::c_long;
-                use std::ffi::CString;
-
-                let req = &*rqst;
-                let buffer_data = ubf_buf.as_bytes();
-                let needed_len = buffer_data.len();
-
-                let ret_buf = if req.data.is_null() {
-                    let ubf_type = CString::new("UBF").unwrap();
-                    ffi::tpalloc(ubf_type.as_ptr(), std::ptr::null(), needed_len as c_long)
-                } else {
-                    ffi::tprealloc(req.data, needed_len as c_long)
-                };
-
-                if !ret_buf.is_null() {
-                    std::ptr::copy_nonoverlapping(
-                        buffer_data.as_ptr(),
-                        ret_buf as *mut u8,
-                        buffer_data.len(),
-                    );
-                    ffi::tpreturn(ffi::TPFAIL, 0, ret_buf, buffer_data.len() as c_long, 0);
-                } else {
-                    tpreturn_fail(rqst);
+                Err(e) => {
+                    tp_error!(ctx, "Failed to allocate return buffer: {}", e);
+                    fail_with_request(ctx, svc);
                 }
-            } else {
-                tplog_error(&format!("Service responded with error: {}", self.message));
-                tpreturn_fail(rqst);
             }
         }
-        Ok(())
+        ServiceResult::Ubf(ubf) => {
+            tp_info!(ctx, "Service responded successfully with UBF buffer");
+            ctx.tpreturn_ubf(TpReturnStatus::Success, 0, ubf, 0);
+        }
+        ServiceResult::Error(msg) => {
+            tp_error!(ctx, "Service responded with error: {}", msg);
+            fail_with_request(ctx, svc);
+        }
+        ServiceResult::ErrorUbf(ubf) => {
+            tp_error!(ctx, "Service responded with UBF error");
+            ctx.tpreturn_ubf(TpReturnStatus::Fail, 0, ubf, 0);
+        }
     }
+}
+
+/// Return TPFAIL reusing the request buffer (or a fresh one if already taken).
+fn fail_with_request<'ctx>(ctx: &'ctx AtmiCtx, svc: &mut TpSvcInfo<'ctx>) {
+    let buf = match svc.take_data() {
+        Some(buf) => buf,
+        None => match ctx.tpalloc_ubf(256) {
+            Ok(ubf) => ubf.into_inner(),
+            Err(e) => {
+                tp_error!(ctx, "Failed to allocate failure buffer: {}", e);
+                return;
+            }
+        },
+    };
+    ctx.tpreturn(TpReturnStatus::Fail, 0, buf, 0);
 }
 
 // UBF Request/Response structures
-#[derive(Debug, Deserialize, Serialize, UbfStructDerive)]
+#[derive(Debug, Deserialize, Serialize, UbfSerialize, UbfDeserialize)]
 struct CreateTransactionRequest {
     #[ubf(field = T_TRANS_TYPE_FLD)]
     transaction_type: String,
@@ -224,7 +113,7 @@ struct CreateTransactionRequest {
     description: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize, UbfStructDerive)]
+#[derive(Debug, Serialize, Deserialize, UbfSerialize, UbfDeserialize)]
 struct TransactionResponse {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
@@ -242,44 +131,50 @@ struct TransactionResponse {
     error_message: Option<String>,
 }
 
-#[derive(Debug, Deserialize, Serialize, UbfStructDerive)]
+#[derive(Debug, Deserialize, Serialize, UbfSerialize, UbfDeserialize)]
 struct GetTransactionRequest {
     #[ubf(field = T_TRANS_ID_FLD)]
     transaction_id: String,
 }
 
-/// CREATE_TXN - Create new transaction in Oracle DB
-pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
-    tplog_info("CREATE_TXN service called");
+/// CREATE_TXN - Create new transaction in the database
+pub fn create_transaction_service<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    svc: &mut TpSvcInfo<'ctx>,
+    pool: &DbPool,
+) -> ServiceResult<'ctx> {
+    tp_info!(ctx, "CREATE_TXN service called");
 
-    let ubf_buf = match &request.ubf_buffer {
+    let ubf = match svc.take_data_ubf() {
         Some(buf) => buf,
         None => {
-            tplog_error("CREATE_TXN requires UBF buffer");
-            return create_error_response("unknown", "MISSING_BUFFER", "UBF buffer required");
+            tp_error!(ctx, "CREATE_TXN requires UBF buffer");
+            return create_error_response(ctx, "unknown", "MISSING_BUFFER", "UBF buffer required");
         }
     };
 
-    let req = match CreateTransactionRequest::from_ubf(ubf_buf) {
+    let req: CreateTransactionRequest = match ubf.ubf_read() {
         Ok(req) => req,
         Err(e) => {
-            tplog_error(&format!("Failed to decode request: {}", e));
-            return create_error_response("unknown", "DECODE_ERROR", &e.to_string());
+            tp_error!(ctx, "Failed to decode request: {}", e);
+            return create_error_response(ctx, "unknown", "DECODE_ERROR", &e.to_string());
         }
     };
 
-    tplog_info(&format!(
+    tp_info!(
+        ctx,
         "Creating transaction: id={}, type={}, account={}, amount={}",
-        req.transaction_id, req.transaction_type, req.account, req.amount
-    ));
+        req.transaction_id,
+        req.transaction_type,
+        req.account,
+        req.amount
+    );
 
     // Validate transaction type
     if req.transaction_type.to_lowercase() != "sale" {
-        tplog_error(&format!(
-            "Invalid transaction type: {}",
-            req.transaction_type
-        ));
+        tp_error!(ctx, "Invalid transaction type: {}", req.transaction_type);
         return create_error_response(
+            ctx,
             &req.transaction_id,
             "INVALID_TYPE",
             &format!(
@@ -293,8 +188,8 @@ pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Se
     let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
-            tplog_error(&format!("Failed to get DB connection: {}", e));
-            return create_error_response(&req.transaction_id, "DB_ERROR", &e);
+            tp_error!(ctx, "Failed to get DB connection: {}", e);
+            return create_error_response(ctx, &req.transaction_id, "DB_ERROR", &e);
         }
     };
 
@@ -323,46 +218,51 @@ pub fn create_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Se
 
     match result {
         Ok(_) => {
-            tplog_info(&format!(
+            tp_info!(
+                ctx,
                 "Transaction {} created successfully",
                 req.transaction_id
-            ));
-            create_success_response(&req.transaction_id, &message)
+            );
+            create_success_response(ctx, &req.transaction_id, &message)
         }
         Err(e) => {
-            tplog_error(&format!("Failed to insert transaction: {}", e));
-            create_error_response(&req.transaction_id, "DB_INSERT_ERROR", &e.to_string())
+            tp_error!(ctx, "Failed to insert transaction: {}", e);
+            create_error_response(ctx, &req.transaction_id, "DB_INSERT_ERROR", &e.to_string())
         }
     }
 }
 
-/// GET_TXN - Get transaction from Oracle DB
-pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
-    tplog_info("GET_TXN service called");
+/// GET_TXN - Get transaction from the database
+pub fn get_transaction_service<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    svc: &mut TpSvcInfo<'ctx>,
+    pool: &DbPool,
+) -> ServiceResult<'ctx> {
+    tp_info!(ctx, "GET_TXN service called");
 
-    let ubf_buf = match &request.ubf_buffer {
+    let ubf = match svc.take_data_ubf() {
         Some(buf) => buf,
         None => {
-            tplog_error("GET_TXN requires UBF buffer");
-            return create_error_response("unknown", "MISSING_BUFFER", "UBF buffer required");
+            tp_error!(ctx, "GET_TXN requires UBF buffer");
+            return create_error_response(ctx, "unknown", "MISSING_BUFFER", "UBF buffer required");
         }
     };
 
-    let req = match GetTransactionRequest::from_ubf(ubf_buf) {
+    let req: GetTransactionRequest = match ubf.ubf_read() {
         Ok(req) => req,
         Err(e) => {
-            tplog_error(&format!("Failed to decode request: {}", e));
-            return create_error_response("unknown", "DECODE_ERROR", &e.to_string());
+            tp_error!(ctx, "Failed to decode request: {}", e);
+            return create_error_response(ctx, "unknown", "DECODE_ERROR", &e.to_string());
         }
     };
 
-    tplog_info(&format!("Getting transaction: id={}", req.transaction_id));
+    tp_info!(ctx, "Getting transaction: id={}", req.transaction_id);
 
     let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
-            tplog_error(&format!("Failed to get DB connection: {}", e));
-            return create_error_response(&req.transaction_id, "DB_ERROR", &e);
+            tp_error!(ctx, "Failed to get DB connection: {}", e);
+            return create_error_response(ctx, &req.transaction_id, "DB_ERROR", &e);
         }
     };
 
@@ -377,32 +277,42 @@ pub fn get_transaction_service(request: &ServiceRequest, pool: &DbPool) -> Servi
 
     match result {
         Ok(txn) => {
-            tplog_info(&format!(
-                "Transaction {} found: status={}",
-                txn.id, txn.status
-            ));
-            create_success_response(&txn.id, &txn.message.unwrap_or_else(|| "OK".to_string()))
+            tp_info!(ctx, "Transaction {} found: status={}", txn.id, txn.status);
+            create_success_response(
+                ctx,
+                &txn.id,
+                &txn.message.unwrap_or_else(|| "OK".to_string()),
+            )
         }
         Err(diesel::result::Error::NotFound) => {
-            tplog_error(&format!("Transaction {} not found", req.transaction_id));
-            create_error_response(&req.transaction_id, "NOT_FOUND", "Transaction not found")
+            tp_error!(ctx, "Transaction {} not found", req.transaction_id);
+            create_error_response(
+                ctx,
+                &req.transaction_id,
+                "NOT_FOUND",
+                "Transaction not found",
+            )
         }
         Err(e) => {
-            tplog_error(&format!("Failed to query transaction: {}", e));
-            create_error_response(&req.transaction_id, "DB_QUERY_ERROR", &e.to_string())
+            tp_error!(ctx, "Failed to query transaction: {}", e);
+            create_error_response(ctx, &req.transaction_id, "DB_QUERY_ERROR", &e.to_string())
         }
     }
 }
 
 /// LIST_TXN - List all transactions
-pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> ServiceResult {
-    tplog_info("LIST_TXN service called");
+pub fn list_transactions_service<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    _svc: &mut TpSvcInfo<'ctx>,
+    pool: &DbPool,
+) -> ServiceResult<'ctx> {
+    tp_info!(ctx, "LIST_TXN service called");
 
     let mut conn = match crate::db::get_connection(pool) {
         Ok(conn) => conn,
         Err(e) => {
-            tplog_error(&format!("Failed to get DB connection: {}", e));
-            return create_error_response("", "DB_ERROR", &e);
+            tp_error!(ctx, "Failed to get DB connection: {}", e);
+            return create_error_response(ctx, "", "DB_ERROR", &e);
         }
     };
 
@@ -419,19 +329,36 @@ pub fn list_transactions_service(_request: &ServiceRequest, pool: &DbPool) -> Se
     match result {
         Ok(results) => {
             let count = results.len();
-            tplog_info(&format!("Found {} transactions", count));
+            tp_info!(ctx, "Found {} transactions", count);
             let msg = format!("Found {} transactions", count);
-            create_success_response("", &msg)
+            create_success_response(ctx, "", &msg)
         }
         Err(e) => {
-            tplog_error(&format!("Failed to list transactions: {}", e));
-            create_error_response("", "DB_QUERY_ERROR", &e.to_string())
+            tp_error!(ctx, "Failed to list transactions: {}", e);
+            create_error_response(ctx, "", "DB_QUERY_ERROR", &e.to_string())
         }
     }
 }
 
+/// Serialize a transaction response into a fresh UBF buffer.
+fn response_to_ubf<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    response: &TransactionResponse,
+) -> Result<TypedUbf<'ctx>, String> {
+    let mut buf = ctx
+        .tpalloc_ubf(1024)
+        .map_err(|e| format!("Failed to create response buffer: {}", e))?;
+    buf.ubf_write(response, true)
+        .map_err(|e| format!("Failed to encode response: {}", e))?;
+    Ok(buf)
+}
+
 // Helper functions to create responses
-fn create_success_response(transaction_id: &str, message: &str) -> ServiceResult {
+fn create_success_response<'ctx>(
+    ctx: &'ctx AtmiCtx,
+    transaction_id: &str,
+    message: &str,
+) -> ServiceResult<'ctx> {
     let response = TransactionResponse {
         transaction_id: transaction_id.to_string(),
         status: "SUCCESS".to_string(),
@@ -440,27 +367,21 @@ fn create_success_response(transaction_id: &str, message: &str) -> ServiceResult
         error_message: None,
     };
 
-    let mut response_buf = match UbfBuffer::new(1024) {
-        Ok(buf) => buf,
+    match response_to_ubf(ctx, &response) {
+        Ok(buf) => ServiceResult::Ubf(buf),
         Err(e) => {
-            tplog_error(&format!("Failed to create response buffer: {}", e));
-            return ServiceResult::error("Failed to create response buffer");
+            tp_error!(ctx, "{}", e);
+            ServiceResult::Error(e)
         }
-    };
-
-    if let Err(e) = response.update_ubf(&mut response_buf) {
-        tplog_error(&format!("Failed to encode response: {}", e));
-        return ServiceResult::error(&format!("Failed to encode response: {}", e));
     }
-
-    ServiceResult::success_ubf(response_buf)
 }
 
-fn create_error_response(
+fn create_error_response<'ctx>(
+    ctx: &'ctx AtmiCtx,
     transaction_id: &str,
     error_code: &str,
     error_message: &str,
-) -> ServiceResult {
+) -> ServiceResult<'ctx> {
     let response = TransactionResponse {
         transaction_id: transaction_id.to_string(),
         status: "ERROR".to_string(),
@@ -469,19 +390,12 @@ fn create_error_response(
         error_message: Some(error_message.to_string()),
     };
 
-    let mut response_buf = match UbfBuffer::new(1024) {
-        Ok(buf) => buf,
+    match response_to_ubf(ctx, &response) {
+        // Return success with error details inside UBF, like TRANSACTION service does
+        Ok(buf) => ServiceResult::Ubf(buf),
         Err(e) => {
-            tplog_error(&format!("Failed to create error buffer: {}", e));
-            return ServiceResult::error("Failed to create error buffer");
+            tp_error!(ctx, "{}", e);
+            ServiceResult::Error(e)
         }
-    };
-
-    if let Err(e) = response.update_ubf(&mut response_buf) {
-        tplog_error(&format!("Failed to encode error response: {}", e));
-        return ServiceResult::error(&format!("Encode error: {}", e));
     }
-
-    // Return success with error details inside UBF, like TRANSACTION service does
-    ServiceResult::success_ubf(response_buf)
 }
