@@ -21,6 +21,8 @@
 #define	T_SHORT_FLD	((BFLDID32)1030)	/* number: 1030	 type: short */
 #define	T_FLAG_FLD	((BFLDID32)1031)	/* number: 1031	 type: short */
 #define	T_CHAR_FLD	((BFLDID32)67109904)	/* number: 1040	 type: char */
+#define	T_ADDRESS_FLD	((BFLDID32)335545365)	/* number: 1045	 type: ubf */
+#define	T_CONTACT_FLD	((BFLDID32)335545366)	/* number: 1046	 type: ubf */
 #define	T_TRANS_TYPE_FLD	((BFLDID32)167773210)	/* number: 1050	 type: string */
 #define	T_TRANS_ID_FLD	((BFLDID32)167773211)	/* number: 1051	 type: string */
 #define	T_ACCOUNT_FLD	((BFLDID32)167773212)	/* number: 1052	 type: string */

@@ -32,6 +32,10 @@ T_FLAG_FLD       31   short   -  "Flag field"
 # Character fields
 T_CHAR_FLD       40   char    -  "Character field"
 
+# Embedded UBF fields (nested structures)
+T_ADDRESS_FLD    45   ubf     -  "Embedded address structure"
+T_CONTACT_FLD    46   ubf     -  "Embedded contact structure"
+
 # Transaction fields
 T_TRANS_TYPE_FLD 50   string  -  "Transaction type field"
 T_TRANS_ID_FLD   51   string  -  "Transaction ID field"
