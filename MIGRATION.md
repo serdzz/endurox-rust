@@ -148,6 +148,10 @@ Everything below was executed against a **live Enduro/X 8.0.10 domain**
 
 ## Future work
 
+- A second REST gateway now exists: `rest_axum_gateway` (axum + tokio,
+  port 8081 by default). It serves the same endpoints and JSON shapes as the
+  Actix `rest_gateway`, calling Enduro/X through a bounded `spawn_blocking`
+  pool of thread-local `AtmiCtx`s (`REST_WORKERS` controls the pool size).
 - Upstream the three compat patches to `endurox-dev/endurox-rs`, then drop
   `vendor/endurox-rs`, the `[patch]` redirect and `tools/mkfldhdr-rust`.
 - `endurox-sys` and `endurox-derive` are no longer used by any crate and can

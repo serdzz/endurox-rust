@@ -4,6 +4,7 @@ members = [
     "endurox-derive",
     "samplesvr_rust",
     "rest_gateway",
+    "rest_axum_gateway",
     "ubfsvr_rust",
     "ubf_test_client",
     "oracle_txn_server",
